@@ -51,6 +51,7 @@ public class Menu extends javax.swing.JPanel {
         setBackground(Color.WHITE);
         menu.setLayout(new MigLayout("fillx, wrap, inset 0", "[fill]", "[fill, 36!]0[fill, 36!]"));
         initMenu();
+        imageAvatar1.setImage(new ImageIcon(getClass().getResource("/com/raven/icon/logo1.png")));
     }
 
     private void initMenu() {
