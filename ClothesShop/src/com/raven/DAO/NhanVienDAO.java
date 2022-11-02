@@ -11,7 +11,7 @@ public class NhanVienDAO extends ClothingStoreDAO<NhanVien, String> {
 
     @Override
     public void insert(NhanVien model) {
-        String sql = "INSERT INTO ThongTinNhanVien (IDNhanVien, HoTen, SDT, Email) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO NhanVien (MaNV, HoTen, SDT, Email) VALUES (?, ?, ?, ?)";
         XJdbc.executeUpdate(sql,
                 model.getMaNV(),
                 model.getHoten(),
@@ -21,7 +21,7 @@ public class NhanVienDAO extends ClothingStoreDAO<NhanVien, String> {
 
     @Override
     public void update(NhanVien model) {
-        String sql = "UPDATE ThongTinNhanVien SET HoTen=?, SDT=?, Email=? WHERE IDNhanVien=?";
+        String sql = "UPDATE NhanVien SET HoTen=?, SDT=?, Email=? WHERE MaNV=?";
         XJdbc.executeUpdate(sql,
                 model.getHoten(),
                 model.getSdt(),
@@ -31,24 +31,24 @@ public class NhanVienDAO extends ClothingStoreDAO<NhanVien, String> {
 
     @Override
     public void delete(String MaNV) {
-        String sql = "DELETE FROM ThongTinNhanVien WHERE IDNhanVien=?";
+        String sql = "DELETE FROM NhanVien WHERE MaNV=?";
         XJdbc.executeUpdate(sql, MaNV);
     }
 
     @Override
     public List<NhanVien> select() {
-        String sql = "SELECT * FROM ThongTinNhanVien";
+        String sql = "SELECT * FROM NhanVien";
         return select(sql);
     }
 
     public List<NhanVien> selectByKeyword(String keyword) {
-        String sql = "SELECT * FROM ThongTinNhanVien WHERE IDNhanVien like ?";
+        String sql = "SELECT * FROM NhanVien WHERE MaNV like ?";
         return select(sql, "%" + keyword + "%");
     }
 
     @Override
     public NhanVien selectById(String manv) {
-        String sql = "SELECT * FROM ThongTinNhanVien WHERE IDNhanVien=?";
+        String sql = "SELECT * FROM NhanVien WHERE MaNV=?";
         List<NhanVien> list = select(sql, manv);
         return list.size() > 0 ? list.get(0) : null;
     }
@@ -75,7 +75,7 @@ public class NhanVienDAO extends ClothingStoreDAO<NhanVien, String> {
 
     private NhanVien readFromResultSet(ResultSet rs) throws SQLException {
         NhanVien model = new NhanVien();
-        model.setMaNV(rs.getString("IDNhanVien"));
+        model.setMaNV(rs.getString("MaNV"));
         model.setHoten(rs.getString("HoTen"));
         model.setSdt(rs.getString("SDT"));
         model.setEmail(rs.getString("Email"));

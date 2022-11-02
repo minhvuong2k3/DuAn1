@@ -1,14 +1,14 @@
 
 package com.raven.utils;
 
-import com.raven.model.Role;
+import com.raven.model.NhanVien;
 
 
 public class Auth {
     /**
      * Đối tượng này chứa thông tin người sử dụng sau khi đăng nhập
      */
-    public static Role user = null;
+    public static NhanVien user = null;
     
     /**
      * Xóa thông tin của người sử dụng khi có yêu cầu đăng xuất
@@ -28,6 +28,6 @@ public class Auth {
      * Kiểm tra xem có phải là trưởng phòng hay không
      */
     public static boolean isManager() {
-        return Auth.isLogin() && user.getVaiTro().equals("Admin");
+        return Auth.isLogin() && user.getVaiTro();
     }
 }
