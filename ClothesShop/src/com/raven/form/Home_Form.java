@@ -28,7 +28,7 @@ public class Home_Form extends Form {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(slideshow1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 558, Short.MAX_VALUE))
+                .addGap(0, 723, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
