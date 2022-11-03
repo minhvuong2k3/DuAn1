@@ -22,7 +22,7 @@ public class Main extends javax.swing.JFrame {
 
     private void init() {
         header.initMoving(this);
-        header.initEvent(this, panelBackground1);
+        header.initEvent(this);
         menu.addEventMenu(new EventMenu() {
             @Override
             public void selectedMenu(int index) {

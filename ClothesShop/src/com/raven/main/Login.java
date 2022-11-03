@@ -1,24 +1,14 @@
 package com.raven.main;
 
-import com.raven.main.LoginSystem;
-import com.raven.component.Message;
 import com.raven.component.PanelCover;
-import com.raven.component.PanelLoading;
 import com.raven.component.PanelLoginAndRegister;
-import com.raven.component.PanelVerifyCode;
-import com.raven.connection.DatabaseConnection;
-import com.raven.model.ModelLogin;
-import com.raven.model.ModelMessage;
-import com.raven.model.ModelUser;
-import com.raven.service.ServiceMail;
-import com.raven.service.ServiceUser;
+import com.raven.swing.PanelBackground;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.Locale;
-import javax.swing.JLayeredPane;
 import net.miginfocom.swing.MigLayout;
 import org.jdesktop.animation.timing.Animator;
 import org.jdesktop.animation.timing.TimingTarget;
@@ -29,39 +19,24 @@ public class Login extends javax.swing.JFrame {
     private final DecimalFormat df = new DecimalFormat("##0.###", DecimalFormatSymbols.getInstance(Locale.US));
     private MigLayout layout;
     private PanelCover cover;
-    private PanelLoading loading;
-    private PanelVerifyCode verifyCode;
     private PanelLoginAndRegister loginAndRegister;
-    private boolean isLogin;
+    private boolean isLogin = true;
     private final double addSize = 30;
     private final double coverSize = 40;
     private final double loginSize = 60;
-    private ServiceUser service;
 
     public Login() {
         initComponents();
         init();
+        header1.initMoving(this);
+        header1.initEvent(this);
+//        header1.setBackground(Color.white);
     }
 
     private void init() {
-        service = new ServiceUser();
         layout = new MigLayout("fill, insets 0");
         cover = new PanelCover();
-        loading = new PanelLoading();
-        verifyCode = new PanelVerifyCode();
-        ActionListener eventRegister = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                register();
-            }
-        };
-        ActionListener eventLogin = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                login();
-            }
-        };
-        loginAndRegister = new PanelLoginAndRegister(eventRegister, eventLogin);
+        loginAndRegister = new PanelLoginAndRegister();
         TimingTarget target = new TimingTargetAdapter() {
             @Override
             public void timingEvent(float fraction) {
@@ -110,12 +85,10 @@ public class Login extends javax.swing.JFrame {
         animator.setDeceleration(0.5f);
         animator.setResolution(0);  //  for smooth animation
         bg.setLayout(layout);
-        bg.setLayer(loading, JLayeredPane.POPUP_LAYER);
-        bg.setLayer(verifyCode, JLayeredPane.POPUP_LAYER);
-        bg.add(loading, "pos 0 0 100% 100%");
-        bg.add(verifyCode, "pos 0 0 100% 100%");
-        bg.add(cover, "width " + coverSize + "%, pos 0al 0 n 100%");
-        bg.add(loginAndRegister, "width " + loginSize + "%, pos 1al 0 n 100%"); //  1al as 100%
+        bg.add(cover, "width " + coverSize + "%, pos " + (isLogin ? "1al" : "0al") + " 0 n 100%");
+        bg.add(loginAndRegister, "width " + loginSize + "%, pos " + (isLogin ? "0al" : "1al") + " 0 n 100%"); //  1al as 100%
+        loginAndRegister.showRegister(!isLogin);
+        cover.login(isLogin);
         cover.addEvent(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
@@ -124,137 +97,22 @@ public class Login extends javax.swing.JFrame {
                 }
             }
         });
-        verifyCode.addEventButtonOK(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                try {
-                    ModelUser user = loginAndRegister.getUser();
-                    if (service.verifyCodeWithUser(user.getUserID(), verifyCode.getInputCode())) {
-                        service.doneVerify(user.getUserID());
-                        showMessage(Message.MessageType.SUCCESS, "Register sucess");
-                        verifyCode.setVisible(false);
-                    } else {
-                        showMessage(Message.MessageType.ERROR, "Verify code incorrect");
-                    }
-                } catch (SQLException e) {
-                    showMessage(Message.MessageType.ERROR, "Error");
-                }
-            }
-        });
     }
-
-    private void register() {
-        ModelUser user = loginAndRegister.getUser();
-        try {
-            if (service.checkDuplicateUser(user.getUserName())) {
-                showMessage(Message.MessageType.ERROR, "User name already exit");
-            } else if (service.checkDuplicateEmail(user.getEmail())) {
-                showMessage(Message.MessageType.ERROR, "Email already exit");
-            } else {
-                service.insertUser(user);
-                sendMain(user);
-            }
-        } catch (SQLException e) {
-            showMessage(Message.MessageType.ERROR, "Error Register");
-        }
-    }
-
-    private void login() {
-        ModelLogin data = loginAndRegister.getDataLogin();
-        try {
-            ModelUser user = service.login(data);
-            if (user != null) {
-                this.dispose();
-                LoginSystem.main(user);
-            } else {
-                showMessage(Message.MessageType.ERROR, "Email and Password incorrect");
-            }
-
-        } catch (SQLException e) {
-            showMessage(Message.MessageType.ERROR, "Error Login");
-        }
-    }
-
-    private void sendMain(ModelUser user) {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                loading.setVisible(true);
-                ModelMessage ms = new ServiceMail().sendMain(user.getEmail(), user.getVerifyCode());
-                if (ms.isSuccess()) {
-                    loading.setVisible(false);
-                    verifyCode.setVisible(true);
-                } else {
-                    loading.setVisible(false);
-                    showMessage(Message.MessageType.ERROR, ms.getMessage());
-                }
-            }
-        }).start();
-    }
-
-    private void showMessage(Message.MessageType messageType, String message) {
-        Message ms = new Message();
-        ms.showMessage(messageType, message);
-        TimingTarget target = new TimingTargetAdapter() {
-            @Override
-            public void begin() {
-                if (!ms.isShow()) {
-                    bg.add(ms, "pos 0.5al -30", 0); //  Insert to bg fist index 0
-                    ms.setVisible(true);
-                    bg.repaint();
-                }
-            }
-
-            @Override
-            public void timingEvent(float fraction) {
-                float f;
-                if (ms.isShow()) {
-                    f = 40 * (1f - fraction);
-                } else {
-                    f = 40 * fraction;
-                }
-                layout.setComponentConstraints(ms, "pos 0.5al " + (int) (f - 30));
-                bg.repaint();
-                bg.revalidate();
-            }
-
-            @Override
-            public void end() {
-                if (ms.isShow()) {
-                    bg.remove(ms);
-                    bg.repaint();
-                    bg.revalidate();
-                } else {
-                    ms.setShow(true);
-                }
-            }
-        };
-        Animator animator = new Animator(300, target);
-        animator.setResolution(0);
-        animator.setAcceleration(0.5f);
-        animator.setDeceleration(0.5f);
-        animator.start();
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(2000);
-                    animator.start();
-                } catch (InterruptedException e) {
-                    System.err.println(e);
-                }
-            }
-        }).start();
-    }
+    
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         bg = new javax.swing.JLayeredPane();
+        header1 = new com.raven.component.Header();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         bg.setBackground(new java.awt.Color(255, 255, 255));
         bg.setOpaque(true);
@@ -263,22 +121,39 @@ public class Login extends javax.swing.JFrame {
         bg.setLayout(bgLayout);
         bgLayout.setHorizontalGroup(
             bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 933, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         bgLayout.setVerticalGroup(
             bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 537, Short.MAX_VALUE)
+            .addGap(0, 500, Short.MAX_VALUE)
+        );
+
+        header1.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(header1, javax.swing.GroupLayout.DEFAULT_SIZE, 933, Short.MAX_VALUE)
+            .addComponent(bg)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addComponent(header1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(bg))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bg, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(bg)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -307,9 +182,10 @@ public class Login extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        /* Create and display the form */
-//            DatabaseConnection.pre(sql, args);
         //</editor-fold>
+        //</editor-fold>
+
+        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Login().setVisible(true);
@@ -319,5 +195,7 @@ public class Login extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLayeredPane bg;
+    private com.raven.component.Header header1;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

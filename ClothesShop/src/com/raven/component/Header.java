@@ -14,8 +14,8 @@ public class Header extends javax.swing.JPanel {
         setOpaque(false);
     }
 
-    public void initEvent(JFrame fram, PanelBackground panel) {
-        winButton1.initEvent(fram, panel);
+    public void initEvent(JFrame fram) {
+        winButton1.initEvent(fram);
     }
     private int x;
     private int y;
@@ -46,6 +46,8 @@ public class Header extends javax.swing.JPanel {
     private void initComponents() {
 
         winButton1 = new com.raven.swing.win_button.WinButton();
+
+        setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
