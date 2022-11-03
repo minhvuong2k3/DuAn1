@@ -13,7 +13,10 @@ public class SanPham {
     private String tenSP;
     private String anh;
     private String giaBan;
+    private String maLH;
     private String giamgia;
+    private String maNCC;
+    private int soLuong;
 
     public String getMaSP() {
         return maSP;
@@ -53,6 +56,30 @@ public class SanPham {
 
     public void setGiamgia(String giamgia) {
         this.giamgia = giamgia;
+    }
+
+    public String getMaLH() {
+        return maLH;
+    }
+
+    public void setMaLH(String maLH) {
+        this.maLH = maLH;
+    }
+
+    public String getMaNCC() {
+        return maNCC;
+    }
+
+    public void setMaNCC(String maNCC) {
+        this.maNCC = maNCC;
+    }
+
+    public int getSoLuong() {
+        return soLuong;
+    }
+
+    public void setSoLuong(int soLuong) {
+        this.soLuong = soLuong;
     }
     
     

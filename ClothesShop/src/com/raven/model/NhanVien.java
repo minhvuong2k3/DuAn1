@@ -13,6 +13,8 @@ public class NhanVien {
     private String hoten;
     private String sdt;
     private String email;
+    private Boolean vaiTro;
+    private String matKhau;
 
     public String getMaNV() {
         return maNV;
@@ -44,6 +46,22 @@ public class NhanVien {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Boolean getVaiTro() {
+        return vaiTro;
+    }
+
+    public void setVaiTro(Boolean vaiTro) {
+        this.vaiTro = vaiTro;
+    }
+
+    public String getMatKhau() {
+        return matKhau;
+    }
+
+    public void setMatKhau(String matKhau) {
+        this.matKhau = matKhau;
     }
     
     
