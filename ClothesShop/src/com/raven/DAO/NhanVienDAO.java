@@ -68,7 +68,7 @@ public class NhanVienDAO extends ClothingStoreDAO<NhanVien, String> {
                 rs.getStatement().getConnection().close();
             }
         } catch (SQLException ex) {
-            throw new RuntimeException(ex);
+//            throw new RuntimeException(ex);
         }
         return list;
     }

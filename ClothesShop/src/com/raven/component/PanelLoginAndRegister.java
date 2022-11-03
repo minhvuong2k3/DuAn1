@@ -1,11 +1,16 @@
 package com.raven.component;
 
+import com.raven.DAO.NhanVienDAO;
+import com.raven.model.NhanVien;
 import com.raven.swing.Button;
 import com.raven.swing.MyPasswordField;
 import com.raven.swing.MyTextField;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -13,6 +18,10 @@ import net.miginfocom.swing.MigLayout;
 
 public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
 
+    private List<NhanVien> list = new ArrayList<>();
+    private NhanVienDAO dao = new NhanVienDAO();
+    private NhanVien model;
+    
     public PanelLoginAndRegister() {
         initComponents();
         initRegister();
@@ -66,11 +75,17 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
 //        cmdForget.setContentAreaFilled(false);
 //        cmdForget.setCursor(new Cursor(Cursor.HAND_CURSOR));
 //        login.add(cmdForget);
+//        login();
         Button cmd = new Button();
         cmd.setBackground(new Color(7, 164, 121));
         cmd.setForeground(new Color(250, 250, 250));
         cmd.setText("SIGN IN");
+
         login.add(cmd, "w 40%, h 40");
+    }
+
+    public void login(String userName,String pass, String email) {
+        list= dao.select();
     }
 
     public void showRegister(boolean show) {
