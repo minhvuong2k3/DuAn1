@@ -14,7 +14,7 @@ public class SanPham {
     private String anh;
     private String giaBan;
     private String maLH;
-    private String giamgia;
+    private int giamgia;
     private String maNCC;
     private int soLuong;
 
@@ -50,11 +50,11 @@ public class SanPham {
         this.giaBan = giaBan;
     }
 
-    public String getGiamgia() {
+    public int getGiamgia() {
         return giamgia;
     }
 
-    public void setGiamgia(String giamgia) {
+    public void setGiamgia(int giamgia) {
         this.giamgia = giamgia;
     }
 
