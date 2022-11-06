@@ -36,7 +36,7 @@ public class Login extends javax.swing.JFrame {
     private void init() {
         layout = new MigLayout("fill, insets 0");
         cover = new PanelCover();
-        loginAndRegister = new PanelLoginAndRegister();
+        loginAndRegister = new PanelLoginAndRegister(this);
         TimingTarget target = new TimingTargetAdapter() {
             @Override
             public void timingEvent(float fraction) {
@@ -98,10 +98,6 @@ public class Login extends javax.swing.JFrame {
             }
         });
     }
-    
-    
-    
-    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

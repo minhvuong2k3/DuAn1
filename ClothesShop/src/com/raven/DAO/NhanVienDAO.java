@@ -1,5 +1,6 @@
 package com.raven.DAO;
 
+import com.raven.connection.DatabaseConnection;
 import com.raven.model.NhanVien;
 import com.raven.utils.XJdbc;
 import java.sql.ResultSet;
@@ -41,6 +42,12 @@ public class NhanVienDAO extends ClothingStoreDAO<NhanVien, String> {
         return select(sql);
     }
 
+//    public NhanVien selectByEmail(String email) {
+//        String sql = "SELECT NV.MANV , HoTen , SDT, Email, MatKhau, VaiTro FROM NhanVien NV JOIN Role RL ON NV.MANV = RL.MANV WHERE Email = ?";
+//        List<NhanVien> list = selectFull(sql, email);
+//        return list.size() > 0 ? list.get(0) : null;
+//    }
+
     public List<NhanVien> selectByKeyword(String keyword) {
         String sql = "SELECT * FROM NhanVien WHERE MaNV like ?";
         return select(sql, "%" + keyword + "%");
@@ -59,7 +66,7 @@ public class NhanVienDAO extends ClothingStoreDAO<NhanVien, String> {
         try {
             ResultSet rs = null;
             try {
-                rs = XJdbc.executeQuery(sql, args);
+                rs = DatabaseConnection.exQu(sql, args);
                 while (rs.next()) {
                     NhanVien model = readFromResultSet(rs);
                     list.add(model);
@@ -78,8 +85,39 @@ public class NhanVienDAO extends ClothingStoreDAO<NhanVien, String> {
         model.setMaNV(rs.getString("MaNV"));
         model.setHoten(rs.getString("HoTen"));
         model.setSdt(rs.getString("SDT"));
-        model.setEmail(rs.getString("Email"));
+        model.setVaiTro(rs.getBoolean("VaiTro"));
+//        model.setEmail(rs.getString("Email"));
+//        model.setMatKhau(rs.getString("MatKhau"));
         return model;
     }
 
+//    protected List<NhanVien> selectFull(String sql, Object... args) {
+//        List<NhanVien> list = new ArrayList<>();
+//        try {
+//            ResultSet rs = null;
+//            try {
+//                rs = XJdbc.executeQuery(sql, args);
+//                while (rs.next()) {
+//                    NhanVien model = readFromResultSetFull(rs);
+//                    list.add(model);
+//                }
+//            } finally {
+//                rs.getStatement().getConnection().close();
+//            }
+//        } catch (SQLException ex) {
+////            throw new RuntimeException(ex);
+//        }
+//        return list;
+//    }
+//
+//    private static NhanVien readFromResultSetFull(ResultSet rs) throws SQLException {
+//        NhanVien model = new NhanVien();
+//        model.setMaNV(rs.getString("MaNV"));
+//        model.setHoten(rs.getString("HoTen"));
+//        model.setSdt(rs.getString("SDT"));
+//        model.setVaiTro(rs.getBoolean("VaiTro"));
+//        model.setEmail(rs.getString("Email"));
+//        model.setMatKhau(rs.getString("MatKhau"));
+//        return model;
+//    }
 }
