@@ -42,11 +42,11 @@ public class NhanVienDAO extends ClothingStoreDAO<NhanVien, String> {
         return select(sql);
     }
 
-//    public NhanVien selectByEmail(String email) {
-//        String sql = "SELECT NV.MANV , HoTen , SDT, Email, MatKhau, VaiTro FROM NhanVien NV JOIN Role RL ON NV.MANV = RL.MANV WHERE Email = ?";
-//        List<NhanVien> list = selectFull(sql, email);
-//        return list.size() > 0 ? list.get(0) : null;
-//    }
+    public NhanVien selectByEmail(String email) {
+        String sql = "SELECT NV.MANV , HoTen , SDT, Email, MatKhau, VaiTro FROM NhanVien NV JOIN Role RL ON NV.MANV = RL.MANV WHERE Email = ?";
+        List<NhanVien> list = select(sql, email);
+        return list.size() > 0 ? list.get(0) : null;
+    }
 
     public List<NhanVien> selectByKeyword(String keyword) {
         String sql = "SELECT * FROM NhanVien WHERE MaNV like ?";

@@ -17,6 +17,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -28,6 +36,9 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
     private List<NhanVien> list = new ArrayList<>();
     private NhanVienDAO dao = new NhanVienDAO();
     private NhanVien model;
+    private static int codeSend;
+    MimeMultipart mimeMultipart = new MimeMultipart();
+    MimeBodyPart mimeBodyPart = new MimeBodyPart();
 
     public PanelLoginAndRegister(Frame frame) {
         initComponents();
@@ -63,7 +74,8 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
         cmd.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                if(checkEmail(txtEmail.getText())) 
+                    sendCodeToEmail(txtEmail.getText());
             }
         });
         register.add(cmd, "w 40%, h 40");
@@ -142,9 +154,42 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
             login.setVisible(true);
         }
     }
+    
+    public int RandomCode(){
+        codeSend = (int) (Math.random()*(999999-100000+1)+100000);
+        return codeSend;
+    }
+    
+    public boolean checkEmail(String email){
+        NhanVien alist = dao.selectByEmail(email);
+        return alist!=null?true:false;
+    }
 
-    public void sendCodeToEmail() {
-
+    public void sendCodeToEmail(String email) {
+        try {
+            Properties p = new Properties();
+            p.put("mail.smtp.auth", "true");
+            p.put("mail.smtp.starttls.enable", "true");
+            p.put("mail.smtp.host", "smtp.gmail.com");
+            p.put("mail.smtp.port", 587);
+            Session s = Session.getDefaultInstance(p, new javax.mail.Authenticator(){
+                protected PasswordAuthentication getPasswordAuthentication(){
+                    return new PasswordAuthentication("vuongvmps24279@fpt.edu.vn", "minhvuong2k3");
+                }
+            });
+            javax.mail.Message msg = new MimeMessage(s);
+            msg.setFrom(new InternetAddress("vuongvmps24279@fpt.edu.vn"));
+            msg.setRecipients(javax.mail.Message.RecipientType.CC, InternetAddress.parse(email));
+            msg.setSubject("Code");
+            String content = "Code to change password: "+RandomCode();
+            mimeBodyPart.setContent(content, "text/html; charset=utf-8");
+            mimeMultipart.addBodyPart(mimeBodyPart);
+            msg.setContent(mimeMultipart);
+            Transport.send(msg);
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @SuppressWarnings("unchecked")
