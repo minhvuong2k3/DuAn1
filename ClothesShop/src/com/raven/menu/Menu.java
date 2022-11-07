@@ -2,6 +2,7 @@ package com.raven.menu;
 
 import com.raven.swing.MenuButton;
 import com.raven.theme.SystemTheme;
+import com.raven.utils.Auth;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
@@ -13,8 +14,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.geom.Area;
 import java.awt.geom.RoundRectangle2D;
+import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import net.miginfocom.swing.MigLayout;
@@ -52,11 +55,22 @@ public class Menu extends javax.swing.JPanel {
         menu.setLayout(new MigLayout("fillx, wrap, inset 0", "[fill]", "[fill, 36!]0[fill, 36!]"));
         initMenu();
         imageAvatar1.setImage(new ImageIcon(getClass().getResource("/com/raven/icon/logo1.png")));
+        if (Auth.user != null) {
+            lblName.setText(removeAccent(Auth.user.getHoten()));
+            lblRole.setText(Auth.user.getVaiTro() ? "Admin" : "User");
+        }
+    }
+
+    public String removeAccent(String s) {
+
+        String temp = Normalizer.normalize(s, Normalizer.Form.NFD);
+        Pattern pattern = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
+        return pattern.matcher(temp).replaceAll("");
     }
 
     private void initMenu() {
         addMenu("Dashboard", "1", 0);
-        addMenu("Staff", "2", 1);
+        addMenu("Product", "2", 1);
         addMenu("Sale", "3", 2);
         addMenu("Data", "4", 3);
         addMenu("Report", "5", 4);
@@ -167,8 +181,8 @@ public class Menu extends javax.swing.JPanel {
 
         menu = new javax.swing.JPanel();
         imageAvatar1 = new com.raven.theme.ImageAvatar();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lblName = new javax.swing.JLabel();
+        lblRole = new javax.swing.JLabel();
 
         menu.setOpaque(false);
 
@@ -189,15 +203,15 @@ public class Menu extends javax.swing.JPanel {
         imageAvatar1.setGradientColor2(new java.awt.Color(226, 45, 60));
         imageAvatar1.setImage(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/logo.jpg"))); // NOI18N
 
-        jLabel1.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(117, 117, 117));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Dashboard UI");
+        lblName.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
+        lblName.setForeground(new java.awt.Color(117, 117, 117));
+        lblName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblName.setText("Dashboard UI");
 
-        jLabel2.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(154, 154, 154));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Admin");
+        lblRole.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
+        lblRole.setForeground(new java.awt.Color(154, 154, 154));
+        lblRole.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblRole.setText("Admin");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -206,10 +220,10 @@ public class Menu extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
+                    .addComponent(lblRole, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(imageAvatar1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(menu, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap())))
@@ -220,9 +234,9 @@ public class Menu extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(imageAvatar1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1)
+                .addComponent(lblName)
                 .addGap(3, 3, 3)
-                .addComponent(jLabel2)
+                .addComponent(lblRole)
                 .addGap(20, 20, 20)
                 .addComponent(menu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -231,8 +245,8 @@ public class Menu extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.raven.theme.ImageAvatar imageAvatar1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel lblName;
+    private javax.swing.JLabel lblRole;
     private javax.swing.JPanel menu;
     // End of variables declaration//GEN-END:variables
 }

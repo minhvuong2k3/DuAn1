@@ -77,7 +77,7 @@ public class PanelCover extends javax.swing.JPanel {
     @Override
     protected void paintComponent(Graphics grphcs) {
         Graphics2D g2 = (Graphics2D) grphcs;
-        GradientPaint gra = new GradientPaint(0, 0, new Color(35, 166, 97), 0, getHeight(), new Color(22, 116, 66));
+        GradientPaint gra = new GradientPaint(0, 0, new Color(250,125,125), 0, getHeight(), new Color(250,100,100));
         g2.setPaint(gra);
         g2.fillRect(0, 0, getWidth(), getHeight());
         super.paintComponent(grphcs);
@@ -119,13 +119,13 @@ public class PanelCover extends javax.swing.JPanel {
         layout.setComponentConstraints(description1, "pad 0 " + v + "% 0 " + v + "%");
     }
 
-    private void login(boolean login) {
+    public void login(boolean login) {
         if (this.isLogin != login) {
             if (login) {
-                title.setText("hello, Friend!");
-                description.setText("Enter your personal details");
-                description1.setText("and start journey with us");
-                button.setText("SIGN UP");
+                title.setText("Unfortunately, Friend!");
+                description.setText("Enter your email");
+                description1.setText("and fill verifycode");
+                button.setText("FORGOT PASSWORD");
             } else {
                 title.setText("Welcome Back!");
                 description.setText("To keep connected with us please");

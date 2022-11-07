@@ -53,7 +53,7 @@ public class NhaCungCapDAO extends ClothingStoreDAO<NhaCungCap, String>{
 
     public List<NhaCungCap> selectByKeyword(String keyword) {
         String sql = "SELECT * FROM NhaCungCap WHERE MaNCC like ? OR HoTen = ?";
-        return select(sql, "%" + keyword + "%", "%" + keyword + "%");
+        return select(sql, "%" + keyword + "%" + "%" + keyword + "%");
     }
 
     @Override
