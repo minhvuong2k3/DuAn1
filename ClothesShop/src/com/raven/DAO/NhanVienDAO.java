@@ -12,7 +12,7 @@ public class NhanVienDAO extends ClothingStoreDAO<NhanVien, String> {
 
     @Override
     public void insert(NhanVien model) {
-        String sql = "INSERT INTO NhanVien (MaNV, HoTen, SDT, Email) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO NhanVien (MaNV, TenNV, SDT, Email) VALUES (?, ?, ?, ?)";
         XJdbc.executeUpdate(sql,
                 model.getMaNV(),
                 model.getHoten(),
@@ -22,7 +22,7 @@ public class NhanVienDAO extends ClothingStoreDAO<NhanVien, String> {
 
     @Override
     public void update(NhanVien model) {
-        String sql = "UPDATE NhanVien SET HoTen=?, SDT=?, Email=? WHERE MaNV=?";
+        String sql = "UPDATE NhanVien SET TenNV=?, SDT=?, Email=? WHERE MaNV=?";
         XJdbc.executeUpdate(sql,
                 model.getHoten(),
                 model.getSdt(),
@@ -43,7 +43,7 @@ public class NhanVienDAO extends ClothingStoreDAO<NhanVien, String> {
     }
 
     public NhanVien selectByEmail(String email) {
-        String sql = "SELECT NV.MANV , HoTen , SDT, Email, MatKhau, VaiTro FROM NhanVien NV JOIN Role RL ON NV.MANV = RL.MANV WHERE Email = ?";
+        String sql = "SELECT NV.MANV , TenNV , SDT, Email, MatKhau, VaiTro FROM NhanVien NV JOIN Role RL ON NV.MANV = RL.MANV WHERE Email = ?";
         List<NhanVien> list = select(sql, email);
         return list.size() > 0 ? list.get(0) : null;
     }
@@ -83,7 +83,7 @@ public class NhanVienDAO extends ClothingStoreDAO<NhanVien, String> {
     private NhanVien readFromResultSet(ResultSet rs) throws SQLException {
         NhanVien model = new NhanVien();
         model.setMaNV(rs.getString("MaNV"));
-        model.setHoten(rs.getString("HoTen"));
+        model.setHoten(rs.getString("TenNV"));
         model.setSdt(rs.getString("SDT"));
         model.setVaiTro(rs.getBoolean("VaiTro"));
 //        model.setEmail(rs.getString("Email"));

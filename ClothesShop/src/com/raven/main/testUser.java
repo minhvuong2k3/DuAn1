@@ -34,8 +34,12 @@ public class testUser {
 //        email = sc.nextLine();
 //        model = selectByEmail(email);
 //        System.out.println(model.getEmail() + " " + model.getMatKhau());
-        int i = new Random().nextInt(900000) + 100000;
-        System.out.println(i);
+//        update("123","NV003");
+    }
+
+    public static void update(String matkhau, String manv) {
+        String sql = "UPDATE Role SET MatKhau=? WHERE MaNV=?";
+        XJdbc.executeUpdate(sql ,matkhau ,manv);
     }
 
     public static List<NhanVien> select() {
@@ -44,7 +48,7 @@ public class testUser {
     }
 
     public static NhanVien selectByEmail(String email) {
-        String sql = "SELECT NV.MANV , HoTen , SDT, Email, MatKhau, VaiTro FROM NhanVien NV JOIN Role RL ON NV.MANV = RL.MANV WHERE Email = ?";
+        String sql = "SELECT NV.MANV , TenNV , SDT, Email, MatKhau, VaiTro FROM NhanVien NV JOIN Role RL ON NV.MANV = RL.MANV WHERE Email = ?";
         List<NhanVien> list = selectFull(sql, email);
         return list.size() > 0 ? list.get(0) : null;
     }
@@ -90,7 +94,7 @@ public class testUser {
     private static NhanVien readFromResultSet(ResultSet rs) throws SQLException {
         NhanVien model = new NhanVien();
         model.setMaNV(rs.getString("MaNV"));
-        model.setHoten(rs.getString("HoTen"));
+        model.setHoten(rs.getString("TenNV"));
         model.setSdt(rs.getString("SDT"));
         model.setEmail(rs.getString("Email"));
         return model;
@@ -99,7 +103,7 @@ public class testUser {
     private static NhanVien readFromResultSetFull(ResultSet rs) throws SQLException {
         NhanVien model = new NhanVien();
         model.setMaNV(rs.getString("MaNV"));
-        model.setHoten(rs.getString("HoTen"));
+        model.setHoten(rs.getString("TenNV"));
         model.setSdt(rs.getString("SDT"));
         model.setVaiTro(rs.getBoolean("VaiTro"));
         model.setEmail(rs.getString("Email"));
