@@ -95,7 +95,7 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
             if (checkEmail(txtEmail.getText())) {
                 model = dao.selectByEmail(txtEmail.getText());
                 if (sendCodeToEmail(txtEmail.getText())) {
-                    System.out.println("gui thanh cong");
+//                    System.out.println("gui thanh cong");
                     register.remove(txtEmail);
                     register.remove(cmd);
                     register.add(txtOTP, "w 60%");
@@ -107,7 +107,7 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
         });
         cmdCheckOTP.addActionListener((ActionEvent e) -> {
             if (checkOTP(txtOTP.getText())) {
-                System.out.println(" hi");
+//                System.out.println(" hi");
                 register.remove(cmdCheckOTP);
                 register.remove(txtOTP);
                 register.add(txtPass, "w 60%");
@@ -117,8 +117,8 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
         });
         cmdCheckPass.addActionListener((ActionEvent e) -> {
             if (checkPass(txtPass.getText(), txtCheckPass.getText())) {
-                System.out.println(" hi");
-//                dao.update(txtPass.getText(),model.getMaNV());
+//                System.out.println(" hi");
+                testUser.update(txtPass.getText(),model.getMaNV());
                 frame.setVisible(false);
                 Login lg = new Login();
                 lg.setVisible(true);
