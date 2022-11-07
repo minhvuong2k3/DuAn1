@@ -17,7 +17,7 @@ public class Home_Form extends Form {
     private void initComponents() {
 
         slideshow1 = new slideshow.Slideshow();
-        product_Form1 = new com.raven.form.Product_Form();
+        product_Form1 = new com.raven.form.Home();
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -40,7 +40,7 @@ public class Home_Form extends Form {
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.raven.form.Product_Form product_Form1;
+    private com.raven.form.Home product_Form1;
     private slideshow.Slideshow slideshow1;
     // End of variables declaration//GEN-END:variables
 }

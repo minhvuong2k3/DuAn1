@@ -2,7 +2,8 @@ package com.raven.main;
 
 import com.raven.event.EventColorChange;
 import com.raven.form.Home_Form;
-import com.raven.form.Product_Form;
+import com.raven.form.Home;
+import com.raven.form.P_Form;
 import com.raven.form.Setting_Form;
 import com.raven.menu.EventMenu;
 import com.raven.properties.SystemProperties;
@@ -14,7 +15,7 @@ import java.awt.Color;
 public class Main extends javax.swing.JFrame {
 
     private Setting_Form settingForm;
-    private Product_Form productForm;
+    private P_Form productForm;
 
     public Main() {
         initComponents();
@@ -30,8 +31,8 @@ public class Main extends javax.swing.JFrame {
             public void selectedMenu(int index) {
                 if (index == 0) {
                     mainBody.displayForm(new Home_Form());
-//                } else if (index == 1) {
-//                    mainBody.displayForm(productForm, "Product");
+                } else if (index == 1) {
+                    mainBody.displayForm(productForm, "Product");
                 } else if (index == 6) {
                     mainBody.displayForm(settingForm, "Setting");
                 }
@@ -75,6 +76,7 @@ public class Main extends javax.swing.JFrame {
         settingForm.setDarkMode(pro.isDarkMode());
         settingForm.initBackgroundImage(pro.getBackgroundImage());
         mainBody.displayForm(new Home_Form());
+        productForm = new P_Form();       
     }
 
     @SuppressWarnings("unchecked")
@@ -99,7 +101,7 @@ public class Main extends javax.swing.JFrame {
             .addGroup(panelBackground1Layout.createSequentialGroup()
                 .addComponent(menu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(mainBody, javax.swing.GroupLayout.DEFAULT_SIZE, 1086, Short.MAX_VALUE)
+                .addComponent(mainBody, javax.swing.GroupLayout.DEFAULT_SIZE, 1108, Short.MAX_VALUE)
                 .addContainerGap())
         );
         panelBackground1Layout.setVerticalGroup(

@@ -17,12 +17,12 @@ import java.awt.Color;
  *
  * @author AD MIN
  */
-public class Product_Form extends Form {
+public class Home extends Form {
 
     /**
      * Creates new form Product
      */
-    public Product_Form() {
+    public Home() {
         initComponents();
         
     }
@@ -45,60 +45,40 @@ public class Product_Form extends Form {
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jTextArea9 = new javax.swing.JTextArea();
-        starRating9 = new star.rating.StarRating();
         panelShadow10 = new swing.PanelShadow();
         pictureBox10 = new swing.PictureBox();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         jTextArea10 = new javax.swing.JTextArea();
-        starRating10 = new star.rating.StarRating();
         panelShadow11 = new swing.PanelShadow();
         pictureBox11 = new swing.PictureBox();
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         jTextArea11 = new javax.swing.JTextArea();
-        starRating11 = new star.rating.StarRating();
         panelShadow12 = new swing.PanelShadow();
         pictureBox12 = new swing.PictureBox();
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
         jTextArea12 = new javax.swing.JTextArea();
-        starRating12 = new star.rating.StarRating();
         jLabel27 = new javax.swing.JLabel();
         panelShadow14 = new swing.PanelShadow();
         imageAvatar1 = new swing.ImageAvatar();
         panelRound1 = new swing.PanelRound();
-        jButton1 = new javax.swing.JButton();
-        jLabel28 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jLabel29 = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
         panelShadow15 = new swing.PanelShadow();
         imageAvatar2 = new swing.ImageAvatar();
         panelRound2 = new swing.PanelRound();
-        jButton3 = new javax.swing.JButton();
-        jLabel32 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
-        jLabel33 = new javax.swing.JLabel();
         jLabel34 = new javax.swing.JLabel();
         jLabel35 = new javax.swing.JLabel();
         panelShadow16 = new swing.PanelShadow();
         imageAvatar3 = new swing.ImageAvatar();
         panelRound3 = new swing.PanelRound();
-        jButton5 = new javax.swing.JButton();
-        jLabel36 = new javax.swing.JLabel();
-        jButton6 = new javax.swing.JButton();
-        jLabel37 = new javax.swing.JLabel();
         jLabel38 = new javax.swing.JLabel();
         jLabel39 = new javax.swing.JLabel();
         panelShadow17 = new swing.PanelShadow();
         imageAvatar4 = new swing.ImageAvatar();
         panelRound4 = new swing.PanelRound();
-        jButton7 = new javax.swing.JButton();
-        jLabel40 = new javax.swing.JLabel();
-        jButton8 = new javax.swing.JButton();
-        jLabel41 = new javax.swing.JLabel();
         jLabel42 = new javax.swing.JLabel();
         jLabel43 = new javax.swing.JLabel();
         jLabel44 = new javax.swing.JLabel();
@@ -132,9 +112,6 @@ public class Product_Form extends Form {
         jTextArea9.setBorder(null);
         jTextArea9.setFocusable(false);
 
-        starRating9.setForeground(new java.awt.Color(22, 136, 12));
-        starRating9.setStar(5);
-
         javax.swing.GroupLayout panelShadow9Layout = new javax.swing.GroupLayout(panelShadow9);
         panelShadow9.setLayout(panelShadow9Layout);
         panelShadow9Layout.setHorizontalGroup(
@@ -147,9 +124,8 @@ public class Product_Form extends Form {
                     .addGroup(panelShadow9Layout.createSequentialGroup()
                         .addGroup(panelShadow9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel17)
-                            .addComponent(jLabel18)
-                            .addComponent(starRating9, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                            .addComponent(jLabel18))
+                        .addGap(0, 63, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         panelShadow9Layout.setVerticalGroup(
@@ -163,9 +139,7 @@ public class Product_Form extends Form {
                 .addComponent(jLabel18)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextArea9, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(starRating9, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         panelShadow10.setBackground(new java.awt.Color(255, 255, 255));
@@ -190,9 +164,6 @@ public class Product_Form extends Form {
         jTextArea10.setBorder(null);
         jTextArea10.setFocusable(false);
 
-        starRating10.setForeground(new java.awt.Color(22, 136, 12));
-        starRating10.setStar(4);
-
         javax.swing.GroupLayout panelShadow10Layout = new javax.swing.GroupLayout(panelShadow10);
         panelShadow10.setLayout(panelShadow10Layout);
         panelShadow10Layout.setHorizontalGroup(
@@ -205,8 +176,7 @@ public class Product_Form extends Form {
                     .addGroup(panelShadow10Layout.createSequentialGroup()
                         .addGroup(panelShadow10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel19)
-                            .addComponent(jLabel20)
-                            .addComponent(starRating10, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel20))
                         .addGap(0, 57, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -221,9 +191,7 @@ public class Product_Form extends Form {
                 .addComponent(jLabel20)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextArea10, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(starRating10, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         panelShadow11.setBackground(new java.awt.Color(255, 255, 255));
@@ -248,9 +216,6 @@ public class Product_Form extends Form {
         jTextArea11.setBorder(null);
         jTextArea11.setFocusable(false);
 
-        starRating11.setForeground(new java.awt.Color(22, 136, 12));
-        starRating11.setStar(4);
-
         javax.swing.GroupLayout panelShadow11Layout = new javax.swing.GroupLayout(panelShadow11);
         panelShadow11.setLayout(panelShadow11Layout);
         panelShadow11Layout.setHorizontalGroup(
@@ -263,9 +228,8 @@ public class Product_Form extends Form {
                     .addGroup(panelShadow11Layout.createSequentialGroup()
                         .addGroup(panelShadow11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel21)
-                            .addComponent(jLabel22)
-                            .addComponent(starRating11, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                            .addComponent(jLabel22))
+                        .addGap(0, 57, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         panelShadow11Layout.setVerticalGroup(
@@ -279,9 +243,7 @@ public class Product_Form extends Form {
                 .addComponent(jLabel22)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextArea11, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(starRating11, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         panelShadow12.setBackground(new java.awt.Color(255, 255, 255));
@@ -306,9 +268,6 @@ public class Product_Form extends Form {
         jTextArea12.setBorder(null);
         jTextArea12.setFocusable(false);
 
-        starRating12.setForeground(new java.awt.Color(22, 136, 12));
-        starRating12.setStar(3);
-
         javax.swing.GroupLayout panelShadow12Layout = new javax.swing.GroupLayout(panelShadow12);
         panelShadow12.setLayout(panelShadow12Layout);
         panelShadow12Layout.setHorizontalGroup(
@@ -321,9 +280,8 @@ public class Product_Form extends Form {
                     .addGroup(panelShadow12Layout.createSequentialGroup()
                         .addGroup(panelShadow12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel23)
-                            .addComponent(jLabel24)
-                            .addComponent(starRating12, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                            .addComponent(jLabel24))
+                        .addGap(0, 57, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         panelShadow12Layout.setVerticalGroup(
@@ -337,9 +295,7 @@ public class Product_Form extends Form {
                 .addComponent(jLabel24)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextArea12, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(starRating12, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         jLabel27.setFont(new java.awt.Font("sansserif", 1, 30)); // NOI18N
@@ -359,57 +315,15 @@ public class Product_Form extends Form {
         panelRound1.setRoundBottomLeft(5);
         panelRound1.setRoundBottomRight(5);
 
-        jButton1.setForeground(new java.awt.Color(65, 65, 65));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/like.png"))); // NOI18N
-        jButton1.setText("Like");
-        jButton1.setBorder(null);
-        jButton1.setContentAreaFilled(false);
-
-        jLabel28.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N
-        jLabel28.setForeground(new java.awt.Color(86, 86, 86));
-        jLabel28.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel28.setText("12K");
-
-        jButton2.setForeground(new java.awt.Color(65, 65, 65));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/comment.png"))); // NOI18N
-        jButton2.setText("Comment");
-        jButton2.setBorder(null);
-        jButton2.setContentAreaFilled(false);
-
-        jLabel29.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N
-        jLabel29.setForeground(new java.awt.Color(86, 86, 86));
-        jLabel29.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel29.setText("1.9K");
-
         javax.swing.GroupLayout panelRound1Layout = new javax.swing.GroupLayout(panelRound1);
         panelRound1.setLayout(panelRound1Layout);
         panelRound1Layout.setHorizontalGroup(
             panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelRound1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
-                    .addComponent(jLabel28, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                .addGroup(panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10))
+            .addGap(0, 219, Short.MAX_VALUE)
         );
         panelRound1Layout.setVerticalGroup(
             panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRound1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(panelRound1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(panelRound1Layout.createSequentialGroup()
-                        .addComponent(jLabel29)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2))
-                    .addGroup(panelRound1Layout.createSequentialGroup()
-                        .addComponent(jLabel28)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)))
-                .addGap(15, 15, 15))
+            .addGap(0, 83, Short.MAX_VALUE)
         );
 
         jLabel30.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N
@@ -462,57 +376,15 @@ public class Product_Form extends Form {
         panelRound2.setRoundBottomLeft(5);
         panelRound2.setRoundBottomRight(5);
 
-        jButton3.setForeground(new java.awt.Color(65, 65, 65));
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/like.png"))); // NOI18N
-        jButton3.setText("Like");
-        jButton3.setBorder(null);
-        jButton3.setContentAreaFilled(false);
-
-        jLabel32.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N
-        jLabel32.setForeground(new java.awt.Color(86, 86, 86));
-        jLabel32.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel32.setText("15K");
-
-        jButton4.setForeground(new java.awt.Color(65, 65, 65));
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/comment.png"))); // NOI18N
-        jButton4.setText("Comment");
-        jButton4.setBorder(null);
-        jButton4.setContentAreaFilled(false);
-
-        jLabel33.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N
-        jLabel33.setForeground(new java.awt.Color(86, 86, 86));
-        jLabel33.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel33.setText("1.2K");
-
         javax.swing.GroupLayout panelRound2Layout = new javax.swing.GroupLayout(panelRound2);
         panelRound2.setLayout(panelRound2Layout);
         panelRound2Layout.setHorizontalGroup(
             panelRound2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelRound2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panelRound2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
-                    .addComponent(jLabel32, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(panelRound2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10))
+            .addGap(0, 213, Short.MAX_VALUE)
         );
         panelRound2Layout.setVerticalGroup(
             panelRound2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRound2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(panelRound2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(panelRound2Layout.createSequentialGroup()
-                        .addComponent(jLabel33)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton4))
-                    .addGroup(panelRound2Layout.createSequentialGroup()
-                        .addComponent(jLabel32)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3)))
-                .addGap(15, 15, 15))
+            .addGap(0, 83, Short.MAX_VALUE)
         );
 
         jLabel34.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N
@@ -565,57 +437,15 @@ public class Product_Form extends Form {
         panelRound3.setRoundBottomLeft(5);
         panelRound3.setRoundBottomRight(5);
 
-        jButton5.setForeground(new java.awt.Color(65, 65, 65));
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/like.png"))); // NOI18N
-        jButton5.setText("Like");
-        jButton5.setBorder(null);
-        jButton5.setContentAreaFilled(false);
-
-        jLabel36.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N
-        jLabel36.setForeground(new java.awt.Color(86, 86, 86));
-        jLabel36.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel36.setText("50K");
-
-        jButton6.setForeground(new java.awt.Color(65, 65, 65));
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/comment.png"))); // NOI18N
-        jButton6.setText("Comment");
-        jButton6.setBorder(null);
-        jButton6.setContentAreaFilled(false);
-
-        jLabel37.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N
-        jLabel37.setForeground(new java.awt.Color(86, 86, 86));
-        jLabel37.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel37.setText("3.5K");
-
         javax.swing.GroupLayout panelRound3Layout = new javax.swing.GroupLayout(panelRound3);
         panelRound3.setLayout(panelRound3Layout);
         panelRound3Layout.setHorizontalGroup(
             panelRound3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelRound3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panelRound3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
-                    .addComponent(jLabel36, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
-                .addGroup(panelRound3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel37, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10))
+            .addGap(0, 213, Short.MAX_VALUE)
         );
         panelRound3Layout.setVerticalGroup(
             panelRound3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRound3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(panelRound3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(panelRound3Layout.createSequentialGroup()
-                        .addComponent(jLabel37)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton6))
-                    .addGroup(panelRound3Layout.createSequentialGroup()
-                        .addComponent(jLabel36)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton5)))
-                .addGap(15, 15, 15))
+            .addGap(0, 83, Short.MAX_VALUE)
         );
 
         jLabel38.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N
@@ -668,57 +498,15 @@ public class Product_Form extends Form {
         panelRound4.setRoundBottomLeft(5);
         panelRound4.setRoundBottomRight(5);
 
-        jButton7.setForeground(new java.awt.Color(65, 65, 65));
-        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/like.png"))); // NOI18N
-        jButton7.setText("Like");
-        jButton7.setBorder(null);
-        jButton7.setContentAreaFilled(false);
-
-        jLabel40.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N
-        jLabel40.setForeground(new java.awt.Color(86, 86, 86));
-        jLabel40.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel40.setText("10K");
-
-        jButton8.setForeground(new java.awt.Color(65, 65, 65));
-        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/comment.png"))); // NOI18N
-        jButton8.setText("Comment");
-        jButton8.setBorder(null);
-        jButton8.setContentAreaFilled(false);
-
-        jLabel41.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N
-        jLabel41.setForeground(new java.awt.Color(86, 86, 86));
-        jLabel41.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel41.setText("0.5K");
-
         javax.swing.GroupLayout panelRound4Layout = new javax.swing.GroupLayout(panelRound4);
         panelRound4.setLayout(panelRound4Layout);
         panelRound4Layout.setHorizontalGroup(
             panelRound4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelRound4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panelRound4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
-                    .addComponent(jLabel40, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
-                .addGroup(panelRound4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel41, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10))
+            .addGap(0, 213, Short.MAX_VALUE)
         );
         panelRound4Layout.setVerticalGroup(
             panelRound4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelRound4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(panelRound4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(panelRound4Layout.createSequentialGroup()
-                        .addComponent(jLabel41)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton8))
-                    .addGroup(panelRound4Layout.createSequentialGroup()
-                        .addComponent(jLabel40)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton7)))
-                .addGap(15, 15, 15))
+            .addGap(0, 83, Short.MAX_VALUE)
         );
 
         jLabel42.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N
@@ -864,14 +652,6 @@ public class Product_Form extends Form {
     private swing.ImageAvatar imageAvatar2;
     private swing.ImageAvatar imageAvatar3;
     private swing.ImageAvatar imageAvatar4;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
@@ -881,20 +661,12 @@ public class Product_Form extends Form {
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
-    private javax.swing.JLabel jLabel32;
-    private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
-    private javax.swing.JLabel jLabel36;
-    private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel39;
-    private javax.swing.JLabel jLabel40;
-    private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel44;
@@ -922,9 +694,5 @@ public class Product_Form extends Form {
     private swing.PictureBox pictureBox12;
     private swing.PictureBox pictureBox9;
     private swing.ScrollBarCustom scrollBarCustom1;
-    private star.rating.StarRating starRating10;
-    private star.rating.StarRating starRating11;
-    private star.rating.StarRating starRating12;
-    private star.rating.StarRating starRating9;
     // End of variables declaration//GEN-END:variables
 }
