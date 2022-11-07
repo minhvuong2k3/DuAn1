@@ -29,6 +29,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import net.miginfocom.swing.MigLayout;
 
 public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
@@ -95,11 +96,12 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
             if (checkEmail(txtEmail.getText())) {
                 model = dao.selectByEmail(txtEmail.getText());
                 if (sendCodeToEmail(txtEmail.getText())) {
-//                    System.out.println("gui thanh cong");
-                    register.remove(txtEmail);
-                    register.remove(cmd);
+                    register.removeAll();
+                    register.revalidate();
+                    register.add(label);
                     register.add(txtOTP, "w 60%");
                     register.add(cmdCheckOTP, "w 40%, h 40");
+                    register.repaint();
                 } else {
                     System.out.println("khong thanh cong");
                 }
@@ -107,12 +109,13 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
         });
         cmdCheckOTP.addActionListener((ActionEvent e) -> {
             if (checkOTP(txtOTP.getText())) {
-//                System.out.println(" hi");
-                register.remove(cmdCheckOTP);
-                register.remove(txtOTP);
+                register.removeAll();
+                register.revalidate();
+                register.add(label);
                 register.add(txtPass, "w 60%");
                 register.add(txtCheckPass, "w 60%");
                 register.add(cmdCheckPass, "w 40%, h 40");
+                register.repaint();
             }
         });
         cmdCheckPass.addActionListener((ActionEvent e) -> {
