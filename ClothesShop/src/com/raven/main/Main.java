@@ -2,6 +2,8 @@ package com.raven.main;
 
 import com.raven.event.EventColorChange;
 import com.raven.form.Home_Form;
+import com.raven.form.Home;
+import com.raven.form.P_Form;
 import com.raven.form.Setting_Form;
 import com.raven.menu.EventMenu;
 import com.raven.properties.SystemProperties;
@@ -13,6 +15,7 @@ import java.awt.Color;
 public class Main extends javax.swing.JFrame {
 
     private Setting_Form settingForm;
+    private P_Form productForm;
 
     public Main() {
         initComponents();
@@ -22,12 +25,14 @@ public class Main extends javax.swing.JFrame {
 
     private void init() {
         header.initMoving(this);
-        header.initEvent(this, panelBackground1);
+        header.initEvent(this);
         menu.addEventMenu(new EventMenu() {
             @Override
             public void selectedMenu(int index) {
                 if (index == 0) {
                     mainBody.displayForm(new Home_Form());
+                } else if (index == 1) {
+                    mainBody.displayForm(productForm, "Product");
                 } else if (index == 6) {
                     mainBody.displayForm(settingForm, "Setting");
                 }
@@ -71,6 +76,7 @@ public class Main extends javax.swing.JFrame {
         settingForm.setDarkMode(pro.isDarkMode());
         settingForm.initBackgroundImage(pro.getBackgroundImage());
         mainBody.displayForm(new Home_Form());
+        productForm = new P_Form();       
     }
 
     @SuppressWarnings("unchecked")
@@ -93,10 +99,9 @@ public class Main extends javax.swing.JFrame {
             panelBackground1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(header, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(panelBackground1Layout.createSequentialGroup()
-                .addGap(0, 0, 0)
                 .addComponent(menu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(mainBody, javax.swing.GroupLayout.DEFAULT_SIZE, 1020, Short.MAX_VALUE)
+                .addComponent(mainBody, javax.swing.GroupLayout.DEFAULT_SIZE, 1108, Short.MAX_VALUE)
                 .addContainerGap())
         );
         panelBackground1Layout.setVerticalGroup(
@@ -105,7 +110,7 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addGroup(panelBackground1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(menu, javax.swing.GroupLayout.DEFAULT_SIZE, 609, Short.MAX_VALUE)
+                    .addComponent(menu, javax.swing.GroupLayout.DEFAULT_SIZE, 654, Short.MAX_VALUE)
                     .addComponent(mainBody, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 0, 0))
         );
