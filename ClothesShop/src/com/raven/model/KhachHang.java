@@ -14,6 +14,21 @@ public class KhachHang {
     private String sdt;
     private String email;
 
+    public KhachHang() {
+    }
+
+    public KhachHang(String maKH, String ten, String sdt, String email) {
+        this.maKH = maKH;
+        this.ten = ten;
+        this.sdt = sdt;
+        this.email = email;
+    }
+    
+    @Override
+    public String toString() {
+        return maKH+", "+ten+", "+sdt+", "+email;
+    }
+
     public String getMaKH() {
         return maKH;
     }

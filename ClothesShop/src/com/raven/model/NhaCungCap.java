@@ -15,6 +15,22 @@ public class NhaCungCap {
     private String email;
     private String diachi;
 
+    public NhaCungCap() {
+    }
+
+    public NhaCungCap(String maNCC, String tenNCC, String sdt, String email, String diachi) {
+        this.maNCC = maNCC;
+        this.tenNCC = tenNCC;
+        this.sdt = sdt;
+        this.email = email;
+        this.diachi = diachi;
+    }
+    
+    @Override
+    public String toString() {
+        return maNCC +", "+tenNCC+", "+sdt+", "+email+", "+diachi;
+    }
+    
     public String getMaNCC() {
         return maNCC;
     }

@@ -16,6 +16,23 @@ public class NhanVien {
     private Boolean vaiTro;
     private String matKhau;
 
+    public NhanVien() {
+    }
+
+    public NhanVien(String maNV, String hoten, String sdt, String email, Boolean vaiTro, String matKhau) {
+        this.maNV = maNV;
+        this.hoten = hoten;
+        this.sdt = sdt;
+        this.email = email;
+        this.vaiTro = vaiTro;
+        this.matKhau = matKhau;
+    }
+    
+    @Override
+    public String toString() {
+        return maNV+", "+hoten+", "+vaiTro+", "+matKhau;
+    }
+
     public String getMaNV() {
         return maNV;
     }

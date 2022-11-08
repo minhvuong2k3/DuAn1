@@ -40,18 +40,18 @@ public class LoaiHangDAO extends ClothingStoreDAO<LoaiHang, String>{
 
     @Override
     public List<LoaiHang> select() {
-        String sql = "SELECT * FROM LoaiHang";
+        String sql = "SELECT MaLH, TenLH FROM LoaiHang";
         return select(sql);
     }
 
     public List<LoaiHang> selectByKeyword(String keyword) {
-        String sql = "SELECT * FROM LoaiHang WHERE MaLH like ? OR TenLH = ?";
+        String sql = "SELECT MaLH, TenLH FROM LoaiHang WHERE MaLH like ? OR TenLH like ?";
         return select(sql, "%" + keyword + "%", "%" + keyword + "%");
     }
     
     @Override
     public LoaiHang selectById(String MaLH) {
-        String sql = "SELECT * FROM LoaiHang WHERE MaLH = ?";
+        String sql = "SELECT MaLH, TenLH FROM LoaiHang WHERE MaLH = ?";
         List<LoaiHang> list = select(sql, MaLH);
         return list.size() > 0 ? list.get(0) : null;
     }
