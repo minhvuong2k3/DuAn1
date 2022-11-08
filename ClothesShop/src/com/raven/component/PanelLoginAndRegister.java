@@ -96,10 +96,12 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
                 if (sendCodeToEmail(txtEmail.getText())) {
                     Notification panel = new Notification(frame, Notification.Type.SUCCESS, Notification.Location.TOP_CENTER, "Verifycode was send ");
                     panel.showNotification();
-                    register.remove(txtEmail);
-                    register.remove(cmd);
+                    register.removeAll();
+                    register.revalidate();
+                    register.add(label);
                     register.add(txtOTP, "w 60%");
                     register.add(cmdCheckOTP, "w 40%, h 40");
+                    register.repaint();
                 } else {
                     Notification panel = new Notification(frame, Notification.Type.WARNING, Notification.Location.TOP_CENTER, "Verifycode didn't send ");
                     panel.showNotification();
@@ -113,11 +115,13 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
             if (checkOTP(txtOTP.getText())) {
                 Notification panel = new Notification(frame, Notification.Type.SUCCESS, Notification.Location.TOP_CENTER, "OTP true ");
                 panel.showNotification();
-                register.remove(cmdCheckOTP);
-                register.remove(txtOTP);
+                register.removeAll();
+                register.revalidate();
+                register.add(label);
                 register.add(txtPass, "w 60%");
                 register.add(txtCheckPass, "w 60%");
                 register.add(cmdCheckPass, "w 40%, h 40");
+                register.repaint();
             } else {
                 Notification panel = new Notification(frame, Notification.Type.WARNING, Notification.Location.TOP_CENTER, "OTP false ");
                 panel.showNotification();
