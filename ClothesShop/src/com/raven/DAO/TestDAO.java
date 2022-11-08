@@ -5,6 +5,7 @@
 package com.raven.DAO;
 
 import com.raven.model.CTHDXuat;
+import com.raven.model.NhanVien;
 import java.util.List;
 
 /**
@@ -13,11 +14,10 @@ import java.util.List;
  */
 public class TestDAO {
     public static void main(String[] args) {
-        CTHDXuatDAO dao = new CTHDXuatDAO();
-        List<CTHDXuat> list = dao.select();
-        for(CTHDXuat x: list) {
+        NhanVienDAO dao = new NhanVienDAO();
+        List<NhanVien> list = dao.select();
+        for(NhanVien x: list) {
             System.out.println(x.toString());
         }
-        System.out.println(dao.selectByKeyword("2"));
     }
 }
