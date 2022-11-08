@@ -27,8 +27,9 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import com.raven.component.Message;
+import javaswingdev.Notification;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import net.miginfocom.swing.MigLayout;
 
 public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
@@ -39,46 +40,111 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
     private static int codeSend;
     MimeMultipart mimeMultipart = new MimeMultipart();
     MimeBodyPart mimeBodyPart = new MimeBodyPart();
+    Message ms = new Message();
 
     public PanelLoginAndRegister(Frame frame) {
         initComponents();
-        initRegister();
+        initRegister(frame);
         initLogin(frame);
         login.setVisible(false);
         register.setVisible(true);
         fillDataToList();
     }
 
-    private void initRegister() {
+    private void initRegister(Frame frame) {
         register.setLayout(new MigLayout("wrap", "push[center]push", "push[]25[]10[]10[]25[]push"));
         JLabel label = new JLabel("Forgot Passwword");
         label.setFont(new Font("sansserif", 1, 30));
         label.setForeground(new Color(250, 100, 100));
         register.add(label);
-//        MyTextField txtUser = new MyTextField();
-//        txtUser.setPrefixIcon(new ImageIcon(getClass().getResource("/com/raven/icon/user.png")));
-//        txtUser.setHint("Name");
-//        register.add(txtUser, "w 60%");
         MyTextField txtEmail = new MyTextField();
         txtEmail.setPrefixIcon(new ImageIcon(getClass().getResource("/com/raven/icon/mail.png")));
         txtEmail.setHint("Email");
         register.add(txtEmail, "w 60%");
-//        MyPasswordField txtPass = new MyPasswordField();
-//        txtPass.setPrefixIcon(new ImageIcon(getClass().getResource("/com/raven/icon/pass.png")));
-//        txtPass.setHint("Password");
-//        register.add(txtPass, "w 60%");
+
+        MyTextField txtOTP = new MyTextField();
+        txtOTP.setPrefixIcon(new ImageIcon(getClass().getResource("/com/raven/icon/mail.png")));
+        txtOTP.setHint("OTP");
+
+        MyPasswordField txtPass = new MyPasswordField();
+        txtPass.setPrefixIcon(new ImageIcon(getClass().getResource("/com/raven/icon/pass.png")));
+        txtPass.setHint("Password");
+
+        MyPasswordField txtCheckPass = new MyPasswordField();
+        txtCheckPass.setPrefixIcon(new ImageIcon(getClass().getResource("/com/raven/icon/pass.png")));
+        txtCheckPass.setHint("Check Password");
+
         Button cmd = new Button();
         cmd.setBackground(new Color(250, 100, 100));
         cmd.setForeground(new Color(250, 250, 250));
         cmd.setText("Send verifycode to Email");
-        cmd.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(checkEmail(txtEmail.getText())) 
-                    sendCodeToEmail(txtEmail.getText());
+        register.add(cmd, "w 40%, h 40");
+
+        Button cmdCheckOTP = new Button();
+        cmdCheckOTP.setBackground(new Color(250, 100, 100));
+        cmdCheckOTP.setForeground(new Color(250, 250, 250));
+        cmdCheckOTP.setText("Check OTP ");
+
+        Button cmdCheckPass = new Button();
+        cmdCheckPass.setBackground(new Color(250, 100, 100));
+        cmdCheckPass.setForeground(new Color(250, 250, 250));
+        cmdCheckPass.setText("Submit");
+
+        cmd.addActionListener((ActionEvent e) -> {
+            if (checkEmail(txtEmail.getText())) {
+                model = dao.selectByEmail(txtEmail.getText());
+                if (sendCodeToEmail(txtEmail.getText())) {
+                    Notification panel = new Notification(frame, Notification.Type.SUCCESS, Notification.Location.TOP_CENTER, "Verifycode was send ");
+                    panel.showNotification();
+                    register.removeAll();
+                    register.revalidate();
+                    register.add(label);
+                    register.add(txtOTP, "w 60%");
+                    register.add(cmdCheckOTP, "w 40%, h 40");
+                    register.repaint();
+                } else {
+                    Notification panel = new Notification(frame, Notification.Type.WARNING, Notification.Location.TOP_CENTER, "Verifycode didn't send ");
+                    panel.showNotification();
+                }
+            } else {
+                Notification panel = new Notification(frame, Notification.Type.WARNING, Notification.Location.TOP_CENTER, "Email not have account");
+                panel.showNotification();
             }
         });
-        register.add(cmd, "w 40%, h 40");
+        cmdCheckOTP.addActionListener((ActionEvent e) -> {
+            if (checkOTP(txtOTP.getText())) {
+                Notification panel = new Notification(frame, Notification.Type.SUCCESS, Notification.Location.TOP_CENTER, "OTP true ");
+                panel.showNotification();
+                register.removeAll();
+                register.revalidate();
+                register.add(label);
+                register.add(txtPass, "w 60%");
+                register.add(txtCheckPass, "w 60%");
+                register.add(cmdCheckPass, "w 40%, h 40");
+                register.repaint();
+            } else {
+                Notification panel = new Notification(frame, Notification.Type.WARNING, Notification.Location.TOP_CENTER, "OTP false ");
+                panel.showNotification();
+            }
+        });
+        cmdCheckPass.addActionListener((ActionEvent e) -> {
+            if (checkPass(txtPass.getText(), txtCheckPass.getText())) {
+                Notification panel = new Notification(frame, Notification.Type.SUCCESS, Notification.Location.TOP_CENTER, "Password was saved ");
+                panel.showNotification();
+                testUser.update(txtPass.getText(), model.getMaNV());
+                frame.setVisible(false);
+                Login lg = new Login();
+                lg.setVisible(true);
+            }else{
+                Notification panel = new Notification(frame, Notification.Type.WARNING, Notification.Location.TOP_CENTER, "Password wasn't save ");
+                panel.showNotification();
+            }
+        });
+
+    }
+
+    private boolean checkPass(String pass, String passCheck) {
+        return pass.equals(passCheck);
     }
 
     private void initLogin(Frame frame) {
@@ -87,14 +153,17 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
         label.setFont(new Font("sansserif", 1, 30));
         label.setForeground(new Color(250, 100, 100));
         login.add(label);
+
         MyTextField txtEmail = new MyTextField();
         txtEmail.setPrefixIcon(new ImageIcon(getClass().getResource("/com/raven/icon/mail.png")));
         txtEmail.setHint("Email");
         login.add(txtEmail, "w 60%");
+
         MyPasswordField txtPass = new MyPasswordField();
         txtPass.setPrefixIcon(new ImageIcon(getClass().getResource("/com/raven/icon/pass.png")));
         txtPass.setHint("Password");
         login.add(txtPass, "w 60%");
+
 //        JButton cmdForget = new JButton("Forgot your password ?");
 //        cmdForget.setForeground(new Color(100, 100, 100));
 //        cmdForget.setFont(new Font("sansserif", 1, 12));
@@ -121,16 +190,21 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
 
     public void login(String pass, String email, Frame frame) {
         if (!checkExistEmail(email)) {
+            Notification panel = new Notification(frame, Notification.Type.WARNING, Notification.Location.TOP_CENTER, "Email not have account");
+            panel.showNotification();
             return;
         }
         model = testUser.selectByEmail(email);
         if (pass.equals(model.getMatKhau())) {
+            Notification panel = new Notification(frame, Notification.Type.SUCCESS, Notification.Location.TOP_CENTER, "Login succesfull");
+            panel.showNotification();
             Auth.user = model;
             frame.setVisible(false);
             Main main = new Main();
             main.setVisible(true);
         } else {
-            System.out.println("không ok");
+            Notification panel = new Notification(frame, Notification.Type.WARNING, Notification.Location.TOP_CENTER, "Password not succesfull");
+            panel.showNotification();
         }
     }
 
@@ -141,8 +215,11 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
                 return true;
             }
         }
-        System.out.println("khong ton tai");
         return false;
+    }
+
+    public boolean checkOTP(String code) {
+        return String.valueOf(codeSend).equals(code);
     }
 
     public void showRegister(boolean show) {
@@ -154,26 +231,26 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
             login.setVisible(true);
         }
     }
-    
-    public int RandomCode(){
-        codeSend = (int) (Math.random()*(999999-100000+1)+100000);
+
+    public int RandomCode() {
+        codeSend = (int) (Math.random() * (999999 - 100000 + 1) + 100000);
         return codeSend;
     }
-    
-    public boolean checkEmail(String email){
+
+    public boolean checkEmail(String email) {
         NhanVien alist = dao.selectByEmail(email);
-        return alist!=null?true:false;
+        return alist != null ? true : false;
     }
 
-    public void sendCodeToEmail(String email) {
+    public boolean sendCodeToEmail(String email) {
         try {
             Properties p = new Properties();
             p.put("mail.smtp.auth", "true");
             p.put("mail.smtp.starttls.enable", "true");
             p.put("mail.smtp.host", "smtp.gmail.com");
             p.put("mail.smtp.port", 587);
-            Session s = Session.getDefaultInstance(p, new javax.mail.Authenticator(){
-                protected PasswordAuthentication getPasswordAuthentication(){
+            Session s = Session.getDefaultInstance(p, new javax.mail.Authenticator() {
+                protected PasswordAuthentication getPasswordAuthentication() {
                     return new PasswordAuthentication("vuongvmps24279@fpt.edu.vn", "minhvuong2k3");
                 }
             });
@@ -181,14 +258,15 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
             msg.setFrom(new InternetAddress("vuongvmps24279@fpt.edu.vn"));
             msg.setRecipients(javax.mail.Message.RecipientType.CC, InternetAddress.parse(email));
             msg.setSubject("Code");
-            String content = "Code to change password: "+RandomCode();
+            String content = "Code to change password: " + RandomCode();
             mimeBodyPart.setContent(content, "text/html; charset=utf-8");
             mimeMultipart.addBodyPart(mimeBodyPart);
             msg.setContent(mimeMultipart);
             Transport.send(msg);
-            
+            return true;
         } catch (Exception e) {
             e.printStackTrace();
+            return false;
         }
     }
 
