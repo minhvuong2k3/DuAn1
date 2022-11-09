@@ -1,6 +1,7 @@
 package com.raven.main;
 
 import com.raven.event.EventColorChange;
+import com.raven.form.Form_Home;
 import com.raven.form.Home_Form;
 import com.raven.form.Home;
 import com.raven.form.P_Form;
@@ -16,6 +17,7 @@ public class Main extends javax.swing.JFrame {
 
     private Setting_Form settingForm;
     private P_Form productForm;
+    private Form_Home empForm;
 
     public Main() {
         initComponents();
@@ -33,6 +35,8 @@ public class Main extends javax.swing.JFrame {
                     mainBody.displayForm(new Home_Form());
                 } else if (index == 1) {
                     mainBody.displayForm(productForm, "Product");
+                } else if (index == 2) {
+                    mainBody.displayForm(empForm, "Product");
                 } else if (index == 6) {
                     mainBody.displayForm(settingForm, "Setting");
                 }
@@ -76,7 +80,8 @@ public class Main extends javax.swing.JFrame {
         settingForm.setDarkMode(pro.isDarkMode());
         settingForm.initBackgroundImage(pro.getBackgroundImage());
         mainBody.displayForm(new Home_Form());
-        productForm = new P_Form();       
+        productForm = new P_Form();
+        empForm = new Form_Home();    
     }
 
     @SuppressWarnings("unchecked")
