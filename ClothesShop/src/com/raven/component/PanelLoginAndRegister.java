@@ -251,11 +251,11 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
             p.put("mail.smtp.port", 587);
             Session s = Session.getDefaultInstance(p, new javax.mail.Authenticator() {
                 protected PasswordAuthentication getPasswordAuthentication() {
-                    return new PasswordAuthentication("damclothingstore@gmail.com", "199199199");
+                    return new PasswordAuthentication("vominhvuong15112003@gmail.com", "btvjcztsvsusxevl");
                 }
             });
             javax.mail.Message msg = new MimeMessage(s);
-            msg.setFrom(new InternetAddress("damclothingstore@gmail.com"));
+            msg.setFrom(new InternetAddress("vominhvuong15112003@gmail.com"));
             msg.setRecipients(javax.mail.Message.RecipientType.CC, InternetAddress.parse(email));
             msg.setSubject("Code");
             String content = "Code to change password: " + RandomCode();
