@@ -15,11 +15,10 @@ import java.util.List;
  *
  * @author duong
  */
-public class CTHDXuatDAO extends ClothingStoreDAO<CTHDXuat, String>{
+public class CTHDXuatDAO{
     
-    @Override
     public void insert(CTHDXuat model) {
-        String sql = "INSERT INTO CTHDXuat (SoPhieu, MaSP, SoLuong, Giam) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO CTHDXuat (SoPhieu, MaSP, SoLuong, GiamGia) VALUES (?, ?, ?, ?)";
         XJdbc.executeUpdate(sql,
                 model.getSoPhieu(),
                 model.getMaSP(),
@@ -27,23 +26,20 @@ public class CTHDXuatDAO extends ClothingStoreDAO<CTHDXuat, String>{
                 model.getGiamGia());
     }
 
-    @Override
     public void update(CTHDXuat model) {
-        String sql = "UPDATE CTHDXuat SET MaSP =?, SoLuong =?, GiamGia =? WHERE SoPhieu = ?";
+        String sql = "UPDATE CTHDXuat SET SoLuong =?, GiamGia =? WHERE SoPhieu = ? AND MaSP =?";
         XJdbc.executeUpdate(sql,
-                model.getMaSP(),
                 model.getSoLuong(),
                 model.getGiamGia(),
-                model.getSoPhieu());
+                model.getSoPhieu(),
+                model.getMaSP());
     }
 
-    @Override
-    public void delete(String SoPhieu) {
-        String sql = "DELETE FROM CTHDXuat WHERE SoPhieu = ?";
-        XJdbc.executeUpdate(sql, SoPhieu);
+    public void delete(String SoPhieu, String MaSP) {
+        String sql = "DELETE FROM CTHDXuat WHERE SoPhieu = ? AND MaSP =?";
+        XJdbc.executeUpdate(sql, SoPhieu, MaSP);
     }
 
-    @Override
     public List<CTHDXuat> select() {
         String sql = "SELECT SoPhieu, MASP, SoLuong, GiamGia FROM CTHDXuat";
         return select(sql);
@@ -54,14 +50,12 @@ public class CTHDXuatDAO extends ClothingStoreDAO<CTHDXuat, String>{
         return select(sql, "%" + keyword + "%");
     }
     
-    @Override
     public CTHDXuat selectById(String SoPhieu) {
         String sql = "SELECT * FROM CTHDXuat WHERE SoPhieu = ?";
         List<CTHDXuat> list = select(sql, SoPhieu);
         return list.size() > 0 ? list.get(0) : null;
     }
 
-    @Override
     protected List<CTHDXuat> select(String sql, Object... args) {
         List<CTHDXuat> list = new ArrayList<>();
         try {
@@ -83,10 +77,10 @@ public class CTHDXuatDAO extends ClothingStoreDAO<CTHDXuat, String>{
 
     private CTHDXuat readFromResultSet(ResultSet rs) throws SQLException {
         CTHDXuat model = new CTHDXuat();
-        model.setSoPhieu(rs.getString("SoPhieu"));
-        model.setSoPhieu(rs.getString("MaSP"));
-        model.setSoPhieu(rs.getString("SoLuong"));
-        model.setSoPhieu(rs.getString("GiamGia"));
+        model.setSoPhieu(rs.getInt("SoPhieu"));
+        model.setMaSP(rs.getString("MaSP"));
+        model.setSoLuong(rs.getInt("SoLuong"));
+        model.setGiamGia(rs.getInt("GiamGia"));
         return model;
     }
 }

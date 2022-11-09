@@ -19,7 +19,7 @@ public class NhaCungCapDAO extends ClothingStoreDAO<NhaCungCap, String>{
     
     @Override
     public void insert(NhaCungCap model) {
-        String sql = "INSERT INTO NhaCungCap (MaNCC, HoTen, SDT, Email, DiaChi) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO NhaCungCap (MaNCC, TenNCC, SDT, Email, DiaChi) VALUES (?, ?, ?, ?, ?)";
         XJdbc.executeUpdate(sql,
                 model.getMaNCC(),
                 model.getTenNCC(),
@@ -30,7 +30,7 @@ public class NhaCungCapDAO extends ClothingStoreDAO<NhaCungCap, String>{
 
     @Override
     public void update(NhaCungCap model) {
-        String sql = "UPDATE NhaCungCap SET HoTen = ?, SDT = ?, Email = ?, DiaChi = ? WHERE MaNCC = ?";
+        String sql = "UPDATE NhaCungCap SET TenNCC = ?, SDT = ?, Email = ?, DiaChi = ? WHERE MaNCC = ?";
         XJdbc.executeUpdate(sql,
                 model.getTenNCC(),
                 model.getSdt(),
@@ -47,18 +47,18 @@ public class NhaCungCapDAO extends ClothingStoreDAO<NhaCungCap, String>{
 
     @Override
     public List<NhaCungCap> select() {
-        String sql = "SELECT * FROM NhaCungCap";
+        String sql = "SELECT MaNCC, TenNCC, SDT, Email, DiaChi FROM NhaCungCap";
         return select(sql);
     }
 
     public List<NhaCungCap> selectByKeyword(String keyword) {
-        String sql = "SELECT * FROM NhaCungCap WHERE MaNCC like ? OR HoTen = ?";
+        String sql = "SELECT MaNCC, TenNCC, SDT, Email, DiaChi FROM NhaCungCap WHERE MaNCC like ? OR TenNCC = ?";
         return select(sql, "%" + keyword + "%", "%" + keyword + "%");
     }
 
     @Override
     public NhaCungCap selectById(String MaNCC) {
-        String sql = "SELECT * FROM NhaCungCap WHERE MaNCC = ?";
+        String sql = "SELECT MaNCC, TenNCC, SDT, Email, DiaChi FROM NhaCungCap WHERE MaNCC = ?";
         List<NhaCungCap> list = select(sql, MaNCC);
         return list.size() > 0 ? list.get(0) : null;
     }
@@ -86,7 +86,7 @@ public class NhaCungCapDAO extends ClothingStoreDAO<NhaCungCap, String>{
     private NhaCungCap readFromResultSet(ResultSet rs) throws SQLException {
         NhaCungCap model = new NhaCungCap();
         model.setMaNCC(rs.getString("MaNCC"));
-        model.setTenNCC(rs.getString("HoTen"));
+        model.setTenNCC(rs.getString("TenNCC"));
         model.setSdt(rs.getString("SDT"));
         model.setEmail(rs.getString("Email"));
         model.setDiachi(rs.getString("DiaChi"));

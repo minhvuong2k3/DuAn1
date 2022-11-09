@@ -12,12 +12,31 @@ public class SanPham {
     private String maSP;
     private String tenSP;
     private String anh;
-    private String giaBan;
+    private int soLuong;
+    private int giaBan;
     private String maLH;
     private int giamgia;
     private String maNCC;
-    private int soLuong;
 
+    public SanPham() {
+    }
+
+    public SanPham(String maSP, String tenSP, String anh, int soLuong, int giaBan, String maLH, int giamgia, String maNCC) {
+        this.maSP = maSP;
+        this.tenSP = tenSP;
+        this.anh = anh;
+        this.soLuong = soLuong;
+        this.giaBan = giaBan;
+        this.maLH = maLH;
+        this.giamgia = giamgia;
+        this.maNCC = maNCC;
+    }
+    
+    @Override
+    public String toString() {
+        return maSP+", "+tenSP+", "+soLuong+", "+giaBan;
+    }
+    
     public String getMaSP() {
         return maSP;
     }
@@ -42,11 +61,11 @@ public class SanPham {
         this.anh = anh;
     }
 
-    public String getGiaBan() {
+    public int getGiaBan() {
         return giaBan;
     }
 
-    public void setGiaBan(String giaBan) {
+    public void setGiaBan(int giaBan) {
         this.giaBan = giaBan;
     }
 

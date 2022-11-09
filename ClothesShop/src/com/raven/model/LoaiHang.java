@@ -12,6 +12,19 @@ public class LoaiHang {
     private String maLoai;
     private String tenLoai;
 
+    public LoaiHang() {
+    }
+
+    public LoaiHang(String maLoai, String tenLoai) {
+        this.maLoai = maLoai;
+        this.tenLoai = tenLoai;
+    }
+    
+    @Override
+    public String toString() {
+        return maLoai+", "+tenLoai;
+    }
+
     public String getMaLoai() {
         return maLoai;
     }

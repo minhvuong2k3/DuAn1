@@ -9,16 +9,39 @@ package com.raven.model;
  * @author duong
  */
 public class HDNhap {
-    private String soPhieu;
+    private int soPhieu;
     private String ngayNhap;
     private String maNCC;
     private String maNV;
 
-    public String getSoPhieu() {
+    public HDNhap() {
+    }
+
+    public HDNhap(String ngayNhap, String maNCC, String maNV) {
+        this.ngayNhap = ngayNhap;
+        this.maNCC = maNCC;
+        this.maNV = maNV;
+    }
+
+    public HDNhap(int soPhieu, String ngayNhap, String maNCC, String maNV) {
+        this.soPhieu = soPhieu;
+        this.ngayNhap = ngayNhap;
+        this.maNCC = maNCC;
+        this.maNV = maNV;
+    }
+    
+    
+    
+    @Override
+    public String toString() {
+        return soPhieu+", "+ngayNhap+", "+maNCC+", "+maNV;
+    }
+
+    public int getSoPhieu() {
         return soPhieu;
     }
 
-    public void setSoPhieu(String soPhieu) {
+    public void setSoPhieu(int soPhieu) {
         this.soPhieu = soPhieu;
     }
     

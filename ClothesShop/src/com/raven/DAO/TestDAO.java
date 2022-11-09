@@ -4,17 +4,20 @@
  */
 package com.raven.DAO;
 
-import com.raven.model.HDXuat;
+import com.raven.model.CTHDXuat;
+import com.raven.model.NhanVien;
 import java.util.List;
 
 /**
  *
- * @author duong
+ * @author duong 
  */
 public class TestDAO {
     public static void main(String[] args) {
-        HDXuatDAO dao = new HDXuatDAO();
-        List<HDXuat> list = dao.select();
-        System.out.println(list.toString());
+        NhanVienDAO dao = new NhanVienDAO();
+        List<NhanVien> list = dao.select();
+        for(NhanVien x: list) {
+            System.out.println(x.toString());
+        }
     }
 }

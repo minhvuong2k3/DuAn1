@@ -1,13 +1,17 @@
 package com.raven.form;
 
+import com.raven.DAO.SanPhamDAO;
 import com.raven.component.Form;
 import com.raven.event.EventItem;
 import com.raven.model.ModelItem;
+import com.raven.model.SanPham;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Point;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.ImageIcon;
 import org.jdesktop.animation.timing.Animator;
 import org.jdesktop.animation.timing.TimingTargetAdapter;
@@ -70,14 +74,19 @@ public class P_Form extends Form {
             }
         });
         int ID = 1;
-        for (int i = 0; i <= 5; i++) {
-            home.addItem(new ModelItem(ID++, "4DFWD PULSE", "This product is excluded from all promotional discounts and offers.", 160, "Adidas", new ImageIcon(getClass().getResource("/com/raven/image/img1.png"))));
-            home.addItem(new ModelItem(ID++, "FORUM MID", "This product is excluded from all promotional discounts and offers.", 100, "Adidas", new ImageIcon(getClass().getResource("/com/raven/image/img2.png"))));
-            home.addItem(new ModelItem(ID++, "SUPERNOVA", "NMD City Stock 2", 150, "Adidas", new ImageIcon(getClass().getResource("/com/raven/image/img3.png"))));
-            home.addItem(new ModelItem(ID++, "Adidas", "NMD City Stock 2", 160, "Adidas", new ImageIcon(getClass().getResource("/com/raven/image/img4.png"))));
-            home.addItem(new ModelItem(ID++, "Adidas", "NMD City Stock 2", 120, "Adidas", new ImageIcon(getClass().getResource("/com/raven/image/img5.png"))));
-            home.addItem(new ModelItem(ID++, "4DFWD PULSE", "This product is excluded from all promotional discounts and offers.", 160, "Adidas", new ImageIcon(getClass().getResource("/com/raven/image/img6.png"))));
+        SanPhamDAO dao = new SanPhamDAO();
+        List<SanPham> list = dao.select();
+        for(int i=0; i<list.size();i++){
+            home.addItem(new ModelItem(ID++, list.get(i).getTenSP(), list.get(i).getMaNCC(), list.get(i).getGiaBan(), list.get(i).getMaLH(), new ImageIcon(getClass().getResource(("/com/raven/image/" + list.get(i).getAnh()))) ));
         }
+//        for (int i = 0; i <= 5; i++) {
+//            home.addItem(new ModelItem(ID++, "4DFWD PULSE", "This product is excluded from all promotional discounts and offers.", 160, "Adidas", new ImageIcon(getClass().getResource("/com/raven/image/img1.png"))));
+//            home.addItem(new ModelItem(ID++, "FORUM MID", "This product is excluded from all promotional discounts and offers.", 100, "Adidas", new ImageIcon(getClass().getResource("/com/raven/image/img2.png"))));
+//            home.addItem(new ModelItem(ID++, "SUPERNOVA", "NMD City Stock 2", 150, "Adidas", new ImageIcon(getClass().getResource("/com/raven/image/img3.png"))));
+//            home.addItem(new ModelItem(ID++, "Adidas", "NMD City Stock 2", 160, "Adidas", new ImageIcon(getClass().getResource("/com/raven/image/img4.png"))));
+//            home.addItem(new ModelItem(ID++, "Adidas", "NMD City Stock 2", 120, "Adidas", new ImageIcon(getClass().getResource("/com/raven/image/img5.png"))));
+//            home.addItem(new ModelItem(ID++, "4DFWD PULSE", "This product is excluded from all promotional discounts and offers.", 160, "Adidas", new ImageIcon(getClass().getResource("/com/raven/image/img6.png"))));
+//        }
     }
 
     private Point getLocationOf(Component com) {

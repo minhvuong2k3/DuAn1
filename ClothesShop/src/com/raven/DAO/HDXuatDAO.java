@@ -46,18 +46,18 @@ public class HDXuatDAO extends ClothingStoreDAO<HDXuat, String>{
 
     @Override
     public List<HDXuat> select() {
-        String sql = "SELECT * FROM HDXuat";
+        String sql = "SELECT SoPhieu, MaNV, MaKH, ThanhTien, NgayXuat FROM HDXuat";
         return select(sql);
     }
 
     public List<HDXuat> selectByKeyword(String keyword) {
-        String sql = "SELECT * FROM HDXuat WHERE SoPhieu like ? OR MaNV like = ?";
-        return select(sql, "%" + keyword + "%", "%" + keyword + "%");
+        String sql = "select SoPhieu, MaNV, MaKH, ThanhTien, NgayXuat FROM HDXuat WHERE SoPhieu like ?";
+        return select(sql, "%" + keyword + "%");
     }
     
     @Override
     public HDXuat selectById(String SoPhieu) {
-        String sql = "SELECT * FROM HDXuat WHERE SoPhieu = ?";
+        String sql = "SELECT SoPhieu, MaNV, MaKH, ThanhTien, NgayXuat FROM HDXuat WHERE SoPhieu = ?";
         List<HDXuat> list = select(sql, SoPhieu);
         return list.size() > 0 ? list.get(0) : null;
     }
@@ -84,7 +84,7 @@ public class HDXuatDAO extends ClothingStoreDAO<HDXuat, String>{
 
     private HDXuat readFromResultSet(ResultSet rs) throws SQLException {
         HDXuat model = new HDXuat();
-        model.setSoPhieu(rs.getString("SoPhieu"));
+        model.setSoPhieu(rs.getInt("SoPhieu"));
         model.setMaNV(rs.getString("MaKH"));
         model.setMaKH(rs.getString("MaNV"));
         model.setThanhTien(rs.getInt("ThanhTien"));

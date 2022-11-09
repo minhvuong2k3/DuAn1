@@ -9,53 +9,38 @@ package com.raven.model;
  * @author duong
  */
 public class CTHDXuat {
-    private String soPhieu;
-    private String maNV;
-    private String maKH;
-    private int thanhTien;
-    private String ngayXuat;
+    private int soPhieu;
     private String maSP;
     private int soLuong;
     private int giamGia;
 
-    public String getSoPhieu() {
+    public CTHDXuat() {
+    }
+
+    public CTHDXuat(String maSP, int soLuong, int giamGia) {
+        this.maSP = maSP;
+        this.soLuong = soLuong;
+        this.giamGia = giamGia;
+    }
+
+    public CTHDXuat(int soPhieu, String maSP, int soLuong, int giamGia) {
+        this.soPhieu = soPhieu;
+        this.maSP = maSP;
+        this.soLuong = soLuong;
+        this.giamGia = giamGia;
+    }
+    
+    @Override
+    public String toString() {
+        return soPhieu+", "+maSP+", "+soLuong+", "+giamGia;
+    }
+
+    public int getSoPhieu() {
         return soPhieu;
     }
 
-    public void setSoPhieu(String soPhieu) {
+    public void setSoPhieu(int soPhieu) {
         this.soPhieu = soPhieu;
-    }
-
-    public String getMaNV() {
-        return maNV;
-    }
-
-    public void setMaNV(String maNV) {
-        this.maNV = maNV;
-    }
-
-    public String getMaKH() {
-        return maKH;
-    }
-
-    public void setMaKH(String maKH) {
-        this.maKH = maKH;
-    }
-
-    public int getThanhTien() {
-        return thanhTien;
-    }
-
-    public void setThanhTien(int thanhTien) {
-        this.thanhTien = thanhTien;
-    }
-
-    public String getNgayXuat() {
-        return ngayXuat;
-    }
-
-    public void setNgayXuat(String ngayXuat) {
-        this.ngayXuat = ngayXuat;
     }
 
     public String getMaSP() {

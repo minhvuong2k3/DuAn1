@@ -19,25 +19,29 @@ public class SanPhamDAO extends ClothingStoreDAO<SanPham, String>{
     
     @Override
     public void insert(SanPham model) {
-        String sql = "INSERT INTO SanPham (MaSP, MaLH, TenSP, Anh, GiaBan, GiamGia, MaNCC) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO SanPham (MaSP, TenSP, Anh, SoLuong, GiaBan, MaLH, GiamGia, MaNCC) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         XJdbc.executeUpdate(sql,
                 model.getMaSP(),
-                model.getMaLH(),
                 model.getTenSP(),
                 model.getAnh(),
+                model.getSoLuong(),
                 model.getGiaBan(),
+                model.getMaLH(),
                 model.getGiamgia(),
                 model.getMaNCC());
     }
 
     @Override
     public void update(SanPham model) {
-        String sql = "UPDATE SanPham SET MaLH = ?, TenSP= ?, Anh = ?, GiaBan = ?, GiamGia = ?, MaNCC = ? WHERE MaSP = ?";
+        String sql = "UPDATE SanPham SET TenSP = ?, Anh = ?, SoLuong = ?, GiaBan = ?, MaLH = ?, GiamGia = ?, MaNCC = ? "
+                + "WHERE MaSP = ?";
         XJdbc.executeUpdate(sql,
-                model.getMaLH(),
                 model.getTenSP(),
                 model.getAnh(),
+                model.getSoLuong(),
                 model.getGiaBan(),
+                model.getMaLH(),
                 model.getGiamgia(),
                 model.getMaNCC(),
                 model.getMaSP());
@@ -51,19 +55,19 @@ public class SanPhamDAO extends ClothingStoreDAO<SanPham, String>{
 
     @Override
     public List<SanPham> select() {
-        String sql = "SELECT * FROM SanPham";
+        String sql = "SELECT MaSP, TenSP, Anh, SoLuong, GiaBan, MaLH, GiamGia, MaNCC FROM SanPham";
         return select(sql);
     }
 
     public List<SanPham> selectByKeyword(String keyword) {
-        String sql = "SELECT * FROM SanPham WHERE MaSP like ? OR TenSP = ?";
+        String sql = "SELECT MaSP, TenSP, Anh, SoLuong, GiaBan, MaLH, GiamGia, MaNCC FROM SanPham WHERE MaSP like ? OR TenSP like ?";
         return select(sql, "%" + keyword + "%", "%" + keyword + "%");
     }
     
     @Override
-    public SanPham selectById(String MaNCC) {
-        String sql = "SELECT * FROM SanPham WHERE MaSP = ?";
-        List<SanPham> list = select(sql, MaNCC);
+    public SanPham selectById(String MaSP) {
+        String sql = "SELECT MaSP, TenSP, Anh, SoLuong, GiaBan, MaLH, GiamGia, MaNCC FROM SanPham WHERE MaSP = ?";
+        List<SanPham> list = select(sql, MaSP);
         return list.size() > 0 ? list.get(0) : null;
     }
 
@@ -90,12 +94,13 @@ public class SanPhamDAO extends ClothingStoreDAO<SanPham, String>{
     private SanPham readFromResultSet(ResultSet rs) throws SQLException {
         SanPham model = new SanPham();
         model.setMaSP(rs.getString("MaSP"));
-        model.setMaLH(rs.getString("MaLH"));
         model.setTenSP(rs.getString("TenSP"));
         model.setAnh(rs.getString("Anh"));
-        model.setGiaBan(rs.getString("GiaBan"));
+        model.setSoLuong(rs.getInt("SoLuong"));
+        model.setGiaBan(rs.getInt("GiaBan"));
+        model.setMaLH(rs.getString("MaLH"));
         model.setGiamgia(rs.getInt("GiamGia"));
-        model.setMaNCC(rs.getString("NhaNCC"));
+        model.setMaNCC(rs.getString("MaNCC"));
         return model;
     }
 }

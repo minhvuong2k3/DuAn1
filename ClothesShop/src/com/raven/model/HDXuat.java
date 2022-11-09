@@ -9,17 +9,40 @@ package com.raven.model;
  * @author duong
  */
 public class HDXuat {
-    private String soPhieu;
+    private int soPhieu;
     private String maNV;
     private String maKH;
     private int thanhTien;
     private String ngayXuat;
 
-    public String getSoPhieu() {
+    public HDXuat() {
+    }
+
+    public HDXuat(String maNV, String maKH, int thanhTien, String ngayXuat) {
+        this.maNV = maNV;
+        this.maKH = maKH;
+        this.thanhTien = thanhTien;
+        this.ngayXuat = ngayXuat;
+    }
+
+    public HDXuat(int soPhieu, String maNV, String maKH, int thanhTien, String ngayXuat) {
+        this.soPhieu = soPhieu;
+        this.maNV = maNV;
+        this.maKH = maKH;
+        this.thanhTien = thanhTien;
+        this.ngayXuat = ngayXuat;
+    }
+    
+    @Override
+    public String toString() {
+        return soPhieu+", "+maKH+", "+thanhTien+", "+ngayXuat;
+    }
+
+    public int getSoPhieu() {
         return soPhieu;
     }
 
-    public void setSoPhieu(String soPhieu) {
+    public void setSoPhieu(int soPhieu) {
         this.soPhieu = soPhieu;
     }
 
