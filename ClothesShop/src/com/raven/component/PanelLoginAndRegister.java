@@ -30,6 +30,7 @@ import javax.swing.JButton;
 import com.raven.component.Message;
 import javaswingdev.Notification;
 import javax.swing.JLabel;
+import javax.swing.SwingWorker;
 import net.miginfocom.swing.MigLayout;
 
 public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
@@ -131,7 +132,7 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
                 frame.setVisible(false);
                 Login lg = new Login();
                 lg.setVisible(true);
-            }else{
+            } else {
                 Notification panel = new Notification(frame, Notification.Type.WARNING, Notification.Location.TOP_CENTER, "Password wasn't save ");
                 panel.showNotification();
             }
