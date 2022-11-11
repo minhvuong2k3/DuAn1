@@ -25,19 +25,9 @@ public class Main extends javax.swing.JFrame {
     private FormHomeStaff staffForm;
 
     public Main() {
-        test te = new test();
-        Thread t = new Thread() {
-            @Override
-            public void run() {
-                te.setVisible(true);
-            }
-        };
-        t.start();
         initComponents();
         setBackground(new Color(0, 0, 0, 0));
         init();
-        t.stop();
-        te.setVisible(false);
     }
 
     private void init() {
