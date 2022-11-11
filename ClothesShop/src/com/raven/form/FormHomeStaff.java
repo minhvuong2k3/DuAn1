@@ -28,8 +28,8 @@ public class FormHomeStaff extends javax.swing.JPanel {
         table1.addTableCell(new CellAddress(), 3);
         table1.addTableCell(new CellTel(), 4);
         table1.addTableCell(new CellAction(), 5);
-        table1.addRow(new ModelStaff(new ModelName("Ra", "Ven", ""), "Male", 18, "Raven123@gmail.com", "010 000 000"), false);  //  ture is animate row
-        table1.addRow(new ModelStaff(new ModelName("Jon", "Cina", ""), "Female", 30, "Raven123@gmail.com", "100 123 123"), false);  //  ture is animate row
+        table1.addRow(new ModelStaff(new ModelName("Ra", ""), "Male", 18, "Raven123@gmail.com", "010 000 000"), false);  //  ture is animate row
+        table1.addRow(new ModelStaff(new ModelName("Jon", ""), "Female", 30, "Raven123@gmail.com", "100 123 123"), false);  //  ture is animate row
     }
 
     @SuppressWarnings("unchecked")

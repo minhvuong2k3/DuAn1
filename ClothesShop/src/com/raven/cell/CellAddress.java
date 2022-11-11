@@ -15,16 +15,10 @@ public class CellAddress extends TableCustomCell {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        txt = new javax.swing.JTextField();
+        txt = new textfield.TextField();
 
         jLabel1.setForeground(new java.awt.Color(200, 200, 200));
         jLabel1.setText("Email");
-
-        txt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -33,8 +27,8 @@ public class CellAddress extends TableCustomCell {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txt, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txt, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -47,10 +41,6 @@ public class CellAddress extends TableCustomCell {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtActionPerformed
 
     @Override
     public void setData(Object o) {
@@ -71,6 +61,6 @@ public class CellAddress extends TableCustomCell {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField txt;
+    private textfield.TextField txt;
     // End of variables declaration//GEN-END:variables
 }
