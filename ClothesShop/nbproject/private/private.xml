@@ -2,10 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group name="Java2">
-            <file>file:/D:/DuAn1/ClothesShop/src/com/raven/form/Form_Home.java</file>
-            <file>file:/D:/DuAn1/ClothesShop/src/com/raven/main/Main.java</file>
-        </group>
         <group>
             <file>file:/C:/Users/Admin/Documents/Github/DuAn1/ClothesShop/src/com/raven/main/Login.java</file>
             <file>file:/C:/Users/Admin/Documents/Github/DuAn1/ClothesShop/src/com/raven/form/FormHome.java</file>
@@ -15,6 +11,12 @@
             <file>file:/C:/Users/Admin/Documents/Github/DuAn1/ClothesShop/src/com/raven/swing/MainPanel.java</file>
             <file>file:/C:/Users/Admin/Documents/Github/DuAn1/ClothesShop/src/com/raven/component/PanelLoginAndRegister.java</file>
             <file>file:/C:/Users/Admin/Documents/Github/DuAn1/ClothesShop/src/com/raven/swing/PictureBox.java</file>
+        </group>
+        <group name="Java2">
+            <file>file:/D:/DuAn1/ClothesShop/src/com/raven/main/Main.java</file>
+            <file>file:/D:/DuAn1/ClothesShop/src/com/raven/cell/CellNameInsert.java</file>
+            <file>file:/D:/DuAn1/ClothesShop/src/com/raven/cell/CellAddress.java</file>
+            <file>file:/D:/DuAn1/ClothesShop/src/com/raven/form/FormHomeStaff.java</file>
         </group>
     </open-files>
 </project-private>
