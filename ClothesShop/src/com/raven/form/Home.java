@@ -24,7 +24,7 @@ public class Home extends Form {
      */
     public Home() {
         initComponents();
-        
+
     }
 
     /**

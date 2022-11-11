@@ -10,11 +10,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 
-public class CellName extends TableCustomCell {
+public class CellNameInsert extends TableCustomCell {
 
     private String pathImage;
 
-    public CellName() {
+    public CellNameInsert() {
         initComponents();
     }
 
@@ -112,7 +112,7 @@ public class CellName extends TableCustomCell {
 
     @Override
     public TableCustomCell createComponentCellEditor(TableCustom tc, TableRowData trd, Object o, int i, int i1) {
-        CellName cell = new CellName();
+        CellNameInsert cell = new CellNameInsert();
         cell.setData(o);
         cell.addEventSave(tc);
         return cell;
