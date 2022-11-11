@@ -28,9 +28,8 @@ public class ModelName {
         this.path = path;
     }
 
-    public ModelName(String firstName, String lastName, String path) {
+    public ModelName(String firstName, String path) {
         this.firstName = firstName;
-        this.lastName = lastName;
         this.path = path;
     }
 

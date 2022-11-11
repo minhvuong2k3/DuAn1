@@ -15,7 +15,7 @@ public class CellTel extends TableCustomCell {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        txt = new javax.swing.JTextField();
+        txt = new textfield.TextField();
 
         jLabel1.setForeground(new java.awt.Color(200, 200, 200));
         jLabel1.setText("Tel");
@@ -27,8 +27,8 @@ public class CellTel extends TableCustomCell {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txt, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txt, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -61,6 +61,6 @@ public class CellTel extends TableCustomCell {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField txt;
+    private textfield.TextField txt;
     // End of variables declaration//GEN-END:variables
 }
