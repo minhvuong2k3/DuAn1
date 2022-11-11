@@ -5,8 +5,11 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.RenderingHints;
 import java.text.DecimalFormat;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 
 public class Item extends javax.swing.JPanel {
 
@@ -35,7 +38,8 @@ public class Item extends javax.swing.JPanel {
 
     public void setData(ModelItem data) {
         this.data = data;
-        pic.setImage(data.getImage());
+        ImageIcon image = new ImageIcon(((ImageIcon)data.getImage()).getImage().getScaledInstance(600, 600, Image.SCALE_DEFAULT));
+        pic.setImage(image);
         lbItemName.setText(data.getItemName());
         lbDescription.setText(data.getDescription());
         lbBrand.setText(data.getBrandName());

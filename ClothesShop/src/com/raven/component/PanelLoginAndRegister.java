@@ -28,8 +28,10 @@ import javax.mail.internet.MimeMultipart;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import com.raven.component.Message;
+import com.raven.main.Loading;
 import javaswingdev.Notification;
 import javax.swing.JLabel;
+import javax.swing.SwingWorker;
 import net.miginfocom.swing.MigLayout;
 
 public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
@@ -41,6 +43,7 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
     MimeMultipart mimeMultipart = new MimeMultipart();
     MimeBodyPart mimeBodyPart = new MimeBodyPart();
     Message ms = new Message();
+    static int i=0;
 
     public PanelLoginAndRegister(Frame frame) {
         initComponents();
@@ -96,12 +99,10 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
                 if (sendCodeToEmail(txtEmail.getText())) {
                     Notification panel = new Notification(frame, Notification.Type.SUCCESS, Notification.Location.TOP_CENTER, "Verifycode was send ");
                     panel.showNotification();
-                    register.removeAll();
-                    register.revalidate();
-                    register.add(label);
+                    register.remove(txtEmail);
+                    register.remove(cmd);
                     register.add(txtOTP, "w 60%");
                     register.add(cmdCheckOTP, "w 40%, h 40");
-                    register.repaint();
                 } else {
                     Notification panel = new Notification(frame, Notification.Type.WARNING, Notification.Location.TOP_CENTER, "Verifycode didn't send ");
                     panel.showNotification();
@@ -115,13 +116,11 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
             if (checkOTP(txtOTP.getText())) {
                 Notification panel = new Notification(frame, Notification.Type.SUCCESS, Notification.Location.TOP_CENTER, "OTP true ");
                 panel.showNotification();
-                register.removeAll();
-                register.revalidate();
-                register.add(label);
+                register.remove(cmdCheckOTP);
+                register.remove(txtOTP);
                 register.add(txtPass, "w 60%");
                 register.add(txtCheckPass, "w 60%");
                 register.add(cmdCheckPass, "w 40%, h 40");
-                register.repaint();
             } else {
                 Notification panel = new Notification(frame, Notification.Type.WARNING, Notification.Location.TOP_CENTER, "OTP false ");
                 panel.showNotification();
@@ -135,7 +134,7 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
                 frame.setVisible(false);
                 Login lg = new Login();
                 lg.setVisible(true);
-            }else{
+            } else {
                 Notification panel = new Notification(frame, Notification.Type.WARNING, Notification.Location.TOP_CENTER, "Password wasn't save ");
                 panel.showNotification();
             }
@@ -200,8 +199,16 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
             panel.showNotification();
             Auth.user = model;
             frame.setVisible(false);
-            Main main = new Main();
-            main.setVisible(true);
+            new Thread(){
+                    @Override
+                    public void run(){
+                        if(i==0){
+                            new Loading().setVisible(true);
+                            new Main().setVisible(true);
+                        }
+                        i++;
+                    }
+                }.start();
         } else {
             Notification panel = new Notification(frame, Notification.Type.WARNING, Notification.Location.TOP_CENTER, "Password not succesfull");
             panel.showNotification();

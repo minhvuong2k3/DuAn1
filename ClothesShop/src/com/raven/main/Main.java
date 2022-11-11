@@ -1,6 +1,8 @@
 package com.raven.main;
 
 import com.raven.event.EventColorChange;
+import com.raven.form.FormHomeStaff;
+import com.raven.form.Form_Home;
 import com.raven.form.Home_Form;
 import com.raven.form.Home;
 import com.raven.form.P_Form;
@@ -11,13 +13,19 @@ import com.raven.theme.SystemTheme;
 import com.raven.theme.ThemeColor;
 import com.raven.theme.ThemeColorChange;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.Timer;
 
 public class Main extends javax.swing.JFrame {
 
     private Setting_Form settingForm;
     private P_Form productForm;
+    private Form_Home empForm;
+    private FormHomeStaff staffForm;
+    static int i = 0;
 
-    public Main() {
+    public Main() {   
         initComponents();
         setBackground(new Color(0, 0, 0, 0));
         init();
@@ -33,6 +41,10 @@ public class Main extends javax.swing.JFrame {
                     mainBody.displayForm(new Home_Form());
                 } else if (index == 1) {
                     mainBody.displayForm(productForm, "Product");
+                } else if (index == 2) {
+                    mainBody.displayForm(empForm, "Product");
+                } else if (index == 3) {
+                    mainBody.displayForm(staffForm, "Employee");
                 } else if (index == 6) {
                     mainBody.displayForm(settingForm, "Setting");
                 }
@@ -76,7 +88,9 @@ public class Main extends javax.swing.JFrame {
         settingForm.setDarkMode(pro.isDarkMode());
         settingForm.initBackgroundImage(pro.getBackgroundImage());
         mainBody.displayForm(new Home_Form());
-        productForm = new P_Form();       
+        productForm = new P_Form();
+        empForm = new Form_Home();
+        staffForm = new FormHomeStaff();
     }
 
     @SuppressWarnings("unchecked")
@@ -159,8 +173,18 @@ public class Main extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
-                new Main().setVisible(true);
+                new Thread(){
+                    @Override
+                    public void run(){
+                        if(i==0){
+                            new Loading().setVisible(true);
+                            
+                        }
+                        i++;
+                    }
+                }.start();
             }
         });
     }
