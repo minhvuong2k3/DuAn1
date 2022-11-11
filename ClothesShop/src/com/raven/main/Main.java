@@ -23,8 +23,9 @@ public class Main extends javax.swing.JFrame {
     private P_Form productForm;
     private Form_Home empForm;
     private FormHomeStaff staffForm;
+    static int i = 0;
 
-    public Main() {
+    public Main() {   
         initComponents();
         setBackground(new Color(0, 0, 0, 0));
         init();
@@ -172,8 +173,18 @@ public class Main extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
-                new Main().setVisible(true);
+                new Thread(){
+                    @Override
+                    public void run(){
+                        if(i==0){
+                            new Loading().setVisible(true);
+                            
+                        }
+                        i++;
+                    }
+                }.start();
             }
         });
     }
