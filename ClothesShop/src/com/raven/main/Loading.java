@@ -31,7 +31,7 @@ public class Loading extends javax.swing.JFrame {
     public Loading() {
         initComponents();
         setLocationRelativeTo(null);
-        panelGradient1.addColor(new ModelColor(new Color(28, 103, 88), 0f), new ModelColor(new Color(214, 205, 164), 1f));
+        panelGradient1.addColor(new ModelColor(new Color(28, 103, 87), 0f), new ModelColor(new Color(214, 205, 164), 1f));
         addComponentListener(new ComponentAdapter() {
             @Override
             public void componentResized(ComponentEvent e) {
