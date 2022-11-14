@@ -96,6 +96,7 @@ public class TextField extends JTextField {
         return new ShadowRenderer(5, 0.3f, shadowColor).createShadow(img);
     }
 
+    
     private class TextUI extends BasicTextFieldUI {
 
         //  Override this method to remove background or not paint background
