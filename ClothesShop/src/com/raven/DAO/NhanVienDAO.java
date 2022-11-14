@@ -1,6 +1,5 @@
 package com.raven.DAO;
 
-import com.raven.connection.DatabaseConnection;
 import com.raven.model.NhanVien;
 import com.raven.utils.XJdbc;
 import java.sql.ResultSet;
@@ -12,67 +11,58 @@ public class NhanVienDAO extends ClothingStoreDAO<NhanVien, String> {
 
     @Override
     public void insert(NhanVien model) {
-        String sql = "INSERT INTO NhanVien (MaNV, TenNV, GioiTinh, NgaySinh, SDT, Email) VALUES (?, ?, ?, ?, ?, ?)\n"
-                + "INSERT INTO Role (MaNV, VaiTro, MatKhau) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO NhanVien (MaNV, TenNV, GioiTinh, NgaySinh, SDT, Email) VALUES (?, ?, ?, ?, ?, ?)";
         XJdbc.executeUpdate(sql,
                 model.getMaNV(),
                 model.getHoten(),
                 model.getGioiTinh(),
                 model.getNgaySinh(),
                 model.getSdt(),
-                model.getEmail(),
-                model.getMaNV(),
-                model.getVaiTro(),
-                model.getMatKhau());
+                model.getEmail());
     }
 
     @Override
     public void update(NhanVien model) {
-        String sql = "UPDATE NhanVien SET TenNV=?, GioiTinh=?, NgaySinh=?, SDT=?, Email=? WHERE MaNV=?\n"
-                + "UPDATE Role SET VaiTro =?, MatKhau =? WHERE MaNV = ?";
+        String sql = "UPDATE NhanVien SET TenNV=?, GioiTinh=?, NgaySinh=?, SDT=?, Email=? WHERE MaNV=?";
         XJdbc.executeUpdate(sql,
                 model.getHoten(),
                 model.getGioiTinh(),
                 model.getNgaySinh(),
                 model.getSdt(),
                 model.getEmail(),
-                model.getMaNV(),
-                model.getVaiTro(),
-                model.getMatKhau(),
                 model.getMaNV());
     }
 
     @Override
     public void delete(String MaNV) {
-        String sql = "DELETE FROM Role WHERE MaNV = ?\n"
-                + "DELETE FROM NhanVien WHERE MaNV=?";
-        XJdbc.executeUpdate(sql, MaNV, MaNV);
+        String sql = "DELETE FROM NhanVien WHERE MaNV = ?";
+        XJdbc.executeUpdate(sql, MaNV);
     }
 
     @Override
     public List<NhanVien> select() {
         String sql = "SELECT NV.MANV , TenNV , GioiTinh, NgaySinh, SDT, Email, MatKhau, VaiTro FROM NhanVien NV "
-                + "JOIN Role RL ON NV.MANV = RL.MANV";
+                + "LEFT JOIN Role RL ON NV.MANV = RL.MANV";
         return select(sql);
     }
-
+    
     public NhanVien selectByEmail(String email) {
         String sql = "SELECT NV.MANV , TenNV , GioiTinh, NgaySinh, SDT, Email, MatKhau, VaiTro FROM NhanVien NV "
-                + "JOIN Role RL ON NV.MANV = RL.MANV WHERE Email = ?";
+                + "LEFT JOIN Role RL ON NV.MANV = RL.MANV WHERE Email = ?";
         List<NhanVien> list = select(sql, email);
         return list.size() > 0 ? list.get(0) : null;
     }
 
     public List<NhanVien> selectByKeyword(String keyword) {
         String sql = "SELECT NV.MANV , TenNV , GioiTinh, NgaySinh, SDT, Email, MatKhau, VaiTro FROM NhanVien NV "
-                + "JOIN Role RL ON NV.MANV = RL.MANV WHERE MaNV like ? OR  TenNV like ?";
+                + "LEFT JOIN Role RL ON NV.MANV = RL.MANV WHERE MaNV like ? OR  TenNV like ?";
         return select(sql, "%" + keyword + "%", "%" + keyword + "%");
     }
 
     @Override
     public NhanVien selectById(String manv) {
         String sql = "SELECT NV.MANV , TenNV , GioiTinh, NgaySinh, SDT, Email, MatKhau, VaiTro FROM NhanVien NV "
-                + "JOIN Role RL ON NV.MANV = RL.MANV WHERE MaNV = ?";
+                + "LEFTJOIN Role RL ON NV.MANV = RL.MANV WHERE MaNV = ?";
         List<NhanVien> list = select(sql, manv);
         return list.size() > 0 ? list.get(0) : null;
     }
@@ -83,7 +73,7 @@ public class NhanVienDAO extends ClothingStoreDAO<NhanVien, String> {
         try {
             ResultSet rs = null;
             try {
-                rs = DatabaseConnection.exQu(sql, args);
+                rs = XJdbc.executeQuery(sql, args);
                 while (rs.next()) {
                     NhanVien model = readFromResultSet(rs);
                     list.add(model);

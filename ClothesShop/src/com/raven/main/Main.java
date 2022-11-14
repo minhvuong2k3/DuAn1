@@ -12,6 +12,7 @@ import com.raven.properties.SystemProperties;
 import com.raven.theme.SystemTheme;
 import com.raven.theme.ThemeColor;
 import com.raven.theme.ThemeColorChange;
+import com.raven.utils.XShare;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -32,6 +33,7 @@ public class Main extends javax.swing.JFrame {
     }
 
     private void init() {
+        setIconImage(XShare.APP_ICON);
         header.initMoving(this);
         header.initEvent(this);
         menu.addEventMenu(new EventMenu() {
