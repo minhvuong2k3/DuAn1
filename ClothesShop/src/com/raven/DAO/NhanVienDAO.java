@@ -12,11 +12,13 @@ public class NhanVienDAO extends ClothingStoreDAO<NhanVien, String> {
 
     @Override
     public void insert(NhanVien model) {
-        String sql = "INSERT INTO NhanVien (MaNV, TenNV, SDT, Email) VALUES (?, ?, ?, ?)\n"
+        String sql = "INSERT INTO NhanVien (MaNV, TenNV, GioiTinh, NgaySinh, SDT, Email) VALUES (?, ?, ?, ?, ?, ?)\n"
                 + "INSERT INTO Role (MaNV, VaiTro, MatKhau) VALUES (?, ?, ?)";
         XJdbc.executeUpdate(sql,
                 model.getMaNV(),
                 model.getHoten(),
+                model.getGioiTinh(),
+                model.getNgaySinh(),
                 model.getSdt(),
                 model.getEmail(),
                 model.getMaNV(),
@@ -26,10 +28,12 @@ public class NhanVienDAO extends ClothingStoreDAO<NhanVien, String> {
 
     @Override
     public void update(NhanVien model) {
-        String sql = "UPDATE NhanVien SET TenNV=?, SDT=?, Email=? WHERE MaNV=?\n"
+        String sql = "UPDATE NhanVien SET TenNV=?, GioiTinh=?, NgaySinh=?, SDT=?, Email=? WHERE MaNV=?\n"
                 + "UPDATE Role SET VaiTro =?, MatKhau =? WHERE MaNV = ?";
         XJdbc.executeUpdate(sql,
                 model.getHoten(),
+                model.getGioiTinh(),
+                model.getNgaySinh(),
                 model.getSdt(),
                 model.getEmail(),
                 model.getMaNV(),
@@ -47,27 +51,27 @@ public class NhanVienDAO extends ClothingStoreDAO<NhanVien, String> {
 
     @Override
     public List<NhanVien> select() {
-        String sql = "SELECT NV.MANV , TenNV , SDT, Email, MatKhau, VaiTro FROM NhanVien NV "
+        String sql = "SELECT NV.MANV , TenNV , GioiTinh, NgaySinh, SDT, Email, MatKhau, VaiTro FROM NhanVien NV "
                 + "JOIN Role RL ON NV.MANV = RL.MANV";
         return select(sql);
     }
 
     public NhanVien selectByEmail(String email) {
-        String sql = "SELECT NV.MANV , TenNV , SDT, Email, MatKhau, VaiTro FROM NhanVien NV "
+        String sql = "SELECT NV.MANV , TenNV , GioiTinh, NgaySinh, SDT, Email, MatKhau, VaiTro FROM NhanVien NV "
                 + "JOIN Role RL ON NV.MANV = RL.MANV WHERE Email = ?";
         List<NhanVien> list = select(sql, email);
         return list.size() > 0 ? list.get(0) : null;
     }
 
     public List<NhanVien> selectByKeyword(String keyword) {
-        String sql = "SELECT NV.MANV , TenNV , SDT, Email, MatKhau, VaiTro FROM NhanVien NV "
+        String sql = "SELECT NV.MANV , TenNV , GioiTinh, NgaySinh, SDT, Email, MatKhau, VaiTro FROM NhanVien NV "
                 + "JOIN Role RL ON NV.MANV = RL.MANV WHERE MaNV like ? OR  TenNV like ?";
         return select(sql, "%" + keyword + "%", "%" + keyword + "%");
     }
 
     @Override
     public NhanVien selectById(String manv) {
-        String sql = "SELECT NV.MANV , TenNV , SDT, Email, MatKhau, VaiTro FROM NhanVien NV "
+        String sql = "SELECT NV.MANV , TenNV , GioiTinh, NgaySinh, SDT, Email, MatKhau, VaiTro FROM NhanVien NV "
                 + "JOIN Role RL ON NV.MANV = RL.MANV WHERE MaNV = ?";
         List<NhanVien> list = select(sql, manv);
         return list.size() > 0 ? list.get(0) : null;
@@ -97,6 +101,8 @@ public class NhanVienDAO extends ClothingStoreDAO<NhanVien, String> {
         NhanVien model = new NhanVien();
         model.setMaNV(rs.getString("MaNV"));
         model.setHoten(rs.getString("TenNV"));
+        model.setGioiTinh(rs.getBoolean("GioiTinh"));
+        model.setNgaySinh(String.valueOf(rs.getDate("NgaySinh")));
         model.setSdt(rs.getString("SDT"));
         model.setEmail(rs.getString("Email"));
         model.setVaiTro(rs.getBoolean("VaiTro"));
