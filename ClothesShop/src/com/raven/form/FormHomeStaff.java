@@ -16,13 +16,16 @@ import java.awt.Color;
 import java.util.Date;
 import java.util.List;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 
 public class FormHomeStaff extends javax.swing.JPanel {
-    
+
     NhanVienDAO dao = new NhanVienDAO();
     List<NhanVien> list = dao.select();
+    JFrame frame;
 
-    public FormHomeStaff() {
+    public FormHomeStaff(JFrame fram) {
+        frame = fram;
         initComponents();
         setOpaque(false);
         table1.addTableStyle(jScrollPane1);
@@ -37,9 +40,9 @@ public class FormHomeStaff extends javax.swing.JPanel {
         table1.addTableCell(new CellTel(), 4);
         table1.addTableCell(new CellAction(), 5);
         Date date = new Date();
-        int day = date.getYear()+1900;
-        for(int i=0;i<list.size();i++){
-            table1.addRow(new ModelStaff(new ModelName(list.get(i).getHoten(), ""), list.get(i).getGioiTinh()?"Mail":"Femail", day-(Integer.parseInt(list.get(i).getNgaySinh().substring(0,4))), list.get(i).getEmail(), list.get(i).getSdt()), false);
+        int day = date.getYear() + 1900;
+        for (int i = 0; i < list.size(); i++) {
+            table1.addRow(new ModelStaff(new ModelName(list.get(i).getHoten(), ""), list.get(i).getGioiTinh() ? "Mail" : "Femail", day - (Integer.parseInt(list.get(i).getNgaySinh().substring(0, 4))), list.get(i).getEmail(), list.get(i).getSdt()), false);
         }
     }
 
@@ -68,7 +71,7 @@ public class FormHomeStaff extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(table1);
         if (table1.getColumnModel().getColumnCount() > 0) {
-            table1.getColumnModel().getColumn(0).setMinWidth(180);
+            table1.getColumnModel().getColumn(0).setMinWidth(80);
             table1.getColumnModel().getColumn(0).setPreferredWidth(180);
             table1.getColumnModel().getColumn(2).setMinWidth(70);
             table1.getColumnModel().getColumn(2).setMaxWidth(70);
@@ -138,7 +141,7 @@ public class FormHomeStaff extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
-        AddEmployee add = new AddEmployee();
+        AddEmployee add = new AddEmployee(frame);
         add.setVisible(true);
     }//GEN-LAST:event_button1ActionPerformed
 

@@ -8,7 +8,7 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.text.DecimalFormat;
 
-public class Card extends javax.swing.JPanel {
+public class CardRed extends javax.swing.JPanel {
 
     public Color getColorGradient() {
         return colorGradient;
@@ -20,11 +20,11 @@ public class Card extends javax.swing.JPanel {
 
     private Color colorGradient;
 
-    public Card() {
+    public CardRed() {
         initComponents();
         setOpaque(false);
         setBackground(new Color(112, 69, 246));
-        colorGradient = new Color(109, 152, 134);
+        colorGradient = new Color(219, 200, 172);
     }
 
     public void setData(String title) {
@@ -41,8 +41,8 @@ public class Card extends javax.swing.JPanel {
         setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
         lbTitle.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lbTitle.setForeground(new java.awt.Color(225, 225, 225));
-        lbTitle.setText("ACTIVE");
+        lbTitle.setForeground(new java.awt.Color(255, 255, 255));
+        lbTitle.setText("INACTIVE");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
