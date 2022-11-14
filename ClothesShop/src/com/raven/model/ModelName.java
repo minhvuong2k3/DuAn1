@@ -12,14 +12,6 @@ public class ModelName {
         this.firstName = firstName;
     }
 
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
     public String getPath() {
         return path;
     }
@@ -37,11 +29,10 @@ public class ModelName {
     }
 
     private String firstName;
-    private String lastName;
     private String path;
 
     @Override
     public String toString() {
-        return firstName + " " + lastName;
+        return firstName ;
     }
 }
