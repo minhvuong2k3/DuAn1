@@ -180,7 +180,7 @@ public class Main extends javax.swing.JFrame {
                     public void run(){
                         if(i==0){
                             new Loading().setVisible(true);
-                            
+                            new Main().setVisible(true);
                         }
                         i++;
                     }
