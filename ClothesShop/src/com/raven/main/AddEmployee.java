@@ -6,6 +6,7 @@ package com.raven.main;
 
 import com.raven.utils.XShare;
 import java.awt.geom.RoundRectangle2D;
+import javax.swing.JFrame;
 
 /**
  *
@@ -16,15 +17,17 @@ public class AddEmployee extends javax.swing.JFrame {
     /**
      * Creates new form mainTestAdd
      */
-    public AddEmployee() {
+    static JFrame frame;
+    
+    public AddEmployee(JFrame fram) {
+        frame = fram;
         setUndecorated(true);
         initComponents();
         setLocationRelativeTo(null);
-//        setUndecorated(true);
+        fram.setOpacity(0.2f);
         setShape(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), 30, 30));
         setIconImage(XShare.APP_ICON);
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -185,9 +188,9 @@ public class AddEmployee extends javax.swing.JFrame {
                             .addComponent(textField5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addComponent(textField1, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtName1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtName1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel7)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -222,7 +225,8 @@ public class AddEmployee extends javax.swing.JFrame {
                         .addComponent(textField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(txtName)
                         .addComponent(jLabel4)
-                        .addComponent(jLabel7))
+                        .addComponent(jLabel7)
+                        .addComponent(txtName1))
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -250,6 +254,7 @@ public class AddEmployee extends javax.swing.JFrame {
 
     private void button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button2ActionPerformed
         setVisible(false);
+        frame.setOpacity(1);
     }//GEN-LAST:event_button2ActionPerformed
 
     /**
@@ -283,7 +288,7 @@ public class AddEmployee extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AddEmployee().setVisible(true);
+                new AddEmployee(frame).setVisible(true);
             }
         });
     }
