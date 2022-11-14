@@ -1,15 +1,16 @@
 package com.raven.swing.table;
 
 import com.raven.model.ModelStudent;
+import com.raven.model.NhanVien;
 
 public class ModelAction {
 
-    public ModelStudent getStudent() {
-        return student;
+    public NhanVien getNhanVien() {
+        return nhanVien;
     }
 
-    public void setStudent(ModelStudent student) {
-        this.student = student;
+    public void setNhanVien(NhanVien nhanVien) {
+        this.nhanVien = nhanVien;
     }
 
     public EventAction getEvent() {
@@ -20,14 +21,14 @@ public class ModelAction {
         this.event = event;
     }
 
-    public ModelAction(ModelStudent student, EventAction event) {
-        this.student = student;
+    public ModelAction(NhanVien nhanVien, EventAction event) {
+        this.nhanVien = nhanVien;
         this.event = event;
     }
 
     public ModelAction() {
     }
 
-    private ModelStudent student;
+    private NhanVien nhanVien;
     private EventAction event;
 }

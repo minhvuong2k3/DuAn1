@@ -5,7 +5,7 @@ import com.raven.table.cell.TableCustomCell;
 import com.raven.table.model.TableRowData;
 
 public class CellGender extends TableCustomCell {
-
+    
     public CellGender() {
         initComponents();
     }
@@ -66,12 +66,13 @@ public class CellGender extends TableCustomCell {
 
     @Override
     public void setData(Object o) {
-        if (o.toString().equals("Male")) {
+        if (o.toString().trim().equals("Male")) {
             swtGender.setSelected(true);
+            lblGender.setText("Male");
 
         } else {
             swtGender.setSelected(false);
-
+            lblGender.setText("Female");
         }
     }
 

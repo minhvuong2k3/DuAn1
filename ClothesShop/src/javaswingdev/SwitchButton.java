@@ -25,10 +25,12 @@ public class SwitchButton extends Component {
 
     public void setSelected(boolean selected) {
         this.selected = selected;
+        check = this.selected;
         timer.start();
         runEvent();
     }
-
+    
+    static boolean check = true;
     private Timer timer;
     private float location;
     private boolean selected;
@@ -42,7 +44,11 @@ public class SwitchButton extends Component {
         setForeground(Color.WHITE);
         setCursor(new Cursor(Cursor.HAND_CURSOR));
         events = new ArrayList<>();
-        location = 2;
+        System.out.println(selected);
+        if(check)
+            location = 27;
+        else 
+            location = 2;
         timer = new Timer(0, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
@@ -109,7 +115,7 @@ public class SwitchButton extends Component {
         g2.fillRoundRect(0, 0, width, height, 25, 25);
         g2.setColor(getForeground());
         g2.setComposite(AlphaComposite.SrcOver);
-        g2.fillOval((int) location, 2, height - 4, height - 4); 
+        g2.fillOval((int) location, 2, height - 4, height - 4);
         super.paint(grphcs);
     }
 
@@ -134,5 +140,5 @@ public class SwitchButton extends Component {
     public void addEventSelected(EventSwitchSelected event) {
         events.add(event);
     }
-   
+
 }
