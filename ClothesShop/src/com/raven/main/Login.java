@@ -3,6 +3,7 @@ package com.raven.main;
 import com.raven.component.PanelCover;
 import com.raven.component.PanelLoginAndRegister;
 import com.raven.swing.PanelBackground;
+import com.raven.utils.XShare;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -34,6 +35,7 @@ public class Login extends javax.swing.JFrame {
     }
 
     private void init() {
+        setIconImage(XShare.APP_ICON);
         layout = new MigLayout("fill, insets 0");
         cover = new PanelCover();
         loginAndRegister = new PanelLoginAndRegister(this);

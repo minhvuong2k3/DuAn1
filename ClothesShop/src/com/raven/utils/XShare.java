@@ -19,7 +19,7 @@ public class XShare {
 
     static {
         // Tải biểu tượng ứng dụng
-        String file = "src\\com\\raven\\icon";
+        String file = "src\\com\\raven\\icon\\IconDuAn1.png";
         APP_ICON = new ImageIcon(file).getImage();
     }
 
