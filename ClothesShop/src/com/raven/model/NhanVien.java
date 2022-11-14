@@ -11,6 +11,8 @@ package com.raven.model;
 public class NhanVien {
     private String maNV;
     private String hoten;
+    private Boolean GioiTinh;
+    private String NgaySinh;
     private String sdt;
     private String email;
     private Boolean vaiTro;
@@ -47,6 +49,22 @@ public class NhanVien {
 
     public void setHoten(String hoten) {
         this.hoten = hoten;
+    }
+
+    public Boolean getGioiTinh() {
+        return GioiTinh;
+    }
+
+    public void setGioiTinh(Boolean GioiTinh) {
+        this.GioiTinh = GioiTinh;
+    }
+
+    public String getNgaySinh() {
+        return NgaySinh;
+    }
+
+    public void setNgaySinh(String NgaySinh) {
+        this.NgaySinh = NgaySinh;
     }
 
     public String getSdt() {
