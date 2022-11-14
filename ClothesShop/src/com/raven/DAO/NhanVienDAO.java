@@ -1,6 +1,5 @@
 package com.raven.DAO;
 
-import com.raven.connection.DatabaseConnection;
 import com.raven.model.NhanVien;
 import com.raven.utils.XJdbc;
 import java.sql.ResultSet;
@@ -79,7 +78,7 @@ public class NhanVienDAO extends ClothingStoreDAO<NhanVien, String> {
         try {
             ResultSet rs = null;
             try {
-                rs = DatabaseConnection.exQu(sql, args);
+                rs = XJdbc.executeQuery(sql, args);
                 while (rs.next()) {
                     NhanVien model = readFromResultSet(rs);
                     list.add(model);

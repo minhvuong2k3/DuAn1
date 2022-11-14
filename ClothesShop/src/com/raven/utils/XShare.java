@@ -19,7 +19,7 @@ public class XShare {
 
     static {
         // Tải biểu tượng ứng dụng
-        String file = "src\\com\\polyPro\\icon\\logo.png";
+        String file = "src\\com\\raven\\icon";
         APP_ICON = new ImageIcon(file).getImage();
     }
 
