@@ -6,6 +6,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Action extends javax.swing.JPanel {
+    
+    public boolean update(){
+        
+        return true;
+    }
 
     public Action(ModelAction data) {
         initComponents();

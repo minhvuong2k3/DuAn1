@@ -44,7 +44,6 @@ public class SwitchButton extends Component {
         setForeground(Color.WHITE);
         setCursor(new Cursor(Cursor.HAND_CURSOR));
         events = new ArrayList<>();
-        System.out.println(selected);
         if(check)
             location = 27;
         else 
