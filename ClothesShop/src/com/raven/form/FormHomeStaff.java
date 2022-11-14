@@ -1,5 +1,6 @@
 package com.raven.form;
 
+import com.raven.DAO.NhanVienDAO;
 import com.raven.cell.CellAction;
 import com.raven.cell.CellAddress;
 import com.raven.cell.CellAge;
@@ -9,10 +10,16 @@ import com.raven.cell.CellTel;
 //import com.raven.chart.ModelChart;
 import com.raven.model.ModelName;
 import com.raven.model.ModelStaff;
+import com.raven.model.NhanVien;
 import java.awt.Color;
+import java.util.Date;
+import java.util.List;
 import javax.swing.ImageIcon;
 
 public class FormHomeStaff extends javax.swing.JPanel {
+    
+    NhanVienDAO dao = new NhanVienDAO();
+    List<NhanVien> list = dao.select();
 
     public FormHomeStaff() {
         initComponents();
@@ -28,8 +35,12 @@ public class FormHomeStaff extends javax.swing.JPanel {
         table1.addTableCell(new CellAddress(), 3);
         table1.addTableCell(new CellTel(), 4);
         table1.addTableCell(new CellAction(), 5);
-        table1.addRow(new ModelStaff(new ModelName("Ra", ""), "Male", 18, "Raven123@gmail.com", "010 000 000"), false);  //  ture is animate row
-        table1.addRow(new ModelStaff(new ModelName("Jon", ""), "Female", 30, "Raven123@gmail.com", "100 123 123"), false);  //  ture is animate row
+        Date date = new Date();
+        int day = date.getYear()+1900;
+        System.out.println(day);
+        for(int i=0;i<list.size();i++){
+            table1.addRow(new ModelStaff(new ModelName(list.get(i).getHoten(), ""), list.get(i).getGioiTinh()?"Mail":"Femail", day-(Integer.parseInt(list.get(i).getNgaySinh().substring(0,4))), list.get(i).getEmail(), list.get(i).getSdt()), false);
+        }
     }
 
     @SuppressWarnings("unchecked")
