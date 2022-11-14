@@ -4,14 +4,20 @@
  */
 package com.raven.form;
 
+import com.raven.DAO.NhanVienDAO;
+import com.raven.DAO.SanPhamDAO;
 import com.raven.component.Form;
 import com.raven.component.ImageBackgroundOption;
 import com.raven.event.EventColorChange;
+import com.raven.model.NhanVien;
+import com.raven.model.SanPham;
 import com.raven.properties.SystemProperties;
 import com.raven.swing.EventSwitchSelected;
 import com.raven.swing.SwitchButton;
 import com.raven.theme.ThemeColorChange;
 import java.awt.Color;
+import java.util.List;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -22,9 +28,12 @@ public class Home extends Form {
     /**
      * Creates new form Product
      */
+    SanPhamDAO dao = new SanPhamDAO();
+    NhanVienDAO nvdao = new NhanVienDAO();
+    
     public Home() {
         initComponents();
-
+        init();
     }
 
     /**
@@ -695,4 +704,38 @@ public class Home extends Form {
     private swing.PictureBox pictureBox9;
     private swing.ScrollBarCustom scrollBarCustom1;
     // End of variables declaration//GEN-END:variables
+
+    private void init() {
+        showData();
+    }
+    
+    public void showData(){
+        List<SanPham> list = dao.select();
+        pictureBox9.setImage(new ImageIcon(getClass().getResource(("/com/raven/image/" + list.get(0).getAnh()))));
+        pictureBox10.setImage(new ImageIcon(getClass().getResource(("/com/raven/image/" + list.get(1).getAnh()))));
+        pictureBox11.setImage(new ImageIcon(getClass().getResource(("/com/raven/image/" + list.get(2).getAnh()))));
+        pictureBox12.setImage(new ImageIcon(getClass().getResource(("/com/raven/image/" + list.get(3).getAnh()))));
+        jLabel17.setText(list.get(0).getTenSP());
+        jLabel18.setText(list.get(0).getGiaBan()+"");
+        jTextArea9.setText(list.get(0).getMaLH() +"  "+ list.get(0).getMaNCC());
+        jLabel19.setText(list.get(1).getTenSP());
+        jLabel20.setText(list.get(1).getGiaBan()+"");
+        jTextArea10.setText(list.get(1).getMaLH() +"  "+ list.get(1).getMaNCC());
+        jLabel21.setText(list.get(2).getTenSP());
+        jLabel22.setText(list.get(2).getGiaBan()+"");
+        jTextArea11.setText(list.get(2).getMaLH() +"  "+ list.get(2).getMaNCC());
+        jLabel23.setText(list.get(3).getTenSP());
+        jLabel24.setText(list.get(3).getGiaBan()+"");
+        jTextArea12.setText(list.get(3).getMaLH() +"  "+ list.get(3).getMaNCC());
+        
+        List<NhanVien> nvlist = nvdao.select();
+        jLabel30.setText(nvlist.get(0).getHoten());
+        jLabel31.setText(nvlist.get(0).getVaiTro()?"Admin":"Employee");
+        jLabel34.setText(nvlist.get(1).getHoten());
+        jLabel35.setText(nvlist.get(1).getVaiTro()?"Admin":"Employee");
+        jLabel38.setText(nvlist.get(2).getHoten());
+        jLabel39.setText(nvlist.get(2).getVaiTro()?"Admin":"Employee");
+        jLabel42.setText(nvlist.get(3).getHoten());
+        jLabel43.setText(nvlist.get(3).getVaiTro()?"Admin":"Employee");
+    }
 }
