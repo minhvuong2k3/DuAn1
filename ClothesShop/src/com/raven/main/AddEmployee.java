@@ -4,6 +4,7 @@
  */
 package com.raven.main;
 
+import com.raven.utils.XShare;
 import java.awt.geom.RoundRectangle2D;
 
 /**
@@ -21,6 +22,7 @@ public class AddEmployee extends javax.swing.JFrame {
         setLocationRelativeTo(null);
 //        setUndecorated(true);
         setShape(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), 30, 30));
+        setIconImage(XShare.APP_ICON);
     }
     
 
@@ -215,9 +217,9 @@ public class AddEmployee extends javax.swing.JFrame {
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtName1)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(textField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtName1)
                         .addComponent(txtName)
                         .addComponent(jLabel4)
                         .addComponent(jLabel7))

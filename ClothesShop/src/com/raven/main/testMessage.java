@@ -5,6 +5,7 @@
 package com.raven.main;
 
 import com.raven.component.Message;
+import com.raven.utils.XShare;
 
 /**
  *
@@ -19,6 +20,7 @@ public class testMessage extends javax.swing.JFrame {
         initComponents();
         Message ms = new Message();
         ms.setVisible(true);
+        setIconImage(XShare.APP_ICON);
     }
 
     /**
