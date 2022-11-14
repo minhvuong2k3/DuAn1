@@ -37,7 +37,6 @@ public class FormHomeStaff extends javax.swing.JPanel {
         table1.addTableCell(new CellAction(), 5);
         Date date = new Date();
         int day = date.getYear()+1900;
-        System.out.println(day);
         for(int i=0;i<list.size();i++){
             table1.addRow(new ModelStaff(new ModelName(list.get(i).getHoten(), ""), list.get(i).getGioiTinh()?"Mail":"Femail", day-(Integer.parseInt(list.get(i).getNgaySinh().substring(0,4))), list.get(i).getEmail(), list.get(i).getSdt()), false);
         }
