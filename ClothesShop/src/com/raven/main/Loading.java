@@ -23,7 +23,7 @@ import javax.swing.plaf.basic.BasicProgressBarUI;
 public class Loading extends javax.swing.JFrame {
 
     int second = 10;
-    int load = 0;
+    double load = 0;
     int index = 0;
     int maxIndex = 21;
     Timer t;
@@ -39,8 +39,6 @@ public class Loading extends javax.swing.JFrame {
             }
         });
         Run();
-        Main main = new Main();
-        main.setVisible(true);
         custom();
         t.start();
     }
@@ -51,7 +49,7 @@ public class Loading extends javax.swing.JFrame {
             public void actionPerformed(ActionEvent e) {
                 
 
-                pgbLoading.setValue(load);
+                pgbLoading.setValue((int)load);
                 index++;
                 if (index == maxIndex) {
                     index = 0;
@@ -59,7 +57,7 @@ public class Loading extends javax.swing.JFrame {
                 if (load == 100) {
                     setVisible(false);
                 }
-                load += 1;
+                load += 0.25;
             }
         });
     }

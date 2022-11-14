@@ -28,8 +28,10 @@ import javax.mail.internet.MimeMultipart;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import com.raven.component.Message;
+import com.raven.main.Loading;
 import javaswingdev.Notification;
 import javax.swing.JLabel;
+import javax.swing.SwingWorker;
 import net.miginfocom.swing.MigLayout;
 
 public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
@@ -41,6 +43,7 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
     MimeMultipart mimeMultipart = new MimeMultipart();
     MimeBodyPart mimeBodyPart = new MimeBodyPart();
     Message ms = new Message();
+    static int i=0;
 
     public PanelLoginAndRegister(Frame frame) {
         initComponents();
@@ -131,7 +134,7 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
                 frame.setVisible(false);
                 Login lg = new Login();
                 lg.setVisible(true);
-            }else{
+            } else {
                 Notification panel = new Notification(frame, Notification.Type.WARNING, Notification.Location.TOP_CENTER, "Password wasn't save ");
                 panel.showNotification();
             }
@@ -196,8 +199,16 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
             panel.showNotification();
             Auth.user = model;
             frame.setVisible(false);
-            Main main = new Main();
-            main.setVisible(true);
+            new Thread(){
+                    @Override
+                    public void run(){
+                        if(i==0){
+                            new Loading().setVisible(true);
+                            new Main().setVisible(true);
+                        }
+                        i++;
+                    }
+                }.start();
         } else {
             Notification panel = new Notification(frame, Notification.Type.WARNING, Notification.Location.TOP_CENTER, "Password not succesfull");
             panel.showNotification();

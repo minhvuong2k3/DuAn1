@@ -14,6 +14,7 @@ import com.raven.theme.ThemeColor;
 import com.raven.theme.ThemeColorChange;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.Timer;
 
 public class Main extends javax.swing.JFrame {
@@ -22,9 +23,9 @@ public class Main extends javax.swing.JFrame {
     private P_Form productForm;
     private Form_Home empForm;
     private FormHomeStaff staffForm;
-    private Timer t;
+    static int i = 0;
 
-    public Main() {
+    public Main() {   
         initComponents();
         setBackground(new Color(0, 0, 0, 0));
         init();
@@ -36,25 +37,16 @@ public class Main extends javax.swing.JFrame {
         menu.addEventMenu(new EventMenu() {
             @Override
             public void selectedMenu(int index) {
-                switch (index) {
-                    case 0:
-                        mainBody.displayForm(new Home_Form());
-                        break;
-                    case 1:
-                        mainBody.displayForm(productForm, "Product");
-                        break;
-
-                    case 2:
-                        mainBody.displayForm(empForm, "Product");
-                        break;
-                    case 3:
-                        mainBody.displayForm(staffForm, "Employee");
-                        break;
-                    case 6:
-                        mainBody.displayForm(settingForm, "Setting");
-                        break;
-                    default:
-                        break;
+                if (index == 0) {
+                    mainBody.displayForm(new Home_Form());
+                } else if (index == 1) {
+                    mainBody.displayForm(productForm, "Product");
+                } else if (index == 2) {
+                    mainBody.displayForm(empForm, "Product");
+                } else if (index == 3) {
+                    mainBody.displayForm(staffForm, "Employee");
+                } else if (index == 6) {
+                    mainBody.displayForm(settingForm, "Setting");
                 }
             }
         });
@@ -100,8 +92,6 @@ public class Main extends javax.swing.JFrame {
         empForm = new Form_Home();
         staffForm = new FormHomeStaff();
     }
-    private int count = 0;
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -171,24 +161,30 @@ public class Main extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Main.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Main.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Main.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Main.class
-                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
-                new Main().setVisible(true);
+                new Thread(){
+                    @Override
+                    public void run(){
+                        if(i==0){
+                            new Loading().setVisible(true);
+                            
+                        }
+                        i++;
+                    }
+                }.start();
             }
         });
     }
