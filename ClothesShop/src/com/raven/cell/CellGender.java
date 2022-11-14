@@ -16,20 +16,20 @@ public class CellGender extends TableCustomCell {
 
         group = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
-        jrMale = new javax.swing.JRadioButton();
-        jrFemale = new javax.swing.JRadioButton();
+        swtGender = new javaswingdev.SwitchButton();
+        lblGender = new javax.swing.JLabel();
 
         jLabel1.setForeground(new java.awt.Color(200, 200, 200));
         jLabel1.setText("Gender");
 
-        group.add(jrMale);
-        jrMale.setForeground(new java.awt.Color(200, 200, 200));
-        jrMale.setSelected(true);
-        jrMale.setText("Male");
+        swtGender.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                swtGenderMouseClicked(evt);
+            }
+        });
 
-        group.add(jrFemale);
-        jrFemale.setForeground(new java.awt.Color(200, 200, 200));
-        jrFemale.setText("Female");
+        lblGender.setForeground(new java.awt.Color(200, 200, 200));
+        lblGender.setText("Gender");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -39,35 +39,45 @@ public class CellGender extends TableCustomCell {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jrMale)
+                .addComponent(swtGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jrFemale)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(lblGender)
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jrMale, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jrFemale, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblGender, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(swtGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void swtGenderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_swtGenderMouseClicked
+        if (swtGender.isSelected()) {
+            lblGender.setText("Male");
+        } else {
+            lblGender.setText("Female");
+        }
+    }//GEN-LAST:event_swtGenderMouseClicked
+
     @Override
     public void setData(Object o) {
         if (o.toString().equals("Male")) {
-            jrMale.setSelected(true);
+            swtGender.setSelected(true);
+
         } else {
-            jrFemale.setSelected(true);
+            swtGender.setSelected(false);
+
         }
     }
 
     @Override
     public Object getData() {
-        return jrMale.isSelected() ? "Male" : "Female";
+        return swtGender.isSelected() ? "Male" : "Female";
     }
 
     @Override
@@ -80,7 +90,7 @@ public class CellGender extends TableCustomCell {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup group;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JRadioButton jrFemale;
-    private javax.swing.JRadioButton jrMale;
+    private javax.swing.JLabel lblGender;
+    private javaswingdev.SwitchButton swtGender;
     // End of variables declaration//GEN-END:variables
 }
