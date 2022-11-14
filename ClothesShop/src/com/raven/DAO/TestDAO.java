@@ -4,7 +4,6 @@
  */
 package com.raven.DAO;
 
-import com.raven.model.CTHDXuat;
 import com.raven.model.NhanVien;
 import java.util.List;
 
@@ -15,6 +14,7 @@ import java.util.List;
 public class TestDAO {
     public static void main(String[] args) {
         NhanVienDAO dao = new NhanVienDAO();
+//        dao.insert(new NhanVien("NV005", "fafa", Boolean.TRUE, "2022/12/4", "fafa", "sffsf"));
         List<NhanVien> list = dao.select();
         for(NhanVien x: list) {
             System.out.println(x.toString());

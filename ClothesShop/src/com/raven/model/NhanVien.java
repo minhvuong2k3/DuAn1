@@ -21,15 +21,26 @@ public class NhanVien {
     public NhanVien() {
     }
 
-    public NhanVien(String maNV, String hoten, String sdt, String email, Boolean vaiTro, String matKhau) {
+    public NhanVien(String maNV, String hoten, Boolean GioiTinh, String NgaySinh, String sdt, String email) {
         this.maNV = maNV;
         this.hoten = hoten;
+        this.GioiTinh = GioiTinh;
+        this.NgaySinh = NgaySinh;
+        this.sdt = sdt;
+        this.email = email;
+    }
+    
+    public NhanVien(String maNV, String hoten, Boolean GioiTinh, String NgaySinh, String sdt, String email, Boolean vaiTro, String matKhau) {
+        this.maNV = maNV;
+        this.hoten = hoten;
+        this.GioiTinh = GioiTinh;
+        this.NgaySinh = NgaySinh;
         this.sdt = sdt;
         this.email = email;
         this.vaiTro = vaiTro;
         this.matKhau = matKhau;
     }
-    
+
     @Override
     public String toString() {
         return maNV+", "+hoten+", "+vaiTro+", "+matKhau;
