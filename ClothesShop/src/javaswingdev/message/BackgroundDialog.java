@@ -18,7 +18,7 @@ public class BackgroundDialog extends JPanel {
     private void init() {
         setOpaque(false);
         setBackground(new Color(245, 245, 245));
-        setForeground(new Color(118, 118, 118));
+        setForeground(new Color(118, 118, 117));
     }
 
     @Override
@@ -27,7 +27,7 @@ public class BackgroundDialog extends JPanel {
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         int x = 10;
         int y = 40;
-        int width = getWidth()-20;
+        int width = getWidth() - 20;
         int height = getHeight();
 //        int iconSpace = 7;
 //        int totalIconSpace = iconSpace * 2;
