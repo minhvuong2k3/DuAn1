@@ -12,11 +12,10 @@ import com.raven.properties.SystemProperties;
 import com.raven.theme.SystemTheme;
 import com.raven.theme.ThemeColor;
 import com.raven.theme.ThemeColorChange;
-import com.raven.utils.Auth;
+import com.raven.utils.XShare;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javaswingdev.message.MessageDialog;
 import javax.swing.Timer;
 
 public class Main extends javax.swing.JFrame {
@@ -27,44 +26,29 @@ public class Main extends javax.swing.JFrame {
     private FormHomeStaff staffForm;
     static int i = 0;
 
-    public Main() {
+    public Main() {   
         initComponents();
         setBackground(new Color(0, 0, 0, 0));
         init();
     }
 
     private void init() {
-        MessageDialog me = new MessageDialog(this);
+        setIconImage(XShare.APP_ICON);
         header.initMoving(this);
         header.initEvent(this);
         menu.addEventMenu(new EventMenu() {
             @Override
             public void selectedMenu(int index) {
-                switch (index) {
-                    case 0:
-                        mainBody.displayForm(new Home_Form());
-                        break;
-                    case 1:
-                        mainBody.displayForm(productForm, "Product");
-                        break;
-                    case 2:
-                        mainBody.displayForm(empForm, "Product");
-                        break;
-                    case 9:
-
-                        me.showMessage("", "Do you want to logout ?");
-                        if (me.getMessageType() == MessageDialog.MessageType.OK) {
-                            setVisible(false);
-                            Auth.user = null;
-                            Login lg = new Login();
-                            lg.setVisible(true);
-                        }
-                        break;
-                    case 6:
-                        mainBody.displayForm(settingForm, "Setting");
-                        break;
-                    default:
-                        break;
+                if (index == 0) {
+                    mainBody.displayForm(new Home_Form());
+                } else if (index == 1) {
+                    mainBody.displayForm(productForm, "Product");
+                } else if (index == 2) {
+                    mainBody.displayForm(empForm, "Product");
+                } else if (index == 3) {
+                    mainBody.displayForm(staffForm, "Employee");
+                } else if (index == 6) {
+                    mainBody.displayForm(settingForm, "Setting");
                 }
             }
         });
@@ -193,10 +177,10 @@ public class Main extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new Thread() {
+                new Thread(){
                     @Override
-                    public void run() {
-                        if (i == 0) {
+                    public void run(){
+                        if(i==0){
                             new Loading().setVisible(true);
                             new Main().setVisible(true);
                         }
