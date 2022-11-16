@@ -13,7 +13,7 @@ public class Order extends javax.swing.JPanel {
     /**
      * Creates new form Order
      */
-    private int index = 0;
+    private int index = -1;
 
     public Order() {
         initComponents();
