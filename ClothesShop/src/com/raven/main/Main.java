@@ -92,7 +92,7 @@ public class Main extends javax.swing.JFrame {
         mainBody.displayForm(new Home_Form());
         productForm = new P_Form();
         empForm = new Form_Home();
-//        staffForm = new FormHomeStaff(this);
+        staffForm = new FormHomeStaff(this);
     }
 
     @SuppressWarnings("unchecked")

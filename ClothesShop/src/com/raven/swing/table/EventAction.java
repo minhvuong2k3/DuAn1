@@ -5,7 +5,7 @@ import com.raven.model.NhanVien;
 
 public interface EventAction {
 
-    public void delete(NhanVien nhanVien);
+    public void delete(ModelStudent student);
 
-    public void update(NhanVien nhanVien);
+    public void update(ModelStudent student);
 }
