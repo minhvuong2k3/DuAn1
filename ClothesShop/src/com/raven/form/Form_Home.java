@@ -208,6 +208,7 @@ public class Form_Home extends javax.swing.JPanel {
 
         roundPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
+        textField2.setLabelText("");
         textField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textField2ActionPerformed(evt);

@@ -339,6 +339,9 @@
         <Component class="textfield.TextField" name="textField1">
         </Component>
         <Component class="textfield.TextField" name="textField2">
+          <Properties>
+            <Property name="labelText" type="java.lang.String" value=""/>
+          </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="textField2ActionPerformed"/>
           </Events>
