@@ -31,7 +31,7 @@
               <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="roundPanel2" max="32767" attributes="0"/>
-                  <Component id="roundPanel1" pref="0" max="32767" attributes="0"/>
+                  <Component id="roundPanel1" pref="638" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -68,13 +68,13 @@
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
                   <Component id="navigationBar1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="115" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
               </Group>
               <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jScrollPane1" min="-2" pref="509" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="181" max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" min="-2" pref="554" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="136" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -140,7 +140,7 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="671" max="32767" attributes="0"/>
+                  <EmptySpace min="0" pref="670" max="32767" attributes="0"/>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -212,36 +212,29 @@
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="passwordField1" max="32767" attributes="0"/>
                                       <Group type="102" attributes="0">
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="102" attributes="0">
-                                                  <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                                                  <Component id="txtName8" min="-2" pref="52" max="-2" attributes="0"/>
-                                              </Group>
-                                              <Group type="102" attributes="0">
-                                                  <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                                                  <Component id="txtName7" min="-2" pref="52" max="-2" attributes="0"/>
-                                              </Group>
-                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                  <Component id="textField1" alignment="1" max="32767" attributes="0"/>
-                                                  <Component id="textField3" max="32767" attributes="0"/>
-                                                  <Component id="textField2" min="-2" pref="205" max="-2" attributes="0"/>
-                                                  <Component id="textField4" alignment="1" min="-2" pref="205" max="-2" attributes="0"/>
-                                              </Group>
-                                              <Component id="textField5" alignment="0" min="-2" pref="205" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                          <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                                          <Component id="txtName8" min="-2" pref="52" max="-2" attributes="0"/>
                                       </Group>
+                                      <Group type="102" attributes="0">
+                                          <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                                          <Component id="txtName7" min="-2" pref="52" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="textField1" alignment="1" max="32767" attributes="0"/>
+                                          <Component id="textField3" max="32767" attributes="0"/>
+                                          <Component id="textField2" min="-2" pref="205" max="-2" attributes="0"/>
+                                          <Component id="textField4" alignment="1" min="-2" pref="205" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Component id="textField5" alignment="0" min="-2" pref="205" max="-2" attributes="0"/>
+                                      <Component id="textField6" min="-2" pref="205" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <Group type="102" attributes="0">
-                                  <Component id="txtName10" min="-2" pref="313" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              </Group>
+                              <Component id="txtName10" min="-2" pref="313" max="-2" attributes="0"/>
                           </Group>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="32767" attributes="0"/>
@@ -250,7 +243,7 @@
                           <Component id="button2" min="-2" pref="108" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -307,13 +300,20 @@
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="passwordField1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtName5" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="24" pref="24" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="txtName5" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="textField6" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace type="unrelated" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
@@ -337,6 +337,9 @@
       </Layout>
       <SubComponents>
         <Component class="textfield.TextField" name="textField1">
+          <Properties>
+            <Property name="labelText" type="java.lang.String" value=""/>
+          </Properties>
         </Component>
         <Component class="textfield.TextField" name="textField2">
           <Properties>
@@ -347,6 +350,9 @@
           </Events>
         </Component>
         <Component class="textfield.TextField" name="textField3">
+          <Properties>
+            <Property name="labelText" type="java.lang.String" value=""/>
+          </Properties>
         </Component>
         <Component class="button.Button" name="button1">
           <Properties>
@@ -466,8 +472,14 @@
           </Properties>
         </Component>
         <Component class="textfield.TextField" name="textField4">
+          <Properties>
+            <Property name="labelText" type="java.lang.String" value=""/>
+          </Properties>
         </Component>
         <Component class="textfield.TextField" name="textField5">
+          <Properties>
+            <Property name="labelText" type="java.lang.String" value=""/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="txtName1">
           <Properties>
@@ -550,11 +562,6 @@
             <Property name="text" type="java.lang.String" value="Gender"/>
           </Properties>
         </Component>
-        <Component class="passwordfield.PasswordField" name="passwordField1">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="passwordField1"/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JLabel" name="jLabel9">
           <Properties>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -623,6 +630,11 @@
               <Font name="Segoe UI" size="24" style="1"/>
             </Property>
             <Property name="text" type="java.lang.String" value="EMPLOYEE"/>
+          </Properties>
+        </Component>
+        <Component class="textfield.TextField" name="textField6">
+          <Properties>
+            <Property name="labelText" type="java.lang.String" value=""/>
           </Properties>
         </Component>
       </SubComponents>
