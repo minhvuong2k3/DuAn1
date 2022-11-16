@@ -13,10 +13,26 @@ public class Order extends javax.swing.JPanel {
     /**
      * Creates new form Order
      */
-    private int index = 0;
+    private int index = -1;
 
     public Order() {
         initComponents();
+    }
+
+    public void displayAll() {
+        form0.setVisible(false);
+        form1.setVisible(false);
+//        form2.setVisible(false);
+    }
+
+    public void showForm() {
+        if (index == 0) {
+            displayAll();
+            form0.setVisible(true);
+        } else if (index == 1) {
+            displayAll();
+            form1.setVisible(true);
+        }
     }
 
     /**
@@ -35,11 +51,13 @@ public class Order extends javax.swing.JPanel {
         button5 = new button.Button();
         jSeparator1 = new javax.swing.JSeparator();
         roundPanel2 = new com.raven.swing.RoundPanel();
-        create_Order_Form1 = new com.raven.form.Create_Order_Form();
-        order_Form1 = new com.raven.form.Order_Form();
+        form1 = new com.raven.form.Order_Form();
+        form0 = new com.raven.form.Create_Order_Form();
         roundPanel3 = new com.raven.swing.RoundPanel();
         button2 = new button.Button();
         button3 = new button.Button();
+
+        setBackground(new java.awt.Color(255, 255, 255));
 
         roundPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -68,7 +86,7 @@ public class Order extends javax.swing.JPanel {
                     .addGap(14, 14, 14)
                     .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(18, 18, 18)
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 331, Short.MAX_VALUE)
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 343, Short.MAX_VALUE)
                     .addGap(43, 43, 43)
                     .addComponent(button4, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(37, 37, 37)
@@ -84,10 +102,10 @@ public class Order extends javax.swing.JPanel {
                 .addGroup(roundPanel1Layout.createSequentialGroup()
                     .addGap(4, 4, 4)
                     .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(button4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(button5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(button4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(button5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(roundPanel1Layout.createSequentialGroup()
                             .addGap(15, 15, 15)
                             .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -98,8 +116,8 @@ public class Order extends javax.swing.JPanel {
 
         roundPanel2.setBackground(new java.awt.Color(255, 255, 255));
         roundPanel2.setLayout(new java.awt.CardLayout());
-        roundPanel2.add(create_Order_Form1, "card2");
-        roundPanel2.add(order_Form1, "card3");
+        roundPanel2.add(form1, "card2");
+        roundPanel2.add(form0, "card3");
 
         roundPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -127,7 +145,7 @@ public class Order extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(roundPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundPanel3Layout.createSequentialGroup()
-                    .addContainerGap(821, Short.MAX_VALUE)
+                    .addContainerGap(827, Short.MAX_VALUE)
                     .addComponent(button3, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(16, 16, 16)))
         );
@@ -149,12 +167,8 @@ public class Order extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(roundPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(roundPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(roundPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+            .addComponent(roundPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(roundPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -162,21 +176,25 @@ public class Order extends javax.swing.JPanel {
                 .addGap(0, 0, 0)
                 .addComponent(roundPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(roundPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 551, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(roundPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 524, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
                 .addComponent(roundPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button2ActionPerformed
-        if (index < 2){
+        if (index < 2) {
             index += 1;
+            showForm();
         }
     }//GEN-LAST:event_button2ActionPerformed
 
     private void button3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button3ActionPerformed
-        // TODO add your handling code here:
+        if (index > 0) {
+            index -= 1;
+            showForm();
+        }
     }//GEN-LAST:event_button3ActionPerformed
 
 
@@ -186,10 +204,10 @@ public class Order extends javax.swing.JPanel {
     private button.Button button3;
     private button.Button button4;
     private button.Button button5;
-    private com.raven.form.Create_Order_Form create_Order_Form1;
+    private com.raven.form.Create_Order_Form form0;
+    private com.raven.form.Order_Form form1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private com.raven.form.Order_Form order_Form1;
     private com.raven.swing.RoundPanel roundPanel1;
     private com.raven.swing.RoundPanel roundPanel2;
     private com.raven.swing.RoundPanel roundPanel3;
