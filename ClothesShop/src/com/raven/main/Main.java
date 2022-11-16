@@ -1,7 +1,7 @@
 package com.raven.main;
 
 import com.raven.event.EventColorChange;
-import com.raven.form.FormHomeStaff;
+//import com.raven.form.FormHomeStaff;
 import com.raven.form.Form_Home;
 import com.raven.form.Home_Form;
 import com.raven.form.Home;
@@ -23,7 +23,7 @@ public class Main extends javax.swing.JFrame {
     private Setting_Form settingForm;
     private P_Form productForm;
     private Form_Home empForm;
-    private FormHomeStaff staffForm;
+//    private FormHomeStaff staffForm;
     static int i = 0;
 
     public Main() {   
@@ -92,7 +92,7 @@ public class Main extends javax.swing.JFrame {
         mainBody.displayForm(new Home_Form());
         productForm = new P_Form();
         empForm = new Form_Home();
-        staffForm = new FormHomeStaff(this);
+//        staffForm = new FormHomeStaff(this);
     }
 
     @SuppressWarnings("unchecked")
