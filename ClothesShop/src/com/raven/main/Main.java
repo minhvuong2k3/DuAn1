@@ -51,6 +51,7 @@ public class Main extends javax.swing.JFrame {
                         mainBody.displayForm(empForm, "Product");
                         break;
                     case 9:
+
                         me.showMessage("", "Do you want to logout?");
                         if (me.getMessageType() == MessageDialog.MessageType.OK) {
                             setVisible(false);
