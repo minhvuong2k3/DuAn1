@@ -5,6 +5,7 @@ import com.raven.event.EventColorChange;
 import com.raven.form.Form_Home;
 import com.raven.form.Home_Form;
 import com.raven.form.Home;
+import com.raven.form.Order;
 import com.raven.form.P_Form;
 import com.raven.form.Setting_Form;
 import com.raven.menu.EventMenu;
@@ -24,7 +25,7 @@ public class Main extends javax.swing.JFrame {
     private Setting_Form settingForm;
     private P_Form productForm;
     private Form_Home empForm;
-//    private FormHomeStaff staffForm;
+    private Order OrderForm;
     static int i = 0;
 
     public Main() {
@@ -48,7 +49,13 @@ public class Main extends javax.swing.JFrame {
                         mainBody.displayForm(productForm, "Product");
                         break;
                     case 2:
-                        mainBody.displayForm(empForm, "Product");
+                        mainBody.displayForm(empForm, "Employee");
+                        break;
+                    case 3:
+                        mainBody.displayForm(OrderForm, "Order");
+                        break;
+                    case 6:
+                        mainBody.displayForm(settingForm, "Setting");
                         break;
                     case 9:
 
@@ -59,9 +66,6 @@ public class Main extends javax.swing.JFrame {
                             Login lg = new Login();
                             lg.setVisible(true);
                         }
-                        break;
-                    case 6:
-                        mainBody.displayForm(settingForm, "Setting");
                         break;
                     default:
                         break;
@@ -108,7 +112,7 @@ public class Main extends javax.swing.JFrame {
         mainBody.displayForm(new Home_Form());
         productForm = new P_Form();
         empForm = new Form_Home();
-//        staffForm = new FormHomeStaff(this);
+        OrderForm = new Order();
     }
 
     @SuppressWarnings("unchecked")

@@ -5,7 +5,7 @@
 package com.raven.main;
 
 import com.raven.component.Message;
-import com.raven.utils.XShare;
+import javaswingdev.message.MessageDialog;
 
 /**
  *
@@ -18,9 +18,7 @@ public class testMessage extends javax.swing.JFrame {
      */
     public testMessage() {
         initComponents();
-        Message ms = new Message();
-        ms.setVisible(true);
-        setIconImage(XShare.APP_ICON);
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -32,17 +30,22 @@ public class testMessage extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        p_Form1 = new com.raven.form.P_Form();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addComponent(p_Form1, javax.swing.GroupLayout.DEFAULT_SIZE, 1157, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(p_Form1, javax.swing.GroupLayout.DEFAULT_SIZE, 657, Short.MAX_VALUE)
         );
 
         pack();
@@ -84,5 +87,6 @@ public class testMessage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private com.raven.form.P_Form p_Form1;
     // End of variables declaration//GEN-END:variables
 }

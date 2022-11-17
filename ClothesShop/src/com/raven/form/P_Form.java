@@ -28,7 +28,7 @@ public class P_Form extends Form {
     private Animator animator;
     private Point animatePoint;
     private ModelItem itemSelected;
-    
+
     public P_Form() {
         initComponents();
         setBackground(new Color(0, 0, 0, 0));
@@ -46,6 +46,7 @@ public class P_Form extends Form {
         animator.setAcceleration(.5f);
         animator.setDeceleration(.5f);
     }
+
     private void init() {
         home = new FormHome();
         mainPanel.setLayout(new BorderLayout());
@@ -58,14 +59,14 @@ public class P_Form extends Form {
             @Override
             public void itemClick(Component com, ModelItem item) {
                 if (itemSelected != null) {
-                    ImageIcon image = new ImageIcon(((ImageIcon)item.getImage()).getImage().getScaledInstance(200, 180, Image.SCALE_DEFAULT));
+                    ImageIcon image = new ImageIcon(((ImageIcon) item.getImage()).getImage().getScaledInstance(200, 180, Image.SCALE_DEFAULT));
                     mainPanel.setImageOld(image);
                 }
                 if (itemSelected != item) {
                     if (!animator.isRunning()) {
                         itemSelected = item;
                         animatePoint = getLocationOf(com);
-                        ImageIcon image = new ImageIcon(((ImageIcon)item.getImage()).getImage().getScaledInstance(200, 180, Image.SCALE_DEFAULT));
+                        ImageIcon image = new ImageIcon(((ImageIcon) item.getImage()).getImage().getScaledInstance(200, 180, Image.SCALE_DEFAULT));
                         mainPanel.setImage(image);
                         mainPanel.setImageLocation(animatePoint);
                         mainPanel.setImageSize(new Dimension(180, 120));
@@ -80,8 +81,8 @@ public class P_Form extends Form {
         int ID = 1;
         SanPhamDAO dao = new SanPhamDAO();
         List<SanPham> list = dao.select();
-        for(int i=0; i<list.size();i++){
-            home.addItem(new ModelItem(ID++, list.get(i).getTenSP(), list.get(i).getMaNCC(), list.get(i).getGiaBan(), list.get(i).getMaLH(), new ImageIcon(getClass().getResource(("/com/raven/image/" + list.get(i).getAnh()))) ));
+        for (int i = 0; i < 11; i++) {
+            home.addItem(new ModelItem(ID++, list.get(i).getTenSP(), list.get(i).getMaNCC(), list.get(i).getGiaBan(), list.get(i).getMaLH(), new ImageIcon(getClass().getResource(("/com/raven/image/" + list.get(i).getAnh())))));
         }
     }
 
@@ -110,7 +111,7 @@ public class P_Form extends Form {
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 568, Short.MAX_VALUE)
+            .addGap(0, 612, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
