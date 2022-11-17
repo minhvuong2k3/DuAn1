@@ -23,17 +23,17 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="order1" alignment="1" max="32767" attributes="0"/>
+          <Component id="p_Form1" alignment="0" pref="1157" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="order1" alignment="1" max="32767" attributes="0"/>
+          <Component id="p_Form1" alignment="0" pref="622" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="com.raven.form.Order" name="order1">
+    <Component class="com.raven.form.P_Form" name="p_Form1">
     </Component>
   </SubComponents>
 </Form>
