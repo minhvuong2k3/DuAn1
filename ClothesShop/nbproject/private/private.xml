@@ -13,9 +13,10 @@
             <file>file:/C:/Users/Admin/Documents/Github/DuAn1/ClothesShop/src/com/raven/swing/PictureBox.java</file>
         </group>
         <group name="Java2">
-            <file>file:/D:/DuAn1/ClothesShop/src/textfield/TextField.java</file>
-            <file>file:/D:/DuAn1/ClothesShop/src/spinner/Test.java</file>
             <file>file:/D:/DuAn1/ClothesShop/src/com/raven/form/Order_Form.java</file>
+            <file>file:/D:/DuAn1/ClothesShop/src/com/raven/main/Main.java</file>
+            <file>file:/D:/DuAn1/ClothesShop/src/com/raven/form/Order.java</file>
+            <file>file:/D:/DuAn1/ClothesShop/src/com/raven/form/Create_Order_Form.java</file>
         </group>
     </open-files>
 </project-private>
