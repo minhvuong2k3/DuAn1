@@ -52,13 +52,31 @@ public class ModelStaff extends TableRowData {
         this.phoneNumber = phoneNumber;
     }
 
-    public ModelStaff(String MaNV, String name, String gender, int age, String email, String phoneNumber) {
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public ModelStaff(String MaNV, String name, String gender, int age, String email, String phoneNumber, String password, String role) {
         this.MaNV = MaNV;
         this.name = name;
         this.gender = gender;
         this.age = age;
         this.email = email;
         this.phoneNumber = phoneNumber;
+        this.password = password;
+        this.role = role;
     }
 
     public ModelStaff() {
@@ -70,9 +88,11 @@ public class ModelStaff extends TableRowData {
     private int age;
     private String email;
     private String phoneNumber;
+    private String password;
+    private String role;
 
     @Override
     public Object[] toTableRow() {
-        return new Object[]{MaNV, name, gender, age, email, phoneNumber};
+        return new Object[]{MaNV, name, gender, age, email, phoneNumber, password, role};
     }
 }

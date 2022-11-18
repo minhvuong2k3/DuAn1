@@ -25,6 +25,17 @@ public class NhanVienDAO extends ClothingStoreDAO<NhanVien, String> {
                 model.getVaiTro(),
                 model.getMatKhau());
     }
+    
+    public void insertNV(NhanVien model) {
+        String sql = "INSERT INTO NhanVien (MaNV, TenNV, GioiTinh, NgaySinh, SDT, Email) VALUES (?, ?, ?, ?, ?, ?)";
+        XJdbc.executeUpdate(sql,
+                model.getMaNV(),
+                model.getHoten(),
+                model.getGioiTinh(),
+                model.getNgaySinh(),
+                model.getSdt(),
+                model.getEmail());
+    }
 
     @Override
     public void update(NhanVien model) {
@@ -52,27 +63,39 @@ public class NhanVienDAO extends ClothingStoreDAO<NhanVien, String> {
     @Override
     public List<NhanVien> select() {
         String sql = "SELECT NV.MANV , TenNV , GioiTinh, NgaySinh, SDT, Email, MatKhau, VaiTro FROM NhanVien NV "
+                + "LEFT JOIN Role RL ON NV.MANV = RL.MANV";
+        return select(sql);
+    }
+    
+    public List<NhanVien> selectHave() {
+        String sql = "SELECT NV.MANV , TenNV , GioiTinh, NgaySinh, SDT, Email, MatKhau, VaiTro FROM NhanVien NV "
                 + "JOIN Role RL ON NV.MANV = RL.MANV";
+        return select(sql);
+    }
+    
+    public List<NhanVien> selectYet() {
+        String sql = "SELECT NV.MANV , TenNV , GioiTinh, NgaySinh, SDT, Email, MatKhau, VaiTro FROM NhanVien NV "
+                + "LEFT JOIN Role RL ON NV.MANV = RL.MANV WHERE MatKhau is null";
         return select(sql);
     }
 
     public NhanVien selectByEmail(String email) {
         String sql = "SELECT NV.MANV , TenNV , GioiTinh, NgaySinh, SDT, Email, MatKhau, VaiTro FROM NhanVien NV "
-                + "JOIN Role RL ON NV.MANV = RL.MANV WHERE Email = ?";
+                + "LEFT JOIN Role RL ON NV.MANV = RL.MANV WHERE Email = ?";
         List<NhanVien> list = select(sql, email);
         return list.size() > 0 ? list.get(0) : null;
     }
 
     public List<NhanVien> selectByKeyword(String keyword) {
         String sql = "SELECT NV.MANV , TenNV , GioiTinh, NgaySinh, SDT, Email, MatKhau, VaiTro FROM NhanVien NV "
-                + "JOIN Role RL ON NV.MANV = RL.MANV WHERE MaNV like ? OR  TenNV like ?";
+                + "LEFT JOIN Role RL ON NV.MANV = RL.MANV WHERE MaNV like ? OR  TenNV like ?";
         return select(sql, "%" + keyword + "%", "%" + keyword + "%");
     }
 
     @Override
     public NhanVien selectById(String manv) {
         String sql = "SELECT NV.MANV , TenNV , GioiTinh, NgaySinh, SDT, Email, MatKhau, VaiTro FROM NhanVien NV "
-                + "JOIN Role RL ON NV.MANV = RL.MANV WHERE MaNV = ?";
+                + "LEFT JOIN Role RL ON NV.MANV = RL.MANV WHERE MaNV = ?";
         List<NhanVien> list = select(sql, manv);
         return list.size() > 0 ? list.get(0) : null;
     }

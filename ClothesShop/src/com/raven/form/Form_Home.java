@@ -13,19 +13,21 @@ import com.raven.swing.icon.IconFontSwing;
 import com.raven.swing.noticeboard.ModelNoticeBoard;
 import com.raven.swing.table.EventAction;
 import java.awt.Color;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.table.DefaultTableModel;
 
 public class Form_Home extends javax.swing.JPanel {
-        
-        NhanVienDAO dao = new NhanVienDAO();
-        List<NhanVien> list = dao.select();
+
+    NhanVienDAO dao = new NhanVienDAO();
+    List<NhanVien> list = dao.select();
 
     public Form_Home() {
         initComponents();
-        table1.fixTable(jScrollPane1);
+        tblNhanVien.fixTable(jScrollPane1);
         setOpaque(false);
         initData();
         navigationBar1.addItem(new ImageIcon(getClass().getResource("/com/raven/swing/icon/item1.png")));
@@ -36,13 +38,13 @@ public class Form_Home extends javax.swing.JPanel {
             public void beforeSelected(int index) {
                 if (index == 0) {
                     //Tat ca
-                    System.out.println("All");
+                    selectAll();
                 } else if (index == 1) {
                     //Da co tai khoan
-                    System.out.println("Có");
+                    selectHave();
                 } else if (index == 2) {
                     //Chua co tai khoan
-                    System.out.println("Chua");
+                    selectYet();
                 }
             }
 
@@ -61,31 +63,31 @@ public class Form_Home extends javax.swing.JPanel {
     }
 
     private void initTableData() {
-        EventAction eventAction = new EventAction() {
-            @Override
-            public void delete(ModelStudent student) {
-                if (showMessage("Delete Student : " + student.getName())) {
-                    System.out.println("User click OK");
-                } else {
-                    System.out.println("User click Cancel");
-                }
-            }
-
-            @Override
-            public void update(ModelStudent student) {
-//                if (showMessage("Update Student : " + student.getName())) {
+//        EventAction eventAction = new EventAction() {
+//            @Override
+//            public void delete(ModelStudent student) {
+//                if (showMessage("Delete Student : " + student.getName())) {
 //                    System.out.println("User click OK");
 //                } else {
 //                    System.out.println("User click Cancel");
 //                }
-            }
-        };
+//            }
+//
+//            @Override
+//            public void update(ModelStudent student) {
+////                if (showMessage("Update Student : " + student.getName())) {
+////                    System.out.println("User click OK");
+////                } else {
+////                    System.out.println("User click Cancel");
+////                }
+//            }
+//        };
         Date date = new Date();
-        int day = date.getYear()+1900;
-        for(int i=0;i<list.size();i++){
-            table1.addRow(new ModelStaff(list.get(i).getMaNV(), list.get(i).getHoten(), list.get(i).getGioiTinh()?"Male":"Female", (day - Integer.parseInt(list.get(i).getNgaySinh().substring(0,4))), list.get(i).getEmail(), list.get(i).getSdt()).toTableRow());
+        int day = date.getYear() + 1900;
+        for (int i = 0; i < list.size(); i++) {
+            tblNhanVien.addRow(new ModelStaff(list.get(i).getMaNV(), list.get(i).getHoten(), list.get(i).getGioiTinh() ? "Male" : "Female", (day - Integer.parseInt(list.get(i).getNgaySinh().substring(0, 4))), list.get(i).getEmail(), list.get(i).getSdt(), list.get(i).getMatKhau(), list.get(i).getVaiTro() ? "Admin" : "Employee").toTableRow());
         }
-        
+
 //        table1.addRow(new ModelStudent(new ImageIcon(getClass().getResource("/com/raven/icon/profile.jpg")), "Jonh", "Male", "Java", 300).toRowTable(eventAction));
 //        table1.addRow(new ModelStudent(new ImageIcon(getClass().getResource("/com/raven/icon/profile1.jpg")), "Dara", "Male", "C++", 300).toRowTable(eventAction));
 //        table1.addRow(new ModelStudent(new ImageIcon(getClass().getResource("/com/raven/icon/profile2.jpg")), "Bora", "Male", "C", 300).toRowTable(eventAction));
@@ -124,14 +126,14 @@ public class Form_Home extends javax.swing.JPanel {
 
         roundPanel1 = new com.raven.swing.RoundPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        table1 = new com.raven.swing.table.Table();
+        tblNhanVien = new com.raven.swing.table.Table();
         navigationBar1 = new com.raven.swing.NavigationBar();
         roundPanel2 = new com.raven.swing.RoundPanel();
-        textField1 = new textfield.TextField();
-        textField2 = new textfield.TextField();
-        textField3 = new textfield.TextField();
-        button1 = new button.Button();
-        button2 = new button.Button();
+        txtFullname = new textfield.TextField();
+        txtID = new textfield.TextField();
+        txtEmail = new textfield.TextField();
+        btnDelete = new button.Button();
+        btnReform = new button.Button();
         txtName3 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         txtName4 = new javax.swing.JLabel();
@@ -142,31 +144,32 @@ public class Form_Home extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         txtName6 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        textField4 = new textfield.TextField();
-        textField5 = new textfield.TextField();
+        txtPassword = new textfield.TextField();
+        txtBirthday = new textfield.TextField();
         txtName1 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        switchButton1 = new javaswingdev.SwitchButton();
+        swbtnGender = new javaswingdev.SwitchButton();
         txtName5 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        txtName7 = new javax.swing.JLabel();
+        lblRender = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        txtName8 = new javax.swing.JLabel();
+        lblRole = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        switchButton2 = new javaswingdev.SwitchButton();
+        swbtnRole = new javaswingdev.SwitchButton();
         txtName9 = new javax.swing.JLabel();
         txtName10 = new javax.swing.JLabel();
-        textField6 = new textfield.TextField();
+        txtPhone = new textfield.TextField();
+        btnAdd = new button.Button();
 
         roundPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        table1.setModel(new javax.swing.table.DefaultTableModel(
+        tblNhanVien.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Name", "ID", "Email", "Birthday", "Phone", "Gender", "Password", "Role"
+                "ID", "Name", "Gender", "Birthday", "Email", "Phone", "Password", "Role"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -177,16 +180,21 @@ public class Form_Home extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(table1);
-        if (table1.getColumnModel().getColumnCount() > 0) {
-            table1.getColumnModel().getColumn(0).setPreferredWidth(100);
+        tblNhanVien.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblNhanVienMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblNhanVien);
+        if (tblNhanVien.getColumnModel().getColumnCount() > 0) {
+            tblNhanVien.getColumnModel().getColumn(0).setPreferredWidth(100);
         }
 
         javax.swing.GroupLayout navigationBar1Layout = new javax.swing.GroupLayout(navigationBar1);
         navigationBar1.setLayout(navigationBar1Layout);
         navigationBar1Layout.setHorizontalGroup(
             navigationBar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 777, Short.MAX_VALUE)
+            .addGap(0, 766, Short.MAX_VALUE)
         );
         navigationBar1Layout.setVerticalGroup(
             navigationBar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -222,24 +230,37 @@ public class Form_Home extends javax.swing.JPanel {
 
         roundPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        textField1.setLabelText("");
+        txtFullname.setLabelText("");
 
-        textField2.setLabelText("");
-        textField2.addActionListener(new java.awt.event.ActionListener() {
+        txtID.setLabelText("");
+        txtID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField2ActionPerformed(evt);
+                txtIDActionPerformed(evt);
             }
         });
 
-        textField3.setLabelText("");
+        txtEmail.setLabelText("");
 
-        button1.setText("ADD");
-        button1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnDelete.setBackground(new java.awt.Color(255, 0, 51));
+        btnDelete.setForeground(new java.awt.Color(255, 255, 255));
+        btnDelete.setText("DELETE");
+        btnDelete.setEnabled(false);
+        btnDelete.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
 
-        button2.setBackground(new java.awt.Color(219, 200, 172));
-        button2.setForeground(new java.awt.Color(255, 255, 255));
-        button2.setText("REFORM");
-        button2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnReform.setBackground(new java.awt.Color(219, 200, 172));
+        btnReform.setForeground(new java.awt.Color(255, 255, 255));
+        btnReform.setText("REFORM");
+        btnReform.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnReform.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReformActionPerformed(evt);
+            }
+        });
 
         txtName3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         txtName3.setForeground(new java.awt.Color(102, 102, 102));
@@ -276,9 +297,9 @@ public class Form_Home extends javax.swing.JPanel {
         jLabel5.setForeground(new java.awt.Color(255, 0, 0));
         jLabel5.setText("*");
 
-        textField4.setLabelText("");
+        txtPassword.setLabelText("");
 
-        textField5.setLabelText("");
+        txtBirthday.setLabelText("yyyy-mm-dd");
 
         txtName1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         txtName1.setForeground(new java.awt.Color(102, 102, 102));
@@ -289,42 +310,54 @@ public class Form_Home extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
+        swbtnGender.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                swbtnGenderMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(switchButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(swbtnGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(5, 5, 5)
-                .addComponent(switchButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(swbtnGender, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
         txtName5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         txtName5.setForeground(new java.awt.Color(102, 102, 102));
-        txtName5.setText("Password");
+        txtName5.setText("Role");
 
         jLabel8.setForeground(new java.awt.Color(255, 0, 0));
         jLabel8.setText("*");
 
-        txtName7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        txtName7.setForeground(new java.awt.Color(102, 102, 102));
-        txtName7.setText("Gender");
+        lblRender.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblRender.setForeground(new java.awt.Color(102, 102, 102));
+        lblRender.setText("Female");
 
         jLabel9.setForeground(new java.awt.Color(255, 0, 0));
         jLabel9.setText("*");
 
-        txtName8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        txtName8.setForeground(new java.awt.Color(102, 102, 102));
-        txtName8.setText("Role");
+        lblRole.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblRole.setForeground(new java.awt.Color(102, 102, 102));
+        lblRole.setText("Employee");
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+
+        swbtnRole.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                swbtnRoleMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -332,33 +365,41 @@ public class Form_Home extends javax.swing.JPanel {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(switchButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(swbtnRole, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(5, 5, 5)
-                .addComponent(switchButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(swbtnRole, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
         txtName9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         txtName9.setForeground(new java.awt.Color(102, 102, 102));
-        txtName9.setText("Role");
+        txtName9.setText("Password");
 
         txtName10.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         txtName10.setText("EMPLOYEE");
 
-        textField6.setLabelText("");
+        txtPhone.setLabelText("");
+
+        btnAdd.setText("ADD");
+        btnAdd.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout roundPanel2Layout = new javax.swing.GroupLayout(roundPanel2);
         roundPanel2.setLayout(roundPanel2Layout);
         roundPanel2Layout.setHorizontalGroup(
             roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundPanel2Layout.createSequentialGroup()
-                .addGroup(roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, roundPanel2Layout.createSequentialGroup()
+                .addGroup(roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(roundPanel2Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(roundPanel2Layout.createSequentialGroup()
@@ -400,25 +441,26 @@ public class Form_Home extends javax.swing.JPanel {
                                     .addGroup(roundPanel2Layout.createSequentialGroup()
                                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(30, 30, 30)
-                                        .addComponent(txtName8, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(lblRole, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(roundPanel2Layout.createSequentialGroup()
                                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(30, 30, 30)
-                                        .addComponent(txtName7, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(lblRender, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(textField1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(textField3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(textField2, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(textField5, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(textField6, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(textField4, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(txtFullname, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtBirthday, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(txtName10, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(roundPanel2Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundPanel2Layout.createSequentialGroup()
+                        .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(button2, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnReform, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(12, 12, 12))
         );
         roundPanel2Layout.setVerticalGroup(
@@ -428,28 +470,28 @@ public class Form_Home extends javax.swing.JPanel {
                 .addComponent(txtName10, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(textField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(txtName3, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel6)))
                 .addGap(18, 18, 18)
                 .addGroup(roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(textField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtFullname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtName4)
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtName)
                     .addComponent(jLabel4)
-                    .addComponent(textField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(14, 14, 14)
                 .addGroup(roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtName2)
                     .addComponent(jLabel3)
-                    .addComponent(textField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtBirthday, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(textField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtName6)
                     .addComponent(jLabel5))
                 .addGroup(roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -461,7 +503,7 @@ public class Form_Home extends javax.swing.JPanel {
                     .addGroup(roundPanel2Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtName7, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblRender, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -476,13 +518,14 @@ public class Form_Home extends javax.swing.JPanel {
                             .addComponent(jLabel9)
                             .addComponent(txtName9)))
                     .addGroup(roundPanel2Layout.createSequentialGroup()
-                        .addComponent(txtName8, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblRole, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(textField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(26, 26, 26)
                 .addGroup(roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(button2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnReform, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -508,13 +551,135 @@ public class Form_Home extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void textField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField2ActionPerformed
+    private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_textField2ActionPerformed
+    }//GEN-LAST:event_txtIDActionPerformed
+
+    private void tblNhanVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblNhanVienMouseClicked
+        // TODO add your handling code here:
+        if (evt.getClickCount() == 2) {
+            NhanVien nv = list.get(tblNhanVien.rowAtPoint(evt.getPoint()));
+            txtID.setText(nv.getMaNV());
+            txtFullname.setText(nv.getHoten());
+            txtEmail.setText(nv.getEmail());
+            txtBirthday.setText(nv.getNgaySinh());
+            txtPhone.setText(nv.getSdt());
+            if (nv.getMatKhau() != null) {
+                txtPassword.setText(nv.getMatKhau());
+            }
+            lblRender.setText(nv.getGioiTinh() ? "Male" : "Female");
+            lblRole.setText(nv.getVaiTro() ? "Admin" : "Employee");
+            if (nv.getGioiTinh()) {
+                swbtnGender.setSelected(true);
+            } else {
+                swbtnGender.setSelected(false);
+            }
+            if (nv.getVaiTro()) {
+                swbtnRole.setSelected(true);
+            } else {
+                swbtnRole.setSelected(false);
+            }
+            txtID.setEditable(false);
+            btnAdd.setText("UPDATE");
+            btnDelete.setEnabled(true);
+        }
+    }//GEN-LAST:event_tblNhanVienMouseClicked
+
+    private void swbtnGenderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_swbtnGenderMouseClicked
+        // TODO add your handling code here:
+        if (swbtnGender.isSelected())
+            lblRender.setText("Male");
+        else
+            lblRender.setText("Female");
+    }//GEN-LAST:event_swbtnGenderMouseClicked
+
+    private void swbtnRoleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_swbtnRoleMouseClicked
+        // TODO add your handling code here:
+        if (swbtnRole.isSelected())
+            lblRender.setText("Admin");
+        else
+            lblRender.setText("Employee");
+    }//GEN-LAST:event_swbtnRoleMouseClicked
+
+    private void btnReformActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReformActionPerformed
+        // TODO add your handling code here:
+        reform();
+    }//GEN-LAST:event_btnReformActionPerformed
+
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        // TODO add your handling code here:
+        if (btnAdd.getText().equals("ADD")) {
+            if (txtPassword.getText().trim().equals("")) {
+                if (ValidateInsert(0)) {
+                    NhanVien model = new NhanVien();
+                    model.setMaNV(txtID.getText().trim());
+                    model.setHoten(txtFullname.getText().trim());
+                    model.setEmail(txtEmail.getText().trim());
+                    model.setNgaySinh(txtBirthday.getText().trim());
+                    model.setSdt(txtPhone.getText().trim());
+                    model.setGioiTinh(lblRender.getText().equals("Male"));
+                    dao.insertNV(model);
+                    list = dao.select();
+                    DefaultTableModel modelTable = (DefaultTableModel) tblNhanVien.getModel();
+                    modelTable.setRowCount(0);
+                    tblNhanVien.revalidate();
+                    initTableData();
+                }
+            } else {
+                if (ValidateInsert(0)) {
+                    NhanVien model = new NhanVien();
+                    model.setMaNV(txtID.getText().trim());
+                    model.setHoten(txtFullname.getText().trim());
+                    model.setEmail(txtEmail.getText().trim());
+                    model.setNgaySinh(txtBirthday.getText().trim());
+                    model.setSdt(txtPhone.getText().trim());
+                    model.setGioiTinh(lblRender.getText().equals("Male"));
+                    model.setVaiTro(lblRole.getText().equals("Admin"));
+                    model.setMatKhau(txtPassword.getText());
+                    dao.insert(model);
+                    list = dao.select();
+                    DefaultTableModel modelTable = (DefaultTableModel) tblNhanVien.getModel();
+                    modelTable.setRowCount(0);
+                    tblNhanVien.revalidate();
+                    initTableData();
+                }
+            }
+        } else {
+            if (ValidateUpdate()) {
+                NhanVien model = new NhanVien();
+                model.setMaNV(txtID.getText().trim());
+                model.setHoten(txtFullname.getText().trim());
+                model.setEmail(txtEmail.getText().trim());
+                model.setNgaySinh(txtBirthday.getText().trim());
+                model.setSdt(txtPhone.getText().trim());
+                model.setGioiTinh(lblRender.getText().equals("Male"));
+                model.setVaiTro(lblRole.getText().equals("Admin"));
+                model.setMatKhau(txtPassword.getText());
+                dao.update(model);
+                list = dao.select();
+                DefaultTableModel modelTable = (DefaultTableModel) tblNhanVien.getModel();
+                modelTable.setRowCount(0);
+                tblNhanVien.revalidate();
+                initTableData();
+            }
+        }
+    }//GEN-LAST:event_btnAddActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+        dao.delete(txtID.getText());
+        list = dao.select();
+        DefaultTableModel modelTable = (DefaultTableModel) tblNhanVien.getModel();
+        modelTable.setRowCount(0);
+        tblNhanVien.revalidate();
+        initTableData();
+        reform();
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private button.Button button1;
-    private button.Button button2;
+    private button.Button btnAdd;
+    private button.Button btnDelete;
+    private button.Button btnReform;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -526,18 +691,18 @@ public class Form_Home extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblRender;
+    private javax.swing.JLabel lblRole;
     private com.raven.swing.NavigationBar navigationBar1;
     private com.raven.swing.RoundPanel roundPanel1;
     private com.raven.swing.RoundPanel roundPanel2;
-    private javaswingdev.SwitchButton switchButton1;
-    private javaswingdev.SwitchButton switchButton2;
-    private com.raven.swing.table.Table table1;
-    private textfield.TextField textField1;
-    private textfield.TextField textField2;
-    private textfield.TextField textField3;
-    private textfield.TextField textField4;
-    private textfield.TextField textField5;
-    private textfield.TextField textField6;
+    private javaswingdev.SwitchButton swbtnGender;
+    private javaswingdev.SwitchButton swbtnRole;
+    private com.raven.swing.table.Table tblNhanVien;
+    private textfield.TextField txtBirthday;
+    private textfield.TextField txtEmail;
+    private textfield.TextField txtFullname;
+    private textfield.TextField txtID;
     private javax.swing.JLabel txtName;
     private javax.swing.JLabel txtName1;
     private javax.swing.JLabel txtName10;
@@ -546,8 +711,114 @@ public class Form_Home extends javax.swing.JPanel {
     private javax.swing.JLabel txtName4;
     private javax.swing.JLabel txtName5;
     private javax.swing.JLabel txtName6;
-    private javax.swing.JLabel txtName7;
-    private javax.swing.JLabel txtName8;
     private javax.swing.JLabel txtName9;
+    private textfield.TextField txtPassword;
+    private textfield.TextField txtPhone;
     // End of variables declaration//GEN-END:variables
+
+    private boolean ValidateInsert(int x) {
+        if (txtID.getText().trim().equals("") || txtID.getText().trim().length() != 5) {
+            txtID.requestFocus();
+            return false;
+        }
+        if(x==0)
+            for (int i = 0; i < list.size(); i++) {
+                if (txtID.getText().trim().equals(list.get(i).getMaNV())) {
+                    txtID.requestFocus();
+                    return false;
+                }
+            }
+        if (txtName.getText().trim().equals("")) {
+            txtName.requestFocus();
+            return false;
+        }
+        if (txtEmail.getText().trim().equals("")) {
+            txtEmail.requestFocus();
+            return false;
+        }
+        String mauEmail = "\\w+@\\w+(\\.\\w+){1,2}";
+        if (!(txtEmail.getText().trim().matches(mauEmail))) {
+            txtEmail.requestFocus();
+            return false;
+        }
+        try {
+            Date date = new SimpleDateFormat("yyyy-MM-dd").parse(txtBirthday.getText());
+            txtBirthday.setText(new SimpleDateFormat("yyyy-MM-dd").format(date));
+        } catch (Exception e) {
+            txtBirthday.requestFocus();
+            return false;
+        }
+        if (txtPhone.getText().trim().equals("")) {
+            txtPhone.requestFocus();
+            return false;
+        }
+        if (!txtPhone.getText().matches("\\d{9,10}")) {
+            txtPhone.requestFocus();
+            return false;
+        }
+        return true;
+    }
+
+    public boolean ValidateUpdate() {
+        if (ValidateInsert(1)) {
+            if (txtPassword.getText().trim().equals("")) {
+                txtPassword.requestFocus();
+                return false;
+            }
+            else 
+                return true;
+        }
+        return false;
+    }
+    
+    public void reform(){
+        txtID.setText("");
+        txtFullname.setText("");
+        txtEmail.setText("");
+        txtBirthday.setText("");
+        txtPhone.setText("");
+        txtPassword.setText("");
+        lblRender.setText("Female");
+        lblRole.setText("Employee");
+        swbtnGender.setSelected(false);
+        swbtnRole.setSelected(false);
+        txtID.setEditable(true);
+        btnAdd.setText("ADD");
+        btnDelete.setEnabled(false);
+    }
+    
+    public void selectAll(){
+        Date date = new Date();
+        int day = date.getYear() + 1900;
+        DefaultTableModel modelTable = (DefaultTableModel) tblNhanVien.getModel();
+        modelTable.setRowCount(0);
+        tblNhanVien.revalidate();
+        for (int i = 0; i < list.size(); i++) {
+            tblNhanVien.addRow(new ModelStaff(list.get(i).getMaNV(), list.get(i).getHoten(), list.get(i).getGioiTinh() ? "Male" : "Female", (day - Integer.parseInt(list.get(i).getNgaySinh().substring(0, 4))), list.get(i).getEmail(), list.get(i).getSdt(), list.get(i).getMatKhau(), list.get(i).getVaiTro() ? "Admin" : "Employee").toTableRow());
+        }
+    }
+    
+    public void selectHave(){
+        List<NhanVien> haveList = dao.selectHave();
+        Date date = new Date();
+        int day = date.getYear() + 1900;
+        DefaultTableModel modelTable = (DefaultTableModel) tblNhanVien.getModel();
+        modelTable.setRowCount(0);
+        tblNhanVien.revalidate();
+        for (int i = 0; i < haveList.size(); i++) {
+            tblNhanVien.addRow(new ModelStaff(haveList.get(i).getMaNV(), haveList.get(i).getHoten(), haveList.get(i).getGioiTinh() ? "Male" : "Female", (day - Integer.parseInt(haveList.get(i).getNgaySinh().substring(0, 4))), haveList.get(i).getEmail(), haveList.get(i).getSdt(), haveList.get(i).getMatKhau(), haveList.get(i).getVaiTro() ? "Admin" : "Employee").toTableRow());
+        }
+    }
+    
+    public void selectYet(){
+        List<NhanVien> yetList = dao.selectYet();
+        Date date = new Date();
+        int day = date.getYear() + 1900;
+        DefaultTableModel modelTable = (DefaultTableModel) tblNhanVien.getModel();
+        modelTable.setRowCount(0);
+        tblNhanVien.revalidate();
+        for (int i = 0; i < yetList.size(); i++) {
+            tblNhanVien.addRow(new ModelStaff(yetList.get(i).getMaNV(), yetList.get(i).getHoten(), yetList.get(i).getGioiTinh() ? "Male" : "Female", (day - Integer.parseInt(yetList.get(i).getNgaySinh().substring(0, 4))), yetList.get(i).getEmail(), yetList.get(i).getSdt(), yetList.get(i).getMatKhau(), yetList.get(i).getVaiTro() ? "Admin" : "Employee").toTableRow());
+        }
+    }
 }
