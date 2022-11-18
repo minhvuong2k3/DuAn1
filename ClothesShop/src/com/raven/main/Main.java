@@ -110,7 +110,7 @@ public class Main extends javax.swing.JFrame {
         settingForm.initBackgroundImage(pro.getBackgroundImage());
         mainBody.displayForm(new Home_Form());
         productForm = new P_Form();
-        empForm = new Form_Home();
+        empForm = new Form_Home(this);
         OrderForm = new Order();
     }
 

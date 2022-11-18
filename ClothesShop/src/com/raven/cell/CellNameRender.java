@@ -5,7 +5,7 @@ import com.raven.table.cell.Cell;
 
 public class CellNameRender extends Cell {
 
-    public CellNameRender(ModelName data) {
+    public CellNameRender(String data) {
         initComponents();
         lb.setText(data.toString());
 //        image.setImage(data.getProfile());

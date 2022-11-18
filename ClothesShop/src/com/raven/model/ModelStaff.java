@@ -4,11 +4,19 @@ import com.raven.table.model.TableRowData;
 
 public class ModelStaff extends TableRowData {
 
-    public ModelName getName() {
+    public String getMaNV() {
+        return MaNV;
+    }
+
+    public void setMaNV(String MaNV) {
+        this.MaNV = MaNV;
+    }
+
+    public String getName() {
         return name;
     }
 
-    public void setName(ModelName name) {
+    public void setName(String name) {
         this.name = name;
     }
 
@@ -44,25 +52,47 @@ public class ModelStaff extends TableRowData {
         this.phoneNumber = phoneNumber;
     }
 
-    public ModelStaff(ModelName name, String gender, int age, String email, String phoneNumber) {
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public ModelStaff(String MaNV, String name, String gender, int age, String email, String phoneNumber, String password, String role) {
+        this.MaNV = MaNV;
         this.name = name;
         this.gender = gender;
         this.age = age;
         this.email = email;
         this.phoneNumber = phoneNumber;
+        this.password = password;
+        this.role = role;
     }
 
     public ModelStaff() {
     }
 
-    private ModelName name;
+    private String MaNV;
+    private String name;
     private String gender;
     private int age;
     private String email;
     private String phoneNumber;
+    private String password;
+    private String role;
 
     @Override
     public Object[] toTableRow() {
-        return new Object[]{name, gender, age, email, phoneNumber};
+        return new Object[]{MaNV, name, gender, age, email, phoneNumber, password, role};
     }
 }
