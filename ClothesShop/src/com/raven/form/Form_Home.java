@@ -12,10 +12,13 @@ import com.raven.swing.icon.GoogleMaterialDesignIcons;
 import com.raven.swing.icon.IconFontSwing;
 import com.raven.swing.noticeboard.ModelNoticeBoard;
 import com.raven.swing.table.EventAction;
+import com.raven.utils.XDialog;
 import java.awt.Color;
+import java.awt.Frame;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import javaswingdev.Notification;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
@@ -24,9 +27,11 @@ public class Form_Home extends javax.swing.JPanel {
 
     NhanVienDAO dao = new NhanVienDAO();
     List<NhanVien> list = dao.select();
+    static Frame fr;
 
-    public Form_Home() {
+    public Form_Home(Frame frame) {
         initComponents();
+        fr = frame;
         tblNhanVien.fixTable(jScrollPane1);
         setOpaque(false);
         initData();
@@ -624,6 +629,7 @@ public class Form_Home extends javax.swing.JPanel {
                     modelTable.setRowCount(0);
                     tblNhanVien.revalidate();
                     initTableData();
+                    notification(fr, "Insert success !", true);
                 }
             } else {
                 if (ValidateInsert(0)) {
@@ -642,6 +648,7 @@ public class Form_Home extends javax.swing.JPanel {
                     modelTable.setRowCount(0);
                     tblNhanVien.revalidate();
                     initTableData();
+                    notification(fr, "Insert success !", true);
                 }
             }
         } else {
@@ -661,19 +668,23 @@ public class Form_Home extends javax.swing.JPanel {
                 modelTable.setRowCount(0);
                 tblNhanVien.revalidate();
                 initTableData();
+                notification(fr, "Update success !", true);
             }
         }
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
-        dao.delete(txtID.getText());
-        list = dao.select();
-        DefaultTableModel modelTable = (DefaultTableModel) tblNhanVien.getModel();
-        modelTable.setRowCount(0);
-        tblNhanVien.revalidate();
-        initTableData();
-        reform();
+        if(XDialog.delete(this, "Delete ?")){
+            dao.delete(txtID.getText());
+            list = dao.select();
+            DefaultTableModel modelTable = (DefaultTableModel) tblNhanVien.getModel();
+            modelTable.setRowCount(0);
+            tblNhanVien.revalidate();
+            initTableData();
+            reform();
+            notification(fr, "Delete success !", true);
+        }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -719,26 +730,31 @@ public class Form_Home extends javax.swing.JPanel {
     private boolean ValidateInsert(int x) {
         if (txtID.getText().trim().equals("") || txtID.getText().trim().length() != 5) {
             txtID.requestFocus();
+            notification(fr, "ID invalid !", false);
             return false;
         }
         if(x==0)
             for (int i = 0; i < list.size(); i++) {
                 if (txtID.getText().trim().equals(list.get(i).getMaNV())) {
                     txtID.requestFocus();
+                    notification(fr, "ID invalid !", false);
                     return false;
                 }
             }
         if (txtName.getText().trim().equals("")) {
             txtName.requestFocus();
+            notification(fr, "Fullname invalid !", false);
             return false;
         }
         if (txtEmail.getText().trim().equals("")) {
             txtEmail.requestFocus();
+            notification(fr, "Email invalid !", false);
             return false;
         }
         String mauEmail = "\\w+@\\w+(\\.\\w+){1,2}";
         if (!(txtEmail.getText().trim().matches(mauEmail))) {
             txtEmail.requestFocus();
+            notification(fr, "Email invalid !", false);
             return false;
         }
         try {
@@ -746,14 +762,17 @@ public class Form_Home extends javax.swing.JPanel {
             txtBirthday.setText(new SimpleDateFormat("yyyy-MM-dd").format(date));
         } catch (Exception e) {
             txtBirthday.requestFocus();
+            notification(fr, "Birthday invalid !", false);
             return false;
         }
         if (txtPhone.getText().trim().equals("")) {
             txtPhone.requestFocus();
+            notification(fr, "Phone invalid !", false);
             return false;
         }
         if (!txtPhone.getText().matches("\\d{9,10}")) {
             txtPhone.requestFocus();
+            notification(fr, "Phone invalid !", false);
             return false;
         }
         return true;
@@ -763,6 +782,7 @@ public class Form_Home extends javax.swing.JPanel {
         if (ValidateInsert(1)) {
             if (txtPassword.getText().trim().equals("")) {
                 txtPassword.requestFocus();
+                notification(fr, "Password invalid !", false);
                 return false;
             }
             else 
@@ -820,5 +840,17 @@ public class Form_Home extends javax.swing.JPanel {
         for (int i = 0; i < yetList.size(); i++) {
             tblNhanVien.addRow(new ModelStaff(yetList.get(i).getMaNV(), yetList.get(i).getHoten(), yetList.get(i).getGioiTinh() ? "Male" : "Female", (day - Integer.parseInt(yetList.get(i).getNgaySinh().substring(0, 4))), yetList.get(i).getEmail(), yetList.get(i).getSdt(), yetList.get(i).getMatKhau(), yetList.get(i).getVaiTro() ? "Admin" : "Employee").toTableRow());
         }
+    }
+    
+    public void notification(Frame frame, String text, boolean x){
+        if(!x){
+            Notification panel = new Notification(frame, Notification.Type.WARNING, Notification.Location.TOP_CENTER, text);
+            panel.showNotification();
+        }
+        else {
+            Notification panel = new Notification(frame, Notification.Type.SUCCESS, Notification.Location.TOP_CENTER, text);
+            panel.showNotification();
+        }
+        
     }
 }

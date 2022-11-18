@@ -29,6 +29,13 @@ public class XDialog {
                 JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
         return result == JOptionPane.YES_OPTION;
     }
+    
+    public static boolean delete(Component parent, String message) {
+        int result = JOptionPane.showConfirmDialog(parent, message,
+                "Notification",
+                JOptionPane.YES_NO_OPTION, JOptionPane.ERROR_MESSAGE);
+        return result == JOptionPane.YES_OPTION;
+    }
 
     /**
      * Hiển thị thông báo yêu cầu nhập dữ liệu
