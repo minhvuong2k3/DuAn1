@@ -97,7 +97,7 @@ public class FormHome extends javax.swing.JPanel {
 
         textField6.setText("textField1");
         textField6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        textField6.setLabelText("");
+        textField6.setLabelText("ID NCC");
         textField6.setMargin(new java.awt.Insets(0, 6, 0, 6));
         textField6.setRound(0);
 
