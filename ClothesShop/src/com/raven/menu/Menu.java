@@ -37,6 +37,14 @@ public class Menu extends javax.swing.JPanel {
         repaint();
     }
 
+    public int getSelectedIndex() {
+        return selectedIndex;
+    }
+
+    public void setSelectedIndex(int selectedIndex) {
+        this.selectedIndex = selectedIndex;
+    }
+
     public void addEventMenu(EventMenu event) {
         this.events.add(event);
     }
@@ -62,7 +70,6 @@ public class Menu extends javax.swing.JPanel {
     }
 
     public String removeAccent(String s) {
-
         String temp = Normalizer.normalize(s, Normalizer.Form.NFD);
         Pattern pattern = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
         return pattern.matcher(temp).replaceAll("");
@@ -83,6 +90,13 @@ public class Menu extends javax.swing.JPanel {
         menu.repaint();
         menu.revalidate();
         setSelectedMenu(0);
+        show();
+        animator.setDeceleration(.5f);
+        animator.setAcceleration(.5f);
+        animator.setResolution(0);
+    }
+    
+    public void show(){
         animator = new Animator(300);
         animator.addTarget(new TimingTargetAdapter() {
             @Override
@@ -96,9 +110,6 @@ public class Menu extends javax.swing.JPanel {
                 runEvent();
             }
         });
-        animator.setDeceleration(.5f);
-        animator.setAcceleration(.5f);
-        animator.setResolution(0);
     }
 
     private void addMenu(String menuName, String icon, int index) {
@@ -149,7 +160,7 @@ public class Menu extends javax.swing.JPanel {
         return area;
     }
 
-    private void clearSelected() {
+    public void clearSelected() {
         for (Component com : menu.getComponents()) {
             if (com instanceof MenuButton) {
                 MenuButton c = (MenuButton) com;

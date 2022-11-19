@@ -8,7 +8,9 @@ import com.raven.form.Home;
 import com.raven.form.Order;
 import com.raven.form.P_Form;
 import com.raven.form.Setting_Form;
+import com.raven.form.ThongKeForm;
 import com.raven.menu.EventMenu;
+import com.raven.menu.Menu;
 import com.raven.properties.SystemProperties;
 import com.raven.theme.SystemTheme;
 import com.raven.theme.ThemeColor;
@@ -26,6 +28,7 @@ public class Main extends javax.swing.JFrame {
     private P_Form productForm;
     private Form_Home empForm;
     private Order OrderForm;
+    private ThongKeForm dashboardForm;
     static int i = 0;
 
     public Main() {
@@ -54,6 +57,9 @@ public class Main extends javax.swing.JFrame {
                     case 3:
                         mainBody.displayForm(OrderForm, "Order");
                         break;
+                    case 4:
+                        mainBody.displayForm(dashboardForm, "Order");
+                        break;
                     case 6:
                         mainBody.displayForm(settingForm, "Setting");
                         break;
@@ -64,6 +70,13 @@ public class Main extends javax.swing.JFrame {
                             Auth.user = null;
                             Login lg = new Login();
                             lg.setVisible(true);
+                        } else {
+                            index = 0;
+                            mainBody.displayForm(new Home_Form());
+                            menu.setSelectedIndex(0);
+                            menu.setSelectedLocation(151);
+                            menu.clearSelected();
+                            menu.show();
                         }
                         break;
                     default:
@@ -112,6 +125,7 @@ public class Main extends javax.swing.JFrame {
         productForm = new P_Form();
         empForm = new Form_Home(this);
         OrderForm = new Order();
+        dashboardForm = new ThongKeForm();
     }
 
     @SuppressWarnings("unchecked")
@@ -136,7 +150,7 @@ public class Main extends javax.swing.JFrame {
             .addGroup(panelBackground1Layout.createSequentialGroup()
                 .addComponent(menu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(mainBody, javax.swing.GroupLayout.DEFAULT_SIZE, 1108, Short.MAX_VALUE)
+                .addComponent(mainBody, javax.swing.GroupLayout.DEFAULT_SIZE, 1126, Short.MAX_VALUE)
                 .addContainerGap())
         );
         panelBackground1Layout.setVerticalGroup(

@@ -1,6 +1,9 @@
 package com.raven.form;
 
 import com.raven.DAO.NhanVienDAO;
+import com.raven.datechooser.EventDateChooser;
+import com.raven.datechooser.SelectedAction;
+import com.raven.datechooser.SelectedDate;
 import com.raven.dialog.Message;
 import com.raven.main.Main;
 import com.raven.model.ModelCard;
@@ -35,6 +38,15 @@ public class Form_Home extends javax.swing.JPanel {
         tblNhanVien.fixTable(jScrollPane1);
         setOpaque(false);
         initData();
+        dateChooser1.addEventDateChooser(new EventDateChooser() {
+            @Override
+            public void dateSelected(SelectedAction action, SelectedDate date) {
+//                System.out.println(date.getDay() + "-" + date.getMonth() + "-" + date.getYear());
+                if (action.getAction() == SelectedAction.DAY_SELECTED) {
+                    dateChooser1.hidePopup();
+                }
+            }
+        });
         navigationBar1.addItem(new ImageIcon(getClass().getResource("/com/raven/swing/icon/item1.png")));
         navigationBar1.addItem(new ImageIcon(getClass().getResource("/com/raven/swing/icon/item2.png")));
         navigationBar1.addItem(new ImageIcon(getClass().getResource("/com/raven/swing/icon/item3.png")));
@@ -129,6 +141,7 @@ public class Form_Home extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        dateChooser1 = new com.raven.datechooser.DateChooser();
         roundPanel1 = new com.raven.swing.RoundPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblNhanVien = new com.raven.swing.table.Table();
@@ -166,6 +179,7 @@ public class Form_Home extends javax.swing.JPanel {
         txtName10 = new javax.swing.JLabel();
         txtPhone = new textfield.TextField();
         btnAdd = new button.Button();
+        btnAdd1 = new button.Button();
 
         roundPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -199,7 +213,7 @@ public class Form_Home extends javax.swing.JPanel {
         navigationBar1.setLayout(navigationBar1Layout);
         navigationBar1Layout.setHorizontalGroup(
             navigationBar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 766, Short.MAX_VALUE)
+            .addGap(0, 721, Short.MAX_VALUE)
         );
         navigationBar1Layout.setVerticalGroup(
             navigationBar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -398,75 +412,85 @@ public class Form_Home extends javax.swing.JPanel {
             }
         });
 
+        btnAdd1.setText("DAY");
+        btnAdd1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnAdd1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdd1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout roundPanel2Layout = new javax.swing.GroupLayout(roundPanel2);
         roundPanel2.setLayout(roundPanel2Layout);
         roundPanel2Layout.setHorizontalGroup(
             roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundPanel2Layout.createSequentialGroup()
+                .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnReform, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(roundPanel2Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
                 .addGroup(roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(roundPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addComponent(txtName10, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(roundPanel2Layout.createSequentialGroup()
                         .addGroup(roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(roundPanel2Layout.createSequentialGroup()
-                                .addGroup(roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(roundPanel2Layout.createSequentialGroup()
-                                        .addComponent(txtName4)
-                                        .addGap(0, 0, 0)
-                                        .addComponent(jLabel2))
-                                    .addGroup(roundPanel2Layout.createSequentialGroup()
-                                        .addComponent(txtName3)
-                                        .addGap(0, 0, 0)
-                                        .addComponent(jLabel6))
-                                    .addGroup(roundPanel2Layout.createSequentialGroup()
-                                        .addComponent(txtName)
-                                        .addGap(0, 0, 0)
-                                        .addComponent(jLabel4))
-                                    .addGroup(roundPanel2Layout.createSequentialGroup()
-                                        .addComponent(txtName2)
-                                        .addGap(0, 0, 0)
-                                        .addComponent(jLabel3))
-                                    .addGroup(roundPanel2Layout.createSequentialGroup()
-                                        .addComponent(txtName6, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, 0)
-                                        .addComponent(jLabel5))
-                                    .addGroup(roundPanel2Layout.createSequentialGroup()
-                                        .addComponent(txtName1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, 0)
-                                        .addComponent(jLabel7))
-                                    .addGroup(roundPanel2Layout.createSequentialGroup()
-                                        .addComponent(txtName5)
-                                        .addGap(0, 0, 0)
-                                        .addComponent(jLabel8))
-                                    .addGroup(roundPanel2Layout.createSequentialGroup()
-                                        .addComponent(txtName9)
-                                        .addGap(0, 0, 0)
-                                        .addComponent(jLabel9)))
-                                .addGap(18, 18, 18)
-                                .addGroup(roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(roundPanel2Layout.createSequentialGroup()
-                                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(30, 30, 30)
-                                        .addComponent(lblRole, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(roundPanel2Layout.createSequentialGroup()
-                                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(30, 30, 30)
-                                        .addComponent(lblRender, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(txtFullname, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(txtBirthday, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(txtName10, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundPanel2Layout.createSequentialGroup()
-                        .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtName4)
+                                .addGap(0, 0, 0)
+                                .addComponent(jLabel2))
+                            .addGroup(roundPanel2Layout.createSequentialGroup()
+                                .addComponent(txtName3)
+                                .addGap(0, 0, 0)
+                                .addComponent(jLabel6))
+                            .addGroup(roundPanel2Layout.createSequentialGroup()
+                                .addComponent(txtName)
+                                .addGap(0, 0, 0)
+                                .addComponent(jLabel4))
+                            .addGroup(roundPanel2Layout.createSequentialGroup()
+                                .addComponent(txtName2)
+                                .addGap(0, 0, 0)
+                                .addComponent(jLabel3))
+                            .addGroup(roundPanel2Layout.createSequentialGroup()
+                                .addComponent(txtName6, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, 0)
+                                .addComponent(jLabel5))
+                            .addGroup(roundPanel2Layout.createSequentialGroup()
+                                .addComponent(txtName1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, 0)
+                                .addComponent(jLabel7))
+                            .addGroup(roundPanel2Layout.createSequentialGroup()
+                                .addComponent(txtName5)
+                                .addGap(0, 0, 0)
+                                .addComponent(jLabel8))
+                            .addGroup(roundPanel2Layout.createSequentialGroup()
+                                .addComponent(txtName9)
+                                .addGap(0, 0, 0)
+                                .addComponent(jLabel9)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnReform, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(12, 12, 12))
+                        .addGroup(roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtFullname, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(roundPanel2Layout.createSequentialGroup()
+                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(30, 30, 30)
+                                .addComponent(lblRole, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(roundPanel2Layout.createSequentialGroup()
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(30, 30, 30)
+                                .addComponent(lblRender, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(roundPanel2Layout.createSequentialGroup()
+                                .addComponent(txtBirthday, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnAdd1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         roundPanel2Layout.setVerticalGroup(
             roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -493,7 +517,8 @@ public class Form_Home extends javax.swing.JPanel {
                 .addGroup(roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtName2)
                     .addComponent(jLabel3)
-                    .addComponent(txtBirthday, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtBirthday, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAdd1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -551,7 +576,7 @@ public class Form_Home extends javax.swing.JPanel {
                 .addGap(7, 7, 7)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(roundPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(roundPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(roundPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 616, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -675,7 +700,7 @@ public class Form_Home extends javax.swing.JPanel {
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
-        if(XDialog.delete(this, "Delete ?")){
+        if (XDialog.delete(this, "Delete ?")) {
             dao.delete(txtID.getText());
             list = dao.select();
             DefaultTableModel modelTable = (DefaultTableModel) tblNhanVien.getModel();
@@ -687,10 +712,16 @@ public class Form_Home extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
+    private void btnAdd1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdd1ActionPerformed
+        dateChooser1.showPopup(this, btnAdd1.getX()-200, btnAdd1.getY() + 70);
+    }//GEN-LAST:event_btnAdd1ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private button.Button btnAdd;
+    private button.Button btnAdd1;
     private button.Button btnDelete;
     private button.Button btnReform;
+    private com.raven.datechooser.DateChooser dateChooser1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -733,7 +764,7 @@ public class Form_Home extends javax.swing.JPanel {
             notification(fr, "ID invalid !", false);
             return false;
         }
-        if(x==0)
+        if (x == 0) {
             for (int i = 0; i < list.size(); i++) {
                 if (txtID.getText().trim().equals(list.get(i).getMaNV())) {
                     txtID.requestFocus();
@@ -741,6 +772,7 @@ public class Form_Home extends javax.swing.JPanel {
                     return false;
                 }
             }
+        }
         if (txtName.getText().trim().equals("")) {
             txtName.requestFocus();
             notification(fr, "Fullname invalid !", false);
@@ -784,14 +816,14 @@ public class Form_Home extends javax.swing.JPanel {
                 txtPassword.requestFocus();
                 notification(fr, "Password invalid !", false);
                 return false;
-            }
-            else 
+            } else {
                 return true;
+            }
         }
         return false;
     }
-    
-    public void reform(){
+
+    public void reform() {
         txtID.setText("");
         txtFullname.setText("");
         txtEmail.setText("");
@@ -806,8 +838,8 @@ public class Form_Home extends javax.swing.JPanel {
         btnAdd.setText("ADD");
         btnDelete.setEnabled(false);
     }
-    
-    public void selectAll(){
+
+    public void selectAll() {
         Date date = new Date();
         int day = date.getYear() + 1900;
         DefaultTableModel modelTable = (DefaultTableModel) tblNhanVien.getModel();
@@ -817,8 +849,8 @@ public class Form_Home extends javax.swing.JPanel {
             tblNhanVien.addRow(new ModelStaff(list.get(i).getMaNV(), list.get(i).getHoten(), list.get(i).getGioiTinh() ? "Male" : "Female", (day - Integer.parseInt(list.get(i).getNgaySinh().substring(0, 4))), list.get(i).getEmail(), list.get(i).getSdt(), list.get(i).getMatKhau(), list.get(i).getVaiTro() ? "Admin" : "Employee").toTableRow());
         }
     }
-    
-    public void selectHave(){
+
+    public void selectHave() {
         List<NhanVien> haveList = dao.selectHave();
         Date date = new Date();
         int day = date.getYear() + 1900;
@@ -829,8 +861,8 @@ public class Form_Home extends javax.swing.JPanel {
             tblNhanVien.addRow(new ModelStaff(haveList.get(i).getMaNV(), haveList.get(i).getHoten(), haveList.get(i).getGioiTinh() ? "Male" : "Female", (day - Integer.parseInt(haveList.get(i).getNgaySinh().substring(0, 4))), haveList.get(i).getEmail(), haveList.get(i).getSdt(), haveList.get(i).getMatKhau(), haveList.get(i).getVaiTro() ? "Admin" : "Employee").toTableRow());
         }
     }
-    
-    public void selectYet(){
+
+    public void selectYet() {
         List<NhanVien> yetList = dao.selectYet();
         Date date = new Date();
         int day = date.getYear() + 1900;
@@ -841,16 +873,15 @@ public class Form_Home extends javax.swing.JPanel {
             tblNhanVien.addRow(new ModelStaff(yetList.get(i).getMaNV(), yetList.get(i).getHoten(), yetList.get(i).getGioiTinh() ? "Male" : "Female", (day - Integer.parseInt(yetList.get(i).getNgaySinh().substring(0, 4))), yetList.get(i).getEmail(), yetList.get(i).getSdt(), yetList.get(i).getMatKhau(), yetList.get(i).getVaiTro() ? "Admin" : "Employee").toTableRow());
         }
     }
-    
-    public void notification(Frame frame, String text, boolean x){
-        if(!x){
+
+    public void notification(Frame frame, String text, boolean x) {
+        if (!x) {
             Notification panel = new Notification(frame, Notification.Type.WARNING, Notification.Location.TOP_CENTER, text);
             panel.showNotification();
-        }
-        else {
+        } else {
             Notification panel = new Notification(frame, Notification.Type.SUCCESS, Notification.Location.TOP_CENTER, text);
             panel.showNotification();
         }
-        
+
     }
 }
