@@ -41,7 +41,7 @@ public class Form_Home extends javax.swing.JPanel {
         dateChooser1.addEventDateChooser(new EventDateChooser() {
             @Override
             public void dateSelected(SelectedAction action, SelectedDate date) {
-//                System.out.println(date.getDay() + "-" + date.getMonth() + "-" + date.getYear());
+                txtBirthday.setText(date.getYear()+"-"+date.getMonth()+"-"+date.getDay());
                 if (action.getAction() == SelectedAction.DAY_SELECTED) {
                     dateChooser1.hidePopup();
                 }
