@@ -8,7 +8,7 @@ import com.raven.form.Home;
 import com.raven.form.Order;
 import com.raven.form.P_Form;
 import com.raven.form.Setting_Form;
-import com.raven.form.ThongKeForm;
+import com.raven.form.DoanhThuForm;
 import com.raven.menu.EventMenu;
 import com.raven.menu.Menu;
 import com.raven.properties.SystemProperties;
@@ -28,7 +28,7 @@ public class Main extends javax.swing.JFrame {
     private P_Form productForm;
     private Form_Home empForm;
     private Order OrderForm;
-    private ThongKeForm dashboardForm;
+    private DoanhThuForm dashboardForm;
     static int i = 0;
 
     public Main() {
@@ -125,7 +125,7 @@ public class Main extends javax.swing.JFrame {
         productForm = new P_Form();
         empForm = new Form_Home(this);
         OrderForm = new Order();
-        dashboardForm = new ThongKeForm();
+        dashboardForm = new DoanhThuForm();
     }
 
     @SuppressWarnings("unchecked")
