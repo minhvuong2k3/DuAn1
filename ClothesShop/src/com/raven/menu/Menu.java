@@ -76,12 +76,12 @@ public class Menu extends javax.swing.JPanel {
     }
 
     private void initMenu() {
-        addMenu("Dashboard", "1", 0);
+        addMenu("Home", "1", 0);
         addMenu("Product", "2", 1);
-        addMenu("Sale", "3", 2);
-        addMenu("Data", "4", 3);
+        addMenu("Employee", "3", 2);
+        addMenu("Order", "4", 3);
         addMenu("Report", "5", 4);
-        addMenu("User", "6", 5);
+        addMenu("Dashboard", "6", 5);
         addMenu("Setting", "7", 6);
         addMenu("Expense", "8", 7);
         addMenu("Income", "9", 8);

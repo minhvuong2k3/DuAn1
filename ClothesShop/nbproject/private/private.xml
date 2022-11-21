@@ -14,12 +14,10 @@
             <file>file:/C:/Users/Admin/Documents/Github/DuAn1/ClothesShop/src/com/raven/DAO/NhanVienDAO.java</file>
         </group>
         <group name="Java2">
-            <file>file:/D:/DuAn1/ClothesShop/src/com/raven/form/Form_Home.java</file>
-            <file>file:/D:/DuAn1/ClothesShop/src/textfield/TextField.java</file>
+            <file>file:/D:/DuAn1/ClothesShop/src/com/raven/chart/CurveChart.java</file>
             <file>file:/D:/DuAn1/ClothesShop/src/com/raven/main/Main.java</file>
-            <file>file:/D:/DuAn1/ClothesShop/src/textfield/TextFieldBasic.java</file>
+            <file>file:/D:/DuAn1/ClothesShop/src/com/raven/form/DoanhThuForm.java</file>
             <file>file:/D:/DuAn1/ClothesShop/src/com/raven/main/testMessage.java</file>
-            <file>file:/D:/DuAn1/ClothesShop/src/com/raven/datechooser/DateChooser.java</file>
         </group>
     </open-files>
 </project-private>
