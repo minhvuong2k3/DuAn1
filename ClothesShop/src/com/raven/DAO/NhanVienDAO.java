@@ -52,6 +52,17 @@ public class NhanVienDAO extends ClothingStoreDAO<NhanVien, String> {
                 model.getMatKhau(),
                 model.getMaNV());
     }
+    
+    public void updateNV(NhanVien model) {
+        String sql = "UPDATE NhanVien SET TenNV=?, GioiTinh=?, NgaySinh=?, SDT=?, Email=? WHERE MaNV=?";
+        XJdbc.executeUpdate(sql,
+                model.getHoten(),
+                model.getGioiTinh(),
+                model.getNgaySinh(),
+                model.getSdt(),
+                model.getEmail(),
+                model.getMaNV());
+    }
 
     @Override
     public void delete(String MaNV) {

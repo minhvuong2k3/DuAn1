@@ -1,6 +1,7 @@
 package com.raven.form;
 
 import com.raven.DAO.NhanVienDAO;
+import com.raven.DAO.RoleDAO;
 import com.raven.datechooser.EventDateChooser;
 import com.raven.datechooser.SelectedAction;
 import com.raven.datechooser.SelectedDate;
@@ -10,6 +11,7 @@ import com.raven.model.ModelCard;
 import com.raven.model.ModelStaff;
 import com.raven.model.ModelStudent;
 import com.raven.model.NhanVien;
+import com.raven.model.Role;
 import com.raven.swing.EventNavigationBar;
 import com.raven.swing.icon.GoogleMaterialDesignIcons;
 import com.raven.swing.icon.IconFontSwing;
@@ -29,6 +31,7 @@ import javax.swing.table.DefaultTableModel;
 public class Form_Home extends javax.swing.JPanel {
 
     NhanVienDAO dao = new NhanVienDAO();
+    RoleDAO roleDao = new RoleDAO();
     List<NhanVien> list = dao.select();
     static Frame fr;
 
@@ -41,7 +44,7 @@ public class Form_Home extends javax.swing.JPanel {
         dateChooser1.addEventDateChooser(new EventDateChooser() {
             @Override
             public void dateSelected(SelectedAction action, SelectedDate date) {
-                txtBirthday.setText(date.getYear()+"-"+date.getMonth()+"-"+date.getDay());
+                txtBirthday.setText(date.getYear() + "-" + date.getMonth() + "-" + date.getDay());
                 if (action.getAction() == SelectedAction.DAY_SELECTED) {
                     dateChooser1.hidePopup();
                 }
@@ -678,16 +681,55 @@ public class Form_Home extends javax.swing.JPanel {
             }
         } else {
             if (ValidateUpdate()) {
-                NhanVien model = new NhanVien();
-                model.setMaNV(txtID.getText().trim());
-                model.setHoten(txtFullname.getText().trim());
-                model.setEmail(txtEmail.getText().trim());
-                model.setNgaySinh(txtBirthday.getText().trim());
-                model.setSdt(txtPhone.getText().trim());
-                model.setGioiTinh(lblRender.getText().equals("Male"));
-                model.setVaiTro(lblRole.getText().equals("Admin"));
-                model.setMatKhau(txtPassword.getText());
-                dao.update(model);
+                if (txtPassword.getText().trim().equals("")) {
+                    if (roleDao.selectByKeyword(txtID.getText()) != null) {
+                        roleDao.delete(txtID.getText());
+                        NhanVien model = new NhanVien();
+                        model.setMaNV(txtID.getText().trim());
+                        model.setHoten(txtFullname.getText().trim());
+                        model.setEmail(txtEmail.getText().trim());
+                        model.setNgaySinh(txtBirthday.getText().trim());
+                        model.setSdt(txtPhone.getText().trim());
+                        model.setGioiTinh(lblRender.getText().equals("Male"));
+                        dao.updateNV(model);
+                    } else {
+                        NhanVien model = new NhanVien();
+                        model.setMaNV(txtID.getText().trim());
+                        model.setHoten(txtFullname.getText().trim());
+                        model.setEmail(txtEmail.getText().trim());
+                        model.setNgaySinh(txtBirthday.getText().trim());
+                        model.setSdt(txtPhone.getText().trim());
+                        model.setGioiTinh(lblRender.getText().equals("Male"));
+                        dao.updateNV(model);
+                    }
+                } else {
+                    if (roleDao.selectByKeyword(txtID.getText()) != null) {
+                        Role role = new Role();
+                        role.setMaNV(txtID.getText());
+                        role.setMatKhau(txtPassword.getText());
+                        role.setVaiTro(lblRender.getText().equals("Admin"));
+                        roleDao.insert(role);
+                        NhanVien model = new NhanVien();
+                        model.setMaNV(txtID.getText().trim());
+                        model.setHoten(txtFullname.getText().trim());
+                        model.setEmail(txtEmail.getText().trim());
+                        model.setNgaySinh(txtBirthday.getText().trim());
+                        model.setSdt(txtPhone.getText().trim());
+                        model.setGioiTinh(lblRender.getText().equals("Male"));
+                        dao.updateNV(model);
+                    } else {
+                        NhanVien model = new NhanVien();
+                        model.setMaNV(txtID.getText().trim());
+                        model.setHoten(txtFullname.getText().trim());
+                        model.setEmail(txtEmail.getText().trim());
+                        model.setNgaySinh(txtBirthday.getText().trim());
+                        model.setSdt(txtPhone.getText().trim());
+                        model.setGioiTinh(lblRender.getText().equals("Male"));
+                        model.setVaiTro(lblRole.getText().equals("Admin"));
+                        model.setMatKhau(txtPassword.getText());
+                        dao.update(model);
+                    }
+                }
                 list = dao.select();
                 DefaultTableModel modelTable = (DefaultTableModel) tblNhanVien.getModel();
                 modelTable.setRowCount(0);
@@ -713,7 +755,7 @@ public class Form_Home extends javax.swing.JPanel {
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnAdd1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdd1ActionPerformed
-        dateChooser1.showPopup(this, btnAdd1.getX()-200, btnAdd1.getY() + 70);
+        dateChooser1.showPopup(this, btnAdd1.getX() - 200, btnAdd1.getY() + 70);
     }//GEN-LAST:event_btnAdd1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -812,13 +854,7 @@ public class Form_Home extends javax.swing.JPanel {
 
     public boolean ValidateUpdate() {
         if (ValidateInsert(1)) {
-            if (txtPassword.getText().trim().equals("")) {
-                txtPassword.requestFocus();
-                notification(fr, "Password invalid !", false);
-                return false;
-            } else {
-                return true;
-            }
+            return true;
         }
         return false;
     }
