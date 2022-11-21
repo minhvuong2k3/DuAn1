@@ -16,6 +16,7 @@ import com.raven.theme.SystemTheme;
 import com.raven.theme.ThemeColor;
 import com.raven.theme.ThemeColorChange;
 import com.raven.utils.Auth;
+import com.raven.utils.XShare;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -35,6 +36,7 @@ public class Main extends javax.swing.JFrame {
         initComponents();
         setBackground(new Color(0, 0, 0, 0));
         init();
+        setIconImage(XShare.APP_ICON);
     }
 
     private void init() {

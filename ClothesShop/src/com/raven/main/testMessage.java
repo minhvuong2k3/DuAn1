@@ -5,6 +5,7 @@
 package com.raven.main;
 
 import com.raven.component.Message;
+import com.raven.utils.XShare;
 import java.awt.Color;
 import javaswingdev.chart.ModelChart;
 import javaswingdev.message.MessageDialog;
@@ -21,7 +22,7 @@ public class testMessage extends javax.swing.JFrame {
     public testMessage() {
         initComponents();
         setLocationRelativeTo(null);
-
+        setIconImage(XShare.APP_ICON);
     }
 
     /**

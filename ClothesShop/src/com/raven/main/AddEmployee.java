@@ -4,6 +4,7 @@
  */
 package com.raven.main;
 
+import com.raven.utils.XShare;
 import java.awt.geom.RoundRectangle2D;
 import javax.swing.JFrame;
 
@@ -25,6 +26,7 @@ public class AddEmployee extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         fram.setOpacity(0.2f);
         setShape(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), 30, 30));
+        setIconImage(XShare.APP_ICON);
     }
 
     /**
