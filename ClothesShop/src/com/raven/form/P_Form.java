@@ -58,24 +58,7 @@ public class P_Form extends Form {
         home.setEvent(new EventItem() {
             @Override
             public void itemClick(Component com, ModelItem item) {
-                if (itemSelected != null) {
-                    ImageIcon image = new ImageIcon(((ImageIcon) item.getImage()).getImage().getScaledInstance(200, 180, Image.SCALE_DEFAULT));
-                    mainPanel.setImageOld(image);
-                }
-                if (itemSelected != item) {
-                    if (!animator.isRunning()) {
-                        itemSelected = item;
-                        animatePoint = getLocationOf(com);
-                        ImageIcon image = new ImageIcon(((ImageIcon) item.getImage()).getImage().getScaledInstance(200, 180, Image.SCALE_DEFAULT));
-                        mainPanel.setImage(image);
-                        mainPanel.setImageLocation(animatePoint);
-                        mainPanel.setImageSize(new Dimension(180, 120));
-                        mainPanel.repaint();
-                        home.setSelected(com);
-                        home.showItem(item);
-                        animator.start();
-                    }
-                }
+
             }
         });
         int ID = 1;

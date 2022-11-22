@@ -4,6 +4,10 @@
  */
 package com.raven.form;
 
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
+
 /**
  *
  * @author AD MIN
@@ -15,6 +19,19 @@ public class Pay_Form extends javax.swing.JPanel {
      */
     public Pay_Form() {
         initComponents();
+        setOpaque(false);
+    }
+    
+    @Override
+    public void paint(Graphics grphcs) {
+        Graphics2D g2 = (Graphics2D) grphcs.create();
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        int width = getWidth();
+        int height = getHeight();
+        g2.setColor(getBackground());
+        g2.fillRoundRect(0, 0, width, height, 15, 15);
+        g2.dispose();
+        super.paint(grphcs);
     }
 
     /**
@@ -30,15 +47,16 @@ public class Pay_Form extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1104, Short.MAX_VALUE)
+            .addGap(0, 786, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 597, Short.MAX_VALUE)
+            .addGap(0, 630, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private com.raven.swing.RoundPanel roundPanel2;
     // End of variables declaration//GEN-END:variables
 }

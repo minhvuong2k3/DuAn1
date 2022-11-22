@@ -3,10 +3,10 @@ package com.raven.main;
 import com.raven.component.PanelCover;
 import com.raven.component.PanelLoginAndRegister;
 import com.raven.swing.PanelBackground;
-import com.raven.utils.XShare;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.geom.RoundRectangle2D;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.Locale;
@@ -32,7 +32,7 @@ public class Login extends javax.swing.JFrame {
         header1.initMoving(this);
         header1.initEvent(this);
 //        header1.setBackground(Color.white);
-        setIconImage(XShare.APP_ICON);
+        setShape(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), 20, 20));
     }
 
     private void init() {

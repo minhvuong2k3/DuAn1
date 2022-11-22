@@ -1,6 +1,7 @@
 package com.raven.main;
 
 import com.raven.event.EventColorChange;
+import com.raven.form.DoanhThu2_Form;
 //import com.raven.form.FormHomeStaff;
 import com.raven.form.Form_Home;
 import com.raven.form.Home_Form;
@@ -30,6 +31,7 @@ public class Main extends javax.swing.JFrame {
     private Form_Home empForm;
     private Order OrderForm;
     private DoanhThuForm dashboardForm;
+    private DoanhThu2_Form doanhthuForm;
     static int i = 0;
 
     public Main() {
@@ -63,6 +65,9 @@ public class Main extends javax.swing.JFrame {
                         break;
                     case 4:
                         mainBody.displayForm(dashboardForm, "Order");
+                        break;
+                    case 5:
+                        mainBody.displayForm(doanhthuForm, "Doanh Thu");
                         break;
                     case 6:
                         mainBody.displayForm(settingForm, "Setting");
@@ -130,6 +135,7 @@ public class Main extends javax.swing.JFrame {
         empForm = new Form_Home(this);
         OrderForm = new Order();
         dashboardForm = new DoanhThuForm();
+        doanhthuForm = new DoanhThu2_Form();
     }
 
     @SuppressWarnings("unchecked")
