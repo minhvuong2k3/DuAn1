@@ -37,6 +37,8 @@ public class Main extends javax.swing.JFrame {
         setBackground(new Color(0, 0, 0, 0));
         init();
         setIconImage(XShare.APP_ICON);
+//        if(Auth.isManager())
+//            menu.remove(menu.getPopupLocation(event));
     }
 
     private void init() {
