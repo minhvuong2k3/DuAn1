@@ -4,6 +4,10 @@
  */
 package com.raven.form;
 
+import chart.ModelPieChart;
+import chart.PieChart;
+import java.awt.Color;
+
 /**
  *
  * @author AD MIN
@@ -15,6 +19,17 @@ public class DoanhThu2_Form extends javax.swing.JPanel {
      */
     public DoanhThu2_Form() {
         initComponents();
+        pieChart1.setChartType(PieChart.PeiChartType.DONUT_CHART);
+        pieChart1.addData(new ModelPieChart("Tigher", 150, new Color(23, 126, 238)));
+        pieChart1.addData(new ModelPieChart("ABC", 100, new Color(221, 65, 65)));
+//        pieChart1.addData(new ModelPieChart("Coca", 1, new Color(47, 157, 64)));
+        pieChart1.addData(new ModelPieChart("Vita", 60, new Color(196, 151, 58)));
+        
+        pieChart2.setChartType(PieChart.PeiChartType.DONUT_CHART);
+        pieChart2.addData(new ModelPieChart("Tigher", 150, new Color(23, 126, 238)));
+        pieChart2.addData(new ModelPieChart("ABC", 100, new Color(221, 65, 65)));
+//        pieChart2.addData(new ModelPieChart("Coca", 1, new Color(47, 157, 64)));
+        pieChart2.addData(new ModelPieChart("Vita", 60, new Color(196, 151, 58)));
     }
 
     /**
@@ -30,7 +45,9 @@ public class DoanhThu2_Form extends javax.swing.JPanel {
         barChart1 = new javaswingdev.chart.BarChart();
         combobox1 = new combobox.Combobox();
         roundPanel2 = new com.raven.swing.RoundPanel();
+        pieChart1 = new chart.PieChart();
         roundPanel3 = new com.raven.swing.RoundPanel();
+        pieChart2 = new chart.PieChart();
         button1 = new button.Button();
         roundPanel4 = new com.raven.swing.RoundPanel();
 
@@ -48,7 +65,7 @@ public class DoanhThu2_Form extends javax.swing.JPanel {
             .addGroup(roundPanel1Layout.createSequentialGroup()
                 .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(roundPanel1Layout.createSequentialGroup()
-                        .addContainerGap(721, Short.MAX_VALUE)
+                        .addContainerGap(753, Short.MAX_VALUE)
                         .addComponent(combobox1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(barChart1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -63,26 +80,40 @@ public class DoanhThu2_Form extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
+        roundPanel2.setBackground(new java.awt.Color(255, 255, 255));
+
         javax.swing.GroupLayout roundPanel2Layout = new javax.swing.GroupLayout(roundPanel2);
         roundPanel2.setLayout(roundPanel2Layout);
         roundPanel2Layout.setHorizontalGroup(
             roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 307, Short.MAX_VALUE)
+            .addGroup(roundPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(pieChart1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         roundPanel2Layout.setVerticalGroup(
             roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 207, Short.MAX_VALUE)
+            .addGroup(roundPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(pieChart1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout roundPanel3Layout = new javax.swing.GroupLayout(roundPanel3);
         roundPanel3.setLayout(roundPanel3Layout);
         roundPanel3Layout.setHorizontalGroup(
             roundPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(roundPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(pieChart2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         roundPanel3Layout.setVerticalGroup(
             roundPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 207, Short.MAX_VALUE)
+            .addGroup(roundPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(pieChart2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         button1.setText("Product");
@@ -95,7 +126,7 @@ public class DoanhThu2_Form extends javax.swing.JPanel {
         );
         roundPanel4Layout.setVerticalGroup(
             roundPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 138, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -106,15 +137,15 @@ public class DoanhThu2_Form extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(roundPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(roundPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(roundPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(roundPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(roundPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(roundPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(roundPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -140,6 +171,8 @@ public class DoanhThu2_Form extends javax.swing.JPanel {
     private javaswingdev.chart.BarChart barChart1;
     private button.Button button1;
     private combobox.Combobox combobox1;
+    private chart.PieChart pieChart1;
+    private chart.PieChart pieChart2;
     private com.raven.swing.RoundPanel roundPanel1;
     private com.raven.swing.RoundPanel roundPanel2;
     private com.raven.swing.RoundPanel roundPanel3;
