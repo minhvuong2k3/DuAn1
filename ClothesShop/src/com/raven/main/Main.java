@@ -1,15 +1,17 @@
 package com.raven.main;
 
 import com.raven.event.EventColorChange;
+import com.raven.form.Dashboard;
 import com.raven.form.DoanhThu2_Form;
 //import com.raven.form.FormHomeStaff;
 import com.raven.form.Form_Home;
 import com.raven.form.Home_Form;
 import com.raven.form.Home;
-import com.raven.form.Order;
+//import com.raven.form.Order;
 import com.raven.form.P_Form;
 import com.raven.form.Setting_Form;
 import com.raven.form.DoanhThuForm;
+import com.raven.form.HoaDonNhap;
 import com.raven.menu.EventMenu;
 import com.raven.menu.Menu;
 import com.raven.properties.SystemProperties;
@@ -17,7 +19,6 @@ import com.raven.theme.SystemTheme;
 import com.raven.theme.ThemeColor;
 import com.raven.theme.ThemeColorChange;
 import com.raven.utils.Auth;
-import com.raven.utils.XShare;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -29,115 +30,71 @@ public class Main extends javax.swing.JFrame {
     private Setting_Form settingForm;
     private P_Form productForm;
     private Form_Home empForm;
-    private Order OrderForm;
+    private HoaDonNhap InvoiceForm;
     private DoanhThuForm dashboardForm;
     private DoanhThu2_Form doanhthuForm;
+    private Dashboard dashForm;
     static int i = 0;
 
     public Main() {
         initComponents();
         setBackground(new Color(0, 0, 0, 0));
         init();
-        setIconImage(XShare.APP_ICON);
-//        if(!Auth.isManager())
-//            menu.removeMenu("Employee", "3", 2);
     }
 
     private void init() {
         MessageDialog me = new MessageDialog(this);
         header.initMoving(this);
         header.initEvent(this);
-//        if(Auth.isManager())
-            menu.addEventMenu(new EventMenu() {
-                @Override
-                public void selectedMenu(int index) {
-                    switch (index) {
-                        case 0:
+        menu.addEventMenu(new EventMenu() {
+            @Override
+            public void selectedMenu(int index) {
+                switch (index) {
+                    case 0:
+                        mainBody.displayForm(new Home_Form());
+                        break;
+                    case 1:
+                        mainBody.displayForm(productForm, "Product");
+                        break;
+                    case 2:
+                        mainBody.displayForm(empForm, "Employee");
+                        break;
+                    case 3:
+                        mainBody.displayForm(InvoiceForm, "Order");
+                        break;
+                    case 4:
+                        mainBody.displayForm(dashboardForm, "Order");
+                        break;
+//                    case 5:
+//                        mainBody.displayForm(doanhthuForm, "Doanh Thu");
+//                        break;
+                    case 5:
+                        mainBody.displayForm(dashForm, "Doanh Thu");
+                        break;
+                    case 6:
+                        mainBody.displayForm(settingForm, "Setting");
+                        break;
+                    case 9:
+                        me.showMessage("", "Do you want to logout?");
+                        if (me.getMessageType() == MessageDialog.MessageType.OK) {
+                            setVisible(false);
+                            Auth.user = null;
+                            Login lg = new Login();
+                            lg.setVisible(true);
+                        } else {
+                            index = 0;
                             mainBody.displayForm(new Home_Form());
-                            break;
-                        case 1:
-                            mainBody.displayForm(productForm, "Product");
-                            break;
-                        case 2:
-                            mainBody.displayForm(empForm, "Employee");
-                            break;
-                        case 3:
-                            mainBody.displayForm(OrderForm, "Order");
-                            break;
-                        case 4:
-                            mainBody.displayForm(dashboardForm, "Order");
-                            break;
-                        case 5:
-                            mainBody.displayForm(doanhthuForm, "Doanh Thu");
-                            break;
-                        case 6:
-                            mainBody.displayForm(settingForm, "Setting");
-                            break;
-                        case 9:
-                            me.showMessage("", "Do you want to logout?");
-                            if (me.getMessageType() == MessageDialog.MessageType.OK) {
-                                setVisible(false);
-                                Auth.user = null;
-                                Login lg = new Login();
-                                lg.setVisible(true);
-                            } else {
-                                index = 0;
-                                mainBody.displayForm(new Home_Form());
-                                menu.setSelectedIndex(0);
-                                menu.setSelectedLocation(151);
-                                menu.clearSelected();
-                                menu.show();
-                            }
-                            break;
-                        default:
-                            break;
-                    }
+                            menu.setSelectedIndex(0);
+                            menu.setSelectedLocation(151);
+                            menu.clearSelected();
+                            menu.show();
+                        }
+                        break;
+                    default:
+                        break;
                 }
-            });
-//        else 
-//            menu.addEventMenu(new EventMenu() {
-//                @Override
-//                public void selectedMenu(int index) {
-//                    switch (index) {
-//                        case 0:
-//                            mainBody.displayForm(new Home_Form());
-//                            break;
-//                        case 1:
-//                            mainBody.displayForm(productForm, "Product");
-//                            break;
-//                        case 2:
-//                            mainBody.displayForm(OrderForm, "Order");
-//                            break;
-//                        case 3:
-//                            mainBody.displayForm(dashboardForm, "Order");
-//                            break;
-//                        case 4:
-//                            mainBody.displayForm(doanhthuForm, "Doanh Thu");
-//                            break;
-//                        case 5:
-//                            mainBody.displayForm(settingForm, "Setting");
-//                            break;
-//                        case 8:
-//                            me.showMessage("", "Do you want to logout?");
-//                            if (me.getMessageType() == MessageDialog.MessageType.OK) {
-//                                setVisible(false);
-//                                Auth.user = null;
-//                                Login lg = new Login();
-//                                lg.setVisible(true);
-//                            } else {
-//                                index = 0;
-//                                mainBody.displayForm(new Home_Form());
-//                                menu.setSelectedIndex(0);
-//                                menu.setSelectedLocation(151);
-//                                menu.clearSelected();
-//                                menu.show();
-//                            }
-//                            break;
-//                        default:
-//                            break;
-//                    }
-//                }
-//            });
+            }
+        });
         ThemeColorChange.getInstance().addThemes(new ThemeColor(new Color(34, 34, 34), Color.WHITE) {
             @Override
             public void onColorChange(Color color) {
@@ -178,7 +135,8 @@ public class Main extends javax.swing.JFrame {
         mainBody.displayForm(new Home_Form());
         productForm = new P_Form();
         empForm = new Form_Home(this);
-        OrderForm = new Order();
+        dashForm = new Dashboard();
+        InvoiceForm = new HoaDonNhap();
         dashboardForm = new DoanhThuForm();
         doanhthuForm = new DoanhThu2_Form();
     }
