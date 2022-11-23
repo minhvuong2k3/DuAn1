@@ -1,6 +1,7 @@
 package com.raven.main;
 
 import com.raven.event.EventColorChange;
+import com.raven.form.Dashboard;
 import com.raven.form.DoanhThu2_Form;
 //import com.raven.form.FormHomeStaff;
 import com.raven.form.Form_Home;
@@ -32,6 +33,7 @@ public class Main extends javax.swing.JFrame {
     private HoaDonNhap InvoiceForm;
     private DoanhThuForm dashboardForm;
     private DoanhThu2_Form doanhthuForm;
+    private Dashboard dashForm;
     static int i = 0;
 
     public Main() {
@@ -63,8 +65,11 @@ public class Main extends javax.swing.JFrame {
                     case 4:
                         mainBody.displayForm(dashboardForm, "Order");
                         break;
+//                    case 5:
+//                        mainBody.displayForm(doanhthuForm, "Doanh Thu");
+//                        break;
                     case 5:
-                        mainBody.displayForm(doanhthuForm, "Doanh Thu");
+                        mainBody.displayForm(dashForm, "Doanh Thu");
                         break;
                     case 6:
                         mainBody.displayForm(settingForm, "Setting");
@@ -130,7 +135,7 @@ public class Main extends javax.swing.JFrame {
         mainBody.displayForm(new Home_Form());
         productForm = new P_Form();
         empForm = new Form_Home(this);
-//        OrderForm = new Order();
+        dashForm = new Dashboard();
         InvoiceForm = new HoaDonNhap();
         dashboardForm = new DoanhThuForm();
         doanhthuForm = new DoanhThu2_Form();
