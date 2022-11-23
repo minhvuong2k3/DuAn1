@@ -6,10 +6,11 @@ import com.raven.form.DoanhThu2_Form;
 import com.raven.form.Form_Home;
 import com.raven.form.Home_Form;
 import com.raven.form.Home;
-import com.raven.form.Order;
+//import com.raven.form.Order;
 import com.raven.form.P_Form;
 import com.raven.form.Setting_Form;
 import com.raven.form.DoanhThuForm;
+import com.raven.form.HoaDonNhap;
 import com.raven.menu.EventMenu;
 import com.raven.menu.Menu;
 import com.raven.properties.SystemProperties;
@@ -28,7 +29,7 @@ public class Main extends javax.swing.JFrame {
     private Setting_Form settingForm;
     private P_Form productForm;
     private Form_Home empForm;
-    private Order OrderForm;
+    private HoaDonNhap InvoiceForm;
     private DoanhThuForm dashboardForm;
     private DoanhThu2_Form doanhthuForm;
     static int i = 0;
@@ -57,7 +58,7 @@ public class Main extends javax.swing.JFrame {
                         mainBody.displayForm(empForm, "Employee");
                         break;
                     case 3:
-                        mainBody.displayForm(OrderForm, "Order");
+                        mainBody.displayForm(InvoiceForm, "Order");
                         break;
                     case 4:
                         mainBody.displayForm(dashboardForm, "Order");
@@ -129,7 +130,8 @@ public class Main extends javax.swing.JFrame {
         mainBody.displayForm(new Home_Form());
         productForm = new P_Form();
         empForm = new Form_Home(this);
-        OrderForm = new Order();
+//        OrderForm = new Order();
+        InvoiceForm = new HoaDonNhap();
         dashboardForm = new DoanhThuForm();
         doanhthuForm = new DoanhThu2_Form();
     }
