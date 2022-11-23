@@ -112,7 +112,7 @@ public class Menu extends javax.swing.JPanel {
         });
     }
 
-    private void addMenu(String menuName, String icon, int index) {
+    public void addMenu(String menuName, String icon, int index) {
         MenuButton m = new MenuButton();
         m.setIcoName(icon);
         m.setIcon(new ImageIcon(getClass().getResource("/com/raven/icon/" + icon + ".png")));
@@ -138,6 +138,10 @@ public class Menu extends javax.swing.JPanel {
             }
         });
         menu.add(m);
+    }
+    
+    public void removeMenu(String menuName, String icon, int index){
+        menu.remove(menu.getComponent(index));
     }
 
     @Override

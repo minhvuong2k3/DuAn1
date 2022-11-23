@@ -39,60 +39,105 @@ public class Main extends javax.swing.JFrame {
         setBackground(new Color(0, 0, 0, 0));
         init();
         setIconImage(XShare.APP_ICON);
-//        if(Auth.isManager())
-//            menu.remove(menu.getPopupLocation(event));
+//        if(!Auth.isManager())
+//            menu.removeMenu("Employee", "3", 2);
     }
 
     private void init() {
         MessageDialog me = new MessageDialog(this);
         header.initMoving(this);
         header.initEvent(this);
-        menu.addEventMenu(new EventMenu() {
-            @Override
-            public void selectedMenu(int index) {
-                switch (index) {
-                    case 0:
-                        mainBody.displayForm(new Home_Form());
-                        break;
-                    case 1:
-                        mainBody.displayForm(productForm, "Product");
-                        break;
-                    case 2:
-                        mainBody.displayForm(empForm, "Employee");
-                        break;
-                    case 3:
-                        mainBody.displayForm(OrderForm, "Order");
-                        break;
-                    case 4:
-                        mainBody.displayForm(dashboardForm, "Order");
-                        break;
-                    case 5:
-                        mainBody.displayForm(doanhthuForm, "Doanh Thu");
-                        break;
-                    case 6:
-                        mainBody.displayForm(settingForm, "Setting");
-                        break;
-                    case 9:
-                        me.showMessage("", "Do you want to logout?");
-                        if (me.getMessageType() == MessageDialog.MessageType.OK) {
-                            setVisible(false);
-                            Auth.user = null;
-                            Login lg = new Login();
-                            lg.setVisible(true);
-                        } else {
-                            index = 0;
+//        if(Auth.isManager())
+            menu.addEventMenu(new EventMenu() {
+                @Override
+                public void selectedMenu(int index) {
+                    switch (index) {
+                        case 0:
                             mainBody.displayForm(new Home_Form());
-                            menu.setSelectedIndex(0);
-                            menu.setSelectedLocation(151);
-                            menu.clearSelected();
-                            menu.show();
-                        }
-                        break;
-                    default:
-                        break;
+                            break;
+                        case 1:
+                            mainBody.displayForm(productForm, "Product");
+                            break;
+                        case 2:
+                            mainBody.displayForm(empForm, "Employee");
+                            break;
+                        case 3:
+                            mainBody.displayForm(OrderForm, "Order");
+                            break;
+                        case 4:
+                            mainBody.displayForm(dashboardForm, "Order");
+                            break;
+                        case 5:
+                            mainBody.displayForm(doanhthuForm, "Doanh Thu");
+                            break;
+                        case 6:
+                            mainBody.displayForm(settingForm, "Setting");
+                            break;
+                        case 9:
+                            me.showMessage("", "Do you want to logout?");
+                            if (me.getMessageType() == MessageDialog.MessageType.OK) {
+                                setVisible(false);
+                                Auth.user = null;
+                                Login lg = new Login();
+                                lg.setVisible(true);
+                            } else {
+                                index = 0;
+                                mainBody.displayForm(new Home_Form());
+                                menu.setSelectedIndex(0);
+                                menu.setSelectedLocation(151);
+                                menu.clearSelected();
+                                menu.show();
+                            }
+                            break;
+                        default:
+                            break;
+                    }
                 }
-            }
-        });
+            });
+//        else 
+//            menu.addEventMenu(new EventMenu() {
+//                @Override
+//                public void selectedMenu(int index) {
+//                    switch (index) {
+//                        case 0:
+//                            mainBody.displayForm(new Home_Form());
+//                            break;
+//                        case 1:
+//                            mainBody.displayForm(productForm, "Product");
+//                            break;
+//                        case 2:
+//                            mainBody.displayForm(OrderForm, "Order");
+//                            break;
+//                        case 3:
+//                            mainBody.displayForm(dashboardForm, "Order");
+//                            break;
+//                        case 4:
+//                            mainBody.displayForm(doanhthuForm, "Doanh Thu");
+//                            break;
+//                        case 5:
+//                            mainBody.displayForm(settingForm, "Setting");
+//                            break;
+//                        case 8:
+//                            me.showMessage("", "Do you want to logout?");
+//                            if (me.getMessageType() == MessageDialog.MessageType.OK) {
+//                                setVisible(false);
+//                                Auth.user = null;
+//                                Login lg = new Login();
+//                                lg.setVisible(true);
+//                            } else {
+//                                index = 0;
+//                                mainBody.displayForm(new Home_Form());
+//                                menu.setSelectedIndex(0);
+//                                menu.setSelectedLocation(151);
+//                                menu.clearSelected();
+//                                menu.show();
+//                            }
+//                            break;
+//                        default:
+//                            break;
+//                    }
+//                }
+//            });
         ThemeColorChange.getInstance().addThemes(new ThemeColor(new Color(34, 34, 34), Color.WHITE) {
             @Override
             public void onColorChange(Color color) {

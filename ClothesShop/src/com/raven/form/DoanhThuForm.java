@@ -4,7 +4,13 @@
  */
 package com.raven.form;
 
+import com.raven.DAO.SanPhamDAO;
+import com.raven.DAO.ThongKeDAO;
+import com.raven.model.ThongKeSP;
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import javaswingdev.chart.ModelChart;
 
 /**
@@ -16,6 +22,7 @@ public class DoanhThuForm extends javax.swing.JPanel {
     /**
      * Creates new form ThongKeForm
      */
+    ThongKeDAO dao = new ThongKeDAO();
     public DoanhThuForm() {
         initComponents();
 //        chart1.setTitle("Chart Data");
@@ -34,16 +41,46 @@ public class DoanhThuForm extends javax.swing.JPanel {
     }
 
     private void init() {
-        chart1.addLegend("Income", new Color(12, 84, 175), new Color(0, 108, 247));
-        chart1.addLegend("Expense", new Color(54, 4, 143), new Color(104, 49, 200));
-        chart1.addLegend("Profit", new Color(5, 125, 0), new Color(95, 209, 69));
-        chart1.addLegend("Cost", new Color(186, 37, 37), new Color(241, 100, 120));
-        chart1.addData(new com.raven.chart.ModelChart("January", new double[]{500, 200, 80, 89}));
-        chart1.addData(new com.raven.chart.ModelChart("February", new double[]{1000, 750, 90, 150}));
-        chart1.addData(new com.raven.chart.ModelChart("March", new double[]{200, 350, 460, 900}));
-        chart1.addData(new com.raven.chart.ModelChart("April", new double[]{480, 150, 750, 700}));
-        chart1.addData(new com.raven.chart.ModelChart("May", new double[]{350, 540, 300, 150}));
-        chart1.addData(new com.raven.chart.ModelChart("June", new double[]{190, 280, 81, 200}));
+//        chart1.addLegend("Income", new Color(12, 84, 175), new Color(0, 108, 247));
+//        chart1.addLegend("Expense", new Color(54, 4, 143), new Color(104, 49, 200));
+//        chart1.addLegend("Profit", new Color(5, 125, 0), new Color(95, 209, 69));
+////        chart1.addLegend("Cost", new Color(186, 37, 37), new Color(241, 100, 120));
+        
+        Date date = new Date();
+        List<Object[]> list = dao.getSanPhamTop3(date.getYear()+1900, date.getMonth()+1);
+        chart1.addLegend((String) list.get(0)[0], new Color(12, 84, 175), new Color(0, 108, 247));
+        chart1.addLegend((String) list.get(1)[0], new Color(54, 4, 143), new Color(104, 49, 200));
+        chart1.addLegend((String) list.get(2)[0], new Color(5, 125, 0), new Color(95, 209, 69));
+        ArrayList<Object[]> giaTri = new ArrayList<>();
+        
+        int k = 0;
+        for(int i=0; i<6;i++){
+            Object[] a = new Object[3];
+            List<Object[]> list1 = dao.getSanPhamThang(date.getYear()+1900, date.getMonth()+1-k, (String) list.get(0)[0]);
+            List<Object[]> list2 = dao.getSanPhamThang(date.getYear()+1900, date.getMonth()+1-k, (String) list.get(1)[0]);
+            List<Object[]> list3 = dao.getSanPhamThang(date.getYear()+1900, date.getMonth()+1-k, (String) list.get(2)[0]);
+            if(list1.size()>0)
+                a[0] = list1.get(0)[1];
+            else 
+                a[0] = 0;
+            if(list2.size()>0)
+                a[1] = list2.get(0)[1];
+            else 
+                a[1] = 0;
+            if(list3.size()>0)
+                a[2] = list3.get(0)[1];
+            else 
+                a[2] = 0;
+            giaTri.add(a);
+            k++;
+        }
+        System.out.println(Double.valueOf(giaTri.get(5)[0].toString()));
+        chart1.addData(new com.raven.chart.ModelChart("June", new double[]{Double.valueOf(giaTri.get(5)[0].toString()), Double.valueOf(giaTri.get(5)[1].toString()), Double.valueOf(giaTri.get(5)[2].toString())}));
+        chart1.addData(new com.raven.chart.ModelChart("July", new double[]{Double.valueOf(giaTri.get(4)[0].toString()), Double.valueOf(giaTri.get(4)[1].toString()), Double.valueOf(giaTri.get(4)[2].toString())}));
+        chart1.addData(new com.raven.chart.ModelChart("August", new double[]{Double.valueOf(giaTri.get(3)[0].toString()), Double.valueOf(giaTri.get(3)[1].toString()), Double.valueOf(giaTri.get(3)[2].toString())}));
+        chart1.addData(new com.raven.chart.ModelChart("September", new double[]{Double.valueOf(giaTri.get(2)[0].toString()), Double.valueOf(giaTri.get(2)[1].toString()), Double.valueOf(giaTri.get(2)[2].toString())}));
+        chart1.addData(new com.raven.chart.ModelChart("October", new double[]{Double.valueOf(giaTri.get(1)[0].toString()), Double.valueOf(giaTri.get(1)[1].toString()), Double.valueOf(giaTri.get(1)[2].toString())}));
+        chart1.addData(new com.raven.chart.ModelChart("November", new double[]{Double.valueOf(giaTri.get(0)[0].toString()), Double.valueOf(giaTri.get(0)[1].toString()), Double.valueOf(giaTri.get(0)[2].toString())}));
         chart1.start();
     }
 
