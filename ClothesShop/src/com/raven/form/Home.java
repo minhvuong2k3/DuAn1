@@ -311,7 +311,7 @@ public class Home extends Form {
         jLabel27.setForeground(new java.awt.Color(77, 77, 77));
         jLabel27.setText("Employee");
 
-        panelShadow14.setBackground(new java.awt.Color(246, 88, 88));
+        panelShadow14.setBackground(new java.awt.Color(247, 247, 247));
         panelShadow14.setShadowOpacity(0.3F);
 
         imageAvatar1.setBorderSize(5);
@@ -336,12 +336,10 @@ public class Home extends Form {
         );
 
         jLabel30.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N
-        jLabel30.setForeground(new java.awt.Color(235, 235, 235));
         jLabel30.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel30.setText("Mr. Dara");
 
         jLabel31.setFont(new java.awt.Font("sansserif", 1, 15)); // NOI18N
-        jLabel31.setForeground(new java.awt.Color(235, 235, 235));
         jLabel31.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel31.setText("Admin");
 
@@ -372,7 +370,7 @@ public class Home extends Form {
                 .addContainerGap())
         );
 
-        panelShadow15.setBackground(new java.awt.Color(88, 130, 246));
+        panelShadow15.setBackground(new java.awt.Color(247, 247, 247));
         panelShadow15.setShadowOpacity(0.3F);
 
         imageAvatar2.setBorderSize(5);
@@ -397,12 +395,10 @@ public class Home extends Form {
         );
 
         jLabel34.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N
-        jLabel34.setForeground(new java.awt.Color(235, 235, 235));
         jLabel34.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel34.setText("Mr. Dara");
 
         jLabel35.setFont(new java.awt.Font("sansserif", 1, 15)); // NOI18N
-        jLabel35.setForeground(new java.awt.Color(235, 235, 235));
         jLabel35.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel35.setText("Admin");
 
@@ -433,7 +429,7 @@ public class Home extends Form {
                 .addContainerGap())
         );
 
-        panelShadow16.setBackground(new java.awt.Color(69, 205, 94));
+        panelShadow16.setBackground(new java.awt.Color(247, 247, 247));
         panelShadow16.setShadowOpacity(0.3F);
 
         imageAvatar3.setBorderSize(5);
@@ -458,12 +454,10 @@ public class Home extends Form {
         );
 
         jLabel38.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N
-        jLabel38.setForeground(new java.awt.Color(235, 235, 235));
         jLabel38.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel38.setText("Mr. Dara");
 
         jLabel39.setFont(new java.awt.Font("sansserif", 1, 15)); // NOI18N
-        jLabel39.setForeground(new java.awt.Color(235, 235, 235));
         jLabel39.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel39.setText("Admin");
 
@@ -494,7 +488,7 @@ public class Home extends Form {
                 .addContainerGap())
         );
 
-        panelShadow17.setBackground(new java.awt.Color(58, 189, 217));
+        panelShadow17.setBackground(new java.awt.Color(247, 247, 247));
         panelShadow17.setShadowOpacity(0.3F);
 
         imageAvatar4.setBorderSize(5);
@@ -519,12 +513,10 @@ public class Home extends Form {
         );
 
         jLabel42.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N
-        jLabel42.setForeground(new java.awt.Color(235, 235, 235));
         jLabel42.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel42.setText("Mr. Dara");
 
         jLabel43.setFont(new java.awt.Font("sansserif", 1, 15)); // NOI18N
-        jLabel43.setForeground(new java.awt.Color(235, 235, 235));
         jLabel43.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel43.setText("Admin");
 
@@ -631,9 +623,9 @@ public class Home extends Form {
         jPanel17Layout.setVerticalGroup(
             jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel17Layout.createSequentialGroup()
-                .addGap(0, 41, Short.MAX_VALUE)
+                .addGap(0, 50, Short.MAX_VALUE)
                 .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 684, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 42, Short.MAX_VALUE))
+                .addGap(0, 51, Short.MAX_VALUE))
             .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel17Layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
