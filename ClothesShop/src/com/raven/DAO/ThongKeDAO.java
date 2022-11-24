@@ -35,4 +35,10 @@ public class ThongKeDAO {
         String[] cols = {"MaSP", "Tien"};
         return this.getListOfArray(sql, cols, nam, thang, maSP);
     }
+    
+    public ArrayList<Object[]> getKhachHangTop3(){
+        String sql = "{CALL sp_KhachHangTop3()}";
+        String[] cols = {"TenKH", "SDT", "luot mua"};
+        return this.getListOfArray(sql, cols);
+    }
 }
