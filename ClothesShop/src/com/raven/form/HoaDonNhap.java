@@ -5,12 +5,16 @@
 package com.raven.form;
 
 import com.raven.DAO.SanPhamDAO;
+import com.raven.cell.CellAction;
+import com.raven.cell.CellName;
 import com.raven.model.SanPham;
 import com.raven.utils.Auth;
 import java.awt.Image;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -24,6 +28,7 @@ public class HoaDonNhap extends javax.swing.JPanel {
     SanPhamDAO dao = new SanPhamDAO();
     List<SanPham> list = dao.select();
     int indexCbo = 0;
+    List<Object[]> card = new ArrayList<>();
     public HoaDonNhap() {
         initComponents();
         init();
@@ -50,10 +55,10 @@ public class HoaDonNhap extends javax.swing.JPanel {
         lblPrice = new javax.swing.JLabel();
         btnAmount = new spinner.Spinner();
         btnAdd = new button.Button();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblCardPro = new com.raven.swing.table.Table();
         btnNext = new button.Button();
         jLabel15 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblCardPro = new com.raven.swing.Table();
         roundPanel2 = new com.raven.swing.RoundPanel();
         roundPanel4 = new com.raven.swing.RoundPanel();
         jLabel11 = new javax.swing.JLabel();
@@ -129,23 +134,28 @@ public class HoaDonNhap extends javax.swing.JPanel {
         });
 
         btnAdd.setText("Add to cart");
-
-        tblCardPro.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
             }
-        ));
-        jScrollPane1.setViewportView(tblCardPro);
+        });
 
         btnNext.setText("NEXT");
 
         jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/search.png"))); // NOI18N
+
+        tblCardPro.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {"", "", "", null},
+                {"", "", null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "ID", "Name", "Amount", "Action"
+            }
+        ));
+        jScrollPane1.setViewportView(tblCardPro);
 
         javax.swing.GroupLayout roundPanel1Layout = new javax.swing.GroupLayout(roundPanel1);
         roundPanel1.setLayout(roundPanel1Layout);
@@ -154,9 +164,6 @@ public class HoaDonNhap extends javax.swing.JPanel {
             .addGroup(roundPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnNext, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(roundPanel1Layout.createSequentialGroup()
                         .addComponent(roundPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -168,19 +175,22 @@ public class HoaDonNhap extends javax.swing.JPanel {
                             .addGroup(roundPanel1Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 280, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 256, Short.MAX_VALUE)
                                 .addComponent(lblSumPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(6, 6, 6))
-                    .addComponent(jScrollPane1)
                     .addGroup(roundPanel1Layout.createSequentialGroup()
                         .addGap(8, 8, 8)
                         .addComponent(jLabel15)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cboSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jSeparator1)
-                    .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundPanel1Layout.createSequentialGroup()
+                        .addComponent(jSeparator2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnNext, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1))
                 .addContainerGap())
         );
         roundPanel1Layout.setVerticalGroup(
@@ -210,9 +220,9 @@ public class HoaDonNhap extends javax.swing.JPanel {
                                     .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(lblSumPrice))))))
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                 .addComponent(btnNext, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -467,6 +477,12 @@ public class HoaDonNhap extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnAmountStateChanged
 
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        // TODO add your handling code here:
+        if(cboSearch.getSelectedIndex()>0 && Integer.parseInt(lblSumPrice.getText().substring(7)) > 0)
+            loadToTable();
+    }//GEN-LAST:event_btnAddActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private button.Button btnAdd;
@@ -503,7 +519,7 @@ public class HoaDonNhap extends javax.swing.JPanel {
     private com.raven.swing.RoundPanel roundPanel4;
     private com.raven.swing.RoundPanel roundPanel5;
     private com.raven.swing.RoundPanel roundPanel6;
-    private com.raven.swing.table.Table tblCardPro;
+    private com.raven.swing.Table tblCardPro;
     private textfield.TextFieldBasic txtEmailCus;
     private textfield.TextFieldBasic txtNameCus;
     private textfield.TextFieldBasic txtNameEmp;
@@ -550,5 +566,25 @@ public class HoaDonNhap extends javax.swing.JPanel {
             lblSumPrice.setText("Total: 0");
         else 
             lblSumPrice.setText("Total: "+(Integer.parseInt(lblPrice.getText().substring(7))*x));
+    }
+    
+    private void loadToTable(){
+        boolean check = true;
+        for(int i=0;i<card.size();i++){
+            if(list.get(cboSearch.getSelectedIndex()-1).getMaSP().equals(card.get(i)[0])){
+                check = false;
+                break;
+            }
+        }
+        if(check){
+            Object[] row = {list.get(cboSearch.getSelectedIndex()-1).getMaSP(), list.get(cboSearch.getSelectedIndex()-1).getTenSP(), btnAmount.getValue()};
+            card.add(row);
+            DefaultTableModel model = (DefaultTableModel)tblCardPro.getModel();
+            model.setRowCount(0);
+            for(int i=0;i<card.size();i++){
+                model.addRow(card.get(i));
+            }
+        }
+        
     }
 }
