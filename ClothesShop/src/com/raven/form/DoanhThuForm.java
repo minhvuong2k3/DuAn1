@@ -4,8 +4,19 @@
  */
 package com.raven.form;
 
+import com.raven.DAO.SanPhamDAO;
+import com.raven.DAO.ThongKeDAO;
+import com.raven.model.SanPham;
+import com.raven.model.ThongKeSP;
 import java.awt.Color;
+import java.awt.Image;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import javaswingdev.chart.ModelChart;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -16,34 +27,77 @@ public class DoanhThuForm extends javax.swing.JPanel {
     /**
      * Creates new form ThongKeForm
      */
+    ThongKeDAO dao = new ThongKeDAO();
+    SanPhamDAO spdao = new SanPhamDAO();
     public DoanhThuForm() {
         initComponents();
-//        chart1.setTitle("Chart Data");
-//        chart1.addLegend("Income", Color.decode("#f5af19"), Color.decode("#f12711"));
-//        chart1.addLegend("Expense", Color.decode("#a044ff"), Color.decode("#6a3093"));
-//        chart1.addLegend("Profit", Color.decode("#38ef7d"), Color.decode("#11998e"));
-//        chart1.addLegend("Cost", Color.decode("#0575E6"), Color.decode("#021B79"));
-//        chart1.addData(new ModelChart("January", new double[]{500, 200, 80, 89}));
-//        chart1.addData(new ModelChart("February", new double[]{600, 750, 90, 150}));
-//        chart1.addData(new ModelChart("March", new double[]{200, 350, 460, 900}));
-//        chart1.addData(new ModelChart("April", new double[]{480, 150, 750, 700}));
-//        chart1.addData(new ModelChart("May", new double[]{350, 540, 300, 150}));
-//        chart1.addData(new ModelChart("June", new double[]{450, 500, 700, 900}));
-//        chart1.start();
         init();
     }
 
     private void init() {
-        chart1.addLegend("Income", new Color(12, 84, 175), new Color(0, 108, 247));
-        chart1.addLegend("Expense", new Color(54, 4, 143), new Color(104, 49, 200));
-        chart1.addLegend("Profit", new Color(5, 125, 0), new Color(95, 209, 69));
-        chart1.addLegend("Cost", new Color(186, 37, 37), new Color(241, 100, 120));
-        chart1.addData(new com.raven.chart.ModelChart("January", new double[]{500, 200, 80, 89}));
-        chart1.addData(new com.raven.chart.ModelChart("February", new double[]{1000, 750, 90, 150}));
-        chart1.addData(new com.raven.chart.ModelChart("March", new double[]{200, 350, 460, 900}));
-        chart1.addData(new com.raven.chart.ModelChart("April", new double[]{480, 150, 750, 700}));
-        chart1.addData(new com.raven.chart.ModelChart("May", new double[]{350, 540, 300, 150}));
-        chart1.addData(new com.raven.chart.ModelChart("June", new double[]{190, 280, 81, 200}));
+        Date date = new Date();
+        List<Object[]> list = dao.getSanPhamTop3(date.getYear()+1900, date.getMonth()+1);
+        chart1.addLegend((String) list.get(0)[0], new Color(12, 84, 175), new Color(0, 108, 247));
+        chart1.addLegend((String) list.get(1)[0], new Color(54, 4, 143), new Color(104, 49, 200));
+        chart1.addLegend((String) list.get(2)[0], new Color(5, 125, 0), new Color(95, 209, 69));
+        
+        SanPham sp1 = spdao.selectById((String) list.get(0)[0]);
+        SanPham sp2 = spdao.selectById((String) list.get(1)[0]);
+        SanPham sp3 = spdao.selectById((String) list.get(2)[0]);
+        
+        lblNameSP1.setText(sp1.getTenSP());
+        lblNameSP2.setText(sp2.getTenSP());
+        lblNameSP3.setText(sp3.getTenSP());
+        lblMoneySP1.setText(list.get(0)[1].toString());
+        lblMoneySP2.setText(list.get(1)[1].toString());
+        lblMoneySP3.setText(list.get(2)[1].toString());
+        lblImageSP1.setIcon(new ImageIcon(new ImageIcon(getClass().getResource(("/com/raven/image/" + sp1.getAnh()))).getImage().getScaledInstance(32, 32, Image.SCALE_DEFAULT)));
+        lblImageSP2.setIcon(new ImageIcon(new ImageIcon(getClass().getResource(("/com/raven/image/" + sp2.getAnh()))).getImage().getScaledInstance(32, 32, Image.SCALE_DEFAULT)));
+        lblImageSP3.setIcon(new ImageIcon(new ImageIcon(getClass().getResource(("/com/raven/image/" + sp3.getAnh()))).getImage().getScaledInstance(32, 32, Image.SCALE_DEFAULT)));
+        lblImageSP1.setText("");
+        lblImageSP2.setText("");
+        lblImageSP3.setText("");
+        
+        List<Object[]> khachHang = dao.getKhachHangTop3();
+        lblNameCus1.setText(khachHang.get(0)[0].toString());
+        lblNameCus2.setText(khachHang.get(1)[0].toString());
+        lblNameCus3.setText(khachHang.get(2)[0].toString());
+        lblSdtCus1.setText(khachHang.get(0)[1].toString());
+        lblSdtCus2.setText(khachHang.get(1)[1].toString());
+        lblSdtCus3.setText(khachHang.get(2)[1].toString());
+        lblAmountCus1.setText(khachHang.get(0)[2].toString());
+        lblAmountCus2.setText(khachHang.get(1)[2].toString());
+        lblAmountCus3.setText(khachHang.get(2)[2].toString());
+        
+        ArrayList<Object[]> giaTri = new ArrayList<>();
+        
+        int k = 0;
+        for(int i=0; i<6;i++){
+            Object[] a = new Object[3];
+            List<Object[]> list1 = dao.getSanPhamThang(date.getYear()+1900, date.getMonth()+1-k, (String) list.get(0)[0]);
+            List<Object[]> list2 = dao.getSanPhamThang(date.getYear()+1900, date.getMonth()+1-k, (String) list.get(1)[0]);
+            List<Object[]> list3 = dao.getSanPhamThang(date.getYear()+1900, date.getMonth()+1-k, (String) list.get(2)[0]);
+            if(list1.size()>0)
+                a[0] = list1.get(0)[1];
+            else 
+                a[0] = 0;
+            if(list2.size()>0)
+                a[1] = list2.get(0)[1];
+            else 
+                a[1] = 0;
+            if(list3.size()>0)
+                a[2] = list3.get(0)[1];
+            else 
+                a[2] = 0;
+            giaTri.add(a);
+            k++;
+        }
+        chart1.addData(new com.raven.chart.ModelChart("June", new double[]{Double.valueOf(giaTri.get(5)[0].toString()), Double.valueOf(giaTri.get(5)[1].toString()), Double.valueOf(giaTri.get(5)[2].toString())}));
+        chart1.addData(new com.raven.chart.ModelChart("July", new double[]{Double.valueOf(giaTri.get(4)[0].toString()), Double.valueOf(giaTri.get(4)[1].toString()), Double.valueOf(giaTri.get(4)[2].toString())}));
+        chart1.addData(new com.raven.chart.ModelChart("August", new double[]{Double.valueOf(giaTri.get(3)[0].toString()), Double.valueOf(giaTri.get(3)[1].toString()), Double.valueOf(giaTri.get(3)[2].toString())}));
+        chart1.addData(new com.raven.chart.ModelChart("September", new double[]{Double.valueOf(giaTri.get(2)[0].toString()), Double.valueOf(giaTri.get(2)[1].toString()), Double.valueOf(giaTri.get(2)[2].toString())}));
+        chart1.addData(new com.raven.chart.ModelChart("October", new double[]{Double.valueOf(giaTri.get(1)[0].toString()), Double.valueOf(giaTri.get(1)[1].toString()), Double.valueOf(giaTri.get(1)[2].toString())}));
+        chart1.addData(new com.raven.chart.ModelChart("November", new double[]{Double.valueOf(giaTri.get(0)[0].toString()), Double.valueOf(giaTri.get(0)[1].toString()), Double.valueOf(giaTri.get(0)[2].toString())}));
         chart1.start();
     }
 
@@ -59,42 +113,42 @@ public class DoanhThuForm extends javax.swing.JPanel {
         roundPanel1 = new com.raven.swing.RoundPanel();
         jLabel2 = new javax.swing.JLabel();
         roundPanel7 = new com.raven.swing.RoundPanel();
-        jLabel21 = new javax.swing.JLabel();
-        jLabel23 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
+        lblNameCus3 = new javax.swing.JLabel();
+        lblAmountCus3 = new javax.swing.JLabel();
+        lblIconCus3 = new javax.swing.JLabel();
+        lblSdtCus3 = new javax.swing.JLabel();
         button5 = new button.Button();
         roundPanel11 = new com.raven.swing.RoundPanel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
+        lblAmountCus1 = new javax.swing.JLabel();
+        lblNameCus1 = new javax.swing.JLabel();
+        lblSdtCus1 = new javax.swing.JLabel();
         button3 = new button.Button();
-        jLabel15 = new javax.swing.JLabel();
+        lblIconCus1 = new javax.swing.JLabel();
         roundPanel12 = new com.raven.swing.RoundPanel();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
+        lblIconCus2 = new javax.swing.JLabel();
+        lblNameCus2 = new javax.swing.JLabel();
+        lblSdtCus2 = new javax.swing.JLabel();
         button4 = new button.Button();
-        jLabel19 = new javax.swing.JLabel();
+        lblAmountCus2 = new javax.swing.JLabel();
         button1 = new button.Button();
         roundPanel2 = new com.raven.swing.RoundPanel();
         chart1 = new com.raven.chart.CurveChart();
         roundPanel3 = new com.raven.swing.RoundPanel();
         jLabel3 = new javax.swing.JLabel();
         roundPanel8 = new com.raven.swing.RoundPanel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        lblNameSP2 = new javax.swing.JLabel();
+        lblMoneySP2 = new javax.swing.JLabel();
+        lblImageSP2 = new javax.swing.JLabel();
         button7 = new button.Button();
         roundPanel9 = new com.raven.swing.RoundPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        lblNameSP1 = new javax.swing.JLabel();
+        lblMoneySP1 = new javax.swing.JLabel();
+        lblImageSP1 = new javax.swing.JLabel();
         button6 = new button.Button();
         roundPanel10 = new com.raven.swing.RoundPanel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        lblNameSP3 = new javax.swing.JLabel();
+        lblMoneySP3 = new javax.swing.JLabel();
+        lblImageSP3 = new javax.swing.JLabel();
         button8 = new button.Button();
         button2 = new button.Button();
 
@@ -107,15 +161,15 @@ public class DoanhThuForm extends javax.swing.JPanel {
 
         roundPanel7.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel21.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel21.setText("Name");
+        lblNameCus3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblNameCus3.setText("Name");
 
-        jLabel23.setText("Total Amount");
+        lblAmountCus3.setText("Total Amount");
 
-        jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel20.setText("ICON");
+        lblIconCus3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblIconCus3.setText("3");
 
-        jLabel22.setText("Type");
+        lblSdtCus3.setText("Type");
 
         button5.setBackground(new java.awt.Color(80, 87, 122));
         button5.setForeground(new java.awt.Color(255, 255, 255));
@@ -127,13 +181,13 @@ public class DoanhThuForm extends javax.swing.JPanel {
             roundPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(roundPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblIconCus3, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblNameCus3, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblSdtCus3, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblAmountCus3, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(button5, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -143,29 +197,29 @@ public class DoanhThuForm extends javax.swing.JPanel {
             .addGroup(roundPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(roundPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-                    .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-                    .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+                    .addComponent(lblIconCus3, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+                    .addComponent(lblNameCus3, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+                    .addComponent(lblSdtCus3, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
                     .addComponent(button5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblAmountCus3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(5, 5, 5))
         );
 
         roundPanel11.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel12.setText("Total Amount");
+        lblAmountCus1.setText("Total Amount");
 
-        jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel13.setText("Name");
+        lblNameCus1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblNameCus1.setText("Name");
 
-        jLabel14.setText("Type");
+        lblSdtCus1.setText("Type");
 
         button3.setBackground(new java.awt.Color(80, 87, 122));
         button3.setForeground(new java.awt.Color(255, 255, 255));
         button3.setText("View");
 
-        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel15.setText("ICON");
+        lblIconCus1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblIconCus1.setText("1");
 
         javax.swing.GroupLayout roundPanel11Layout = new javax.swing.GroupLayout(roundPanel11);
         roundPanel11.setLayout(roundPanel11Layout);
@@ -173,13 +227,13 @@ public class DoanhThuForm extends javax.swing.JPanel {
             roundPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundPanel11Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblIconCus1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblNameCus1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblSdtCus1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
-                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblAmountCus1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(button3, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -190,28 +244,28 @@ public class DoanhThuForm extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(roundPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(button3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-                    .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblNameCus1, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+                    .addComponent(lblSdtCus1, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+                    .addComponent(lblAmountCus1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblIconCus1, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
         roundPanel12.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel16.setText("ICON");
+        lblIconCus2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblIconCus2.setText("2");
 
-        jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel17.setText("Name");
+        lblNameCus2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblNameCus2.setText("Name");
 
-        jLabel18.setText("Type");
+        lblSdtCus2.setText("Type");
 
         button4.setBackground(new java.awt.Color(80, 87, 122));
         button4.setForeground(new java.awt.Color(255, 255, 255));
         button4.setText("View");
 
-        jLabel19.setText("Total Amount");
+        lblAmountCus2.setText("Total Amount");
 
         javax.swing.GroupLayout roundPanel12Layout = new javax.swing.GroupLayout(roundPanel12);
         roundPanel12.setLayout(roundPanel12Layout);
@@ -219,13 +273,13 @@ public class DoanhThuForm extends javax.swing.JPanel {
             roundPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(roundPanel12Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblIconCus2, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblNameCus2, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblSdtCus2, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblAmountCus2, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(button4, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -237,11 +291,11 @@ public class DoanhThuForm extends javax.swing.JPanel {
                 .addGroup(roundPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(roundPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(button4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(lblAmountCus2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(roundPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-                        .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-                        .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)))
+                        .addComponent(lblIconCus2, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+                        .addComponent(lblNameCus2, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+                        .addComponent(lblSdtCus2, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -268,7 +322,7 @@ public class DoanhThuForm extends javax.swing.JPanel {
         roundPanel1Layout.setVerticalGroup(
             roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(roundPanel1Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
+                .addGap(23, 23, 23)
                 .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -307,13 +361,13 @@ public class DoanhThuForm extends javax.swing.JPanel {
 
         roundPanel8.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel7.setText("Name");
+        lblNameSP2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblNameSP2.setText("Name");
 
-        jLabel6.setText("Money");
+        lblMoneySP2.setText("Money");
 
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("IMG");
+        lblImageSP2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblImageSP2.setText("IMG");
 
         button7.setBackground(new java.awt.Color(80, 87, 122));
         button7.setForeground(new java.awt.Color(255, 255, 255));
@@ -325,11 +379,11 @@ public class DoanhThuForm extends javax.swing.JPanel {
             roundPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(roundPanel8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblImageSP2, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(roundPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE))
+                    .addComponent(lblMoneySP2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblNameSP2, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(button7, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -341,23 +395,23 @@ public class DoanhThuForm extends javax.swing.JPanel {
                 .addGroup(roundPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(button7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(roundPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblImageSP2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(roundPanel8Layout.createSequentialGroup()
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblNameSP2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jLabel6))))
-                .addContainerGap(12, Short.MAX_VALUE))
+                            .addComponent(lblMoneySP2))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         roundPanel9.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel1.setText("Name");
+        lblNameSP1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblNameSP1.setText("Name");
 
-        jLabel4.setText("Money");
+        lblMoneySP1.setText("Money");
 
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("IMG");
+        lblImageSP1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblImageSP1.setText("IMG");
 
         button6.setBackground(new java.awt.Color(80, 87, 122));
         button6.setForeground(new java.awt.Color(255, 255, 255));
@@ -369,11 +423,11 @@ public class DoanhThuForm extends javax.swing.JPanel {
             roundPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(roundPanel9Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblImageSP1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(roundPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE))
+                    .addComponent(lblMoneySP1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblNameSP1, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE))
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(button6, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -385,23 +439,23 @@ public class DoanhThuForm extends javax.swing.JPanel {
                 .addGroup(roundPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(button6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(roundPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblImageSP1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(roundPanel9Layout.createSequentialGroup()
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblNameSP1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jLabel4))))
-                .addContainerGap(12, Short.MAX_VALUE))
+                            .addComponent(lblMoneySP1))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         roundPanel10.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel10.setText("Name");
+        lblNameSP3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblNameSP3.setText("Name");
 
-        jLabel11.setText("Money");
+        lblMoneySP3.setText("Money");
 
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setText("IMG");
+        lblImageSP3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblImageSP3.setText("IMG");
 
         button8.setBackground(new java.awt.Color(80, 87, 122));
         button8.setForeground(new java.awt.Color(255, 255, 255));
@@ -413,11 +467,11 @@ public class DoanhThuForm extends javax.swing.JPanel {
             roundPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundPanel10Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblImageSP3, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(roundPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE))
+                    .addComponent(lblMoneySP3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblNameSP3, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(button8, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -429,12 +483,12 @@ public class DoanhThuForm extends javax.swing.JPanel {
                 .addGroup(roundPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(button8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(roundPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblImageSP3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(roundPanel10Layout.createSequentialGroup()
-                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblNameSP3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jLabel11))))
-                .addContainerGap(12, Short.MAX_VALUE))
+                            .addComponent(lblMoneySP3))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         button2.setBackground(new java.awt.Color(80, 87, 122));
@@ -514,29 +568,29 @@ public class DoanhThuForm extends javax.swing.JPanel {
     private button.Button button7;
     private button.Button button8;
     private com.raven.chart.CurveChart chart1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel lblAmountCus1;
+    private javax.swing.JLabel lblAmountCus2;
+    private javax.swing.JLabel lblAmountCus3;
+    private javax.swing.JLabel lblIconCus1;
+    private javax.swing.JLabel lblIconCus2;
+    private javax.swing.JLabel lblIconCus3;
+    private javax.swing.JLabel lblImageSP1;
+    private javax.swing.JLabel lblImageSP2;
+    private javax.swing.JLabel lblImageSP3;
+    private javax.swing.JLabel lblMoneySP1;
+    private javax.swing.JLabel lblMoneySP2;
+    private javax.swing.JLabel lblMoneySP3;
+    private javax.swing.JLabel lblNameCus1;
+    private javax.swing.JLabel lblNameCus2;
+    private javax.swing.JLabel lblNameCus3;
+    private javax.swing.JLabel lblNameSP1;
+    private javax.swing.JLabel lblNameSP2;
+    private javax.swing.JLabel lblNameSP3;
+    private javax.swing.JLabel lblSdtCus1;
+    private javax.swing.JLabel lblSdtCus2;
+    private javax.swing.JLabel lblSdtCus3;
     private com.raven.swing.RoundPanel roundPanel1;
     private com.raven.swing.RoundPanel roundPanel10;
     private com.raven.swing.RoundPanel roundPanel11;

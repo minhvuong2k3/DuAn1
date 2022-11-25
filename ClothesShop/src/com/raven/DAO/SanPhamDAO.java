@@ -5,6 +5,7 @@
 package com.raven.DAO;
 
 import com.raven.model.SanPham;
+import com.raven.model.ThongKeSP;
 import com.raven.utils.XJdbc;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -58,7 +59,7 @@ public class SanPhamDAO extends ClothingStoreDAO<SanPham, String>{
         String sql = "SELECT MaSP, TenSP, Anh, SoLuong, GiaBan, MaLH, GiamGia, MaNCC FROM SanPham";
         return select(sql);
     }
-
+    
     public List<SanPham> selectByKeyword(String keyword) {
         String sql = "SELECT MaSP, TenSP, Anh, SoLuong, GiaBan, MaLH, GiamGia, MaNCC FROM SanPham WHERE MaSP like ? OR TenSP like ?";
         return select(sql, "%" + keyword + "%", "%" + keyword + "%");
