@@ -35,7 +35,6 @@ public class Main extends javax.swing.JFrame {
     private DoanhThu2_Form doanhthuForm;
     private Dashboard dashForm;
     static int i = 0;
-
     public Main() {
         initComponents();
         setBackground(new Color(0, 0, 0, 0));
