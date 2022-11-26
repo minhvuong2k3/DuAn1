@@ -57,6 +57,7 @@ public class Invoice extends javax.swing.JPanel {
     }
     
     public void addItem(){
+        product.removeAll();
         int sum = 0;
         for(int i=0;i<AddProducts.card.size();i++){
             SanPham sp = dao.selectById(AddProducts.card.get(i)[0].toString());
