@@ -32,6 +32,7 @@ public class HoaDonNhap extends javax.swing.JPanel {
 
     public HoaDonNhap() {
         initComponents();
+        System.out.println(AddProducts.a);
 //        init();
     }
 
@@ -68,6 +69,7 @@ public class HoaDonNhap extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         roundPanel1 = new com.raven.swing.RoundPanel();
         addProducts1 = new com.raven.form.AddProducts();
+        pay_Form1 = new com.raven.form.Pay_Form();
         roundPanel2 = new com.raven.swing.RoundPanel();
         roundPanel4 = new com.raven.swing.RoundPanel();
         jLabel11 = new javax.swing.JLabel();
@@ -93,6 +95,7 @@ public class HoaDonNhap extends javax.swing.JPanel {
         jSeparator4 = new javax.swing.JSeparator();
         jSeparator6 = new javax.swing.JSeparator();
         button1 = new button.Button();
+        button2 = new button.Button();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -100,6 +103,7 @@ public class HoaDonNhap extends javax.swing.JPanel {
         roundPanel1.setPreferredSize(new java.awt.Dimension(544, 610));
         roundPanel1.setLayout(new java.awt.CardLayout());
         roundPanel1.add(addProducts1, "card2");
+        roundPanel1.add(pay_Form1, "card3");
 
         roundPanel2.setBackground(new java.awt.Color(255, 255, 255));
         roundPanel2.setPreferredSize(new java.awt.Dimension(544, 610));
@@ -294,6 +298,13 @@ public class HoaDonNhap extends javax.swing.JPanel {
         );
 
         button1.setText("NEXT");
+        button1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button1ActionPerformed(evt);
+            }
+        });
+
+        button2.setText("PREV");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -305,11 +316,11 @@ public class HoaDonNhap extends javax.swing.JPanel {
                     .addComponent(roundPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(roundPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(roundPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 786, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(roundPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 784, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(button2, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(13, 13, 13)))))
@@ -326,8 +337,10 @@ public class HoaDonNhap extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(roundPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(18, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(button2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -342,11 +355,16 @@ public class HoaDonNhap extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
+        
+    }//GEN-LAST:event_button1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.raven.form.AddProducts addProducts1;
     private button.Button btnClear;
     private button.Button button1;
+    private button.Button button2;
     private button.Button button4;
     private button.Button button5;
     private button.Button button6;
@@ -362,6 +380,7 @@ public class HoaDonNhap extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
+    private com.raven.form.Pay_Form pay_Form1;
     private com.raven.swing.RoundPanel roundPanel1;
     private com.raven.swing.RoundPanel roundPanel2;
     private com.raven.swing.RoundPanel roundPanel4;

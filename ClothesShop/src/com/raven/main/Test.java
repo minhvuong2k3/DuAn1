@@ -29,26 +29,26 @@ public class Test extends javax.swing.JFrame {
      */
     public Test() {
         initComponents();
-        scroll.setBorder(null);
-        scroll.setViewportBorder(null);
-        scroll.getViewport().setOpaque(false);
-        scroll.setVerticalScrollBar(new ScrollBarCustom());
-        scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-
-//        table1.addTableCell(new CellName(), 0);
-//        table1.addTableCell(new CellGender(), 1);
-//        table1.addTableCell(new CellAge(), 2);
-//        table1.addTableCell(new CellAddress(), 3);
-//        table1.addTableCell(new CellTel(), 4);
-        table1.addTableCell(new CellAction(), 5);
-        
-        table1.addRow(new ModelStaff("123", "123", "123", 12, "123", "123", "123", "123"), false);  //  ture is animate row
-        table1.addRow(new ModelStaff("123", "123", "123", 12, "123", "123", "123", "123"), false);  //  ture is animate row
-        table1.addRow(new ModelStaff("123", "123", "123", 12, "123", "123", "123", "123"), false);  //  ture is animate row
-        table1.addRow(new ModelStaff("123", "123", "123", 12, "123", "123", "123", "123"), false);  //  ture is animate row
-        table1.addRow(new ModelStaff("123", "123", "123", 12, "123", "123", "123", "123"), false);  //  ture is animate row
-        table1.addRow(new ModelStaff("123", "123", "123", 12, "123", "123", "123", "123"), false);  //  ture is animate row
-        table1.addRow(new ModelStaff("123", "123", "123", 12, "123", "123", "123", "123"), false);  //  ture is animate row
+//        scroll.setBorder(null);
+//        scroll.setViewportBorder(null);
+//        scroll.getViewport().setOpaque(false);
+//        scroll.setVerticalScrollBar(new ScrollBarCustom());
+//        scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+//
+////        table1.addTableCell(new CellName(), 0);
+////        table1.addTableCell(new CellGender(), 1);
+////        table1.addTableCell(new CellAge(), 2);
+////        table1.addTableCell(new CellAddress(), 3);
+////        table1.addTableCell(new CellTel(), 4);
+//        table1.addTableCell(new CellAction(), 5);
+//        
+//        table1.addRow(new ModelStaff("123", "123", "123", 12, "123", "123", "123", "123"), false);  //  ture is animate row
+//        table1.addRow(new ModelStaff("123", "123", "123", 12, "123", "123", "123", "123"), false);  //  ture is animate row
+//        table1.addRow(new ModelStaff("123", "123", "123", 12, "123", "123", "123", "123"), false);  //  ture is animate row
+//        table1.addRow(new ModelStaff("123", "123", "123", 12, "123", "123", "123", "123"), false);  //  ture is animate row
+//        table1.addRow(new ModelStaff("123", "123", "123", 12, "123", "123", "123", "123"), false);  //  ture is animate row
+//        table1.addRow(new ModelStaff("123", "123", "123", 12, "123", "123", "123", "123"), false);  //  ture is animate row
+//        table1.addRow(new ModelStaff("123", "123", "123", 12, "123", "123", "123", "123"), false);  //  ture is animate row
 
     }
 
@@ -61,22 +61,9 @@ public class Test extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        scroll = new javax.swing.JScrollPane();
-        table1 = new com.raven.swing.Table();
+        nhapHang1 = new com.raven.form.NhapHang();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        scroll.setForeground(new java.awt.Color(204, 255, 204));
-
-        table1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Name", "Gender", "Age", "Email", "Tel", "Action"
-            }
-        ));
-        scroll.setViewportView(table1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -84,15 +71,14 @@ public class Test extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 529, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(369, 369, 369))
+                .addComponent(nhapHang1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(253, Short.MAX_VALUE)
-                .addComponent(scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(75, 75, 75))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(nhapHang1, javax.swing.GroupLayout.DEFAULT_SIZE, 596, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -134,8 +120,6 @@ public class Test extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane scroll;
-    private com.raven.swing.Table table1;
+    private com.raven.form.NhapHang nhapHang1;
     // End of variables declaration//GEN-END:variables
 }
