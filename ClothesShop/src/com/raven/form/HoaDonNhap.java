@@ -9,6 +9,7 @@ import com.raven.cell.CellAction;
 import com.raven.cell.CellName;
 import com.raven.model.SanPham;
 import com.raven.utils.Auth;
+import java.awt.CardLayout;
 import java.awt.Image;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,37 +26,11 @@ public class HoaDonNhap extends javax.swing.JPanel {
     /**
      * Creates new form HoaDonNhap
      */
-    SanPhamDAO dao = new SanPhamDAO();
-    List<SanPham> list = dao.select();
-    int indexCbo = 0;
-    List<Object[]> card = new ArrayList<>();
 
     public HoaDonNhap() {
         initComponents();
-        System.out.println(AddProducts.a);
-//        init();
+        init();
     }
-
-//    add(){
-//        if(cboSearch.getSelectedIndex()>0 && Integer.parseInt(lblSumPrice.getText().substring(7)) > 0)
-//        loadToTable();
-//    };
-//    amount() {
-//        if (cboSearch.getSelectedIndex() > 0) {
-//            sumPrice((int) btnAmount.getValue());
-//        }
-//    };
-//    search() {
-//        if (indexCbo != 0) {
-//            if (cboSearch.getSelectedIndex() > 0) {
-//                loadSP(cboSearch.getSelectedIndex());
-//                sumPrice((int) btnAmount.getValue());
-//            } else {
-//                clearSP();
-//            }
-//        }
-//        indexCbo++;
-//    };
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -356,7 +331,8 @@ public class HoaDonNhap extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
-        
+        CardLayout card = (CardLayout) roundPanel1.getLayout();
+        card.show(roundPanel1, "card3");
     }//GEN-LAST:event_button1ActionPerformed
 
 
@@ -393,65 +369,12 @@ public class HoaDonNhap extends javax.swing.JPanel {
     private textfield.TextFieldBasic txtRoleEmp;
     // End of variables declaration//GEN-END:variables
 
-//    private void init() {
-//        load();
-//        loadToCbo();
-//    }
-//
-//    private void load() {
-//        txtNameEmp.setText(Auth.user.getHoten());
-//        txtRoleEmp.setText(Auth.user.getVaiTro() ? "Admin" : "Nhân viên");
-//    }
-//
-//    private void loadToCbo() {
-//        DefaultComboBoxModel model = (DefaultComboBoxModel) cboSearch.getModel();
-//        model.removeAllElements();
-//        model.addElement("");
-//        for (int i = 0; i < list.size(); i++) {
-//            model.addElement(list.get(i).getMaSP());
-//        }
-//        cboSearch.setModel(model);
-//    }
-//
-//    private void loadSP(int index) {
-//        lblNameProduct.setText(list.get(index - 1).getTenSP());
-//        lblPrice.setText("Price: " + list.get(index - 1).getGiaBan());
-//        lblImage.setIcon(new ImageIcon(new ImageIcon(getClass().getResource(("/com/raven/image/" + list.get(index - 1).getAnh()))).getImage().getScaledInstance(135, 164, Image.SCALE_DEFAULT)));
-//    }
-//
-//    private void clearSP() {
-//        lblNameProduct.setText("NAME PRODUCT");
-//        lblPrice.setText("Price ");
-//        lblImage.setIcon(null);
-//        lblImage.setText("IMG");
-//        lblSumPrice.setText("Total: 0");
-//    }
-//
-//    private void sumPrice(int x) {
-//        if (x <= 0) {
-//            lblSumPrice.setText("Total: 0");
-//        } else {
-//            lblSumPrice.setText("Total: " + (Integer.parseInt(lblPrice.getText().substring(7)) * x));
-//        }
-//    }
-//
-//    private void loadToTable() {
-//        boolean check = true;
-//        for (int i = 0; i < card.size(); i++) {
-//            if (list.get(cboSearch.getSelectedIndex() - 1).getMaSP().equals(card.get(i)[0])) {
-//                check = false;
-//                break;
-//            }
-//        }
-//        if (check) {
-//            Object[] row = {list.get(cboSearch.getSelectedIndex() - 1).getMaSP(), list.get(cboSearch.getSelectedIndex() - 1).getTenSP(), btnAmount.getValue()};
-//            card.add(row);
-//            DefaultTableModel model = (DefaultTableModel) tblCardPro.getModel();
-//            model.setRowCount(0);
-//            for (int i = 0; i < card.size(); i++) {
-//                model.addRow(card.get(i));
-//            }
-//        }
-//
-//    }
+    private void init() {
+        load();
+    }
+
+    private void load() {
+        txtNameEmp.setText(Auth.user.getHoten());
+        txtRoleEmp.setText(Auth.user.getVaiTro() ? "Admin" : "Nhân viên");
+    }
 }
