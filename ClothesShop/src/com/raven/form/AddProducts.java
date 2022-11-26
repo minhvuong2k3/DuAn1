@@ -4,6 +4,11 @@
  */
 package com.raven.form;
 
+import com.raven.cell.CellAction;
+import com.raven.model.ModelStaff;
+import com.raven.swing.scrollbar.ScrollBarCustom;
+import javax.swing.JScrollPane;
+
 /**
  *
  * @author AD MIN
@@ -15,6 +20,22 @@ public class AddProducts extends javax.swing.JPanel {
      */
     public AddProducts() {
         initComponents();
+        table1.addTableStyle(jScrollPane1);
+        scroll.setBorder(null);
+        scroll.setViewportBorder(null);
+        scroll.getViewport().setOpaque(false);
+        scroll.setVerticalScrollBar(new ScrollBarCustom());
+        table1.addTableCell(new CellAction(), 5);
+
+        scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        table1.addRow(new ModelStaff("123", "123", "123", 12, "123", "123", "123", "123"), false);  //  ture is animate row
+        table1.addRow(new ModelStaff("123", "123", "123", 12, "123", "123", "123", "123"), false);  //  ture is animate row
+        table1.addRow(new ModelStaff("123", "123", "123", 12, "123", "123", "123", "123"), false);  //  ture is animate row
+        table1.addRow(new ModelStaff("123", "123", "123", 12, "123", "123", "123", "123"), false);  //  ture is animate row
+        table1.addRow(new ModelStaff("123", "123", "123", 12, "123", "123", "123", "123"), false);  //  ture is animate row
+        table1.addRow(new ModelStaff("123", "123", "123", 12, "123", "123", "123", "123"), false);  //  ture is animate row
+        table1.addRow(new ModelStaff("123", "123", "123", 12, "123", "123", "123", "123"), false);  //  ture is animate row
+
     }
 
     /**
@@ -37,10 +58,10 @@ public class AddProducts extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         spinner1 = new spinner.Spinner();
         button1 = new button.Button();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        table1 = new com.raven.swing.table.Table();
-        button2 = new button.Button();
         jLabel15 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        scroll = new javax.swing.JScrollPane();
+        table1 = new com.raven.swing.Table();
 
         roundPanel1.setBackground(new java.awt.Color(255, 255, 255));
         roundPanel1.setPreferredSize(new java.awt.Dimension(544, 610));
@@ -81,34 +102,31 @@ public class AddProducts extends javax.swing.JPanel {
 
         button1.setText("Add to cart");
 
+        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/search.png"))); // NOI18N
+
+        jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
+
         table1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Name", "Gender", "Age", "Email", "Tel", "Action"
             }
         ));
-        jScrollPane1.setViewportView(table1);
+        scroll.setViewportView(table1);
 
-        button2.setText("NEXT");
-
-        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/search.png"))); // NOI18N
+        jScrollPane1.setViewportView(scroll);
 
         javax.swing.GroupLayout roundPanel1Layout = new javax.swing.GroupLayout(roundPanel1);
         roundPanel1.setLayout(roundPanel1Layout);
         roundPanel1Layout.setHorizontalGroup(
             roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(roundPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(button2, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(roundPanel1Layout.createSequentialGroup()
+                .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, roundPanel1Layout.createSequentialGroup()
                         .addComponent(roundPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(roundPanel1Layout.createSequentialGroup()
@@ -124,14 +142,13 @@ public class AddProducts extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(6, 6, 6))
-                    .addComponent(jScrollPane1)
-                    .addGroup(roundPanel1Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, roundPanel1Layout.createSequentialGroup()
                         .addGap(8, 8, 8)
                         .addComponent(jLabel15)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(comboBoxSuggestion1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jSeparator1)
-                    .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator2))
                 .addContainerGap())
         );
         roundPanel1Layout.setVerticalGroup(
@@ -161,10 +178,9 @@ public class AddProducts extends javax.swing.JPanel {
                                     .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel4))))))
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(button2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, 0)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -175,14 +191,13 @@ public class AddProducts extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(roundPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(roundPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private button.Button button1;
-    private button.Button button2;
     private combo_suggestion.ComboBoxSuggestion comboBoxSuggestion1;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
@@ -194,7 +209,8 @@ public class AddProducts extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator2;
     private com.raven.swing.RoundPanel roundPanel1;
     private com.raven.swing.RoundPanel roundPanel3;
+    private javax.swing.JScrollPane scroll;
     private spinner.Spinner spinner1;
-    private com.raven.swing.table.Table table1;
+    private com.raven.swing.Table table1;
     // End of variables declaration//GEN-END:variables
 }

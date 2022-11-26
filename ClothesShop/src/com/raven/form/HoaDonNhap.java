@@ -29,11 +29,33 @@ public class HoaDonNhap extends javax.swing.JPanel {
     List<SanPham> list = dao.select();
     int indexCbo = 0;
     List<Object[]> card = new ArrayList<>();
+
     public HoaDonNhap() {
         initComponents();
-        init();
+//        init();
     }
 
+//    add(){
+//        if(cboSearch.getSelectedIndex()>0 && Integer.parseInt(lblSumPrice.getText().substring(7)) > 0)
+//        loadToTable();
+//    };
+//    amount() {
+//        if (cboSearch.getSelectedIndex() > 0) {
+//            sumPrice((int) btnAmount.getValue());
+//        }
+//    };
+//    search() {
+//        if (indexCbo != 0) {
+//            if (cboSearch.getSelectedIndex() > 0) {
+//                loadSP(cboSearch.getSelectedIndex());
+//                sumPrice((int) btnAmount.getValue());
+//            } else {
+//                clearSP();
+//            }
+//        }
+//        indexCbo++;
+//    };
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -45,20 +67,7 @@ public class HoaDonNhap extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         roundPanel1 = new com.raven.swing.RoundPanel();
-        cboSearch = new combo_suggestion.ComboBoxSuggestion();
-        jSeparator1 = new javax.swing.JSeparator();
-        roundPanel3 = new com.raven.swing.RoundPanel();
-        lblImage = new javax.swing.JLabel();
-        jSeparator2 = new javax.swing.JSeparator();
-        lblNameProduct = new javax.swing.JLabel();
-        lblSumPrice = new javax.swing.JLabel();
-        lblPrice = new javax.swing.JLabel();
-        btnAmount = new spinner.Spinner();
-        btnAdd = new button.Button();
-        btnNext = new button.Button();
-        jLabel15 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblCardPro = new com.raven.swing.Table();
+        addProducts1 = new com.raven.form.AddProducts();
         roundPanel2 = new com.raven.swing.RoundPanel();
         roundPanel4 = new com.raven.swing.RoundPanel();
         jLabel11 = new javax.swing.JLabel();
@@ -83,148 +92,14 @@ public class HoaDonNhap extends javax.swing.JPanel {
         button6 = new button.Button();
         jSeparator4 = new javax.swing.JSeparator();
         jSeparator6 = new javax.swing.JSeparator();
+        button1 = new button.Button();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         roundPanel1.setBackground(new java.awt.Color(255, 255, 255));
         roundPanel1.setPreferredSize(new java.awt.Dimension(544, 610));
-
-        cboSearch.setBorder(null);
-        cboSearch.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cboSearchItemStateChanged(evt);
-            }
-        });
-
-        lblImage.setBackground(new java.awt.Color(255, 255, 255));
-        lblImage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblImage.setText("IMG");
-
-        javax.swing.GroupLayout roundPanel3Layout = new javax.swing.GroupLayout(roundPanel3);
-        roundPanel3.setLayout(roundPanel3Layout);
-        roundPanel3Layout.setHorizontalGroup(
-            roundPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(roundPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblImage, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        roundPanel3Layout.setVerticalGroup(
-            roundPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(roundPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblImage, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        lblNameProduct.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lblNameProduct.setText("NAME PRODUCT");
-
-        lblSumPrice.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblSumPrice.setText("Total : 0");
-
-        lblPrice.setText("Price");
-
-        btnAmount.setBorder(null);
-        btnAmount.setLabelText("Amount");
-        btnAmount.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                btnAmountStateChanged(evt);
-            }
-        });
-
-        btnAdd.setText("Add to cart");
-        btnAdd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddActionPerformed(evt);
-            }
-        });
-
-        btnNext.setText("NEXT");
-
-        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/search.png"))); // NOI18N
-
-        tblCardPro.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"", "", "", null},
-                {"", "", null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "ID", "Name", "Amount", "Action"
-            }
-        ));
-        jScrollPane1.setViewportView(tblCardPro);
-
-        javax.swing.GroupLayout roundPanel1Layout = new javax.swing.GroupLayout(roundPanel1);
-        roundPanel1.setLayout(roundPanel1Layout);
-        roundPanel1Layout.setHorizontalGroup(
-            roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(roundPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(roundPanel1Layout.createSequentialGroup()
-                        .addComponent(roundPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(roundPanel1Layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lblPrice, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(lblNameProduct, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGroup(roundPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 256, Short.MAX_VALUE)
-                                .addComponent(lblSumPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(6, 6, 6))
-                    .addGroup(roundPanel1Layout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addComponent(jLabel15)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cboSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jSeparator1)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundPanel1Layout.createSequentialGroup()
-                        .addComponent(jSeparator2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnNext, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1))
-                .addContainerGap())
-        );
-        roundPanel1Layout.setVerticalGroup(
-            roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(roundPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(cboSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(roundPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(roundPanel1Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(lblNameProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(roundPanel1Layout.createSequentialGroup()
-                                .addComponent(btnAmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(roundPanel1Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblSumPrice))))))
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
-                .addComponent(btnNext, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+        roundPanel1.setLayout(new java.awt.CardLayout());
+        roundPanel1.add(addProducts1, "card2");
 
         roundPanel2.setBackground(new java.awt.Color(255, 255, 255));
         roundPanel2.setPreferredSize(new java.awt.Dimension(544, 610));
@@ -418,6 +293,8 @@ public class HoaDonNhap extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        button1.setText("NEXT");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -428,8 +305,14 @@ public class HoaDonNhap extends javax.swing.JPanel {
                     .addComponent(roundPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(roundPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(roundPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 784, Short.MAX_VALUE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(roundPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 784, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(13, 13, 13)))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -440,7 +323,10 @@ public class HoaDonNhap extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(roundPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 525, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(roundPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(roundPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
@@ -456,70 +342,31 @@ public class HoaDonNhap extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cboSearchItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboSearchItemStateChanged
-        // TODO add your handling code here:
-        if(indexCbo!=0){
-            if(cboSearch.getSelectedIndex()>0){
-                loadSP(cboSearch.getSelectedIndex());
-                sumPrice((int) btnAmount.getValue());
-            }
-            else {
-                clearSP();
-            }
-        }
-        indexCbo++;
-    }//GEN-LAST:event_cboSearchItemStateChanged
-
-    private void btnAmountStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_btnAmountStateChanged
-        // TODO add your handling code here:
-        if(cboSearch.getSelectedIndex()>0){
-            sumPrice((int) btnAmount.getValue());
-        }
-    }//GEN-LAST:event_btnAmountStateChanged
-
-    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        // TODO add your handling code here:
-        if(cboSearch.getSelectedIndex()>0 && Integer.parseInt(lblSumPrice.getText().substring(7)) > 0)
-            loadToTable();
-    }//GEN-LAST:event_btnAddActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private button.Button btnAdd;
-    private spinner.Spinner btnAmount;
+    private com.raven.form.AddProducts addProducts1;
     private button.Button btnClear;
-    private button.Button btnNext;
+    private button.Button button1;
     private button.Button button4;
     private button.Button button5;
     private button.Button button6;
-    private combo_suggestion.ComboBoxSuggestion cboSearch;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
-    private javax.swing.JLabel lblImage;
-    private javax.swing.JLabel lblNameProduct;
-    private javax.swing.JLabel lblPrice;
-    private javax.swing.JLabel lblSumPrice;
     private com.raven.swing.RoundPanel roundPanel1;
     private com.raven.swing.RoundPanel roundPanel2;
-    private com.raven.swing.RoundPanel roundPanel3;
     private com.raven.swing.RoundPanel roundPanel4;
     private com.raven.swing.RoundPanel roundPanel5;
     private com.raven.swing.RoundPanel roundPanel6;
-    private com.raven.swing.Table tblCardPro;
     private textfield.TextFieldBasic txtEmailCus;
     private textfield.TextFieldBasic txtNameCus;
     private textfield.TextFieldBasic txtNameEmp;
@@ -527,64 +374,65 @@ public class HoaDonNhap extends javax.swing.JPanel {
     private textfield.TextFieldBasic txtRoleEmp;
     // End of variables declaration//GEN-END:variables
 
-    private void init() {
-        load();
-        loadToCbo();
-    }
-    
-    private void load(){
-        txtNameEmp.setText(Auth.user.getHoten());
-        txtRoleEmp.setText(Auth.user.getVaiTro()?"Admin":"Nhân viên");
-    }
-    
-    private void loadToCbo(){
-        DefaultComboBoxModel model = (DefaultComboBoxModel)cboSearch.getModel();
-        model.removeAllElements();
-        model.addElement("");
-        for(int i=0;i<list.size();i++){
-            model.addElement(list.get(i).getMaSP());
-        }
-        cboSearch.setModel(model);
-    }
-    
-    private void loadSP(int index){
-        lblNameProduct.setText(list.get(index-1).getTenSP());
-        lblPrice.setText("Price: "+list.get(index-1).getGiaBan());
-        lblImage.setIcon(new ImageIcon(new ImageIcon(getClass().getResource(("/com/raven/image/" + list.get(index-1).getAnh()))).getImage().getScaledInstance(135, 164, Image.SCALE_DEFAULT)));
-    }
-    
-    private void clearSP(){
-        lblNameProduct.setText("NAME PRODUCT");
-        lblPrice.setText("Price ");
-        lblImage.setIcon(null);
-        lblImage.setText("IMG");
-        lblSumPrice.setText("Total: 0");
-    }
-    
-    private void sumPrice(int x){
-        if(x <= 0)
-            lblSumPrice.setText("Total: 0");
-        else 
-            lblSumPrice.setText("Total: "+(Integer.parseInt(lblPrice.getText().substring(7))*x));
-    }
-    
-    private void loadToTable(){
-        boolean check = true;
-        for(int i=0;i<card.size();i++){
-            if(list.get(cboSearch.getSelectedIndex()-1).getMaSP().equals(card.get(i)[0])){
-                check = false;
-                break;
-            }
-        }
-        if(check){
-            Object[] row = {list.get(cboSearch.getSelectedIndex()-1).getMaSP(), list.get(cboSearch.getSelectedIndex()-1).getTenSP(), btnAmount.getValue()};
-            card.add(row);
-            DefaultTableModel model = (DefaultTableModel)tblCardPro.getModel();
-            model.setRowCount(0);
-            for(int i=0;i<card.size();i++){
-                model.addRow(card.get(i));
-            }
-        }
-        
-    }
+//    private void init() {
+//        load();
+//        loadToCbo();
+//    }
+//
+//    private void load() {
+//        txtNameEmp.setText(Auth.user.getHoten());
+//        txtRoleEmp.setText(Auth.user.getVaiTro() ? "Admin" : "Nhân viên");
+//    }
+//
+//    private void loadToCbo() {
+//        DefaultComboBoxModel model = (DefaultComboBoxModel) cboSearch.getModel();
+//        model.removeAllElements();
+//        model.addElement("");
+//        for (int i = 0; i < list.size(); i++) {
+//            model.addElement(list.get(i).getMaSP());
+//        }
+//        cboSearch.setModel(model);
+//    }
+//
+//    private void loadSP(int index) {
+//        lblNameProduct.setText(list.get(index - 1).getTenSP());
+//        lblPrice.setText("Price: " + list.get(index - 1).getGiaBan());
+//        lblImage.setIcon(new ImageIcon(new ImageIcon(getClass().getResource(("/com/raven/image/" + list.get(index - 1).getAnh()))).getImage().getScaledInstance(135, 164, Image.SCALE_DEFAULT)));
+//    }
+//
+//    private void clearSP() {
+//        lblNameProduct.setText("NAME PRODUCT");
+//        lblPrice.setText("Price ");
+//        lblImage.setIcon(null);
+//        lblImage.setText("IMG");
+//        lblSumPrice.setText("Total: 0");
+//    }
+//
+//    private void sumPrice(int x) {
+//        if (x <= 0) {
+//            lblSumPrice.setText("Total: 0");
+//        } else {
+//            lblSumPrice.setText("Total: " + (Integer.parseInt(lblPrice.getText().substring(7)) * x));
+//        }
+//    }
+//
+//    private void loadToTable() {
+//        boolean check = true;
+//        for (int i = 0; i < card.size(); i++) {
+//            if (list.get(cboSearch.getSelectedIndex() - 1).getMaSP().equals(card.get(i)[0])) {
+//                check = false;
+//                break;
+//            }
+//        }
+//        if (check) {
+//            Object[] row = {list.get(cboSearch.getSelectedIndex() - 1).getMaSP(), list.get(cboSearch.getSelectedIndex() - 1).getTenSP(), btnAmount.getValue()};
+//            card.add(row);
+//            DefaultTableModel model = (DefaultTableModel) tblCardPro.getModel();
+//            model.setRowCount(0);
+//            for (int i = 0; i < card.size(); i++) {
+//                model.addRow(card.get(i));
+//            }
+//        }
+//
+//    }
 }

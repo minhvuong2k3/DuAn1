@@ -21,10 +21,10 @@ public class Table extends TableCustom {
         scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         scroll.setVerticalScrollBar(new ScrollBarCustom());
         JPanel panel = new JPanel();
-        panel.setBackground(new Color(60, 60, 60));
-        setForeground(new Color(214, 214, 214));
-        setSelectionForeground(new Color(214, 214, 214));
-        setSelectionBackground(new Color(50, 50, 50));
+        panel.setBackground(new Color(214, 214, 214));
+        setForeground(new Color(0, 0, 0));
+        setSelectionForeground(new Color(0, 0, 0));
+        setSelectionBackground(new Color(214, 214, 214));
         getTableHeader().setDefaultRenderer(new TableHeaderCustom());
         setRowHeight(47);
         setShowHorizontalLines(true);
@@ -36,7 +36,7 @@ public class Table extends TableCustom {
     public Component prepareRenderer(TableCellRenderer tcr, int i, int i1) {
         Component com = super.prepareRenderer(tcr, i, i1);
         if (!isCellSelected(i, i1)) {
-            com.setBackground(new Color(60, 60, 60));
+            com.setBackground(new Color(250, 250, 250));
         }
         return com;
     }
