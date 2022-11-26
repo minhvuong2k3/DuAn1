@@ -9,8 +9,8 @@ public class TableHeaderCustom extends DefaultTableCellRenderer {
 
     public TableHeaderCustom() {
         setPreferredSize(new Dimension(0, 35));
-        setBackground(new Color(60, 60, 60));
-        setForeground(new Color(200, 200, 200));
+        setBackground(new Color(255,255,255));
+        setForeground(new Color(60, 60, 60));
     }
 
     @Override

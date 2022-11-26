@@ -11,6 +11,7 @@ import com.raven.form.Home;
 import com.raven.form.P_Form;
 import com.raven.form.Setting_Form;
 import com.raven.form.DoanhThuForm;
+import com.raven.form.FormHome;
 import com.raven.form.HoaDonNhap;
 import com.raven.menu.EventMenu;
 import com.raven.menu.Menu;
@@ -28,7 +29,7 @@ import javax.swing.Timer;
 public class Main extends javax.swing.JFrame {
 
     private Setting_Form settingForm;
-    private P_Form productForm;
+    private FormHome productForm;
     private Form_Home empForm;
     private HoaDonNhap InvoiceForm;
     private DoanhThuForm dashboardForm;
@@ -132,7 +133,7 @@ public class Main extends javax.swing.JFrame {
         settingForm.setDarkMode(pro.isDarkMode());
         settingForm.initBackgroundImage(pro.getBackgroundImage());
         mainBody.displayForm(new Home_Form());
-        productForm = new P_Form();
+        productForm = new FormHome();
         empForm = new Form_Home(this);
         dashForm = new Dashboard();
         InvoiceForm = new HoaDonNhap();

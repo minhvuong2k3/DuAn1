@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.LinearGradientPaint;
+import java.awt.RenderingHints;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -57,7 +58,7 @@ public class PanelGradient extends javax.swing.JPanel {
             int ey = height; //  as End y
             LinearGradientPaint g = new LinearGradientPaint(sx, sy, ex, ey, position, color);
             g2.setPaint(g);
-            g2.fillRect(0, 0, width, height);
+            g2.fillRect(0, 0, width, height);          
         }
         super.paintComponent(grphcs);
     }

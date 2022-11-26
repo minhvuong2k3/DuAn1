@@ -23,7 +23,7 @@
               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-              <Component id="scroll" pref="754" max="32767" attributes="0"/>
+              <Component id="scroll" pref="742" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -81,33 +81,34 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="button2" min="-2" pref="94" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
-                              <Component id="button1" min="-2" pref="104" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="button2" linkSize="2" min="-2" pref="79" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="button4" linkSize="2" min="-2" pref="79" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="button1" linkSize="2" min="-2" pref="79" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="comboBoxSuggestion1" alignment="0" max="32767" attributes="0"/>
-                              <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="textField1" linkSize="1" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="textField2" linkSize="1" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="textField6" linkSize="1" pref="267" max="32767" attributes="0"/>
-                                  <Component id="textField4" linkSize="1" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="textField3" linkSize="1" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="lbBrand" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lbBrand1" alignment="0" min="-2" pref="219" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Component id="textField7" max="32767" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="button3" min="-2" pref="100" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="jSeparator1" alignment="0" max="32767" attributes="0"/>
+                          <Component id="comboBoxSuggestion1" alignment="0" pref="267" max="32767" attributes="0"/>
+                          <Component id="textField1" alignment="0" max="32767" attributes="0"/>
+                          <Component id="textField2" alignment="0" max="32767" attributes="0"/>
+                          <Component id="textField4" alignment="0" max="32767" attributes="0"/>
+                          <Component id="textField3" alignment="0" max="32767" attributes="0"/>
+                          <Component id="lbBrand" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbBrand1" alignment="0" min="-2" pref="219" max="-2" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="textField7" max="32767" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="button3" min="-2" pref="100" max="-2" attributes="0"/>
                           </Group>
+                          <Component id="jSeparator1" alignment="0" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="19" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="16" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="comboBoxSuggestion2" pref="282" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -130,17 +131,18 @@
                       <Component id="textField3" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="textField4" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="textField6" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                      <Component id="comboBoxSuggestion2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="textField7" min="-2" max="-2" attributes="0"/>
                           <Component id="button3" min="-2" pref="50" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="button2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="button1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="button2" linkSize="3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="button1" linkSize="3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="button4" linkSize="3" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -148,18 +150,6 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="textfield.TextField" name="textField6">
-              <Properties>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Segoe UI" size="14" style="0"/>
-                </Property>
-                <Property name="labelText" type="java.lang.String" value="ID NCC"/>
-                <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
-                  <Insets value="[0, 6, 0, 6]"/>
-                </Property>
-                <Property name="round" type="int" value="0"/>
-              </Properties>
-            </Component>
             <Component class="textfield.TextField" name="textField4">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -260,6 +250,13 @@
             <Component class="javax.swing.JSeparator" name="jSeparator1">
             </Component>
             <Component class="combo_suggestion.ComboBoxSuggestion" name="comboBoxSuggestion1">
+            </Component>
+            <Component class="button.Button" name="button4">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Clear"/>
+              </Properties>
+            </Component>
+            <Component class="combo_suggestion.ComboBoxSuggestion" name="comboBoxSuggestion2">
             </Component>
           </SubComponents>
         </Container>
