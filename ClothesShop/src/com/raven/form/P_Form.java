@@ -65,7 +65,7 @@ public class P_Form extends Form {
         SanPhamDAO dao = new SanPhamDAO();
         List<SanPham> list = dao.select();
         for (int i = 0; i < 11; i++) {
-            home.addItem(new ModelItem(ID++, list.get(i).getTenSP(), list.get(i).getMaNCC(), list.get(i).getGiaBan(), list.get(i).getMaLH(), new ImageIcon(getClass().getResource(("/com/raven/image/" + list.get(i).getAnh())))));
+            home.addItem(new ModelItem(ID++, list.get(i).getTenSP(), list.get(i).getMaSP(), list.get(i).getGiaBan(), list.get(i).getMaLH(), new ImageIcon(getClass().getResource(("/com/raven/image/" + list.get(i).getAnh())))));
         }
     }
 

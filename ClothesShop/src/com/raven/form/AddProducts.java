@@ -137,6 +137,11 @@ public class AddProducts extends javax.swing.JPanel {
                 "ID", "Name", "Amount", "Action"
             }
         ));
+        tblCardPro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblCardProMouseClicked(evt);
+            }
+        });
         cardcard.setViewportView(tblCardPro);
 
         javax.swing.GroupLayout roundPanel1Layout = new javax.swing.GroupLayout(roundPanel1);
@@ -246,6 +251,11 @@ public class AddProducts extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnAddActionPerformed
 
+    private void tblCardProMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCardProMouseClicked
+        // TODO add your handling code here:
+        loadSPFromTable(tblCardPro.getSelectedRow());
+    }//GEN-LAST:event_tblCardProMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private button.Button btnAdd;
@@ -283,6 +293,13 @@ public class AddProducts extends javax.swing.JPanel {
         lblPrice.setText("Price: " + list.get(index - 1).getGiaBan());
         lblImage.setIcon(new ImageIcon(new ImageIcon(getClass().getResource(("/com/raven/image/" + list.get(index - 1).getAnh()))).getImage().getScaledInstance(135, 164, Image.SCALE_DEFAULT)));
     }
+    
+    private void loadSPFromTable(int index){
+        loadSP(index+1);
+        btnAmount.setValue(card.get(index)[2]);
+        lblSumPrice.setText(String.valueOf(Integer.parseInt(lblPrice.getText().substring(7))*(int)card.get(index)[2]));
+        cboSearch.setSelectedItem(card.get(index)[0]);
+    }
 
     private void clearSP() {
         lblNameProduct.setText("NAME PRODUCT");
@@ -307,11 +324,11 @@ public class AddProducts extends javax.swing.JPanel {
 
     private void loadToTable() {
         boolean check = true;
+        boolean checkUpdate = true;
         for (int i = 0; i < card.size(); i++) {
             if (list.get(cboSearch.getSelectedIndex() - 1).getMaSP().equals(card.get(i)[0])) {
-                Notification panel = new Notification(Form_Home.fr, Notification.Type.WARNING, Notification.Location.TOP_CENTER, "Product already exists !");
-                panel.showNotification();
-                check = false;
+                card.get(i)[2] = btnAmount.getValue();
+                checkUpdate = false;
                 break;
             }
         }
@@ -329,8 +346,10 @@ public class AddProducts extends javax.swing.JPanel {
             else check = false;
         }
         if (check) {
-            Object[] row = {list.get(cboSearch.getSelectedIndex() - 1).getMaSP(), list.get(cboSearch.getSelectedIndex() - 1).getTenSP(), btnAmount.getValue()};
-            card.add(row);
+            if(checkUpdate){
+                Object[] row = {list.get(cboSearch.getSelectedIndex() - 1).getMaSP(), list.get(cboSearch.getSelectedIndex() - 1).getTenSP(), btnAmount.getValue()};
+                card.add(row);
+            }
             DefaultTableModel model = (DefaultTableModel)tblCardPro.getModel();
             model.setRowCount(0);
             for (int i = 0; i < card.size(); i++) {

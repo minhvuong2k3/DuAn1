@@ -61,6 +61,12 @@ public class HDXuatDAO extends ClothingStoreDAO<HDXuat, String>{
         List<HDXuat> list = select(sql, SoPhieu);
         return list.size() > 0 ? list.get(0) : null;
     }
+    
+    public HDXuat selectTop1() {
+        String sql = "SELECT SoPhieu, MaNV, MaKH, ThanhTien, NgayXuat FROM HDXuat order by SoPhieu desc";
+        List<HDXuat> list = select(sql);
+        return list.size() > 0 ? list.get(0) : null;
+    }
 
     @Override
     protected List<HDXuat> select(String sql, Object... args) {

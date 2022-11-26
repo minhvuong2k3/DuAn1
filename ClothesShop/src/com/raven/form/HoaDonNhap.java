@@ -7,14 +7,18 @@ package com.raven.form;
 import com.raven.DAO.SanPhamDAO;
 import com.raven.cell.CellAction;
 import com.raven.cell.CellName;
+import com.raven.component.ProductOnInvoice;
 import com.raven.model.SanPham;
 import com.raven.utils.Auth;
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.Image;
 import java.util.ArrayList;
 import java.util.List;
+import javaswingdev.Notification;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
+import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -26,10 +30,16 @@ public class HoaDonNhap extends javax.swing.JPanel {
     /**
      * Creates new form HoaDonNhap
      */
+    static int step = 1;
+    static String CusPhone = null;
+    static String CusName = null;
+    static String CusEmail = null;
 
     public HoaDonNhap() {
         initComponents();
         init();
+        if(step==0)
+            btnPrev.setEnabled(false);
     }
     
     /**
@@ -64,13 +74,13 @@ public class HoaDonNhap extends javax.swing.JPanel {
         jLabel12 = new javax.swing.JLabel();
         btnClear = new button.Button();
         roundPanel6 = new com.raven.swing.RoundPanel();
-        button4 = new button.Button();
-        button5 = new button.Button();
-        button6 = new button.Button();
+        btnStep1 = new button.Button();
+        btnStep2 = new button.Button();
+        btnStep3 = new button.Button();
         jSeparator4 = new javax.swing.JSeparator();
         jSeparator6 = new javax.swing.JSeparator();
-        button1 = new button.Button();
-        button2 = new button.Button();
+        btnNext = new button.Button();
+        btnPrev = new button.Button();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -228,14 +238,16 @@ public class HoaDonNhap extends javax.swing.JPanel {
                 .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        button4.setText("Step 1");
-        button4.setRound(50);
+        btnStep1.setBackground(new java.awt.Color(50, 232, 255));
+        btnStep1.setForeground(new java.awt.Color(0, 0, 0));
+        btnStep1.setText("Step 1");
+        btnStep1.setRound(50);
 
-        button5.setText("Step 2");
-        button5.setRound(50);
+        btnStep2.setText("Step 2");
+        btnStep2.setRound(50);
 
-        button6.setText("Step 3");
-        button6.setRound(50);
+        btnStep3.setText("Step 3");
+        btnStep3.setRound(50);
 
         javax.swing.GroupLayout roundPanel6Layout = new javax.swing.GroupLayout(roundPanel6);
         roundPanel6.setLayout(roundPanel6Layout);
@@ -243,15 +255,15 @@ public class HoaDonNhap extends javax.swing.JPanel {
             roundPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(roundPanel6Layout.createSequentialGroup()
                 .addGap(251, 251, 251)
-                .addComponent(button4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnStep1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(button5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnStep2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(button6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnStep3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(254, 254, 254))
         );
         roundPanel6Layout.setVerticalGroup(
@@ -260,9 +272,9 @@ public class HoaDonNhap extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(roundPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(roundPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(button6, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
-                        .addComponent(button5, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE))
-                    .addComponent(button4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(btnStep3, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
+                        .addComponent(btnStep2, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE))
+                    .addComponent(btnStep1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(roundPanel6Layout.createSequentialGroup()
                 .addGap(28, 28, 28)
@@ -272,14 +284,19 @@ public class HoaDonNhap extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        button1.setText("NEXT");
-        button1.addActionListener(new java.awt.event.ActionListener() {
+        btnNext.setText("NEXT");
+        btnNext.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                button1ActionPerformed(evt);
+                btnNextActionPerformed(evt);
             }
         });
 
-        button2.setText("PREV");
+        btnPrev.setText("PREV");
+        btnPrev.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrevActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -293,11 +310,11 @@ public class HoaDonNhap extends javax.swing.JPanel {
                         .addComponent(roundPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(roundPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 786, Short.MAX_VALUE)
+                            .addComponent(roundPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 786, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(button2, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnPrev, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnNext, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(13, 13, 13)))))
                 .addContainerGap())
         );
@@ -313,9 +330,9 @@ public class HoaDonNhap extends javax.swing.JPanel {
                         .addComponent(roundPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(button2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(12, Short.MAX_VALUE))
+                            .addComponent(btnNext, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnPrev, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -330,20 +347,53 @@ public class HoaDonNhap extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
-        CardLayout card = (CardLayout) roundPanel1.getLayout();
-        card.show(roundPanel1, "card3");
-    }//GEN-LAST:event_button1ActionPerformed
+    private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
+        if(AddProducts.card.size()>0){
+            if(!txtPhoneCus.getText().trim().equals(""))
+                CusPhone = txtPhoneCus.getText().trim();
+            else 
+                CusPhone = null;
+            if(!txtEmailCus.getText().trim().equals(""))
+                CusEmail = txtEmailCus.getText().trim();
+            else 
+                CusEmail = null;
+            if(!txtNameCus.getText().trim().equals(""))
+                CusName = txtNameCus.getText().trim();
+            else 
+                CusName = null;
+            CardLayout card = (CardLayout) roundPanel1.getLayout();
+            card.show(roundPanel1, "card3");
+            new Invoice().text.setSelectedIndex(1);
+            step++;
+            changeColorStep();
+            btnPrev.setEnabled(true);
+        }
+        else {
+            Notification panel = new Notification(Form_Home.fr, Notification.Type.WARNING, Notification.Location.TOP_CENTER, "Product is null !");
+            panel.showNotification();
+        }
+    }//GEN-LAST:event_btnNextActionPerformed
+
+    private void btnPrevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrevActionPerformed
+        // TODO add your handling code here:
+        if(step==2){
+            CardLayout card = (CardLayout) roundPanel1.getLayout();
+            card.show(roundPanel1, "card2");
+            step--;
+            changeColorStep();
+            btnPrev.setEnabled(false);
+        }
+    }//GEN-LAST:event_btnPrevActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.raven.form.AddProducts addProducts1;
     private button.Button btnClear;
-    private button.Button button1;
-    private button.Button button2;
-    private button.Button button4;
-    private button.Button button5;
-    private button.Button button6;
+    private button.Button btnNext;
+    private button.Button btnPrev;
+    private button.Button btnStep1;
+    private button.Button btnStep2;
+    private button.Button btnStep3;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -376,5 +426,32 @@ public class HoaDonNhap extends javax.swing.JPanel {
     private void load() {
         txtNameEmp.setText(Auth.user.getHoten());
         txtRoleEmp.setText(Auth.user.getVaiTro() ? "Admin" : "Nhân viên");
+    }
+    
+    private void changeColorStep(){
+        if(step==1){
+            btnStep1.setBackground(new Color(50,232,255));
+            btnStep1.setForeground(new Color(0,0,0));
+            btnStep2.setBackground(new Color(255,255,255));
+            btnStep2.setForeground(new Color(80,80,80));
+            btnStep3.setBackground(new Color(255,255,255));
+            btnStep3.setForeground(new Color(80,80,80));
+        }
+        else if(step==2){
+            btnStep2.setBackground(new Color(50,232,255));
+            btnStep2.setForeground(new Color(0,0,0));
+            btnStep1.setBackground(new Color(255,255,255));
+            btnStep1.setForeground(new Color(80,80,80));
+            btnStep3.setBackground(new Color(255,255,255));
+            btnStep3.setForeground(new Color(80,80,80));
+        }
+        else {
+            btnStep3.setBackground(new Color(50,232,255));
+            btnStep3.setForeground(new Color(0,0,0));
+            btnStep2.setBackground(new Color(255,255,255));
+            btnStep2.setForeground(new Color(80,80,80));
+            btnStep1.setBackground(new Color(255,255,255));
+            btnStep1.setForeground(new Color(80,80,80));
+        }
     }
 }

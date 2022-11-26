@@ -9,10 +9,13 @@
         </group>
         <group>
             <file>file:/C:/Users/Admin/Documents/Github/DuAn1/ClothesShop/src/com/raven/main/Login.java</file>
+            <file>file:/C:/Users/Admin/Documents/Github/DuAn1/ClothesShop/src/com/raven/form/P_Form.java</file>
+            <file>file:/C:/Users/Admin/Documents/Github/DuAn1/ClothesShop/src/com/raven/DAO/HDXuatDAO.java</file>
             <file>file:/C:/Users/Admin/Documents/Github/DuAn1/ClothesShop/src/com/raven/form/DoanhThuForm.java</file>
             <file>file:/C:/Users/Admin/Documents/Github/DuAn1/ClothesShop/src/com/raven/form/AddProducts.java</file>
             <file>file:/C:/Users/Admin/Documents/Github/DuAn1/ClothesShop/src/com/raven/form/Pay_Form.java</file>
             <file>file:/C:/Users/Admin/Documents/Github/DuAn1/ClothesShop/src/com/raven/form/Invoice.java</file>
+            <file>file:/C:/Users/Admin/Documents/Github/DuAn1/ClothesShop/src/com/raven/DAO/KhachHangDAO.java</file>
             <file>file:/C:/Users/Admin/Documents/Github/DuAn1/ClothesShop/src/com/raven/form/HoaDonNhap.java</file>
         </group>
     </open-files>
