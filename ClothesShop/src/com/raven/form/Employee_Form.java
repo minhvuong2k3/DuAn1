@@ -620,18 +620,19 @@ public class Employee_Form extends javax.swing.JPanel {
 
     private void swbtnGenderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_swbtnGenderMouseClicked
         // TODO add your handling code here:
-        if (swbtnGender.isSelected())
-            lblRender.setText("Male");
-        else
+        if (swbtnGender.isSelected()) {
             lblRender.setText("Female");
+        } else {
+            lblRender.setText("Male");
+        }
     }//GEN-LAST:event_swbtnGenderMouseClicked
 
     private void swbtnRoleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_swbtnRoleMouseClicked
         // TODO add your handling code here:
         if (swbtnRole.isSelected())
-            lblRender.setText("Admin");
+            lblRole.setText("Admin");
         else
-            lblRender.setText("Employee");
+            lblRole.setText("Employee");
     }//GEN-LAST:event_swbtnRoleMouseClicked
 
     private void btnReformActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReformActionPerformed

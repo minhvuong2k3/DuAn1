@@ -51,7 +51,7 @@ public class CTHDNhapDAO{
     }
 
     public CTHDNhap selectById(String SoPhieu) {
-        String sql = "SELECT SoPhieu, MaSP, SoLuong, GiaNhap FROM CTHDNhap WHERE SoPhieu = ?";
+        String sql = "SELECT MaSP, SoLuong, GiaNhap FROM CTHDNhap WHERE SoPhieu = ?";
         List<CTHDNhap> list = select(sql, SoPhieu);
         return list.size() > 0 ? list.get(0) : null;
     }

@@ -36,6 +36,8 @@ public class ProductOnInvoice extends javax.swing.JPanel {
         qty = new javax.swing.JLabel();
         total = new javax.swing.JLabel();
 
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+
         name.setText("Pro's Name 1");
 
         price.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N

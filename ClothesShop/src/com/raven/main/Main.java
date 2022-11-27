@@ -1,6 +1,7 @@
 package com.raven.main;
 
 import com.raven.event.EventColorChange;
+import com.raven.form.Customers_Form;
 import com.raven.form.Turnover_Form;
 import com.raven.form.TurnoverChart_Form;
 import com.raven.form.Employee_Form;
@@ -32,7 +33,9 @@ public class Main extends javax.swing.JFrame {
     private TurnoverProduct_Form dashboardForm;
     private TurnoverChart_Form doanhthuForm;
     private Turnover_Form dashForm;
+    private Customers_Form Cus_Form;
     static int i = 0;
+
     public Main() {
         initComponents();
         setBackground(new Color(0, 0, 0, 0));
@@ -62,14 +65,14 @@ public class Main extends javax.swing.JFrame {
                     case 4:
                         mainBody.displayForm(dashboardForm, "Order");
                         break;
-//                    case 5:
-//                        mainBody.displayForm(doanhthuForm, "Doanh Thu");
-//                        break;
                     case 5:
                         mainBody.displayForm(dashForm, "Doanh Thu");
                         break;
                     case 6:
                         mainBody.displayForm(settingForm, "Setting");
+                        break;
+                    case 7:
+                        mainBody.displayForm(Cus_Form, "Setting");
                         break;
                     case 9:
                         me.showMessage("", "Do you want to logout?");
@@ -136,6 +139,7 @@ public class Main extends javax.swing.JFrame {
         InvoiceForm = new InvoiceOut_Form();
         dashboardForm = new TurnoverProduct_Form();
         doanhthuForm = new TurnoverChart_Form();
+        Cus_Form = new Customers_Form(this);
     }
 
     @SuppressWarnings("unchecked")
