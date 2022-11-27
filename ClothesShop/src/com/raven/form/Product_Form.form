@@ -84,29 +84,29 @@
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="comboBoxSuggestion2" min="-2" pref="266" max="-2" attributes="0"/>
+                              <Component id="cboNCC" min="-2" pref="266" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Group type="102" alignment="1" attributes="0">
-                                      <Component id="button2" linkSize="2" min="-2" pref="79" max="-2" attributes="0"/>
+                                      <Component id="btnDelete" linkSize="2" min="-2" pref="79" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="button4" linkSize="2" min="-2" pref="79" max="-2" attributes="0"/>
+                                      <Component id="btnClear" linkSize="2" min="-2" pref="79" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="button1" linkSize="2" min="-2" pref="79" max="-2" attributes="0"/>
+                                      <Component id="btnSave" linkSize="2" min="-2" pref="79" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="comboBoxSuggestion1" alignment="0" pref="267" max="32767" attributes="0"/>
-                                  <Component id="textField1" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="textField2" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="textField4" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="textField3" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="cboLoaiHang" alignment="0" pref="267" max="32767" attributes="0"/>
+                                  <Component id="txtMaSP" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txtTenSP" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txtGiamGia" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txtGia" alignment="0" max="32767" attributes="0"/>
                                   <Component id="lbBrand" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="lbBrand1" alignment="0" min="-2" pref="219" max="-2" attributes="0"/>
                                   <Group type="102" alignment="1" attributes="0">
-                                      <Component id="textField7" max="32767" attributes="0"/>
+                                      <Component id="txtAnh" max="32767" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="button3" min="-2" pref="100" max="-2" attributes="0"/>
+                                      <Component id="btnAnh" min="-2" pref="100" max="-2" attributes="0"/>
                                   </Group>
                                   <Component id="jSeparator1" alignment="0" max="32767" attributes="0"/>
                               </Group>
@@ -124,29 +124,29 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="lbBrand" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                      <Component id="comboBoxSuggestion1" min="-2" max="-2" attributes="0"/>
+                      <Component id="cboLoaiHang" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="textField1" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtMaSP" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="textField2" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtTenSP" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="textField3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtGia" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="textField4" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtGiamGia" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                      <Component id="comboBoxSuggestion2" min="-2" max="-2" attributes="0"/>
+                      <Component id="cboNCC" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="textField7" min="-2" max="-2" attributes="0"/>
-                          <Component id="button3" min="-2" pref="50" max="-2" attributes="0"/>
+                          <Component id="txtAnh" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnAnh" min="-2" pref="50" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="button2" linkSize="3" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="button1" linkSize="3" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="button4" linkSize="3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnDelete" linkSize="3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnSave" linkSize="3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnClear" linkSize="3" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -154,7 +154,7 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="textfield.TextField" name="textField4">
+            <Component class="textfield.TextField" name="txtGiamGia">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="14" style="0"/>
@@ -166,7 +166,7 @@
                 <Property name="round" type="int" value="0"/>
               </Properties>
             </Component>
-            <Component class="textfield.TextField" name="textField3">
+            <Component class="textfield.TextField" name="txtGia">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="14" style="0"/>
@@ -178,7 +178,7 @@
                 <Property name="round" type="int" value="0"/>
               </Properties>
             </Component>
-            <Component class="textfield.TextField" name="textField2">
+            <Component class="textfield.TextField" name="txtTenSP">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="14" style="0"/>
@@ -190,7 +190,7 @@
                 <Property name="round" type="int" value="0"/>
               </Properties>
             </Component>
-            <Component class="textfield.TextField" name="textField1">
+            <Component class="textfield.TextField" name="txtMaSP">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="14" style="0"/>
@@ -202,17 +202,23 @@
                 <Property name="round" type="int" value="0"/>
               </Properties>
             </Component>
-            <Component class="button.Button" name="button1">
+            <Component class="button.Button" name="btnSave">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Save"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSaveActionPerformed"/>
+              </Events>
             </Component>
-            <Component class="button.Button" name="button2">
+            <Component class="button.Button" name="btnDelete">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Delete"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDeleteActionPerformed"/>
+              </Events>
             </Component>
-            <Component class="textfield.TextField" name="textField7">
+            <Component class="textfield.TextField" name="txtAnh">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Segoe UI" size="14" style="0"/>
@@ -224,10 +230,13 @@
                 <Property name="round" type="int" value="0"/>
               </Properties>
             </Component>
-            <Component class="button.Button" name="button3">
+            <Component class="button.Button" name="btnAnh">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Choose Image"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAnhActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="lbBrand1">
               <Properties>
@@ -253,14 +262,17 @@
             </Component>
             <Component class="javax.swing.JSeparator" name="jSeparator1">
             </Component>
-            <Component class="combo_suggestion.ComboBoxSuggestion" name="comboBoxSuggestion1">
+            <Component class="combo_suggestion.ComboBoxSuggestion" name="cboLoaiHang">
             </Component>
-            <Component class="button.Button" name="button4">
+            <Component class="button.Button" name="btnClear">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Clear"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnClearActionPerformed"/>
+              </Events>
             </Component>
-            <Component class="combo_suggestion.ComboBoxSuggestion" name="comboBoxSuggestion2">
+            <Component class="combo_suggestion.ComboBoxSuggestion" name="cboNCC">
             </Component>
           </SubComponents>
         </Container>
