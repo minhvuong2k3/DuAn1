@@ -629,9 +629,9 @@ public class Employee_Form extends javax.swing.JPanel {
     private void swbtnRoleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_swbtnRoleMouseClicked
         // TODO add your handling code here:
         if (swbtnRole.isSelected())
-            lblRender.setText("Admin");
+            lblRole.setText("Admin");
         else
-            lblRender.setText("Employee");
+            lblRole.setText("Employee");
     }//GEN-LAST:event_swbtnRoleMouseClicked
 
     private void btnReformActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReformActionPerformed
