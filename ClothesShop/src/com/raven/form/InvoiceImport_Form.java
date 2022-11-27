@@ -41,61 +41,10 @@ public class InvoiceImport_Form extends javax.swing.JPanel {
     static JComboBox text = new JComboBox();
 
     SanPhamDAO dao = new SanPhamDAO();
+
     public InvoiceImport_Form() {
         initComponents();
         setOpaque(false);
-        DefaultComboBoxModel model = (DefaultComboBoxModel)text.getModel();
-        model.removeAllElements();
-        model.addElement("0");
-        model.addElement("1");
-        text.addItemListener(new ItemListener(){
-            @Override
-            public void itemStateChanged(ItemEvent e) {
-                addItem();
-            }
-        });
-    }
-    
-    public void addItem(){
-        product.removeAll();
-        int sum = 0;
-        for(int i=0;i<AddInvoice_Form.card.size();i++){
-            SanPham sp = dao.selectById(AddInvoice_Form.card.get(i)[0].toString());
-            JPanel panel = new ProductOnInvoice(AddInvoice_Form.card.get(i)[0].toString(), String.valueOf(sp.getGiaBan()), AddInvoice_Form.card.get(i)[2].toString(), String.valueOf(sp.getGiaBan()*(int)AddInvoice_Form.card.get(i)[2]));
-            panel.setSize(307, 40);
-            panel.setLocation(8, i*40);
-            product.add(panel);
-            sum+=sp.getGiaBan()*(int)AddInvoice_Form.card.get(i)[2];
-        }
-        Date date = new Date();
-        lblDate.setText(date.getDate()+"/"+(date.getMonth()+1)+"/"+(date.getYear()+1900));
-        if(InvoiceOut_Form.CusPhone != null){
-            KhachHangDAO khdao = new KhachHangDAO();
-            KhachHang kh = khdao.selectBySdt(InvoiceOut_Form.CusPhone);
-            if(kh!=null)
-                lblIDCus.setText(kh.getMaKH());
-            else{
-                if(InvoiceOut_Form.CusName != null && InvoiceOut_Form.CusEmail != null){
-                    kh = khdao.selectTop1();
-                    KhachHang khnew = new KhachHang();
-                    khnew.setTen(InvoiceOut_Form.CusName);
-                    khnew.setEmail(InvoiceOut_Form.CusEmail);
-                    khnew.setSdt(InvoiceOut_Form.CusPhone);
-                    khnew.setMaKH("KH"+String.valueOf(Integer.parseInt(kh.getMaKH().substring(2))+1));
-                    khdao.insert(khnew);
-                    lblIDCus.setText(khnew.getMaKH());
-                }
-                else 
-                    lblIDCus.setText("");
-            } 
-                
-        }
-        else 
-            lblIDCus.setText("");
-        lblSum.setText("$"+sum);
-        HDXuatDAO hddao = new HDXuatDAO();
-        HDXuat hd = hddao.selectTop1();
-        lblSoHoaDon.setText(""+(hd.getSoPhieu()+1));
     }
 
     @Override
@@ -127,14 +76,14 @@ public class InvoiceImport_Form extends javax.swing.JPanel {
         jSeparator1 = new javax.swing.JSeparator();
         lblIDCus = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        lblDate = new javax.swing.JLabel();
+        date = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jSeparator4 = new javax.swing.JSeparator();
         jLabel31 = new javax.swing.JLabel();
-        lblSum = new javax.swing.JLabel();
+        total = new javax.swing.JLabel();
         product = new com.raven.swing.RoundPanel();
         jSeparator6 = new javax.swing.JSeparator();
 
@@ -160,8 +109,8 @@ public class InvoiceImport_Form extends javax.swing.JPanel {
 
         jLabel9.setText("Date :");
 
-        lblDate.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblDate.setText("25/11/2020");
+        date.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        date.setText("25/11/2020");
 
         jLabel11.setText("Name");
 
@@ -171,8 +120,8 @@ public class InvoiceImport_Form extends javax.swing.JPanel {
 
         jLabel31.setText("Total");
 
-        lblSum.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblSum.setText("$999.99");
+        total.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        total.setText("$999.99");
 
         product.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -211,11 +160,11 @@ public class InvoiceImport_Form extends javax.swing.JPanel {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(jLabel9)
                             .addGap(29, 29, 29)
-                            .addComponent(lblDate, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundPanel1Layout.createSequentialGroup()
                             .addComponent(jLabel31)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblSum, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(total, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(roundPanel1Layout.createSequentialGroup()
                             .addComponent(jLabel11)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -253,7 +202,7 @@ public class InvoiceImport_Form extends javax.swing.JPanel {
                         .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel9)
-                        .addComponent(lblDate)))
+                        .addComponent(date)))
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -269,7 +218,7 @@ public class InvoiceImport_Form extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel31)
-                    .addComponent(lblSum))
+                    .addComponent(total))
                 .addContainerGap())
         );
 
@@ -297,6 +246,7 @@ public class InvoiceImport_Form extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel date;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -309,11 +259,10 @@ public class InvoiceImport_Form extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator6;
-    private javax.swing.JLabel lblDate;
     private javax.swing.JLabel lblIDCus;
     private javax.swing.JLabel lblSoHoaDon;
-    private javax.swing.JLabel lblSum;
     private com.raven.swing.RoundPanel product;
     private com.raven.swing.RoundPanel roundPanel1;
+    private javax.swing.JLabel total;
     // End of variables declaration//GEN-END:variables
 }
