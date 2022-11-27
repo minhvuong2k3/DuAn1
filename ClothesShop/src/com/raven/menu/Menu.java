@@ -80,11 +80,11 @@ public class Menu extends javax.swing.JPanel {
         addMenu("Product", "2", 1);
         addMenu("Employee", "3", 2);
         addMenu("Order", "4", 3);
-        addMenu("Report", "5", 4);
+        addMenu("Invoice", "5", 4);
         addMenu("Dashboard", "6", 5);
         addMenu("Setting", "7", 6);
-        addMenu("Expense", "8", 7);
-        addMenu("Income", "9", 8);
+        addMenu("Import Product", "8", 7);
+        addMenu("Customer", "9", 8);
         addMenu("Logout", "10", 9);
         //  add more menu here
         menu.repaint();

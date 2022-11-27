@@ -7,7 +7,7 @@ package com.raven.form;
 import com.raven.DAO.NhanVienDAO;
 import com.raven.DAO.RoleDAO;
 import com.raven.dialog.Message;
-import static com.raven.form.Customer_Form.fr;
+//import static com.raven.form.Customer_Form.fr;
 import com.raven.main.Main;
 import com.raven.model.ModelStaff;
 import com.raven.model.NhanVien;
