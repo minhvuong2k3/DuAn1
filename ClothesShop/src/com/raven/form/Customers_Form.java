@@ -4,13 +4,17 @@
  */
 package com.raven.form;
 
+import com.raven.DAO.KhachHangDAO;
 import com.raven.DAO.NhanVienDAO;
 import com.raven.DAO.RoleDAO;
+import com.raven.cell.CellAction;
 import com.raven.dialog.Message;
 //import static com.raven.form.Customer_Form.fr;
 import com.raven.main.Main;
+import com.raven.model.KhachHang;
 import com.raven.model.ModelStaff;
 import com.raven.model.NhanVien;
+import com.raven.swing.scrollbar.ScrollBarCustom;
 import com.raven.utils.XDialog;
 import java.awt.Frame;
 import java.util.Date;
@@ -24,13 +28,19 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Customers_Form extends javax.swing.JPanel {
 
-    NhanVienDAO dao = new NhanVienDAO();
+    KhachHangDAO dao = new KhachHangDAO();
     RoleDAO roleDao = new RoleDAO();
-    List<NhanVien> list = dao.select();
+    List<KhachHang> list = dao.select();
     static Frame fr;
 
     public Customers_Form() {
         initComponents();
+        initData();
+        scroll.setBorder(null);
+        scroll.setViewportBorder(null);
+        scroll.getViewport().setOpaque(false);
+        scroll.setVerticalScrollBar(new ScrollBarCustom());
+//        table1.addTableCell(new CellAction(), 5);
     }
 
     /**
@@ -46,7 +56,6 @@ public class Customers_Form extends javax.swing.JPanel {
         txtFullname = new textfield.TextField();
         txtID = new textfield.TextField();
         txtEmail = new textfield.TextField();
-        btnDelete = new button.Button();
         btnReform = new button.Button();
         txtName3 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -62,7 +71,7 @@ public class Customers_Form extends javax.swing.JPanel {
         txtPhone = new textfield.TextField();
         btnAdd = new button.Button();
         roundPanel1 = new com.raven.swing.RoundPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        scroll = new javax.swing.JScrollPane();
         tblNhanVien = new com.raven.swing.table.Table();
         roundPanel3 = new com.raven.swing.RoundPanel();
 
@@ -78,16 +87,6 @@ public class Customers_Form extends javax.swing.JPanel {
         });
 
         txtEmail.setLabelText("");
-
-        btnDelete.setForeground(new java.awt.Color(255, 255, 255));
-        btnDelete.setText("DELETE");
-        btnDelete.setEnabled(false);
-        btnDelete.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnDelete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteActionPerformed(evt);
-            }
-        });
 
         btnReform.setBackground(new java.awt.Color(219, 200, 172));
         btnReform.setForeground(new java.awt.Color(255, 255, 255));
@@ -206,9 +205,7 @@ public class Customers_Form extends javax.swing.JPanel {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(roundPanel2Layout.createSequentialGroup()
                 .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(120, 120, 120)
                 .addComponent(btnReform, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         roundPanel2Layout.setVerticalGroup(
@@ -239,7 +236,6 @@ public class Customers_Form extends javax.swing.JPanel {
                     .addComponent(jLabel5))
                 .addGap(39, 39, 39)
                 .addGroup(roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnReform, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -255,11 +251,11 @@ public class Customers_Form extends javax.swing.JPanel {
 
             },
             new String [] {
-                "ID", "Name", "Gender", "Birthday", "Email", "Phone", "Password", "Role"
+                "ID", "Name", "Email", "Phone"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, true, true, true, true
+                false, false, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -271,7 +267,7 @@ public class Customers_Form extends javax.swing.JPanel {
                 tblNhanVienMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tblNhanVien);
+        scroll.setViewportView(tblNhanVien);
 
         javax.swing.GroupLayout roundPanel1Layout = new javax.swing.GroupLayout(roundPanel1);
         roundPanel1.setLayout(roundPanel1Layout);
@@ -279,14 +275,14 @@ public class Customers_Form extends javax.swing.JPanel {
             roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(roundPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 721, Short.MAX_VALUE)
+                .addComponent(scroll, javax.swing.GroupLayout.DEFAULT_SIZE, 721, Short.MAX_VALUE)
                 .addContainerGap())
         );
         roundPanel1Layout.setVerticalGroup(
             roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 582, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 582, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(108, 108, 108))
         );
 
@@ -335,20 +331,6 @@ public class Customers_Form extends javax.swing.JPanel {
     private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIDActionPerformed
-
-    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        // TODO add your handling code here:
-        if (XDialog.delete(this, "Delete ?")) {
-            dao.delete(txtID.getText());
-            list = dao.select();
-            DefaultTableModel modelTable = (DefaultTableModel) tblNhanVien.getModel();
-            modelTable.setRowCount(0);
-            tblNhanVien.revalidate();
-            initTableData();
-            reform();
-            notification(fr, "Delete success !", true);
-        }
-    }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnReformActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReformActionPerformed
         // TODO add your handling code here:
@@ -459,37 +441,20 @@ public class Customers_Form extends javax.swing.JPanel {
     private void tblNhanVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblNhanVienMouseClicked
         // TODO add your handling code here:
         if (evt.getClickCount() == 2) {
-            NhanVien nv = list.get(tblNhanVien.rowAtPoint(evt.getPoint()));
-            txtID.setText(nv.getMaNV());
-            txtFullname.setText(nv.getHoten());
-            txtEmail.setText(nv.getEmail());
-            //            txtBirthday.setText(nv.getNgaySinh());
-            txtPhone.setText(nv.getSdt());
-            if (nv.getMatKhau() != null) {
-                //                txtPassword.setText(nv.getMatKhau());
-            }
-            //            lblRender.setText(nv.getGioiTinh() ? "Male" : "Female");
-            //            lblRole.setText(nv.getVaiTro() ? "Admin" : "Employee");
-            if (nv.getGioiTinh()) {
-                //                swbtnGender.setSelected(true);
-            } else {
-                //                swbtnGender.setSelected(false);
-            }
-            if (nv.getVaiTro()) {
-                //                swbtnRole.setSelected(true);
-            } else {
-                //                swbtnRole.setSelected(false);
-            }
+            KhachHang kh = list.get(tblNhanVien.rowAtPoint(evt.getPoint()));
+//            txtID.setText(kh.getMaKH());
+            txtFullname.setText(kh.getTen());
+            txtEmail.setText(kh.getEmail());
+            txtPhone.setText(kh.getSdt());
             txtID.setEditable(false);
             btnAdd.setText("UPDATE");
-            btnDelete.setEnabled(true);
+//            btnDelete.setEnabled(true);
         }
     }//GEN-LAST:event_tblNhanVienMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private button.Button btnAdd;
-    private button.Button btnDelete;
     private button.Button btnReform;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
@@ -497,10 +462,10 @@ public class Customers_Form extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
     private com.raven.swing.RoundPanel roundPanel1;
     private com.raven.swing.RoundPanel roundPanel2;
     private com.raven.swing.RoundPanel roundPanel3;
+    private javax.swing.JScrollPane scroll;
     private com.raven.swing.table.Table tblNhanVien;
     private textfield.TextField txtEmail;
     private textfield.TextField txtFullname;
@@ -538,10 +503,8 @@ public class Customers_Form extends javax.swing.JPanel {
 ////                }
 //            }
 //        };
-        Date date = new Date();
-        int day = date.getYear() + 1900;
         for (int i = 0; i < list.size(); i++) {
-            tblNhanVien.addRow(new ModelStaff(list.get(i).getMaNV(), list.get(i).getHoten(), list.get(i).getGioiTinh() ? "Male" : "Female", (day - Integer.parseInt(list.get(i).getNgaySinh().substring(0, 4))), list.get(i).getEmail(), list.get(i).getSdt(), list.get(i).getMatKhau(), list.get(i).getVaiTro() ? "Admin" : "Employee").toTableRow());
+            tblNhanVien.addRow(new KhachHang(list.get(i).getMaKH(), list.get(i).getTen(), list.get(i).getSdt(), list.get(i).getEmail()).toTableRow());
         }
 
 //        table1.addRow(new ModelStudent(new ImageIcon(getClass().getResource("/com/raven/icon/profile.jpg")), "Jonh", "Male", "Java", 300).toRowTable(eventAction));
@@ -575,7 +538,7 @@ public class Customers_Form extends javax.swing.JPanel {
         obj.showMessage(message);
         return obj.isOk();
     }
-    
+
     private boolean ValidateInsert(int x) {
         if (txtID.getText().trim().equals("") || txtID.getText().trim().length() != 5) {
             txtID.requestFocus();
@@ -584,7 +547,7 @@ public class Customers_Form extends javax.swing.JPanel {
         }
         if (x == 0) {
             for (int i = 0; i < list.size(); i++) {
-                if (txtID.getText().trim().equals(list.get(i).getMaNV())) {
+                if (txtID.getText().trim().equals(list.get(i).getMaKH())) {
                     txtID.requestFocus();
                     notification(fr, "ID invalid !", false);
                     return false;
@@ -648,43 +611,43 @@ public class Customers_Form extends javax.swing.JPanel {
 //        swbtnRole.setSelected(false);
         txtID.setEditable(true);
         btnAdd.setText("ADD");
-        btnDelete.setEnabled(false);
+//        btnDelete.setEnabled(false);
     }
 
-    public void selectAll() {
-        Date date = new Date();
-        int day = date.getYear() + 1900;
-        DefaultTableModel modelTable = (DefaultTableModel) tblNhanVien.getModel();
-        modelTable.setRowCount(0);
-        tblNhanVien.revalidate();
-        for (int i = 0; i < list.size(); i++) {
-            tblNhanVien.addRow(new ModelStaff(list.get(i).getMaNV(), list.get(i).getHoten(), list.get(i).getGioiTinh() ? "Male" : "Female", (day - Integer.parseInt(list.get(i).getNgaySinh().substring(0, 4))), list.get(i).getEmail(), list.get(i).getSdt(), list.get(i).getMatKhau(), list.get(i).getVaiTro() ? "Admin" : "Employee").toTableRow());
-        }
-    }
-
-    public void selectHave() {
-        List<NhanVien> haveList = dao.selectHave();
-        Date date = new Date();
-        int day = date.getYear() + 1900;
-        DefaultTableModel modelTable = (DefaultTableModel) tblNhanVien.getModel();
-        modelTable.setRowCount(0);
-        tblNhanVien.revalidate();
-        for (int i = 0; i < haveList.size(); i++) {
-            tblNhanVien.addRow(new ModelStaff(haveList.get(i).getMaNV(), haveList.get(i).getHoten(), haveList.get(i).getGioiTinh() ? "Male" : "Female", (day - Integer.parseInt(haveList.get(i).getNgaySinh().substring(0, 4))), haveList.get(i).getEmail(), haveList.get(i).getSdt(), haveList.get(i).getMatKhau(), haveList.get(i).getVaiTro() ? "Admin" : "Employee").toTableRow());
-        }
-    }
-
-    public void selectYet() {
-        List<NhanVien> yetList = dao.selectYet();
-        Date date = new Date();
-        int day = date.getYear() + 1900;
-        DefaultTableModel modelTable = (DefaultTableModel) tblNhanVien.getModel();
-        modelTable.setRowCount(0);
-        tblNhanVien.revalidate();
-        for (int i = 0; i < yetList.size(); i++) {
-            tblNhanVien.addRow(new ModelStaff(yetList.get(i).getMaNV(), yetList.get(i).getHoten(), yetList.get(i).getGioiTinh() ? "Male" : "Female", (day - Integer.parseInt(yetList.get(i).getNgaySinh().substring(0, 4))), yetList.get(i).getEmail(), yetList.get(i).getSdt(), yetList.get(i).getMatKhau(), yetList.get(i).getVaiTro() ? "Admin" : "Employee").toTableRow());
-        }
-    }
+//    public void selectAll() {
+//        Date date = new Date();
+//        int day = date.getYear() + 1900;
+//        DefaultTableModel modelTable = (DefaultTableModel) tblNhanVien.getModel();
+//        modelTable.setRowCount(0);
+//        tblNhanVien.revalidate();
+//        for (int i = 0; i < list.size(); i++) {
+//            tblNhanVien.addRow(new ModelStaff(list.get(i).getMaNV(), list.get(i).getHoten(), list.get(i).getGioiTinh() ? "Male" : "Female", (day - Integer.parseInt(list.get(i).getNgaySinh().substring(0, 4))), list.get(i).getEmail(), list.get(i).getSdt(), list.get(i).getMatKhau(), list.get(i).getVaiTro() ? "Admin" : "Employee").toTableRow());
+//        }
+//    }
+//
+//    public void selectHave() {
+//        List<NhanVien> haveList = dao.selectHave();
+//        Date date = new Date();
+//        int day = date.getYear() + 1900;
+//        DefaultTableModel modelTable = (DefaultTableModel) tblNhanVien.getModel();
+//        modelTable.setRowCount(0);
+//        tblNhanVien.revalidate();
+//        for (int i = 0; i < haveList.size(); i++) {
+//            tblNhanVien.addRow(new ModelStaff(haveList.get(i).getMaNV(), haveList.get(i).getHoten(), haveList.get(i).getGioiTinh() ? "Male" : "Female", (day - Integer.parseInt(haveList.get(i).getNgaySinh().substring(0, 4))), haveList.get(i).getEmail(), haveList.get(i).getSdt(), haveList.get(i).getMatKhau(), haveList.get(i).getVaiTro() ? "Admin" : "Employee").toTableRow());
+//        }
+//    }
+//
+//    public void selectYet() {
+//        List<NhanVien> yetList = dao.selectYet();
+//        Date date = new Date();
+//        int day = date.getYear() + 1900;
+//        DefaultTableModel modelTable = (DefaultTableModel) tblNhanVien.getModel();
+//        modelTable.setRowCount(0);
+//        tblNhanVien.revalidate();
+//        for (int i = 0; i < yetList.size(); i++) {
+//            tblNhanVien.addRow(new ModelStaff(yetList.get(i).getMaNV(), yetList.get(i).getHoten(), yetList.get(i).getGioiTinh() ? "Male" : "Female", (day - Integer.parseInt(yetList.get(i).getNgaySinh().substring(0, 4))), yetList.get(i).getEmail(), yetList.get(i).getSdt(), yetList.get(i).getMatKhau(), yetList.get(i).getVaiTro() ? "Admin" : "Employee").toTableRow());
+//        }
+//    }
 
     public void notification(Frame frame, String text, boolean x) {
         if (!x) {

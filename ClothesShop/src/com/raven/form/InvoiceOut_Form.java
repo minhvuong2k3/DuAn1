@@ -55,6 +55,7 @@ public class InvoiceOut_Form extends javax.swing.JPanel {
         roundPanel1 = new com.raven.swing.RoundPanel();
         addProducts1 = new com.raven.form.AddInvoice_Form();
         pay_Form1 = new com.raven.form.Pay_Form();
+        succesfull_Form1 = new com.raven.form.Succesfull_Form();
         roundPanel2 = new com.raven.swing.RoundPanel();
         roundPanel4 = new com.raven.swing.RoundPanel();
         jLabel11 = new javax.swing.JLabel();
@@ -89,6 +90,7 @@ public class InvoiceOut_Form extends javax.swing.JPanel {
         roundPanel1.setLayout(new java.awt.CardLayout());
         roundPanel1.add(addProducts1, "card2");
         roundPanel1.add(pay_Form1, "card3");
+        roundPanel1.add(succesfull_Form1, "card4");
 
         roundPanel2.setBackground(new java.awt.Color(255, 255, 255));
         roundPanel2.setPreferredSize(new java.awt.Dimension(544, 610));
@@ -412,6 +414,7 @@ public class InvoiceOut_Form extends javax.swing.JPanel {
     private com.raven.swing.RoundPanel roundPanel4;
     private com.raven.swing.RoundPanel roundPanel5;
     private com.raven.swing.RoundPanel roundPanel6;
+    private com.raven.form.Succesfull_Form succesfull_Form1;
     private textfield.TextFieldBasic txtEmailCus;
     private textfield.TextFieldBasic txtNameCus;
     private textfield.TextFieldBasic txtNameEmp;

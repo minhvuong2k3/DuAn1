@@ -149,6 +149,10 @@ public class Invoice_Form extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jLabel38 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+
+        roundPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("LINUX");
@@ -200,6 +204,8 @@ public class Invoice_Form extends javax.swing.JPanel {
         jLabel37.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel37.setText("Contact");
 
+        product.setBackground(new java.awt.Color(255, 255, 255));
+
         javax.swing.GroupLayout productLayout = new javax.swing.GroupLayout(product);
         product.setLayout(productLayout);
         productLayout.setHorizontalGroup(
@@ -220,7 +226,7 @@ public class Invoice_Form extends javax.swing.JPanel {
         roundPanel1Layout.setHorizontalGroup(
             roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(roundPanel1Layout.createSequentialGroup()
-                .addGap(9, 9, 9)
+                .addGap(18, 18, 18)
                 .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jSeparator2)

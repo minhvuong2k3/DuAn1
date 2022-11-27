@@ -4,26 +4,17 @@
  */
 package com.raven.main;
 
-import com.raven.component.ProductOnInvoice;
-import com.raven.form.InvoiceOut_Form;
-import javax.swing.JPanel;
-
 /**
  *
  * @author AD MIN
  */
-public class tessst extends javax.swing.JFrame {
+public class tessststst extends javax.swing.JFrame {
 
     /**
-     * Creates new form tessst
+     * Creates new form tessststst
      */
-    public tessst() {
+    public tessststst() {
         initComponents();
-    }
-
-    public void addItem() {
-//        JPanel panel = new ProductOnInvoice("Product 1", "$999.99", "1", "$999.99");
-//        product.add(panel, "w 40%, h 40");
     }
 
     /**
@@ -41,11 +32,11 @@ public class tessst extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 870, Short.MAX_VALUE)
+            .addGap(0, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 476, Short.MAX_VALUE)
+            .addGap(0, 300, Short.MAX_VALUE)
         );
 
         pack();
@@ -68,20 +59,20 @@ public class tessst extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(tessst.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(tessststst.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(tessst.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(tessststst.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(tessst.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(tessststst.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(tessst.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(tessststst.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new tessst().setVisible(true);
+                new tessststst().setVisible(true);
             }
         });
     }

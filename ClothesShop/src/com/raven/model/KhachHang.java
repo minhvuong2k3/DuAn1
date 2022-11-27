@@ -9,6 +9,7 @@ package com.raven.model;
  * @author duong
  */
 public class KhachHang {
+
     private String maKH;
     private String ten;
     private String sdt;
@@ -23,10 +24,10 @@ public class KhachHang {
         this.sdt = sdt;
         this.email = email;
     }
-    
+
     @Override
     public String toString() {
-        return maKH+", "+ten+", "+sdt+", "+email;
+        return maKH + ", " + ten + ", " + sdt + ", " + email;
     }
 
     public String getMaKH() {
@@ -60,6 +61,9 @@ public class KhachHang {
     public void setEmail(String email) {
         this.email = email;
     }
-    
-    
+
+    public Object[] toTableRow() {
+        return new Object[]{maKH, ten, sdt, email};
+    }
+
 }
