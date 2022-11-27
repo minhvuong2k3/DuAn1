@@ -2,6 +2,14 @@ package com.raven.chart;
 
 public class ModelChart {
 
+    public ModelChart(String label, double[] values) {
+        this.label = label;
+        this.values = values;
+    }
+
+    public ModelChart() {
+    }
+
     public String getLabel() {
         return label;
     }
@@ -17,15 +25,7 @@ public class ModelChart {
     public void setValues(double[] values) {
         this.values = values;
     }
-
-    public ModelChart(String label, double[] values) {
-        this.label = label;
-        this.values = values;
-    }
-
-    public ModelChart() {
-    }
-
+    
     private String label;
     private double values[];
 

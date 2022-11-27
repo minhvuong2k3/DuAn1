@@ -48,6 +48,12 @@ public class KhachHangDAO extends ClothingStoreDAO<KhachHang, String>{
         String sql = "SELECT MaKH, TenKH, SDT, Email FROM KhachHang";
         return select(sql);
     }
+    
+    public KhachHang selectTop1() {
+        String sql = "SELECT top 1 MaKH, TenKH, SDT, Email FROM KhachHang order by convert(int, SUBSTRING(MaKH,3,4)) desc";
+        List<KhachHang> list = select(sql);
+        return list.size() > 0 ? list.get(0) : null;
+    }
 
     public List<KhachHang> selectByKeyword(String keyword) {
         String sql = "SELECT MaKH, TenKH, SDT, Email FROM KhachHang WHERE MaKH like ? OR TenKH like ?";
@@ -58,6 +64,12 @@ public class KhachHangDAO extends ClothingStoreDAO<KhachHang, String>{
     public KhachHang selectById(String MaKH) {
         String sql = "SELECT MaKH, TenKH, SDT, Email FROM KhachHang WHERE MaKH = ?";
         List<KhachHang> list = select(sql, MaKH);
+        return list.size() > 0 ? list.get(0) : null;
+    }
+    
+    public KhachHang selectBySdt(String SDT) {
+        String sql = "SELECT MaKH, TenKH, SDT, Email FROM KhachHang WHERE SDT = ?";
+        List<KhachHang> list = select(sql, SDT);
         return list.size() > 0 ? list.get(0) : null;
     }
 

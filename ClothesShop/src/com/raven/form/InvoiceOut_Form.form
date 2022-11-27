@@ -46,9 +46,9 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="roundPanel1" pref="786" max="32767" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="button2" min="-2" pref="79" max="-2" attributes="0"/>
+                                  <Component id="btnPrev" min="-2" pref="79" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="button1" min="-2" pref="79" max="-2" attributes="0"/>
+                                  <Component id="btnNext" min="-2" pref="79" max="-2" attributes="0"/>
                                   <EmptySpace min="13" pref="13" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -70,12 +70,12 @@
                           <Component id="roundPanel1" min="-2" pref="470" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="button1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="button2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnNext" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnPrev" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace pref="12" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -356,15 +356,15 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="251" max="-2" attributes="0"/>
-                      <Component id="button4" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnStep1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jSeparator4" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="button5" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnStep2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jSeparator6" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="button6" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnStep3" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="254" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -375,10 +375,10 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="button6" alignment="3" pref="56" max="32767" attributes="0"/>
-                              <Component id="button5" alignment="3" pref="56" max="32767" attributes="0"/>
+                              <Component id="btnStep3" alignment="3" pref="56" max="32767" attributes="0"/>
+                              <Component id="btnStep2" alignment="3" pref="56" max="32767" attributes="0"/>
                           </Group>
-                          <Component id="button4" max="32767" attributes="0"/>
+                          <Component id="btnStep1" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -394,19 +394,25 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="button.Button" name="button4">
+            <Component class="button.Button" name="btnStep1">
               <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="e8" red="32" type="rgb"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="0" green="0" red="0" type="rgb"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Step 1"/>
                 <Property name="round" type="int" value="50"/>
               </Properties>
             </Component>
-            <Component class="button.Button" name="button5">
+            <Component class="button.Button" name="btnStep2">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Step 2"/>
                 <Property name="round" type="int" value="50"/>
               </Properties>
             </Component>
-            <Component class="button.Button" name="button6">
+            <Component class="button.Button" name="btnStep3">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Step 3"/>
                 <Property name="round" type="int" value="50"/>
@@ -418,18 +424,21 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="button.Button" name="button1">
+        <Component class="button.Button" name="btnNext">
           <Properties>
             <Property name="text" type="java.lang.String" value="NEXT"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="button1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNextActionPerformed"/>
           </Events>
         </Component>
-        <Component class="button.Button" name="button2">
+        <Component class="button.Button" name="btnPrev">
           <Properties>
             <Property name="text" type="java.lang.String" value="PREV"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPrevActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
