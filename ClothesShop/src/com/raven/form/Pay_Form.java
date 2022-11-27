@@ -29,6 +29,7 @@ public class Pay_Form extends javax.swing.JPanel {
     /**
      * Creates new form Pay_Form
      */
+    static int cash = 0;
     static JComboBox pay = new JComboBox();
     SanPhamDAO dao = new SanPhamDAO();
     public Pay_Form() {
@@ -253,9 +254,12 @@ public class Pay_Form extends javax.swing.JPanel {
         if(!txtCash.getText().trim().equals("")){
             try {
                 int x = Integer.parseInt(txtCash.getText().trim());
-                if(x > Integer.parseInt(txtTotal.getText()))
+                if(x > Integer.parseInt(txtTotal.getText())){
                     txtExtraMoney.setText((x-Integer.parseInt(txtTotal.getText().trim()))+"");
+                    cash = x-Integer.parseInt(txtTotal.getText().trim());
+                }
                 else {
+                    txtExtraMoney.setText("");
                     Notification panel = new Notification(Employee_Form.fr, Notification.Type.WARNING, Notification.Location.TOP_CENTER, "Cash not enough !");
                     panel.showNotification();
                 }

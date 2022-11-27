@@ -6,17 +6,21 @@ package com.raven.form;
 
 import com.raven.DAO.SanPhamDAO;
 import com.raven.cell.CellAction;
+import static com.raven.form.Pay_Form.pay;
 import com.raven.main.Main;
 import com.raven.model.ModelStaff;
 import com.raven.model.SanPham;
 import com.raven.model.ProductCard;
 import com.raven.swing.scrollbar.ScrollBarCustom;
 import java.awt.Image;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import java.util.List;
 import javaswingdev.Notification;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
 import javax.swing.JScrollPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -29,6 +33,7 @@ public class AddInvoice_Form extends javax.swing.JPanel {
     /**
      * Creates new form AddInvoice_Form
      */
+    static JComboBox invoice = new JComboBox();
     SanPhamDAO dao = new SanPhamDAO();
     List<SanPham> list = dao.select();
     int indexCbo = 0;
@@ -276,6 +281,17 @@ public class AddInvoice_Form extends javax.swing.JPanel {
 
     private void init() {
         loadToCbo();
+        DefaultComboBoxModel model = (DefaultComboBoxModel)invoice.getModel();
+        model.removeAllElements();
+        model.addElement("0");
+        model.addElement("1");
+        model.addElement("2");
+        invoice.addItemListener(new ItemListener(){
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                removeAllall();
+            }
+        });
     }
 
     private void loadToCbo() {
@@ -301,7 +317,7 @@ public class AddInvoice_Form extends javax.swing.JPanel {
         cboSearch.setSelectedItem(card.get(index)[0]);
     }
 
-    private void clearSP() {
+    public void clearSP() {
         lblNameProduct.setText("NAME PRODUCT");
         lblPrice.setText("Price ");
         lblImage.setIcon(null);
@@ -312,6 +328,15 @@ public class AddInvoice_Form extends javax.swing.JPanel {
     public void removeCard(int x){
         if(card.size() >= 0)
             card.remove(x);
+    }
+    
+    public void removeAllall(){
+        if(card.size() >= 0)
+            card.removeAll(card);
+        DefaultTableModel model = (DefaultTableModel)tblCardPro.getModel();
+        model.setRowCount(0);
+        cboSearch.setSelectedIndex(0);
+        clearSP();
     }
 
     private void sumPrice(int x) {
