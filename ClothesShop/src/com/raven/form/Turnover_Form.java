@@ -8,11 +8,11 @@ package com.raven.form;
  *
  * @author AD MIN
  */
-public class Dashboard extends javax.swing.JPanel {
+public class Turnover_Form extends javax.swing.JPanel {
 
     private boolean show = true;
 
-    public Dashboard() {
+    public Turnover_Form() {
         initComponents();
         doanhThuForm1.setVisible(true);
     }
@@ -33,8 +33,8 @@ public class Dashboard extends javax.swing.JPanel {
 
         button1 = new button.Button();
         jPanel1 = new javax.swing.JPanel();
-        doanhThuForm1 = new com.raven.form.DoanhThuForm();
-        doanhThu2_Form1 = new com.raven.form.DoanhThu2_Form();
+        doanhThuForm1 = new com.raven.form.TurnoverProduct_Form();
+        doanhThu2_Form1 = new com.raven.form.TurnoverChart_Form();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -83,8 +83,8 @@ public class Dashboard extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private button.Button button1;
-    private com.raven.form.DoanhThu2_Form doanhThu2_Form1;
-    private com.raven.form.DoanhThuForm doanhThuForm1;
+    private com.raven.form.TurnoverChart_Form doanhThu2_Form1;
+    private com.raven.form.TurnoverProduct_Form doanhThuForm1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

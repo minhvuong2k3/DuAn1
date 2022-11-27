@@ -7,50 +7,37 @@ package com.raven.form;
 import com.raven.cell.CellAction;
 import com.raven.model.ModelStaff;
 import com.raven.swing.scrollbar.ScrollBarCustom;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
 import javax.swing.JScrollPane;
 
 /**
  *
  * @author AD MIN
  */
-public class AddProductsInput extends javax.swing.JPanel {
+public class AddInvoice_Form extends javax.swing.JPanel {
 
     /**
-     * Creates new form AddProducts
+     * Creates new form AddInvoice_Form
      */
-    public AddProductsInput() {
+    static int a = 0;
+    public AddInvoice_Form() {
         initComponents();
-        setOpaque(false);
         table1.addTableStyle(scroll);
         scroll.setBorder(null);
         scroll.setViewportBorder(null);
         scroll.getViewport().setOpaque(false);
         scroll.setVerticalScrollBar(new ScrollBarCustom());
+        
         table1.addTableCell(new CellAction(), 5);
 
         scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        table1.addRow(new ModelStaff("123", "123", "123", 12, "123", "123", "123", "123"), false);  //  ture is animate row
-        table1.addRow(new ModelStaff("123", "123", "123", 12, "123", "123", "123", "123"), false);  //  ture is animate row
-        table1.addRow(new ModelStaff("123", "123", "123", 12, "123", "123", "123", "123"), false);  //  ture is animate row
-        table1.addRow(new ModelStaff("123", "123", "123", 12, "123", "123", "123", "123"), false);  //  ture is animate row
-        table1.addRow(new ModelStaff("123", "123", "123", 12, "123", "123", "123", "123"), false);  //  ture is animate row
-        table1.addRow(new ModelStaff("123", "123", "123", 12, "123", "123", "123", "123"), false);  //  ture is animate row
-        table1.addRow(new ModelStaff("123", "123", "123", 12, "123", "123", "123", "123"), false);  //  ture is animate row
-    }
+        table1.addRow(new ModelStaff("1", "123", "123", 12, "123", "123", "123", "123"), false);  //  ture is animate row
+        table1.addRow(new ModelStaff("2", "123", "123", 12, "123", "123", "123", "123"), false);  //  ture is animate row
+        table1.addRow(new ModelStaff("3", "123", "123", 12, "123", "123", "123", "123"), false);  //  ture is animate row
+        table1.addRow(new ModelStaff("43", "123", "123", 12, "123", "123", "123", "123"), false);  //  ture is animate row
+        table1.addRow(new ModelStaff("53", "123", "123", 12, "123", "123", "123", "123"), false);  //  ture is animate row
+        table1.addRow(new ModelStaff("63", "123", "123", 12, "123", "123", "123", "123"), false);  //  ture is animate row
+        table1.addRow(new ModelStaff("73", "123", "123", 12, "123", "123", "123", "123"), false);  //  ture is animate row
 
-    @Override
-    public void paint(Graphics grphcs) {
-        Graphics2D g2 = (Graphics2D) grphcs.create();
-        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        int width = getWidth();
-        int height = getHeight();
-        g2.setColor(getBackground());
-        g2.fillRoundRect(0, 0, width, height, 15, 15);
-        g2.dispose();
-        super.paint(grphcs);
     }
 
     /**
@@ -191,7 +178,7 @@ public class AddProductsInput extends javax.swing.JPanel {
                                     .addComponent(jLabel4))))))
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(scroll, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE)
+                .addComponent(scroll, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -203,7 +190,7 @@ public class AddProductsInput extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(roundPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 573, Short.MAX_VALUE)
+            .addComponent(roundPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 

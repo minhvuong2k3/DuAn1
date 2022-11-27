@@ -12,12 +12,12 @@ import java.awt.Color;
  *
  * @author AD MIN
  */
-public class DoanhThu2_Form extends javax.swing.JPanel {
+public class TurnoverChart_Form extends javax.swing.JPanel {
 
     /**
      * Creates new form DoanhThu2_Form
      */
-    public DoanhThu2_Form() {
+    public TurnoverChart_Form() {
         initComponents();
         pieChart1.setChartType(PieChart.PeiChartType.DONUT_CHART);
         pieChart1.addData(new ModelPieChart("Tigher", 150, new Color(23, 126, 238)));

@@ -20,19 +20,19 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author AD MIN
  */
-public class HoaDonNhap extends javax.swing.JPanel {
+public class InvoiceOut_Form extends javax.swing.JPanel {
 
     /**
-     * Creates new form HoaDonNhap
+     * Creates new form InvoiceOut_Form
      */
     SanPhamDAO dao = new SanPhamDAO();
     List<SanPham> list = dao.select();
     int indexCbo = 0;
     List<Object[]> card = new ArrayList<>();
 
-    public HoaDonNhap() {
+    public InvoiceOut_Form() {
         initComponents();
-        System.out.println(AddProducts.a);
+        System.out.println(AddInvoice_Form.a);
 //        init();
     }
 
@@ -68,7 +68,7 @@ public class HoaDonNhap extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         roundPanel1 = new com.raven.swing.RoundPanel();
-        addProducts1 = new com.raven.form.AddProducts();
+        addProducts1 = new com.raven.form.AddInvoice_Form();
         pay_Form1 = new com.raven.form.Pay_Form();
         roundPanel2 = new com.raven.swing.RoundPanel();
         roundPanel4 = new com.raven.swing.RoundPanel();
@@ -318,7 +318,7 @@ public class HoaDonNhap extends javax.swing.JPanel {
                         .addComponent(roundPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(roundPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 786, Short.MAX_VALUE)
+                            .addComponent(roundPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 786, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(button2, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -361,7 +361,7 @@ public class HoaDonNhap extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.raven.form.AddProducts addProducts1;
+    private com.raven.form.AddInvoice_Form addProducts1;
     private button.Button btnClear;
     private button.Button button1;
     private button.Button button2;

@@ -292,16 +292,12 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                              <Component id="button4" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblAmountCus2" alignment="3" max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="lblIconCus2" alignment="3" pref="50" max="32767" attributes="0"/>
-                              <Component id="lblNameCus2" alignment="3" pref="50" max="32767" attributes="0"/>
-                              <Component id="lblSdtCus2" alignment="3" pref="50" max="32767" attributes="0"/>
-                          </Group>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblIconCus2" alignment="3" pref="50" max="32767" attributes="0"/>
+                          <Component id="lblNameCus2" alignment="3" pref="50" max="32767" attributes="0"/>
+                          <Component id="lblSdtCus2" alignment="3" pref="50" max="32767" attributes="0"/>
+                          <Component id="lblAmountCus2" alignment="3" max="32767" attributes="0"/>
+                          <Component id="button4" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -614,27 +610,27 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="lblImageSP3" min="-2" pref="51" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="lblMoneySP3" max="32767" attributes="0"/>
-                          <Component id="lblNameSP3" pref="120" max="32767" attributes="0"/>
+                          <Component id="lblMoneySP3" alignment="0" max="32767" attributes="0"/>
+                          <Component id="lblNameSP3" alignment="0" pref="120" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="button8" min="-2" pref="66" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
+                      <Component id="button8" min="-2" pref="66" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="button8" min="-2" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="button8" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" alignment="1" groupAlignment="1" max="-2" attributes="0">
                               <Component id="lblImageSP3" alignment="1" max="32767" attributes="0"/>
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="lblNameSP3" min="-2" pref="22" max="-2" attributes="0"/>
@@ -643,12 +639,18 @@
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="8" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
           </Layout>
           <SubComponents>
+            <Component class="javax.swing.JLabel" name="lblImageSP3">
+              <Properties>
+                <Property name="horizontalAlignment" type="int" value="0"/>
+                <Property name="text" type="java.lang.String" value="IMG"/>
+              </Properties>
+            </Component>
             <Component class="javax.swing.JLabel" name="lblNameSP3">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -660,12 +662,6 @@
             <Component class="javax.swing.JLabel" name="lblMoneySP3">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Money"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="lblImageSP3">
-              <Properties>
-                <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="IMG"/>
               </Properties>
             </Component>
             <Component class="button.Button" name="button8">

@@ -65,7 +65,7 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="com.raven.form.Home" name="home1">
+        <Component class="com.raven.form.HomeShow_Form" name="home1">
         </Component>
       </SubComponents>
     </Container>

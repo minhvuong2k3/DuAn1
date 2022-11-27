@@ -7,7 +7,7 @@ package com.raven.form;
 import com.raven.DAO.NhanVienDAO;
 import com.raven.DAO.RoleDAO;
 import com.raven.dialog.Message;
-import static com.raven.form.Form_Home.fr;
+import static com.raven.form.Employee_Form.fr;
 import com.raven.main.Main;
 import com.raven.model.ModelStaff;
 import com.raven.model.NhanVien;
@@ -24,17 +24,17 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author AD MIN
  */
-public class CustomerForm extends javax.swing.JFrame {
+public class Customer_Form extends javax.swing.JFrame {
 
     /**
-     * Creates new form CustomerForm
+     * Creates new form Customer_Form
      */
     NhanVienDAO dao = new NhanVienDAO();
     RoleDAO roleDao = new RoleDAO();
     List<NhanVien> list = dao.select();
     static Frame fr;
 
-    public CustomerForm() {
+    public Customer_Form() {
         initComponents();
     }
 
@@ -213,7 +213,6 @@ public class CustomerForm extends javax.swing.JFrame {
                             .addComponent(txtPhone, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(roundPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, 0)
                 .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -514,20 +513,21 @@ public class CustomerForm extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CustomerForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Customer_Form.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CustomerForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Customer_Form.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CustomerForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Customer_Form.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CustomerForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Customer_Form.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CustomerForm().setVisible(true);
+                new Customer_Form().setVisible(true);
             }
         });
     }

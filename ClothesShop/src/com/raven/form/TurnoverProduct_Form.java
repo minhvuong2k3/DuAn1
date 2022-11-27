@@ -22,14 +22,14 @@ import javax.swing.ImageIcon;
  *
  * @author AD MIN
  */
-public class DoanhThuForm extends javax.swing.JPanel {
+public class TurnoverProduct_Form extends javax.swing.JPanel {
 
     /**
      * Creates new form ThongKeForm
      */
     ThongKeDAO dao = new ThongKeDAO();
     SanPhamDAO spdao = new SanPhamDAO();
-    public DoanhThuForm() {
+    public TurnoverProduct_Form() {
         initComponents();
         init();
     }
@@ -146,9 +146,9 @@ public class DoanhThuForm extends javax.swing.JPanel {
         lblImageSP1 = new javax.swing.JLabel();
         button6 = new button.Button();
         roundPanel10 = new com.raven.swing.RoundPanel();
+        lblImageSP3 = new javax.swing.JLabel();
         lblNameSP3 = new javax.swing.JLabel();
         lblMoneySP3 = new javax.swing.JLabel();
-        lblImageSP3 = new javax.swing.JLabel();
         button8 = new button.Button();
         button2 = new button.Button();
 
@@ -288,14 +288,12 @@ public class DoanhThuForm extends javax.swing.JPanel {
             roundPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(roundPanel12Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(roundPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(roundPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(button4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblAmountCus2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(roundPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblIconCus2, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-                        .addComponent(lblNameCus2, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-                        .addComponent(lblSdtCus2, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)))
+                .addGroup(roundPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblIconCus2, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+                    .addComponent(lblNameCus2, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+                    .addComponent(lblSdtCus2, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+                    .addComponent(lblAmountCus2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(button4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -449,13 +447,13 @@ public class DoanhThuForm extends javax.swing.JPanel {
 
         roundPanel10.setBackground(new java.awt.Color(255, 255, 255));
 
+        lblImageSP3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblImageSP3.setText("IMG");
+
         lblNameSP3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblNameSP3.setText("Name");
 
         lblMoneySP3.setText("Money");
-
-        lblImageSP3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblImageSP3.setText("IMG");
 
         button8.setBackground(new java.awt.Color(80, 87, 122));
         button8.setForeground(new java.awt.Color(255, 255, 255));
@@ -465,21 +463,21 @@ public class DoanhThuForm extends javax.swing.JPanel {
         roundPanel10.setLayout(roundPanel10Layout);
         roundPanel10Layout.setHorizontalGroup(
             roundPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundPanel10Layout.createSequentialGroup()
+            .addGroup(roundPanel10Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblImageSP3, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(roundPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lblMoneySP3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblNameSP3, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(button8, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         roundPanel10Layout.setVerticalGroup(
             roundPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(roundPanel10Layout.createSequentialGroup()
-                .addGap(9, 9, 9)
+                .addGap(12, 12, 12)
                 .addGroup(roundPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(button8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(roundPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -488,7 +486,7 @@ public class DoanhThuForm extends javax.swing.JPanel {
                             .addComponent(lblNameSP3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(lblMoneySP3))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(8, Short.MAX_VALUE))
         );
 
         button2.setBackground(new java.awt.Color(80, 87, 122));

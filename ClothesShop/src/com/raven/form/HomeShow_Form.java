@@ -23,7 +23,7 @@ import javax.swing.ImageIcon;
  *
  * @author AD MIN
  */
-public class Home extends Form {
+public class HomeShow_Form extends Form {
 
     /**
      * Creates new form Product
@@ -31,7 +31,7 @@ public class Home extends Form {
     SanPhamDAO dao = new SanPhamDAO();
     NhanVienDAO nvdao = new NhanVienDAO();
     
-    public Home() {
+    public HomeShow_Form() {
         initComponents();
         init();
     }

@@ -53,14 +53,14 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignCardLayout"/>
       <SubComponents>
-        <Component class="com.raven.form.DoanhThuForm" name="doanhThuForm1">
+        <Component class="com.raven.form.TurnoverProduct_Form" name="doanhThuForm1">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
               <CardConstraints cardName="card2"/>
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="com.raven.form.DoanhThu2_Form" name="doanhThu2_Form1">
+        <Component class="com.raven.form.TurnoverChart_Form" name="doanhThu2_Form1">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignCardLayout" value="org.netbeans.modules.form.compat2.layouts.DesignCardLayout$CardConstraintsDescription">
               <CardConstraints cardName="card3"/>

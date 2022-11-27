@@ -52,7 +52,7 @@ public class Pay_Form extends javax.swing.JPanel {
         jScrollBar1 = new javax.swing.JScrollBar();
         roundPanel1 = new com.raven.swing.RoundPanel();
         scroll = new javax.swing.JScrollPane();
-        invoice1 = new com.raven.form.Invoice();
+        invoice1 = new com.raven.form.Invoice_Form();
         roundPanel2 = new com.raven.swing.RoundPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -204,7 +204,7 @@ public class Pay_Form extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.raven.form.Invoice invoice1;
+    private com.raven.form.Invoice_Form invoice1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

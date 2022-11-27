@@ -19,7 +19,7 @@ public class Home_Form extends Form {
 
         slideshow1 = new slideshow.Slideshow();
         jPanel1 = new javax.swing.JPanel();
-        home1 = new com.raven.form.Home();
+        home1 = new com.raven.form.HomeShow_Form();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -59,7 +59,7 @@ public class Home_Form extends Form {
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.raven.form.Home home1;
+    private com.raven.form.HomeShow_Form home1;
     private javax.swing.JPanel jPanel1;
     private slideshow.Slideshow slideshow1;
     // End of variables declaration//GEN-END:variables

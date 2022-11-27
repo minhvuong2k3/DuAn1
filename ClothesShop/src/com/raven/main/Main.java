@@ -1,40 +1,37 @@
 package com.raven.main;
 
 import com.raven.event.EventColorChange;
-import com.raven.form.Dashboard;
-import com.raven.form.DoanhThu2_Form;
-//import com.raven.form.FormHomeStaff;
-import com.raven.form.Form_Home;
+import com.raven.form.Turnover_Form;
+import com.raven.form.TurnoverChart_Form;
+import com.raven.form.Employee_Form;
 import com.raven.form.Home_Form;
-import com.raven.form.Home;
-//import com.raven.form.Order;
-import com.raven.form.P_Form;
+//import com.raven.form.Home;
 import com.raven.form.Setting_Form;
-import com.raven.form.DoanhThuForm;
-import com.raven.form.FormHome;
-import com.raven.form.HoaDonNhap;
+import com.raven.form.TurnoverProduct_Form;
+import com.raven.form.Product_Form;
+import com.raven.form.InvoiceOut_Form;
 import com.raven.menu.EventMenu;
-import com.raven.menu.Menu;
+//import com.raven.menu.Menu;
 import com.raven.properties.SystemProperties;
 import com.raven.theme.SystemTheme;
 import com.raven.theme.ThemeColor;
 import com.raven.theme.ThemeColorChange;
 import com.raven.utils.Auth;
 import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+//import java.awt.event.ActionEvent;
+//import java.awt.event.ActionListener;
 import javaswingdev.message.MessageDialog;
-import javax.swing.Timer;
+//import javax.swing.Timer;
 
 public class Main extends javax.swing.JFrame {
 
     private Setting_Form settingForm;
-    private FormHome productForm;
-    private Form_Home empForm;
-    private HoaDonNhap InvoiceForm;
-    private DoanhThuForm dashboardForm;
-    private DoanhThu2_Form doanhthuForm;
-    private Dashboard dashForm;
+    private Product_Form productForm;
+    private Employee_Form empForm;
+    private InvoiceOut_Form InvoiceForm;
+    private TurnoverProduct_Form dashboardForm;
+    private TurnoverChart_Form doanhthuForm;
+    private Turnover_Form dashForm;
     static int i = 0;
     public Main() {
         initComponents();
@@ -133,12 +130,12 @@ public class Main extends javax.swing.JFrame {
         settingForm.setDarkMode(pro.isDarkMode());
         settingForm.initBackgroundImage(pro.getBackgroundImage());
         mainBody.displayForm(new Home_Form());
-        productForm = new FormHome();
-        empForm = new Form_Home(this);
-        dashForm = new Dashboard();
-        InvoiceForm = new HoaDonNhap();
-        dashboardForm = new DoanhThuForm();
-        doanhthuForm = new DoanhThu2_Form();
+        productForm = new Product_Form();
+        empForm = new Employee_Form(this);
+        dashForm = new Turnover_Form();
+        InvoiceForm = new InvoiceOut_Form();
+        dashboardForm = new TurnoverProduct_Form();
+        doanhthuForm = new TurnoverChart_Form();
     }
 
     @SuppressWarnings("unchecked")
