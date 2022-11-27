@@ -184,6 +184,20 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
                     login(txtPass.getText(), txtEmail.getText(), frame);
             }
         });
+        txtPass.addKeyListener(new KeyAdapter(){
+            @Override
+            public void keyPressed(KeyEvent e){
+                if(e.getKeyCode()==KeyEvent.VK_ENTER)
+                    login(txtPass.getText(), txtEmail.getText(), frame);
+            }
+        });
+        cmd.addKeyListener(new KeyAdapter(){
+            @Override
+            public void keyPressed(KeyEvent e){
+                if(e.getKeyCode()==KeyEvent.VK_ENTER)
+                    login(txtPass.getText(), txtEmail.getText(), frame);
+            }
+        });
         cmd.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
