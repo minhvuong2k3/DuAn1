@@ -4,10 +4,21 @@
  */
 package com.raven.form;
 
+import com.raven.DAO.SanPhamDAO;
+import com.raven.component.ProductOnInvoice;
+import static com.raven.form.Invoice_Form.text;
+import com.raven.model.SanPham;
 import com.raven.swing.scrollbar.ScrollBarCustom;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import javaswingdev.Notification;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -18,6 +29,8 @@ public class Pay_Form extends javax.swing.JPanel {
     /**
      * Creates new form Pay_Form
      */
+    static JComboBox pay = new JComboBox();
+    SanPhamDAO dao = new SanPhamDAO();
     public Pay_Form() {
         initComponents();
         setOpaque(false);
@@ -25,6 +38,35 @@ public class Pay_Form extends javax.swing.JPanel {
         scroll.setViewportBorder(null);
         scroll.getViewport().setOpaque(false);
         scroll.setVerticalScrollBar(new ScrollBarCustom());
+        DefaultComboBoxModel model = (DefaultComboBoxModel)pay.getModel();
+        model.removeAllElements();
+        model.addElement("0");
+        model.addElement("1");
+        model.addElement("2");
+        pay.addItemListener(new ItemListener(){
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                load();
+            }
+        });
+    }
+    
+    public void load(){
+        int sum = 0;
+        DefaultTableModel model = (DefaultTableModel)tblProductCard.getModel();
+        model.setRowCount(0);
+        for(int i=0;i<AddInvoice_Form.card.size();i++){
+            SanPham sp = dao.selectById(AddInvoice_Form.card.get(i)[0].toString());
+            Object[] row = new Object[]{
+                AddInvoice_Form.card.get(i)[0],
+                AddInvoice_Form.card.get(i)[1],
+                AddInvoice_Form.card.get(i)[2],
+                sp.getGiaBan()
+            };
+            model.addRow(row);
+            sum+=sp.getGiaBan()*(int)AddInvoice_Form.card.get(i)[2];
+        }
+        txtTotal.setText(""+sum);
     }
     
     @Override
@@ -58,12 +100,12 @@ public class Pay_Form extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        textFieldBasic1 = new textfield.TextFieldBasic();
-        textFieldBasic2 = new textfield.TextFieldBasic();
-        textFieldBasic3 = new textfield.TextFieldBasic();
+        txtCash = new textfield.TextFieldBasic();
+        txtExtraMoney = new textfield.TextFieldBasic();
+        txtTotal = new textfield.TextFieldBasic();
         roundPanel3 = new com.raven.swing.RoundPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        table1 = new com.raven.swing.Table();
+        tblProductCard = new com.raven.swing.Table();
 
         jLabel3.setText("jLabel3");
 
@@ -92,17 +134,21 @@ public class Pay_Form extends javax.swing.JPanel {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Pay");
 
-        jLabel2.setText("Don gia");
+        jLabel2.setText("Total");
 
-        jLabel4.setText("Tien dua");
+        jLabel4.setText("Cash");
 
-        jLabel5.setText("Tien thua");
+        jLabel5.setText("Extra money");
 
-        textFieldBasic1.setText("textFieldBasic1");
+        txtCash.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtCashCaretUpdate(evt);
+            }
+        });
 
-        textFieldBasic2.setText("textFieldBasic1");
+        txtExtraMoney.setEnabled(false);
 
-        textFieldBasic3.setText("textFieldBasic1");
+        txtTotal.setEnabled(false);
 
         javax.swing.GroupLayout roundPanel2Layout = new javax.swing.GroupLayout(roundPanel2);
         roundPanel2.setLayout(roundPanel2Layout);
@@ -120,9 +166,9 @@ public class Pay_Form extends javax.swing.JPanel {
                             .addComponent(jLabel5))
                         .addGap(18, 18, 18)
                         .addGroup(roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(textFieldBasic2, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
-                            .addComponent(textFieldBasic3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(textFieldBasic1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(txtExtraMoney, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
+                            .addComponent(txtTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtCash, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         roundPanel2Layout.setVerticalGroup(
@@ -133,19 +179,19 @@ public class Pay_Form extends javax.swing.JPanel {
                 .addGap(0, 0, 0)
                 .addGroup(roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(textFieldBasic3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(6, 6, 6)
                 .addGroup(roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(textFieldBasic1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCash, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(textFieldBasic2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtExtraMoney, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(17, 17, 17))
         );
 
-        table1.setModel(new javax.swing.table.DefaultTableModel(
+        tblProductCard.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -153,10 +199,10 @@ public class Pay_Form extends javax.swing.JPanel {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "ID", "Name", "Amount", "Price"
             }
         ));
-        jScrollPane1.setViewportView(table1);
+        jScrollPane1.setViewportView(tblProductCard);
 
         javax.swing.GroupLayout roundPanel3Layout = new javax.swing.GroupLayout(roundPanel3);
         roundPanel3.setLayout(roundPanel3Layout);
@@ -202,6 +248,24 @@ public class Pay_Form extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void txtCashCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtCashCaretUpdate
+        // TODO add your handling code here:
+        if(!txtCash.getText().trim().equals("")){
+            try {
+                int x = Integer.parseInt(txtCash.getText().trim());
+                if(x > Integer.parseInt(txtTotal.getText()))
+                    txtExtraMoney.setText((x-Integer.parseInt(txtTotal.getText().trim()))+"");
+                else {
+                    Notification panel = new Notification(Employee_Form.fr, Notification.Type.WARNING, Notification.Location.TOP_CENTER, "Cash not enough !");
+                    panel.showNotification();
+                }
+            } catch (Exception e) {
+                Notification panel = new Notification(Employee_Form.fr, Notification.Type.WARNING, Notification.Location.TOP_CENTER, "Cash invalid !");
+                panel.showNotification();
+            }
+        }
+    }//GEN-LAST:event_txtCashCaretUpdate
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.raven.form.Invoice_Form invoice1;
@@ -216,9 +280,9 @@ public class Pay_Form extends javax.swing.JPanel {
     private com.raven.swing.RoundPanel roundPanel2;
     private com.raven.swing.RoundPanel roundPanel3;
     private javax.swing.JScrollPane scroll;
-    private com.raven.swing.Table table1;
-    private textfield.TextFieldBasic textFieldBasic1;
-    private textfield.TextFieldBasic textFieldBasic2;
-    private textfield.TextFieldBasic textFieldBasic3;
+    private com.raven.swing.Table tblProductCard;
+    private textfield.TextFieldBasic txtCash;
+    private textfield.TextFieldBasic txtExtraMoney;
+    private textfield.TextFieldBasic txtTotal;
     // End of variables declaration//GEN-END:variables
 }

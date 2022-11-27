@@ -29,6 +29,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import com.raven.component.Message;
 import com.raven.main.Loading;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import javaswingdev.Notification;
 import javax.swing.JLabel;
 import javax.swing.SwingWorker;
@@ -174,6 +177,27 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
         cmd.setForeground(new Color(250, 250, 250));
         cmd.setText("SIGN IN");
         login.add(cmd, "w 40%, h 40");
+        txtEmail.addKeyListener(new KeyAdapter(){
+            @Override
+            public void keyPressed(KeyEvent e){
+                if(e.getKeyCode()==KeyEvent.VK_ENTER)
+                    login(txtPass.getText(), txtEmail.getText(), frame);
+            }
+        });
+        txtPass.addKeyListener(new KeyAdapter(){
+            @Override
+            public void keyPressed(KeyEvent e){
+                if(e.getKeyCode()==KeyEvent.VK_ENTER)
+                    login(txtPass.getText(), txtEmail.getText(), frame);
+            }
+        });
+        cmd.addKeyListener(new KeyAdapter(){
+            @Override
+            public void keyPressed(KeyEvent e){
+                if(e.getKeyCode()==KeyEvent.VK_ENTER)
+                    login(txtPass.getText(), txtEmail.getText(), frame);
+            }
+        });
         cmd.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
