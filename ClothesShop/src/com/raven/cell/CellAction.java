@@ -1,6 +1,6 @@
 package com.raven.cell;
 
-import com.raven.form.AddProducts;
+import com.raven.form.AddInvoice_Form;
 import com.raven.table.TableCustom;
 import com.raven.table.cell.TableCustomCell;
 import com.raven.table.model.TableRowData;
@@ -32,7 +32,7 @@ public class CellAction extends TableCustomCell {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 table.deleteRowAt(getRow(), true);
-                new AddProducts().removeCard(getRow());
+                new AddInvoice_Form().removeCard(getRow());
             }
         });
     }

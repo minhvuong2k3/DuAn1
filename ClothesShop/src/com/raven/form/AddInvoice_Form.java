@@ -24,16 +24,16 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author AD MIN
  */
-public class AddProducts extends javax.swing.JPanel {
+public class AddInvoice_Form extends javax.swing.JPanel {
 
     /**
-     * Creates new form AddProducts
+     * Creates new form AddInvoice_Form
      */
     SanPhamDAO dao = new SanPhamDAO();
     List<SanPham> list = dao.select();
     int indexCbo = 0;
     static List<Object[]> card = new ArrayList<>();
-    public AddProducts() {
+    public AddInvoice_Form() {
         initComponents();
         init();
         tblCardPro.addTableStyle(cardcard);
@@ -246,7 +246,7 @@ public class AddProducts extends javax.swing.JPanel {
         if(cboSearch.getSelectedIndex()>0 && Integer.parseInt(lblSumPrice.getText().substring(7)) > 0)
             loadToTable();
         else {
-            Notification panel = new Notification(Form_Home.fr, Notification.Type.WARNING, Notification.Location.TOP_CENTER, "Information not enough !");
+            Notification panel = new Notification(Employee_Form.fr, Notification.Type.WARNING, Notification.Location.TOP_CENTER, "Information not enough !");
             panel.showNotification();
         }
     }//GEN-LAST:event_btnAddActionPerformed
@@ -338,7 +338,7 @@ public class AddProducts extends javax.swing.JPanel {
                 if(sp.getSoLuong()-(int)btnAmount.getValue()>=0)
                     check = true;
                 else {
-                    Notification panel = new Notification(Form_Home.fr, Notification.Type.WARNING, Notification.Location.TOP_CENTER, "Amount isn't enough !");
+                    Notification panel = new Notification(Employee_Form.fr, Notification.Type.WARNING, Notification.Location.TOP_CENTER, "Amount isn't enough !");
                     panel.showNotification();
                     check = false;
                 }

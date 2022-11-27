@@ -33,7 +33,7 @@ import javax.swing.JTextField;
  *
  * @author AD MIN
  */
-public class Invoice extends javax.swing.JPanel {
+public class Invoice_Form extends javax.swing.JPanel {
 
     /**
      * Creates new form Invoice
@@ -41,7 +41,7 @@ public class Invoice extends javax.swing.JPanel {
     static JComboBox text = new JComboBox();
 
     SanPhamDAO dao = new SanPhamDAO();
-    public Invoice() {
+    public Invoice_Form() {
         initComponents();
         setOpaque(false);
         DefaultComboBoxModel model = (DefaultComboBoxModel)text.getModel();
@@ -59,28 +59,28 @@ public class Invoice extends javax.swing.JPanel {
     public void addItem(){
         product.removeAll();
         int sum = 0;
-        for(int i=0;i<AddProducts.card.size();i++){
-            SanPham sp = dao.selectById(AddProducts.card.get(i)[0].toString());
-            JPanel panel = new ProductOnInvoice(AddProducts.card.get(i)[0].toString(), String.valueOf(sp.getGiaBan()), AddProducts.card.get(i)[2].toString(), String.valueOf(sp.getGiaBan()*(int)AddProducts.card.get(i)[2]));
+        for(int i=0;i<AddInvoice_Form.card.size();i++){
+            SanPham sp = dao.selectById(AddInvoice_Form.card.get(i)[0].toString());
+            JPanel panel = new ProductOnInvoice(AddInvoice_Form.card.get(i)[0].toString(), String.valueOf(sp.getGiaBan()), AddInvoice_Form.card.get(i)[2].toString(), String.valueOf(sp.getGiaBan()*(int)AddInvoice_Form.card.get(i)[2]));
             panel.setSize(307, 40);
             panel.setLocation(8, i*40);
             product.add(panel);
-            sum+=sp.getGiaBan()*(int)AddProducts.card.get(i)[2];
+            sum+=sp.getGiaBan()*(int)AddInvoice_Form.card.get(i)[2];
         }
         Date date = new Date();
         lblDate.setText(date.getDate()+"/"+(date.getMonth()+1)+"/"+(date.getYear()+1900));
-        if(HoaDonNhap.CusPhone != null){
+        if(InvoiceOut_Form.CusPhone != null){
             KhachHangDAO khdao = new KhachHangDAO();
-            KhachHang kh = khdao.selectBySdt(HoaDonNhap.CusPhone);
+            KhachHang kh = khdao.selectBySdt(InvoiceOut_Form.CusPhone);
             if(kh!=null)
                 lblIDCus.setText(kh.getMaKH());
             else{
-                if(HoaDonNhap.CusName != null && HoaDonNhap.CusEmail != null){
+                if(InvoiceOut_Form.CusName != null && InvoiceOut_Form.CusEmail != null){
                     kh = khdao.selectTop1();
                     KhachHang khnew = new KhachHang();
-                    khnew.setTen(HoaDonNhap.CusName);
-                    khnew.setEmail(HoaDonNhap.CusEmail);
-                    khnew.setSdt(HoaDonNhap.CusPhone);
+                    khnew.setTen(InvoiceOut_Form.CusName);
+                    khnew.setEmail(InvoiceOut_Form.CusEmail);
+                    khnew.setSdt(InvoiceOut_Form.CusPhone);
                     khnew.setMaKH("KH"+String.valueOf(Integer.parseInt(kh.getMaKH().substring(2))+1));
                     khdao.insert(khnew);
                     lblIDCus.setText(khnew.getMaKH());

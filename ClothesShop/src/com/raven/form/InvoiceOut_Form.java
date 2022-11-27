@@ -25,7 +25,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author AD MIN
  */
-public class HoaDonNhap extends javax.swing.JPanel {
+public class InvoiceOut_Form extends javax.swing.JPanel {
 
     /**
      * Creates new form HoaDonNhap
@@ -35,7 +35,7 @@ public class HoaDonNhap extends javax.swing.JPanel {
     static String CusName = null;
     static String CusEmail = null;
 
-    public HoaDonNhap() {
+    public InvoiceOut_Form() {
         initComponents();
         init();
         if(step==0)
@@ -53,7 +53,7 @@ public class HoaDonNhap extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         roundPanel1 = new com.raven.swing.RoundPanel();
-        addProducts1 = new com.raven.form.AddProducts();
+        addProducts1 = new com.raven.form.AddInvoice_Form();
         pay_Form1 = new com.raven.form.Pay_Form();
         roundPanel2 = new com.raven.swing.RoundPanel();
         roundPanel4 = new com.raven.swing.RoundPanel();
@@ -348,7 +348,7 @@ public class HoaDonNhap extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
-        if(AddProducts.card.size()>0){
+        if(AddInvoice_Form.card.size()>0){
             if(!txtPhoneCus.getText().trim().equals(""))
                 CusPhone = txtPhoneCus.getText().trim();
             else 
@@ -363,13 +363,13 @@ public class HoaDonNhap extends javax.swing.JPanel {
                 CusName = null;
             CardLayout card = (CardLayout) roundPanel1.getLayout();
             card.show(roundPanel1, "card3");
-            new Invoice().text.setSelectedIndex(1);
+            new Invoice_Form().text.setSelectedIndex(1);
             step++;
             changeColorStep();
             btnPrev.setEnabled(true);
         }
         else {
-            Notification panel = new Notification(Form_Home.fr, Notification.Type.WARNING, Notification.Location.TOP_CENTER, "Product is null !");
+            Notification panel = new Notification(Employee_Form.fr, Notification.Type.WARNING, Notification.Location.TOP_CENTER, "Product is null !");
             panel.showNotification();
         }
     }//GEN-LAST:event_btnNextActionPerformed
@@ -387,7 +387,7 @@ public class HoaDonNhap extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.raven.form.AddProducts addProducts1;
+    private com.raven.form.AddInvoice_Form addProducts1;
     private button.Button btnClear;
     private button.Button btnNext;
     private button.Button btnPrev;

@@ -22,7 +22,7 @@ import javaswingdev.chart.ModelChart;
  *
  * @author AD MIN
  */
-public class DoanhThu2_Form extends javax.swing.JPanel {
+public class TurnoverChart_Form extends javax.swing.JPanel {
 
     /**
      * Creates new form DoanhThu2_Form
@@ -37,7 +37,7 @@ public class DoanhThu2_Form extends javax.swing.JPanel {
     ArrayList<Integer> spendingRating = new ArrayList<>();
     ArrayList<Integer> revenueRating = new ArrayList<>();
 
-    public DoanhThu2_Form() {
+    public TurnoverChart_Form() {
         initComponents();
         if (indexChartData == 0) {
             barChart1.addLegend("Income", new Color(12, 84, 175), new Color(0, 108, 247));
