@@ -6,7 +6,6 @@ package com.raven.form;
 
 import com.raven.DAO.SanPhamDAO;
 import com.raven.cell.CellAction;
-import com.raven.model.ModelStaff;
 import com.raven.model.ProductCard;
 import com.raven.model.SanPham;
 import com.raven.swing.scrollbar.ScrollBarCustom;
@@ -42,34 +41,8 @@ public class AddImported_Form extends javax.swing.JPanel {
      */
     public AddImported_Form() {
         initComponents();
-        setOpaque(false);
-        tblCardPro.addTableStyle(cardcard);
-        cardcard.setBorder(null);
-        cardcard.setViewportBorder(null);
-        cardcard.getViewport().setOpaque(false);
-        cardcard.setVerticalScrollBar(new ScrollBarCustom());
-        tblCardPro.addTableCell(new CellAction(), 5);
-
-        cardcard.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        tblCardPro.addRow(new ModelStaff("123", "123", "123", 12, "123", "123", "123", "123"), false);  //  ture is animate row
-        tblCardPro.addRow(new ModelStaff("123", "123", "123", 12, "123", "123", "123", "123"), false);  //  ture is animate row
-        tblCardPro.addRow(new ModelStaff("123", "123", "123", 12, "123", "123", "123", "123"), false);  //  ture is animate row
-        tblCardPro.addRow(new ModelStaff("123", "123", "123", 12, "123", "123", "123", "123"), false);  //  ture is animate row
-        tblCardPro.addRow(new ModelStaff("123", "123", "123", 12, "123", "123", "123", "123"), false);  //  ture is animate row
-        tblCardPro.addRow(new ModelStaff("123", "123", "123", 12, "123", "123", "123", "123"), false);  //  ture is animate row
-        tblCardPro.addRow(new ModelStaff("123", "123", "123", 12, "123", "123", "123", "123"), false);  //  ture is animate row
-    }
-
-    @Override
-    public void paint(Graphics grphcs) {
-        Graphics2D g2 = (Graphics2D) grphcs.create();
-        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        int width = getWidth();
-        int height = getHeight();
-        g2.setColor(getBackground());
-        g2.fillRoundRect(0, 0, width, height, 15, 15);
-        g2.dispose();
-        super.paint(grphcs);
+        setLayout();
+        init();
     }
 
     /**
@@ -159,7 +132,7 @@ public class AddImported_Form extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Name", "Gender", "Age", "Email", "Tel", "Action"
+                "ID", "Name", "Age", "Email", "Tel", "Action"
             }
         ));
         tblCardPro.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -206,9 +179,9 @@ public class AddImported_Form extends javax.swing.JPanel {
             roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(roundPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, 0)
-                .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(cboSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cboSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -230,7 +203,7 @@ public class AddImported_Form extends javax.swing.JPanel {
                                     .addComponent(lblSumPrice))))))
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(cardcard)
+                .addComponent(cardcard, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -250,10 +223,10 @@ public class AddImported_Form extends javax.swing.JPanel {
         // TODO add your handling code here:
         if (indexCbo != 0) {
             if (cboSearch.getSelectedIndex() > 0) {
-                loadSP(cboSearch.getSelectedIndex());
+                setModel(cboSearch.getSelectedIndex());
                 sumPrice((int) btnAmount.getValue());
             } else {
-                clearSP();
+                clear();
             }
         }
         indexCbo++;
@@ -261,6 +234,7 @@ public class AddImported_Form extends javax.swing.JPanel {
 
     private void btnAmountStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_btnAmountStateChanged
         // TODO add your handling code here:
+        // Finish
         if (cboSearch.getSelectedIndex() > 0) {
             sumPrice((int) btnAmount.getValue());
         }
@@ -299,9 +273,40 @@ public class AddImported_Form extends javax.swing.JPanel {
     private com.raven.swing.Table tblCardPro;
     // End of variables declaration//GEN-END:variables
 
+    @Override
+    public void paint(Graphics grphcs) {
+        Graphics2D g2 = (Graphics2D) grphcs.create();
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        int width = getWidth();
+        int height = getHeight();
+        g2.setColor(getBackground());
+        g2.fillRoundRect(0, 0, width, height, 15, 15);
+        g2.dispose();
+        super.paint(grphcs);
+    }
+    
+    private void setLayout() {
+        setOpaque(false);
+        tblCardPro.addTableStyle(cardcard);
+        cardcard.setBorder(null);
+        cardcard.setViewportBorder(null);
+        cardcard.getViewport().setOpaque(false);
+        cardcard.setVerticalScrollBar(new ScrollBarCustom());
+        tblCardPro.addTableCell(new CellAction(), 3);
+        
+        //        cardcard.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+//        tblCardPro.addRow(new ModelStaff("123", "123", "123", 12, "123", "123", "123", "123"), false);  //  ture is animate row
+//        tblCardPro.addRow(new ModelStaff("123", "123", "123", 12, "123", "123", "123", "123"), false);  //  ture is animate row
+//        tblCardPro.addRow(new ModelStaff("123", "123", "123", 12, "123", "123", "123", "123"), false);  //  ture is animate row
+//        tblCardPro.addRow(new ModelStaff("123", "123", "123", 12, "123", "123", "123", "123"), false);  //  ture is animate row
+//        tblCardPro.addRow(new ModelStaff("123", "123", "123", 12, "123", "123", "123", "123"), false);  //  ture is animate row
+//        tblCardPro.addRow(new ModelStaff("123", "123", "123", 12, "123", "123", "123", "123"), false);  //  ture is animate row
+//        tblCardPro.addRow(new ModelStaff("123", "123", "123", 12, "123", "123", "123", "123"), false);  //  ture is animate row
+    }
+    
     private void init() {
-        loadToCbo();
-        DefaultComboBoxModel model = (DefaultComboBoxModel)invoice.getModel();
+        fillcboSanPham();
+        DefaultComboBoxModel model = (DefaultComboBoxModel) invoice.getModel();
         model.removeAllElements();
         model.addElement("0");
         model.addElement("1");
@@ -312,32 +317,43 @@ public class AddImported_Form extends javax.swing.JPanel {
                 removeAllall();
             }
         });
+        for(SanPham sp: list) {
+            System.out.println(sp);
+        }
     }
 
-    private void loadToCbo() {
+    /**
+     * Ham load du lieu len cbp san pham
+     */
+    private void fillcboSanPham() {
         DefaultComboBoxModel model = (DefaultComboBoxModel) cboSearch.getModel();
         model.removeAllElements();
+        
+        // Add empty to 
         model.addElement("");
         for (int i = 0; i < list.size(); i++) {
-            model.addElement(list.get(i).getMaSP());
+            model.addElement(list.get(i));
         }
         cboSearch.setModel(model);
     }
     
-    private void loadSP(int index) {
+    private void setModel(int index) {
         lblNameProduct.setText(list.get(index - 1).getTenSP());
         lblPrice.setText("Price: " + list.get(index - 1).getGiaBan());
         lblImage.setIcon(new ImageIcon(new ImageIcon(getClass().getResource(("/com/raven/image/" + list.get(index - 1).getAnh()))).getImage().getScaledInstance(135, 164, Image.SCALE_DEFAULT)));
     }
     
     private void loadSPFromTable(int index){
-        loadSP(index+1);
+        setModel(index+1);
         btnAmount.setValue(card.get(index)[2]);
         lblSumPrice.setText(String.valueOf(Integer.parseInt(lblPrice.getText().substring(7))*(int)card.get(index)[2]));
         cboSearch.setSelectedItem(card.get(index)[0]);
     }
 
-    public void clearSP() {
+    /**
+     * 
+     */
+    public void clear() {
         lblNameProduct.setText("NAME PRODUCT");
         lblPrice.setText("Price ");
         lblImage.setIcon(null);
@@ -356,9 +372,13 @@ public class AddImported_Form extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel)tblCardPro.getModel();
         model.setRowCount(0);
         cboSearch.setSelectedIndex(0);
-        clearSP();
+        clear();
     }
 
+    /**
+     * Ham tinh tong tien- > show len lblSum
+     * @param x la so luong san pham
+     */
     private void sumPrice(int x) {
         if (x <= 0) {
             lblSumPrice.setText("Total: 0");
