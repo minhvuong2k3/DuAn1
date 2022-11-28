@@ -80,8 +80,6 @@ public class TableImport extends javax.swing.JPanel {
         jSeparator4 = new javax.swing.JSeparator();
         jLabel31 = new javax.swing.JLabel();
         total = new javax.swing.JLabel();
-        scroll2 = new javax.swing.JScrollPane();
-        tbl1 = new com.raven.swing.table.Table();
 
         tbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -130,21 +128,6 @@ public class TableImport extends javax.swing.JPanel {
         total.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         total.setText("$999.99");
 
-        tbl1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "ID", "Qty", "Price", "Total"
-            }
-        ));
-        tbl1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tbl1MouseClicked(evt);
-            }
-        });
-        scroll2.setViewportView(tbl1);
-
         javax.swing.GroupLayout roundPanel2Layout = new javax.swing.GroupLayout(roundPanel2);
         roundPanel2.setLayout(roundPanel2Layout);
         roundPanel2Layout.setHorizontalGroup(
@@ -152,7 +135,6 @@ public class TableImport extends javax.swing.JPanel {
             .addGroup(roundPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(scroll2, javax.swing.GroupLayout.DEFAULT_SIZE, 344, Short.MAX_VALUE)
                     .addGroup(roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(roundPanel2Layout.createSequentialGroup()
                             .addGroup(roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -175,7 +157,7 @@ public class TableImport extends javax.swing.JPanel {
                             .addGap(209, 209, 209)
                             .addComponent(total, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(SupName, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jSeparator2)
+                    .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, 344, Short.MAX_VALUE)
                     .addComponent(jSeparator4))
                 .addContainerGap(11, Short.MAX_VALUE))
         );
@@ -201,9 +183,7 @@ public class TableImport extends javax.swing.JPanel {
                         .addComponent(date)))
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scroll2, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(302, 302, 302)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -257,20 +237,16 @@ public class TableImport extends javax.swing.JPanel {
     private void tblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMouseClicked
         if (evt.getClickCount() == 2) {
             int index = tbl.getSelectedRow();
-//            HDNhap nhap = dao.selectById(String.valueOf(list.get(tbl.rowAtPoint(evt.getPoint())).getSoPhieu()));
-            CTHDNhap CTnhap = daoCT.selectById(String.valueOf(list.get(index).getSoPhieu()));
-            System.out.println(CTnhap);
+//            HDNhap nhap = (HDNhap) daoCT.selectByKeyword(list.get(index).getSoPhieu());
+//            CTHDNhap CTnhap = (CTHDNhap) dao.selectByKeyword(index);
+
 //            date.setText(nhap.getNgayNhap());
 //            invNo.setText(String.valueOf(nhap.getSoPhieu()));
 //            empNo.setText(nhap.getMaNV());
 //            System.out.println(nhap.getSoPhieu());
-//            total.setText(String.valueOf(total(daoCT.selectByKeyword(String.valueOf(nhap.getSoPhieu())))));
+//            total.setText(String.valueOf(total(daoCT.selectByKeyword(nhap.getSoPhieu()))));
         }
     }//GEN-LAST:event_tblMouseClicked
-
-    private void tbl1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tbl1MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -289,9 +265,7 @@ public class TableImport extends javax.swing.JPanel {
     private com.raven.swing.RoundPanel roundPanel2;
     private javax.swing.JScrollPane scroll;
     private javax.swing.JScrollPane scroll1;
-    private javax.swing.JScrollPane scroll2;
     private com.raven.swing.table.Table tbl;
-    private com.raven.swing.table.Table tbl1;
     private javax.swing.JLabel total;
     // End of variables declaration//GEN-END:variables
 }

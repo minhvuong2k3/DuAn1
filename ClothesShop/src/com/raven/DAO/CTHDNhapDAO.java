@@ -45,8 +45,8 @@ public class CTHDNhapDAO {
         return select(sql);
     }
 
-    public List<CTHDNhap> selectByKeyword(String keyword) {
-        String sql = "SELECT SoPhieu, MaSP, SoLuong, GiaNhap FROM CTHDNhap WHERE SoPhieu = ";
+    public List<CTHDNhap> selectByKeyword(int keyword) {
+        String sql = "SELECT SoPhieu, MaSP, SoLuong, GiaNhap FROM CTHDNhap WHERE SoPhieu = ?";
         return select(sql, keyword);
     }
 
