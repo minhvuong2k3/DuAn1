@@ -29,6 +29,7 @@ public abstract class ThemeColor {
     public TimingTarget newTarget(ThemeColorChange.Mode mode) {
         if (mode == ThemeColorChange.Mode.DARK) {
             target = new PropertySetter(this, "colorChange", light, dark);
+            
         } else {
             target = new PropertySetter(this, "colorChange", dark, light);
         }

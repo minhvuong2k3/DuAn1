@@ -349,7 +349,7 @@ public class Product_Form extends javax.swing.JPanel {
 //        lbItemName.setText(data.getItemName());
 //        txtDescription.setText(data.getDescription());
 //        lbBrand.setText(data.getBrandName());
-        DecimalFormat df = new DecimalFormat("$#,##0.00");
+//        DecimalFormat df = new DecimalFormat("$#,##0.00");
 //        lbPrice.setText(df.format(data.getPrice()));
     }
 
