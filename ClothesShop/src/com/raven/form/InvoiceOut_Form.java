@@ -38,10 +38,11 @@ public class InvoiceOut_Form extends javax.swing.JPanel {
     public InvoiceOut_Form() {
         initComponents();
         init();
-        if(step==0)
+        if (step == 0) {
             btnPrev.setEnabled(false);
+        }
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -350,41 +351,76 @@ public class InvoiceOut_Form extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
-        if(AddInvoice_Form.card.size()>0){
-            if(!txtPhoneCus.getText().trim().equals(""))
-                CusPhone = txtPhoneCus.getText().trim();
-            else 
-                CusPhone = null;
-            if(!txtEmailCus.getText().trim().equals(""))
-                CusEmail = txtEmailCus.getText().trim();
-            else 
-                CusEmail = null;
-            if(!txtNameCus.getText().trim().equals(""))
-                CusName = txtNameCus.getText().trim();
-            else 
-                CusName = null;
-            CardLayout card = (CardLayout) roundPanel1.getLayout();
-            card.show(roundPanel1, "card3");
-            new Invoice_Form().text.setSelectedIndex(1);
-            Pay_Form.pay.setSelectedIndex(1);
-            step++;
-            changeColorStep();
-            btnPrev.setEnabled(true);
+        if (step == 1) {
+            if (AddInvoice_Form.card.size() > 0) {
+                if (!txtPhoneCus.getText().trim().equals("")) {
+                    CusPhone = txtPhoneCus.getText().trim();
+                } else {
+                    CusPhone = null;
+                }
+                if (!txtEmailCus.getText().trim().equals("")) {
+                    CusEmail = txtEmailCus.getText().trim();
+                } else {
+                    CusEmail = null;
+                }
+                if (!txtNameCus.getText().trim().equals("")) {
+                    CusName = txtNameCus.getText().trim();
+                } else {
+                    CusName = null;
+                }
+                CardLayout card = (CardLayout) roundPanel1.getLayout();
+                card.show(roundPanel1, "card3");
+                new Invoice_Form().text.setSelectedIndex(1);
+                Pay_Form.pay.setSelectedIndex(1);
+                step++;
+                changeColorStep();
+                btnPrev.setEnabled(true);
+            } else {
+                Notification panel = new Notification(Employee_Form.fr, Notification.Type.WARNING, Notification.Location.TOP_CENTER, "Product is null !");
+                panel.showNotification();
+            }
         }
-        else {
-            Notification panel = new Notification(Employee_Form.fr, Notification.Type.WARNING, Notification.Location.TOP_CENTER, "Product is null !");
+        else if(step==2){
+            if(Pay_Form.cash<=0){
+                Notification panel = new Notification(Employee_Form.fr, Notification.Type.WARNING, Notification.Location.TOP_CENTER, "Cash not enough !");
+                panel.showNotification();
+            }
+            else {
+                CardLayout card = (CardLayout) roundPanel1.getLayout();
+                card.show(roundPanel1, "card4");
+                step++;
+                changeColorStep();
+                btnNext.setText("FINISH");
+                btnPrev.setEnabled(true);
+            }
+        }else {
+            CardLayout card = (CardLayout) roundPanel1.getLayout();
+            card.show(roundPanel1, "card2");
+            step = 1;
+            changeColorStep();
+            AddInvoice_Form.invoice.setSelectedIndex(1);
+            btnNext.setText("Next");
+            btnPrev.setEnabled(false);
+            Notification panel = new Notification(Employee_Form.fr, Notification.Type.SUCCESS, Notification.Location.TOP_CENTER, "Payment success !");
             panel.showNotification();
         }
+
     }//GEN-LAST:event_btnNextActionPerformed
 
     private void btnPrevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrevActionPerformed
         // TODO add your handling code here:
-        if(step==2){
+        if (step == 2) {
             CardLayout card = (CardLayout) roundPanel1.getLayout();
             card.show(roundPanel1, "card2");
             step--;
             changeColorStep();
             btnPrev.setEnabled(false);
+        } else if (step == 3) {
+            CardLayout card = (CardLayout) roundPanel1.getLayout();
+            card.show(roundPanel1, "card3");
+            step--;
+            btnNext.setText("NEXT");
+            changeColorStep();
         }
     }//GEN-LAST:event_btnPrevActionPerformed
 
@@ -431,31 +467,29 @@ public class InvoiceOut_Form extends javax.swing.JPanel {
         txtNameEmp.setText(Auth.user.getHoten());
         txtRoleEmp.setText(Auth.user.getVaiTro() ? "Admin" : "Nhân viên");
     }
-    
-    private void changeColorStep(){
-        if(step==1){
-            btnStep1.setBackground(new Color(50,232,255));
-            btnStep1.setForeground(new Color(0,0,0));
-            btnStep2.setBackground(new Color(255,255,255));
-            btnStep2.setForeground(new Color(80,80,80));
-            btnStep3.setBackground(new Color(255,255,255));
-            btnStep3.setForeground(new Color(80,80,80));
-        }
-        else if(step==2){
-            btnStep2.setBackground(new Color(50,232,255));
-            btnStep2.setForeground(new Color(0,0,0));
-            btnStep1.setBackground(new Color(255,255,255));
-            btnStep1.setForeground(new Color(80,80,80));
-            btnStep3.setBackground(new Color(255,255,255));
-            btnStep3.setForeground(new Color(80,80,80));
-        }
-        else {
-            btnStep3.setBackground(new Color(50,232,255));
-            btnStep3.setForeground(new Color(0,0,0));
-            btnStep2.setBackground(new Color(255,255,255));
-            btnStep2.setForeground(new Color(80,80,80));
-            btnStep1.setBackground(new Color(255,255,255));
-            btnStep1.setForeground(new Color(80,80,80));
+
+    private void changeColorStep() {
+        if (step == 1) {
+            btnStep1.setBackground(new Color(50, 232, 255));
+            btnStep1.setForeground(new Color(0, 0, 0));
+            btnStep2.setBackground(new Color(255, 255, 255));
+            btnStep2.setForeground(new Color(80, 80, 80));
+            btnStep3.setBackground(new Color(255, 255, 255));
+            btnStep3.setForeground(new Color(80, 80, 80));
+        } else if (step == 2) {
+            btnStep2.setBackground(new Color(50, 232, 255));
+            btnStep2.setForeground(new Color(0, 0, 0));
+            btnStep1.setBackground(new Color(255, 255, 255));
+            btnStep1.setForeground(new Color(80, 80, 80));
+            btnStep3.setBackground(new Color(255, 255, 255));
+            btnStep3.setForeground(new Color(80, 80, 80));
+        } else {
+            btnStep3.setBackground(new Color(50, 232, 255));
+            btnStep3.setForeground(new Color(0, 0, 0));
+            btnStep2.setBackground(new Color(255, 255, 255));
+            btnStep2.setForeground(new Color(80, 80, 80));
+            btnStep1.setBackground(new Color(255, 255, 255));
+            btnStep1.setForeground(new Color(80, 80, 80));
         }
     }
 }

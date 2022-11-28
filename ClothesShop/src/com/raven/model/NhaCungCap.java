@@ -28,7 +28,7 @@ public class NhaCungCap {
     
     @Override
     public String toString() {
-        return maNCC +", "+tenNCC+", "+sdt+", "+email+", "+diachi;
+        return tenNCC;
     }
     
     public String getMaNCC() {

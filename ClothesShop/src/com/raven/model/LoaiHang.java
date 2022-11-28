@@ -22,7 +22,7 @@ public class LoaiHang {
     
     @Override
     public String toString() {
-        return maLoai+", "+tenLoai;
+        return tenLoai;
     }
 
     public String getMaLoai() {

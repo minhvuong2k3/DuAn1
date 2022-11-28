@@ -66,7 +66,7 @@ public class Main extends javax.swing.JFrame {
                         mainBody.displayForm(dashboardForm, "Order");
                         break;
                     case 5:
-                        mainBody.displayForm(dashForm, "Doanh Thu");
+                        mainBody.displayForm(dashForm, "Statistical");
                         break;
                     case 6:
                         mainBody.displayForm(settingForm, "Setting");
