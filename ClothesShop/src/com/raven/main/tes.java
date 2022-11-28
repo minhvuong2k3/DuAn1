@@ -27,15 +27,15 @@ public class tes {
     public static void main(String[] args) {
         int index = 1;
         list = dao.select();
-        
+        selectByKeyword("1");
     }
 
-    public List<CTHDNhap> selectByKeyword(String keyword) {
+    public static List<CTHDNhap> selectByKeyword(String keyword) {
         String sql = "SELECT SoPhieu, MaSP, SoLuong, GiaNhap FROM CTHDNhap WHERE SoPhieu = ";
         return select(sql, keyword);
     }
 
-    protected List<CTHDNhap> select(String sql, Object... args) {
+    protected static List<CTHDNhap> select(String sql, Object... args) {
         List<CTHDNhap> list = new ArrayList<>();
         try {
             ResultSet rs = null;
@@ -49,12 +49,12 @@ public class tes {
                 rs.getStatement().getConnection().close();
             }
         } catch (SQLException ex) {
-            throw new RuntimeException(ex);
+//            throw new RuntimeException(ex);
         }
         return list;
     }
 
-    private CTHDNhap readFromResultSet(ResultSet rs) throws SQLException {
+    private static CTHDNhap readFromResultSet(ResultSet rs) throws SQLException {
         CTHDNhap model = new CTHDNhap();
         model.setSoPhieu(rs.getInt("SoPhieu"));
         model.setMaSP(rs.getString("MaSP"));
