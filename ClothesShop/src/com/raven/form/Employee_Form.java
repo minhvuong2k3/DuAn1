@@ -184,6 +184,8 @@ public class Employee_Form extends javax.swing.JPanel {
         btnAdd = new button.Button();
         btnAdd1 = new button.Button();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+
         roundPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         tblNhanVien.setModel(new javax.swing.table.DefaultTableModel(

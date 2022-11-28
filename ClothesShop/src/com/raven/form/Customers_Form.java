@@ -266,7 +266,7 @@ public class Customers_Form extends javax.swing.JPanel {
                 .addGap(108, 108, 108))
         );
 
-        roundPanel3.setBackground(new java.awt.Color(102, 255, 204));
+        roundPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout roundPanel3Layout = new javax.swing.GroupLayout(roundPanel3);
         roundPanel3.setLayout(roundPanel3Layout);

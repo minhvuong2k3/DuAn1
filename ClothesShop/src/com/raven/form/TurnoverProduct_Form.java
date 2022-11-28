@@ -154,7 +154,7 @@ public class TurnoverProduct_Form extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
 
-        roundPanel1.setBackground(new java.awt.Color(207, 245, 231));
+        roundPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel2.setText("TOP CUSTOMERS");
@@ -352,7 +352,7 @@ public class TurnoverProduct_Form extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        roundPanel3.setBackground(new java.awt.Color(207, 245, 231));
+        roundPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel3.setText("TOP PRODUCTS");

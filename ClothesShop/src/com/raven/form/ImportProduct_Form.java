@@ -41,7 +41,7 @@ public class ImportProduct_Form extends javax.swing.JPanel {
         textField5 = new textfield.TextField();
         addProductsInput1 = new com.raven.form.AddImported_Form();
 
-        setBackground(new java.awt.Color(102, 102, 102));
+        setBackground(new java.awt.Color(255, 255, 255));
 
         roundPanel3.setBackground(new java.awt.Color(255, 255, 255));
         roundPanel3.setPreferredSize(new java.awt.Dimension(544, 610));
@@ -156,7 +156,7 @@ public class ImportProduct_Form extends javax.swing.JPanel {
                     .addComponent(roundPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
                     .addComponent(newSup, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(addProductsInput1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(addProductsInput1, javax.swing.GroupLayout.PREFERRED_SIZE, 846, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
