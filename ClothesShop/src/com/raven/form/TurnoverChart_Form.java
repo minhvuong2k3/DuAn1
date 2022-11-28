@@ -122,7 +122,7 @@ public class TurnoverChart_Form extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
 
-        roundPanel1.setBackground(new java.awt.Color(204, 204, 204));
+        roundPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout roundPanel1Layout = new javax.swing.GroupLayout(roundPanel1);
         roundPanel1.setLayout(roundPanel1Layout);
@@ -140,7 +140,7 @@ public class TurnoverChart_Form extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        roundPanel2.setBackground(new java.awt.Color(204, 204, 204));
+        roundPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         lblMonth11.setForeground(new java.awt.Color(23, 126, 238));
         lblMonth11.setText("Income");
@@ -187,7 +187,7 @@ public class TurnoverChart_Form extends javax.swing.JPanel {
                 .addContainerGap(24, Short.MAX_VALUE))
         );
 
-        roundPanel3.setBackground(new java.awt.Color(153, 153, 153));
+        roundPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
         lblMonth21.setForeground(new java.awt.Color(23, 126, 238));
         lblMonth21.setText("Income");
@@ -211,10 +211,9 @@ public class TurnoverChart_Form extends javax.swing.JPanel {
                 .addContainerGap(48, Short.MAX_VALUE)
                 .addGroup(roundPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(lblMonth23, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                    .addGroup(roundPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(lblMonth22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblMonth21, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(pieChart2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)))
+                    .addComponent(lblMonth22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblMonth21, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pieChart2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -234,6 +233,8 @@ public class TurnoverChart_Form extends javax.swing.JPanel {
                 .addComponent(lblMonth23)
                 .addContainerGap(24, Short.MAX_VALUE))
         );
+
+        roundPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel1.setText("Income");
@@ -270,6 +271,8 @@ public class TurnoverChart_Form extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        roundPanel7.setBackground(new java.awt.Color(255, 255, 255));
+
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel2.setText("Spending");
 
@@ -304,6 +307,8 @@ public class TurnoverChart_Form extends javax.swing.JPanel {
                         .addComponent(jLabel2)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        roundPanel8.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel3.setText("Revenue");

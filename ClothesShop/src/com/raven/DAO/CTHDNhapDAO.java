@@ -15,8 +15,8 @@ import java.util.List;
  *
  * @author duong
  */
-public class CTHDNhapDAO{
-    
+public class CTHDNhapDAO {
+
     public void insert(CTHDNhap model) {
         String sql = "INSERT INTO CTHDNhap (SoPhieu, MaSP, SoLuong, GiaNhap) VALUES (?, ?, ?, ?)";
         XJdbc.executeUpdate(sql,
@@ -46,12 +46,12 @@ public class CTHDNhapDAO{
     }
 
     public List<CTHDNhap> selectByKeyword(String keyword) {
-        String sql = "SELECT SoPhieu, MaSP, SoLuong, GiaNhap FROM CTHDNhap WHERE SoPhieu like ?";
-        return select(sql, "%" + keyword + "%");
+        String sql = "SELECT SoPhieu, MaSP, SoLuong, GiaNhap FROM CTHDNhap WHERE SoPhieu = ";
+        return select(sql, keyword);
     }
 
     public CTHDNhap selectById(String SoPhieu) {
-        String sql = "SELECT SoPhieu, MaSP, SoLuong, GiaNhap FROM CTHDNhap WHERE SoPhieu = ?";
+        String sql = "SELECT MaSP, SoLuong, GiaNhap FROM CTHDNhap WHERE SoPhieu = ?";
         List<CTHDNhap> list = select(sql, SoPhieu);
         return list.size() > 0 ? list.get(0) : null;
     }

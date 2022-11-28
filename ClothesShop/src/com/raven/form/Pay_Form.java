@@ -112,6 +112,8 @@ public class Pay_Form extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
 
+        roundPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
         scroll.setBorder(null);
         scroll.setViewportView(invoice1);
 
@@ -121,8 +123,7 @@ public class Pay_Form extends javax.swing.JPanel {
             roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(roundPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(scroll, javax.swing.GroupLayout.DEFAULT_SIZE, 379, Short.MAX_VALUE))
         );
         roundPanel1Layout.setVerticalGroup(
             roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -131,6 +132,8 @@ public class Pay_Form extends javax.swing.JPanel {
                 .addComponent(scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        roundPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Pay");
@@ -191,6 +194,8 @@ public class Pay_Form extends javax.swing.JPanel {
                     .addComponent(txtExtraMoney, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(17, 17, 17))
         );
+
+        roundPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
         tblProductCard.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
