@@ -314,7 +314,6 @@ public class AddInvoice_Form extends javax.swing.JPanel {
                             cardcardcard.add(ob);
                         }
                         for(int i=0;i<card.size();i++){
-                            pay.setSelectedIndex(1);
                             if(i > (cardcardcard.size()-1)){
                                 indexModelTable--;
                                 card.remove(i);
@@ -395,6 +394,7 @@ public class AddInvoice_Form extends javax.swing.JPanel {
             if (list.get(cboSearch.getSelectedIndex() - 1).getMaSP().equals(card.get(i)[0])) {
                 card.get(i)[2] = btnAmount.getValue();
                 tblCardPro.setValueAt(btnAmount.getValue(), i, 2);
+                Pay_Form.pay.setSelectedIndex(1);
                 checkUpdate = false;
                 break;
             }
