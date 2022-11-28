@@ -2,9 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.raven.DAO;
+package com.raven.main;
 
+import com.raven.DAO.CTHDNhapDAO;
+import com.raven.DAO.HDNhapDAO;
 import com.raven.model.CTHDNhap;
+import com.raven.model.HDNhap;
 import com.raven.utils.XJdbc;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,47 +16,23 @@ import java.util.List;
 
 /**
  *
- * @author duong
+ * @author AD MIN
  */
-public class CTHDNhapDAO {
+public class tes {
 
-    public void insert(CTHDNhap model) {
-        String sql = "INSERT INTO CTHDNhap (SoPhieu, MaSP, SoLuong, GiaNhap) VALUES (?, ?, ?, ?)";
-        XJdbc.executeUpdate(sql,
-                model.getSoPhieu(),
-                model.getMaSP(),
-                model.getSoLuong(),
-                model.getGiaNhap());
-    }
+    private static CTHDNhapDAO daoCT = new CTHDNhapDAO();
+    private static HDNhapDAO dao = new HDNhapDAO();
+    private static List<HDNhap> list = new ArrayList<HDNhap>();
 
-    public void update(CTHDNhap model) {
-        String sql = "UPDATE CTHDNhap SET SoLuong =?, GiaNhap =? WHERE SoPhieu = ? AND MaSP = ?";
-        XJdbc.executeUpdate(sql,
-                model.getSoLuong(),
-                model.getGiaNhap(),
-                model.getSoPhieu(),
-                model.getMaSP());
-    }
-
-    public void delete(String SoPhieu, String MaSP) {
-        String sql = "DELETE FROM CTHDNhap WHERE SoPhieu = ? AND MaSP = ?";
-        XJdbc.executeUpdate(sql, SoPhieu, MaSP);
-    }
-
-    public List<CTHDNhap> select() {
-        String sql = "SELECT SoPhieu, MaSP, SoLuong, GiaNhap FROM CTHDNhap";
-        return select(sql);
+    public static void main(String[] args) {
+        int index = 1;
+        list = dao.select();
+        
     }
 
     public List<CTHDNhap> selectByKeyword(String keyword) {
         String sql = "SELECT SoPhieu, MaSP, SoLuong, GiaNhap FROM CTHDNhap WHERE SoPhieu = ";
         return select(sql, keyword);
-    }
-
-    public CTHDNhap selectById(String SoPhieu) {
-        String sql = "SELECT MaSP, SoLuong, GiaNhap FROM CTHDNhap WHERE SoPhieu = ?";
-        List<CTHDNhap> list = select(sql, SoPhieu);
-        return list.size() > 0 ? list.get(0) : null;
     }
 
     protected List<CTHDNhap> select(String sql, Object... args) {
@@ -83,4 +62,5 @@ public class CTHDNhapDAO {
         model.setGiaNhap(rs.getInt("GiaNhap"));
         return model;
     }
+
 }

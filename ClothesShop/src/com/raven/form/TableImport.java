@@ -46,6 +46,14 @@ public class TableImport extends javax.swing.JPanel {
         }
     }
 
+    public int total(List<CTHDNhap> list) {
+        int sum = 0;
+        for (CTHDNhap nhap : list) {
+            sum += nhap.getSoLuong() * nhap.getGiaNhap();
+        }
+        return sum;
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -69,14 +77,11 @@ public class TableImport extends javax.swing.JPanel {
         jLabel9 = new javax.swing.JLabel();
         date = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
         jSeparator4 = new javax.swing.JSeparator();
         jLabel31 = new javax.swing.JLabel();
         total = new javax.swing.JLabel();
-        product = new com.raven.swing.RoundPanel();
-        jSeparator6 = new javax.swing.JSeparator();
+        scroll2 = new javax.swing.JScrollPane();
+        tbl1 = new com.raven.swing.table.Table();
 
         tbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -120,39 +125,35 @@ public class TableImport extends javax.swing.JPanel {
         date.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         date.setText("25/11/2020");
 
-        jLabel11.setText("Name");
-
-        jLabel12.setText("Qty");
-
-        jLabel13.setText("Price");
-
         jLabel31.setText("Total");
 
         total.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         total.setText("$999.99");
 
-        product.setBackground(new java.awt.Color(255, 255, 255));
+        tbl1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
 
-        javax.swing.GroupLayout productLayout = new javax.swing.GroupLayout(product);
-        product.setLayout(productLayout);
-        productLayout.setHorizontalGroup(
-            productLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        productLayout.setVerticalGroup(
-            productLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 285, Short.MAX_VALUE)
-        );
+            },
+            new String [] {
+                "ID", "Qty", "Price", "Total"
+            }
+        ));
+        tbl1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbl1MouseClicked(evt);
+            }
+        });
+        scroll2.setViewportView(tbl1);
 
         javax.swing.GroupLayout roundPanel2Layout = new javax.swing.GroupLayout(roundPanel2);
         roundPanel2.setLayout(roundPanel2Layout);
         roundPanel2Layout.setHorizontalGroup(
             roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(roundPanel2Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addGroup(roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jSeparator2)
+                .addContainerGap()
+                .addGroup(roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(scroll2, javax.swing.GroupLayout.DEFAULT_SIZE, 344, Short.MAX_VALUE)
+                    .addGroup(roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(roundPanel2Layout.createSequentialGroup()
                             .addGroup(roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addGroup(roundPanel2Layout.createSequentialGroup()
@@ -169,27 +170,14 @@ public class TableImport extends javax.swing.JPanel {
                             .addComponent(jLabel9)
                             .addGap(29, 29, 29)
                             .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundPanel2Layout.createSequentialGroup()
+                        .addGroup(roundPanel2Layout.createSequentialGroup()
                             .addComponent(jLabel31)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGap(209, 209, 209)
                             .addComponent(total, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(roundPanel2Layout.createSequentialGroup()
-                            .addComponent(jLabel11)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel12)
-                            .addGap(100, 100, 100)
-                            .addComponent(jLabel13)
-                            .addGap(14, 14, 14))
-                        .addGroup(roundPanel2Layout.createSequentialGroup()
-                            .addGap(1, 1, 1)
-                            .addComponent(product, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addComponent(jSeparator6))
-                    .addComponent(SupName, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(38, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                        .addComponent(SupName, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jSeparator2)
+                    .addComponent(jSeparator4))
+                .addContainerGap(11, Short.MAX_VALUE))
         );
         roundPanel2Layout.setVerticalGroup(
             roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -200,9 +188,9 @@ public class TableImport extends javax.swing.JPanel {
                 .addGroup(roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addGroup(roundPanel2Layout.createSequentialGroup()
-                            .addGroup(roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addGroup(roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel2)
-                                .addComponent(invNo))
+                                .addComponent(invNo, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel7)
@@ -213,21 +201,15 @@ public class TableImport extends javax.swing.JPanel {
                         .addComponent(date)))
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(jLabel12)
-                    .addComponent(jLabel13))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(3, 3, 3)
-                .addComponent(product, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(scroll2, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel31)
                     .addComponent(total))
-                .addContainerGap())
+                .addGap(154, 154, 154))
         );
 
         scroll1.setViewportView(roundPanel2);
@@ -238,8 +220,7 @@ public class TableImport extends javax.swing.JPanel {
             roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(roundPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(scroll1, javax.swing.GroupLayout.PREFERRED_SIZE, 381, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(scroll1, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE))
         );
         roundPanel1Layout.setVerticalGroup(
             roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -257,30 +238,39 @@ public class TableImport extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(roundPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 694, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(scroll, javax.swing.GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(roundPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 516, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(roundPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(scroll, javax.swing.GroupLayout.PREFERRED_SIZE, 516, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void tblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblMouseClicked
-        if (evt.getClickCount() == 2){  
-            HDNhap nhap = dao.selectById(String.valueOf(list.get(tbl.rowAtPoint(evt.getPoint())).getSoPhieu()));
-            CTHDNhap CTnhap = daoCT.selectById(String.valueOf(list.get(tbl.rowAtPoint(evt.getPoint())).getSoPhieu()));
-            date.setText(nhap.getNgayNhap());
-            
+        if (evt.getClickCount() == 2) {
+            int index = tbl.getSelectedRow();
+//            HDNhap nhap = dao.selectById(String.valueOf(list.get(tbl.rowAtPoint(evt.getPoint())).getSoPhieu()));
+            CTHDNhap CTnhap = daoCT.selectById(String.valueOf(list.get(index).getSoPhieu()));
+            System.out.println(CTnhap);
+//            date.setText(nhap.getNgayNhap());
+//            invNo.setText(String.valueOf(nhap.getSoPhieu()));
+//            empNo.setText(nhap.getMaNV());
+//            System.out.println(nhap.getSoPhieu());
+//            total.setText(String.valueOf(total(daoCT.selectByKeyword(String.valueOf(nhap.getSoPhieu())))));
         }
     }//GEN-LAST:event_tblMouseClicked
+
+    private void tbl1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbl1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tbl1MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -288,9 +278,6 @@ public class TableImport extends javax.swing.JPanel {
     private javax.swing.JLabel date;
     private javax.swing.JLabel empNo;
     private javax.swing.JLabel invNo;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel7;
@@ -298,13 +285,13 @@ public class TableImport extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator4;
-    private javax.swing.JSeparator jSeparator6;
-    private com.raven.swing.RoundPanel product;
     private com.raven.swing.RoundPanel roundPanel1;
     private com.raven.swing.RoundPanel roundPanel2;
     private javax.swing.JScrollPane scroll;
     private javax.swing.JScrollPane scroll1;
+    private javax.swing.JScrollPane scroll2;
     private com.raven.swing.table.Table tbl;
+    private com.raven.swing.table.Table tbl1;
     private javax.swing.JLabel total;
     // End of variables declaration//GEN-END:variables
 }
