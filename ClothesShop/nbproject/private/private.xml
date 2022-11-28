@@ -14,9 +14,10 @@
             <file>file:/C:/Users/Admin/Documents/Github/DuAn1/ClothesShop/src/com/raven/form/HoaDonNhap.java</file>
         </group>
         <group name="Java2">
-            <file>file:/D:/DuAn1/ClothesShop/src/com/raven/form/InvoiceImport_Form.java</file>
-            <file>file:/D:/DuAn1/ClothesShop/src/com/raven/DAO/CTHDNhapDAO.java</file>
-            <file>file:/D:/DuAn1/ClothesShop/src/com/raven/form/TableImport.java</file>
+            <file>file:/D:/DuAn1/ClothesShop/src/com/raven/form/Product_Form.java</file>
+            <file>file:/D:/DuAn1/ClothesShop/src/com/raven/component/PanelCover.java</file>
+            <file>file:/D:/DuAn1/ClothesShop/src/com/raven/component/PanelLoginAndRegister.java</file>
+            <file>file:/D:/DuAn1/ClothesShop/src/com/raven/main/Login.java</file>
         </group>
     </open-files>
 </project-private>

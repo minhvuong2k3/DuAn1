@@ -81,18 +81,19 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
         txtCheckPass.setHint("Check Password");
 
         Button cmd = new Button();
-        cmd.setBackground(new Color(250, 100, 100));
+        cmd.setBackground(new Color(67, 66, 66));
         cmd.setForeground(new Color(250, 250, 250));
+        button.Button btn = new button.Button();
         cmd.setText("Send verifycode to Email");
         register.add(cmd, "w 40%, h 40");
 
         Button cmdCheckOTP = new Button();
-        cmdCheckOTP.setBackground(new Color(250, 100, 100));
+        cmdCheckOTP.setBackground(new Color(67, 66, 66));
         cmdCheckOTP.setForeground(new Color(250, 250, 250));
         cmdCheckOTP.setText("Check OTP ");
 
         Button cmdCheckPass = new Button();
-        cmdCheckPass.setBackground(new Color(250, 100, 100));
+        cmdCheckPass.setBackground(new Color(67, 66, 66));
         cmdCheckPass.setForeground(new Color(250, 250, 250));
         cmdCheckPass.setText("Submit");
 
@@ -153,7 +154,7 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
         login.setLayout(new MigLayout("wrap", "push[center]push", "push[]25[]10[]10[]25[]push"));
         JLabel label = new JLabel("Sign In");
         label.setFont(new Font("sansserif", 1, 30));
-        label.setForeground(new Color(250, 100, 100));
+        label.setForeground(new Color(67, 66, 66));
         login.add(label);
 
         MyTextField txtEmail = new MyTextField();
@@ -173,7 +174,7 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
 //        cmdForget.setCursor(new Cursor(Cursor.HAND_CURSOR));
 //        login.add(cmdForget);
         Button cmd = new Button();
-        cmd.setBackground(new Color(250, 100, 100));
+        cmd.setBackground(new Color(67, 66, 66));
         cmd.setForeground(new Color(250, 250, 250));
         cmd.setText("SIGN IN");
         login.add(cmd, "w 40%, h 40");
