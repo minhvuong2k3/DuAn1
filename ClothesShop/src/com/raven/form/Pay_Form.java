@@ -264,6 +264,7 @@ public class Pay_Form extends javax.swing.JPanel {
                     cash = x-Integer.parseInt(txtTotal.getText().trim());
                 }
                 else {
+                    cash = x-Integer.parseInt(txtTotal.getText().trim());
                     txtExtraMoney.setText("");
                     Notification panel = new Notification(Employee_Form.fr, Notification.Type.WARNING, Notification.Location.TOP_CENTER, "Cash not enough !");
                     panel.showNotification();

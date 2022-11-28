@@ -32,7 +32,6 @@ public class CellAction extends TableCustomCell {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 table.deleteRowAt(getRow(), true);
-                new AddInvoice_Form().removeCard(getRow());
             }
         });
     }
