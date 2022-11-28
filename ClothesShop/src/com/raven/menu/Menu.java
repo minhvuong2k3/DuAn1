@@ -81,10 +81,10 @@ public class Menu extends javax.swing.JPanel {
         addMenu("Employee", "3", 2);
         addMenu("Order", "4", 3);
         addMenu("Invoice", "5", 4);
-        addMenu("Dashboard", "6", 5);
-        addMenu("Setting", "7", 6);
+        addMenu("Statistical", "6", 5);
+        addMenu("Customer", "7", 6);
         addMenu("Import Product", "8", 7);
-        addMenu("Customer", "9", 8);
+        addMenu("Setting", "9", 8);
         addMenu("Logout", "10", 9);
         //  add more menu here
         menu.repaint();

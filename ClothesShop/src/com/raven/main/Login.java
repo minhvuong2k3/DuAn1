@@ -33,7 +33,7 @@ public class Login extends javax.swing.JFrame {
         init();
         header1.initMoving(this);
         header1.initEvent(this);
-//        header1.setBackground(Color.white);
+
         setShape(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), 20, 20));
     }
 

@@ -9,6 +9,7 @@ import com.raven.DAO.NhanVienDAO;
 import com.raven.DAO.RoleDAO;
 import com.raven.cell.CellAction;
 import com.raven.dialog.Message;
+import static com.raven.form.Employee_Form.fr;
 //import static com.raven.form.Customer_Form.fr;
 import com.raven.main.Main;
 import com.raven.model.KhachHang;
@@ -31,11 +32,13 @@ public class Customers_Form extends javax.swing.JPanel {
     KhachHangDAO dao = new KhachHangDAO();
     RoleDAO roleDao = new RoleDAO();
     List<KhachHang> list = dao.select();
+    KhachHang last = dao.selectTop1();
     static Frame fr;
 
-    public Customers_Form() {
+    public Customers_Form(Frame frame) {
         initComponents();
         initData();
+        fr = frame;
         scroll.setBorder(null);
         scroll.setViewportBorder(null);
         scroll.getViewport().setOpaque(false);
@@ -54,11 +57,8 @@ public class Customers_Form extends javax.swing.JPanel {
 
         roundPanel2 = new com.raven.swing.RoundPanel();
         txtFullname = new textfield.TextField();
-        txtID = new textfield.TextField();
         txtEmail = new textfield.TextField();
         btnReform = new button.Button();
-        txtName3 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         txtName4 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txtName = new javax.swing.JLabel();
@@ -75,16 +75,11 @@ public class Customers_Form extends javax.swing.JPanel {
         tblNhanVien = new com.raven.swing.table.Table();
         roundPanel3 = new com.raven.swing.RoundPanel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+
         roundPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         txtFullname.setLabelText("");
-
-        txtID.setLabelText("");
-        txtID.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIDActionPerformed(evt);
-            }
-        });
 
         txtEmail.setLabelText("");
 
@@ -97,13 +92,6 @@ public class Customers_Form extends javax.swing.JPanel {
                 btnReformActionPerformed(evt);
             }
         });
-
-        txtName3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        txtName3.setForeground(new java.awt.Color(102, 102, 102));
-        txtName3.setText("ID");
-
-        jLabel6.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel6.setText("*");
 
         txtName4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         txtName4.setForeground(new java.awt.Color(102, 102, 102));
@@ -174,17 +162,13 @@ public class Customers_Form extends javax.swing.JPanel {
                 .addGroup(roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(roundPanel2Layout.createSequentialGroup()
                         .addComponent(txtName10, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(0, 38, Short.MAX_VALUE))
                     .addGroup(roundPanel2Layout.createSequentialGroup()
                         .addGroup(roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(roundPanel2Layout.createSequentialGroup()
                                 .addComponent(txtName4)
                                 .addGap(0, 0, 0)
                                 .addComponent(jLabel2))
-                            .addGroup(roundPanel2Layout.createSequentialGroup()
-                                .addComponent(txtName3)
-                                .addGap(0, 0, 0)
-                                .addComponent(jLabel6))
                             .addGroup(roundPanel2Layout.createSequentialGroup()
                                 .addComponent(txtName)
                                 .addGap(0, 0, 0)
@@ -195,31 +179,27 @@ public class Customers_Form extends javax.swing.JPanel {
                                 .addComponent(jLabel5)))
                         .addGap(23, 23, 23)
                         .addGroup(roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtFullname, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtPhone, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtFullname, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtPhone, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(roundPanel2Layout.createSequentialGroup()
+                                .addGroup(roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())))
             .addGroup(roundPanel2Layout.createSequentialGroup()
                 .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(120, 120, 120)
-                .addComponent(btnReform, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnReform, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         roundPanel2Layout.setVerticalGroup(
             roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(roundPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(txtName10, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtName3, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel6)))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(roundPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtFullname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtName4)
@@ -286,7 +266,7 @@ public class Customers_Form extends javax.swing.JPanel {
                 .addGap(108, 108, 108))
         );
 
-        roundPanel3.setBackground(new java.awt.Color(102, 255, 204));
+        roundPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout roundPanel3Layout = new javax.swing.GroupLayout(roundPanel3);
         roundPanel3.setLayout(roundPanel3Layout);
@@ -316,21 +296,15 @@ public class Customers_Form extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(roundPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 596, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(roundPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 596, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(roundPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(roundPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(roundPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtIDActionPerformed
 
     private void btnReformActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReformActionPerformed
         // TODO add your handling code here:
@@ -338,117 +312,49 @@ public class Customers_Form extends javax.swing.JPanel {
     }//GEN-LAST:event_btnReformActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        //        // TODO add your handling code here:
-        //        if (btnAdd.getText().equals("ADD")) {
-        //            if (txtPassword.getText().trim().equals("")) {
-        //                if (ValidateInsert(0)) {
-        //                    NhanVien model = new NhanVien();
-        //                    model.setMaNV(txtID.getText().trim());
-        //                    model.setHoten(txtFullname.getText().trim());
-        //                    model.setEmail(txtEmail.getText().trim());
-        ////                    model.setNgaySinh(txtBirthday.getText().trim());
-        //                    model.setSdt(txtPhone.getText().trim());
-        ////                    model.setGioiTinh(lblRender.getText().equals("Male"));
-        //                    dao.insertNV(model);
-        //                    list = dao.select();
-        //                    DefaultTableModel modelTable = (DefaultTableModel) tblNhanVien.getModel();
-        //                    modelTable.setRowCount(0);
-        //                    tblNhanVien.revalidate();
-        //                    initTableData();
-        //                    notification(fr, "Insert success !", true);
-        //                }
-        //            } else {
-        //                if (ValidateInsert(0)) {
-        //                    NhanVien model = new NhanVien();
-        //                    model.setMaNV(txtID.getText().trim());
-        //                    model.setHoten(txtFullname.getText().trim());
-        //                    model.setEmail(txtEmail.getText().trim());
-        ////                    model.setNgaySinh(txtBirthday.getText().trim());
-        //                    model.setSdt(txtPhone.getText().trim());
-        ////                    model.setGioiTinh(lblRender.getText().equals("Male"));
-        ////                    model.setVaiTro(lblRole.getText().equals("Admin"));
-        ////                    model.setMatKhau(txtPassword.getText());
-        //                    dao.insert(model);
-        //                    list = dao.select();
-        //                    DefaultTableModel modelTable = (DefaultTableModel) tblNhanVien.getModel();
-        //                    modelTable.setRowCount(0);
-        //                    tblNhanVien.revalidate();
-        //                    initTableData();
-        //                    notification(fr, "Insert success !", true);
-        //                }
-        //            }
-        //        } else {
-        //            if (ValidateUpdate()) {
-        //                if (txtPassword.getText().trim().equals("")) {
-        //                    if (roleDao.selectByKeyword(txtID.getText()) != null) {
-        //                        roleDao.delete(txtID.getText());
-        //                        NhanVien model = new NhanVien();
-        //                        model.setMaNV(txtID.getText().trim());
-        //                        model.setHoten(txtFullname.getText().trim());
-        //                        model.setEmail(txtEmail.getText().trim());
-        ////                        model.setNgaySinh(txtBirthday.getText().trim());
-        //                        model.setSdt(txtPhone.getText().trim());
-        ////                        model.setGioiTinh(lblRender.getText().equals("Male"));
-        //                        dao.updateNV(model);
-        //                    } else {
-        //                        NhanVien model = new NhanVien();
-        //                        model.setMaNV(txtID.getText().trim());
-        //                        model.setHoten(txtFullname.getText().trim());
-        //                        model.setEmail(txtEmail.getText().trim());
-        ////                        model.setNgaySinh(txtBirthday.getText().trim());
-        //                        model.setSdt(txtPhone.getText().trim());
-        ////                        model.setGioiTinh(lblRender.getText().equals("Male"));
-        //                        dao.updateNV(model);
-        //                    }
-        //                } else {
-        //                    if (roleDao.selectByKeyword(txtID.getText()) != null) {
-        //                        Role role = new Role();
-        //                        role.setMaNV(txtID.getText());
-        ////                        role.setMatKhau(txtPassword.getText());
-        ////                        role.setVaiTro(lblRender.getText().equals("Admin"));
-        //                        roleDao.insert(role);
-        //                        NhanVien model = new NhanVien();
-        //                        model.setMaNV(txtID.getText().trim());
-        //                        model.setHoten(txtFullname.getText().trim());
-        //                        model.setEmail(txtEmail.getText().trim());
-        ////                        model.setNgaySinh(txtBirthday.getText().trim());
-        //                        model.setSdt(txtPhone.getText().trim());
-        ////                        model.setGioiTinh(lblRender.getText().equals("Male"));
-        //                        dao.updateNV(model);
-        //                    } else {
-        //                        NhanVien model = new NhanVien();
-        //                        model.setMaNV(txtID.getText().trim());
-        //                        model.setHoten(txtFullname.getText().trim());
-        //                        model.setEmail(txtEmail.getText().trim());
-        ////                        model.setNgaySinh(txtBirthday.getText().trim());
-        //                        model.setSdt(txtPhone.getText().trim());
-        ////                        model.setGioiTinh(lblRender.getText().equals("Male"));
-        ////                        model.setVaiTro(lblRole.getText().equals("Admin"));
-        ////                        model.setMatKhau(txtPassword.getText());
-        //                        dao.update(model);
-        //                    }
-        //                }
-        //                list = dao.select();
-        //                DefaultTableModel modelTable = (DefaultTableModel) tblNhanVien.getModel();
-        //                modelTable.setRowCount(0);
-        //                tblNhanVien.revalidate();
-        //                initTableData();
-        //                notification(fr, "Update success !", true);
-        //            }
-        //        }
+        // TODO add your handling code here:
+        if (btnAdd.getText().equals("ADD")) {
+            if (ValidateInsert(0)) {
+                KhachHang model = new KhachHang();
+                model.setMaKH("KH" + String.valueOf(Integer.parseInt(last.getMaKH().substring(2)) + 1));
+                model.setTen(txtFullname.getText().trim());
+                model.setEmail(txtEmail.getText().trim());
+                model.setSdt(txtPhone.getText().trim());
+                System.out.println(model);
+                dao.insert(model);
+                list = dao.select();
+                DefaultTableModel modelTable = (DefaultTableModel) tblNhanVien.getModel();
+                modelTable.setRowCount(0);
+                tblNhanVien.revalidate();
+                initTableData();
+                notification(fr, "Insert success !", true);
+            }
+        } else {
+            if (ValidateUpdate()) {
+                KhachHang model = new KhachHang();
+                model.setTen(txtFullname.getText().trim());
+                model.setEmail(txtEmail.getText().trim());
+                model.setSdt(txtPhone.getText().trim());
+                System.out.println(model);
+                dao.update(model);
+                list = dao.select();
+                DefaultTableModel modelTable = (DefaultTableModel) tblNhanVien.getModel();
+                modelTable.setRowCount(0);
+                tblNhanVien.revalidate();
+                initTableData();
+                notification(fr, "Update success !", true);
+            }
+        }
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void tblNhanVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblNhanVienMouseClicked
         // TODO add your handling code here:
         if (evt.getClickCount() == 2) {
             KhachHang kh = list.get(tblNhanVien.rowAtPoint(evt.getPoint()));
-//            txtID.setText(kh.getMaKH());
             txtFullname.setText(kh.getTen());
             txtEmail.setText(kh.getEmail());
             txtPhone.setText(kh.getSdt());
-            txtID.setEditable(false);
             btnAdd.setText("UPDATE");
-//            btnDelete.setEnabled(true);
         }
     }//GEN-LAST:event_tblNhanVienMouseClicked
 
@@ -459,7 +365,6 @@ public class Customers_Form extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private com.raven.swing.RoundPanel roundPanel1;
@@ -469,68 +374,21 @@ public class Customers_Form extends javax.swing.JPanel {
     private com.raven.swing.table.Table tblNhanVien;
     private textfield.TextField txtEmail;
     private textfield.TextField txtFullname;
-    private textfield.TextField txtID;
     private javax.swing.JLabel txtName;
     private javax.swing.JLabel txtName10;
-    private javax.swing.JLabel txtName3;
     private javax.swing.JLabel txtName4;
     private javax.swing.JLabel txtName6;
     private textfield.TextField txtPhone;
     // End of variables declaration//GEN-END:variables
+
     private void initData() {
-        initCardData();
-//        initNoticeBoard();
         initTableData();
     }
 
     private void initTableData() {
-//        EventAction eventAction = new EventAction() {
-//            @Override
-//            public void delete(ModelStudent student) {
-//                if (showMessage("Delete Student : " + student.getName())) {
-//                    System.out.println("User click OK");
-//                } else {
-//                    System.out.println("User click Cancel");
-//                }
-//            }
-//
-//            @Override
-//            public void update(ModelStudent student) {
-////                if (showMessage("Update Student : " + student.getName())) {
-////                    System.out.println("User click OK");
-////                } else {
-////                    System.out.println("User click Cancel");
-////                }
-//            }
-//        };
         for (int i = 0; i < list.size(); i++) {
             tblNhanVien.addRow(new KhachHang(list.get(i).getMaKH(), list.get(i).getTen(), list.get(i).getSdt(), list.get(i).getEmail()).toTableRow());
         }
-
-//        table1.addRow(new ModelStudent(new ImageIcon(getClass().getResource("/com/raven/icon/profile.jpg")), "Jonh", "Male", "Java", 300).toRowTable(eventAction));
-//        table1.addRow(new ModelStudent(new ImageIcon(getClass().getResource("/com/raven/icon/profile1.jpg")), "Dara", "Male", "C++", 300).toRowTable(eventAction));
-//        table1.addRow(new ModelStudent(new ImageIcon(getClass().getResource("/com/raven/icon/profile2.jpg")), "Bora", "Male", "C", 300).toRowTable(eventAction));
-//        table1.addRow(new ModelStudent(new ImageIcon(getClass().getResource("/com/raven/icon/profile2.jpg")), "Bora", "Male", "C", 300).toRowTable(eventAction));
-//        table1.addRow(new ModelStudent(new ImageIcon(getClass().getResource("/com/raven/icon/profile2.jpg")), "Bora", "Male", "C#", 300).toRowTable(eventAction));
-//        table1.addRow(new ModelStudent(new ImageIcon(getClass().getResource("/com/raven/icon/profile2.jpg")), "Bora", "Male", "C#", 300).toRowTable(eventAction));
-//        table1.addRow(new ModelStudent(new ImageIcon(getClass().getResource("/com/raven/icon/profile2.jpg")), "Bora", "Male", "C#", 300).toRowTable(eventAction));
-//        table1.addRow(new ModelStudent(new ImageIcon(getClass().getResource("/com/raven/icon/profile2.jpg")), "Bora", "Male", "C#", 300).toRowTable(eventAction));
-//        table1.addRow(new ModelStudent(new ImageIcon(getClass().getResource("/com/raven/icon/profile2.jpg")), "Bora", "Male", "C#", 300).toRowTable(eventAction));
-//        table1.addRow(new ModelStudent(new ImageIcon(getClass().getResource("/com/raven/icon/profile2.jpg")), "Bora", "Male", "C#", 300).toRowTable(eventAction));
-//        table1.addRow(new ModelStudent(new ImageIcon(getClass().getResource("/com/raven/icon/profile2.jpg")), "Bora", "Male", "C#", 300).toRowTable(eventAction));
-//        table1.addRow(new ModelStudent(new ImageIcon(getClass().getResource("/com/raven/icon/profile2.jpg")), "Bora", "Male", "C#", 300).toRowTable(eventAction));
-//        table1.addRow(new ModelStudent(new ImageIcon(getClass().getResource("/com/raven/icon/profile2.jpg")), "Bora", "Male", "C#", 300).toRowTable(eventAction));
-    }
-
-    private void initCardData() {
-//        Icon icon1 = IconFontSwing.buildIcon(GoogleMaterialDesignIcons.PEOPLE, 60, new Color(255, 255, 255, 100), new Color(255, 255, 255, 15));
-//        card1.setData(new ModelCard("New Student", 5100, 20, icon1));
-//        Icon icon2 = IconFontSwing.buildIcon(GoogleMaterialDesignIcons.MONETIZATION_ON, 60, new Color(255, 255, 255, 100), new Color(255, 255, 255, 15));
-//        card2.setData(new ModelCard("Income", 2000, 60, icon2));
-//        Icon icon3 = IconFontSwing.buildIcon(GoogleMaterialDesignIcons.SHOPPING_BASKET, 60, new Color(255, 255, 255, 100), new Color(255, 255, 255, 15));
-//        card3.setData(new ModelCard("Expense", 3000, 80, icon3));
-//        Icon icon4 = IconFontSwing.buildIcon(GoogleMaterialDesignIcons.BUSINESS_CENTER, 60, new Color(255, 255, 255, 100), new Color(255, 255, 255, 15));
-//        card4.setData(new ModelCard("Other Income", 550, 95, icon4));
     }
 
     private boolean showMessage(String message) {
@@ -540,20 +398,6 @@ public class Customers_Form extends javax.swing.JPanel {
     }
 
     private boolean ValidateInsert(int x) {
-        if (txtID.getText().trim().equals("") || txtID.getText().trim().length() != 5) {
-            txtID.requestFocus();
-            notification(fr, "ID invalid !", false);
-            return false;
-        }
-        if (x == 0) {
-            for (int i = 0; i < list.size(); i++) {
-                if (txtID.getText().trim().equals(list.get(i).getMaKH())) {
-                    txtID.requestFocus();
-                    notification(fr, "ID invalid !", false);
-                    return false;
-                }
-            }
-        }
         if (txtName.getText().trim().equals("")) {
             txtName.requestFocus();
             notification(fr, "Fullname invalid !", false);
@@ -568,14 +412,6 @@ public class Customers_Form extends javax.swing.JPanel {
         if (!(txtEmail.getText().trim().matches(mauEmail))) {
             txtEmail.requestFocus();
             notification(fr, "Email invalid !", false);
-            return false;
-        }
-        try {
-//            Date date = new SimpleDateFormat("yyyy-MM-dd").parse(txtBirthday.getText());
-//            txtBirthday.setText(new SimpleDateFormat("yyyy-MM-dd").format(date));
-        } catch (Exception e) {
-//            txtBirthday.requestFocus();
-            notification(fr, "Birthday invalid !", false);
             return false;
         }
         if (txtPhone.getText().trim().equals("")) {
@@ -599,55 +435,11 @@ public class Customers_Form extends javax.swing.JPanel {
     }
 
     public void reform() {
-        txtID.setText("");
         txtFullname.setText("");
         txtEmail.setText("");
-//        txtBirthday.setText("");
         txtPhone.setText("");
-//        txtPassword.setText("");
-//        lblRender.setText("Female");
-//        lblRole.setText("Employee");
-//        swbtnGender.setSelected(false);
-//        swbtnRole.setSelected(false);
-        txtID.setEditable(true);
         btnAdd.setText("ADD");
-//        btnDelete.setEnabled(false);
     }
-
-//    public void selectAll() {
-//        Date date = new Date();
-//        int day = date.getYear() + 1900;
-//        DefaultTableModel modelTable = (DefaultTableModel) tblNhanVien.getModel();
-//        modelTable.setRowCount(0);
-//        tblNhanVien.revalidate();
-//        for (int i = 0; i < list.size(); i++) {
-//            tblNhanVien.addRow(new ModelStaff(list.get(i).getMaNV(), list.get(i).getHoten(), list.get(i).getGioiTinh() ? "Male" : "Female", (day - Integer.parseInt(list.get(i).getNgaySinh().substring(0, 4))), list.get(i).getEmail(), list.get(i).getSdt(), list.get(i).getMatKhau(), list.get(i).getVaiTro() ? "Admin" : "Employee").toTableRow());
-//        }
-//    }
-//
-//    public void selectHave() {
-//        List<NhanVien> haveList = dao.selectHave();
-//        Date date = new Date();
-//        int day = date.getYear() + 1900;
-//        DefaultTableModel modelTable = (DefaultTableModel) tblNhanVien.getModel();
-//        modelTable.setRowCount(0);
-//        tblNhanVien.revalidate();
-//        for (int i = 0; i < haveList.size(); i++) {
-//            tblNhanVien.addRow(new ModelStaff(haveList.get(i).getMaNV(), haveList.get(i).getHoten(), haveList.get(i).getGioiTinh() ? "Male" : "Female", (day - Integer.parseInt(haveList.get(i).getNgaySinh().substring(0, 4))), haveList.get(i).getEmail(), haveList.get(i).getSdt(), haveList.get(i).getMatKhau(), haveList.get(i).getVaiTro() ? "Admin" : "Employee").toTableRow());
-//        }
-//    }
-//
-//    public void selectYet() {
-//        List<NhanVien> yetList = dao.selectYet();
-//        Date date = new Date();
-//        int day = date.getYear() + 1900;
-//        DefaultTableModel modelTable = (DefaultTableModel) tblNhanVien.getModel();
-//        modelTable.setRowCount(0);
-//        tblNhanVien.revalidate();
-//        for (int i = 0; i < yetList.size(); i++) {
-//            tblNhanVien.addRow(new ModelStaff(yetList.get(i).getMaNV(), yetList.get(i).getHoten(), yetList.get(i).getGioiTinh() ? "Male" : "Female", (day - Integer.parseInt(yetList.get(i).getNgaySinh().substring(0, 4))), yetList.get(i).getEmail(), yetList.get(i).getSdt(), yetList.get(i).getMatKhau(), yetList.get(i).getVaiTro() ? "Admin" : "Employee").toTableRow());
-//        }
-//    }
 
     public void notification(Frame frame, String text, boolean x) {
         if (!x) {
@@ -657,6 +449,5 @@ public class Customers_Form extends javax.swing.JPanel {
             Notification panel = new Notification(frame, Notification.Type.SUCCESS, Notification.Location.TOP_CENTER, text);
             panel.showNotification();
         }
-
     }
 }

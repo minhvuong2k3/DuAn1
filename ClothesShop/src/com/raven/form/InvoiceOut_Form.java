@@ -241,6 +241,8 @@ public class InvoiceOut_Form extends javax.swing.JPanel {
                 .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        roundPanel6.setBackground(new java.awt.Color(255, 255, 255));
+
         btnStep1.setBackground(new java.awt.Color(50, 232, 255));
         btnStep1.setForeground(new java.awt.Color(0, 0, 0));
         btnStep1.setText("Step 1");

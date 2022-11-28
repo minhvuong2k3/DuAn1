@@ -1,15 +1,18 @@
 package com.raven.main;
 
 import com.raven.event.EventColorChange;
+import com.raven.form.Customers_Form;
 import com.raven.form.Turnover_Form;
 import com.raven.form.TurnoverChart_Form;
 import com.raven.form.Employee_Form;
 import com.raven.form.Home_Form;
+import com.raven.form.ImportProduct_Form;
 //import com.raven.form.Home;
 import com.raven.form.Setting_Form;
 import com.raven.form.TurnoverProduct_Form;
 import com.raven.form.Product_Form;
 import com.raven.form.InvoiceOut_Form;
+import com.raven.form.ManageInvoice;
 import com.raven.menu.EventMenu;
 //import com.raven.menu.Menu;
 import com.raven.properties.SystemProperties;
@@ -31,8 +34,12 @@ public class Main extends javax.swing.JFrame {
     private InvoiceOut_Form InvoiceForm;
     private TurnoverProduct_Form dashboardForm;
     private TurnoverChart_Form doanhthuForm;
+    private ImportProduct_Form importProduct;
     private Turnover_Form dashForm;
+    private Customers_Form Cus_Form;
+    private ManageInvoice manageInvoice;
     static int i = 0;
+
     public Main() {
         initComponents();
         setBackground(new Color(0, 0, 0, 0));
@@ -60,16 +67,19 @@ public class Main extends javax.swing.JFrame {
                         mainBody.displayForm(InvoiceForm, "Order");
                         break;
                     case 4:
-                        mainBody.displayForm(dashboardForm, "Order");
+                        mainBody.displayForm(manageInvoice, "Invoice ");
                         break;
-//                    case 5:
-//                        mainBody.displayForm(doanhthuForm, "Doanh Thu");
-//                        break;
                     case 5:
                         mainBody.displayForm(dashForm, "Statistical");
                         break;
                     case 6:
                         mainBody.displayForm(settingForm, "Setting");
+                        break;
+                    case 7:
+                        mainBody.displayForm(importProduct, "Import Product");
+                        break;
+                    case 8:
+                        mainBody.displayForm(Cus_Form, "Setting");
                         break;
                     case 9:
                         me.showMessage("", "Do you want to logout?");
@@ -136,6 +146,9 @@ public class Main extends javax.swing.JFrame {
         InvoiceForm = new InvoiceOut_Form();
         dashboardForm = new TurnoverProduct_Form();
         doanhthuForm = new TurnoverChart_Form();
+        Cus_Form = new Customers_Form(this);
+        importProduct = new ImportProduct_Form();
+        manageInvoice = new ManageInvoice();
     }
 
     @SuppressWarnings("unchecked")

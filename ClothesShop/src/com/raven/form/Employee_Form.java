@@ -184,6 +184,8 @@ public class Employee_Form extends javax.swing.JPanel {
         btnAdd = new button.Button();
         btnAdd1 = new button.Button();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+
         roundPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         tblNhanVien.setModel(new javax.swing.table.DefaultTableModel(
@@ -620,10 +622,11 @@ public class Employee_Form extends javax.swing.JPanel {
 
     private void swbtnGenderMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_swbtnGenderMouseClicked
         // TODO add your handling code here:
-        if (swbtnGender.isSelected())
-            lblRender.setText("Male");
-        else
+        if (swbtnGender.isSelected()) {
             lblRender.setText("Female");
+        } else {
+            lblRender.setText("Male");
+        }
     }//GEN-LAST:event_swbtnGenderMouseClicked
 
     private void swbtnRoleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_swbtnRoleMouseClicked
