@@ -2,22 +2,21 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/Admin/Documents/Github/DuAn1/ClothesShop/src/com/raven/main/Login.java</file>
-            <file>file:/C:/Users/Admin/Documents/Github/DuAn1/ClothesShop/src/com/raven/DAO/ThongKeDAO.java</file>
-            <file>file:/C:/Users/Admin/Documents/Github/DuAn1/ClothesShop/src/com/raven/form/DoanhThu2_Form.java</file>
-            <file>file:/C:/Users/Admin/Documents/Github/DuAn1/ClothesShop/src/com/raven/form/DoanhThuForm.java</file>
-            <file>file:/C:/Users/Admin/Documents/Github/DuAn1/ClothesShop/src/com/raven/main/Main.java</file>
-            <file>file:/C:/Users/Admin/Documents/Github/DuAn1/ClothesShop/src/com/raven/form/Pay_Form.java</file>
-            <file>file:/C:/Users/Admin/Documents/Github/DuAn1/ClothesShop/src/spinner/Spinner.java</file>
-            <file>file:/C:/Users/Admin/Documents/Github/DuAn1/ClothesShop/src/com/raven/component/PanelLoginAndRegister.java</file>
-            <file>file:/C:/Users/Admin/Documents/Github/DuAn1/ClothesShop/src/com/raven/form/HoaDonNhap.java</file>
-        </group>
         <group name="Java2">
             <file>file:/D:/DuAn1/ClothesShop/src/com/raven/form/Product_Form.java</file>
             <file>file:/D:/DuAn1/ClothesShop/src/com/raven/component/PanelCover.java</file>
             <file>file:/D:/DuAn1/ClothesShop/src/com/raven/component/PanelLoginAndRegister.java</file>
             <file>file:/D:/DuAn1/ClothesShop/src/com/raven/main/Login.java</file>
+        </group>
+        <group>
+            <file>file:/C:/Users/Admin/Documents/Github/DuAn1/ClothesShop/src/com/raven/main/Login.java</file>
+            <file>file:/C:/Users/Admin/Documents/Github/DuAn1/ClothesShop/src/com/raven/main/testUser.java</file>
+            <file>file:/C:/Users/Admin/Documents/Github/DuAn1/ClothesShop/src/com/raven/form/AddInvoice_Form.java</file>
+            <file>file:/C:/Users/Admin/Documents/Github/DuAn1/ClothesShop/src/com/raven/main/Main.java</file>
+            <file>file:/C:/Users/Admin/Documents/Github/DuAn1/ClothesShop/src/com/raven/form/Pay_Form.java</file>
+            <file>file:/C:/Users/Admin/Documents/Github/DuAn1/ClothesShop/src/com/raven/form/Employee_Form.java</file>
+            <file>file:/C:/Users/Admin/Documents/Github/DuAn1/ClothesShop/src/com/raven/form/InvoiceOut_Form.java</file>
+            <file>file:/C:/Users/Admin/Documents/Github/DuAn1/ClothesShop/src/com/raven/form/Invoice_Form.java</file>
         </group>
     </open-files>
 </project-private>
