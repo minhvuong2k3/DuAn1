@@ -43,7 +43,6 @@ public class Customers_Form extends javax.swing.JPanel {
         scroll.setViewportBorder(null);
         scroll.getViewport().setOpaque(false);
         scroll.setVerticalScrollBar(new ScrollBarCustom());
-//        table1.addTableCell(new CellAction(), 5);
     }
 
     /**
@@ -332,10 +331,10 @@ public class Customers_Form extends javax.swing.JPanel {
         } else {
             if (ValidateUpdate()) {
                 KhachHang model = new KhachHang();
+                model.setMaKH(list.get(tblNhanVien.getSelectedRow()).getMaKH());
                 model.setTen(txtFullname.getText().trim());
                 model.setEmail(txtEmail.getText().trim());
                 model.setSdt(txtPhone.getText().trim());
-                System.out.println(model);
                 dao.update(model);
                 list = dao.select();
                 DefaultTableModel modelTable = (DefaultTableModel) tblNhanVien.getModel();

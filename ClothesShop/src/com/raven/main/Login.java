@@ -36,6 +36,10 @@ public class Login extends javax.swing.JFrame {
 
         setShape(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), 20, 20));
     }
+    
+    public static void colorChange(){
+        
+    }
 
     private void init() {
         layout = new MigLayout("fill, insets 0");
