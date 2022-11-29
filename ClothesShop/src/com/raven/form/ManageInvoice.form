@@ -146,26 +146,26 @@
           </Events>
         </Component>
         <Component class="textfield.TextFieldBasic" name="txtFrom">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="FROM"/>
-          </Properties>
+          <Events>
+            <EventHandler event="caretUpdate" listener="javax.swing.event.CaretListener" parameters="javax.swing.event.CaretEvent" handler="txtFromCaretUpdate"/>
+          </Events>
         </Component>
         <Component class="button.Button" name="btnDayFrom">
           <Properties>
-            <Property name="text" type="java.lang.String" value="ICON"/>
+            <Property name="text" type="java.lang.String" value="FROM"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDayFromActionPerformed"/>
           </Events>
         </Component>
         <Component class="textfield.TextFieldBasic" name="txtTo">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="TO"/>
-          </Properties>
+          <Events>
+            <EventHandler event="caretUpdate" listener="javax.swing.event.CaretListener" parameters="javax.swing.event.CaretEvent" handler="txtToCaretUpdate"/>
+          </Events>
         </Component>
         <Component class="button.Button" name="btnDayTo">
           <Properties>
-            <Property name="text" type="java.lang.String" value="ICON"/>
+            <Property name="text" type="java.lang.String" value="TO"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDayToActionPerformed"/>

@@ -11,8 +11,16 @@ import com.raven.datechooser.SelectedAction;
 import com.raven.datechooser.SelectedDate;
 import com.raven.model.HDNhap;
 import com.raven.model.HDXuat;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javaswingdev.Notification;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -20,7 +28,9 @@ import javax.swing.table.DefaultTableModel;
  * @author AD MIN
  */
 public class ManageInvoice extends javax.swing.JPanel {
-
+    
+    Date dateFrom = null, dateTo = null;
+    static String date1="", date2="";
     public ManageInvoice() {
         initComponents();
     }
@@ -69,18 +79,26 @@ public class ManageInvoice extends javax.swing.JPanel {
             }
         });
 
-        txtFrom.setText("FROM");
+        txtFrom.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtFromCaretUpdate(evt);
+            }
+        });
 
-        btnDayFrom.setText("ICON");
+        btnDayFrom.setText("FROM");
         btnDayFrom.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDayFromActionPerformed(evt);
             }
         });
 
-        txtTo.setText("TO");
+        txtTo.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtToCaretUpdate(evt);
+            }
+        });
 
-        btnDayTo.setText("ICON");
+        btnDayTo.setText("TO");
         btnDayTo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDayToActionPerformed(evt);
@@ -157,8 +175,6 @@ public class ManageInvoice extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new java.awt.CardLayout());
-
-        tableImport1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.add(tableImport1, "card2");
         jPanel1.add(tableOut1, "card3");
 
@@ -211,6 +227,88 @@ public class ManageInvoice extends javax.swing.JPanel {
         tableOut1.setVisible(true);
 //        btnInput.setEnabled(false);
     }//GEN-LAST:event_btnOutputActionPerformed
+
+    private void txtFromCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtFromCaretUpdate
+        // TODO add your handling code here:
+        if(!txtFrom.getText().trim().equals("")){
+            SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+            try {
+                if(!txtTo.getText().trim().equals(""))
+                    dateTo = format.parse(txtTo.getText());
+                dateFrom = format.parse(txtFrom.getText());
+                if(dateTo != null && dateFrom != null){
+                    if(dateTo.compareTo(dateFrom) < 0){
+                        Notification panel = new Notification(Employee_Form.fr, Notification.Type.WARNING, Notification.Location.TOP_CENTER, "DateTo invalid! ");
+                        panel.showNotification();
+                    }
+                    else{
+                        if(dateTo.compareTo(dateFrom) > 0){
+                            SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+                            date1 = format1.format(dateFrom);
+                            date2 = format1.format(dateTo);
+                            TableImport.cbo.setSelectedIndex(0);
+                            TableImport.cbo.setSelectedIndex(1);
+                            TableOut.cbo.setSelectedIndex(0);
+                            TableOut.cbo.setSelectedIndex(1);
+                        }
+                        else {
+                            SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+                            date1 = format1.format(dateFrom);
+                            date2 = format1.format(dateTo);
+                            TableImport.cbo.setSelectedIndex(0);
+                            TableImport.cbo.setSelectedIndex(2);
+                            TableOut.cbo.setSelectedIndex(0);
+                            TableOut.cbo.setSelectedIndex(2);
+                        }
+                    }
+                }
+            } catch (ParseException ex) {
+                Logger.getLogger(ManageInvoice.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else dateFrom = null;
+    }//GEN-LAST:event_txtFromCaretUpdate
+
+    private void txtToCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtToCaretUpdate
+        // TODO add your handling code here:
+        if(!txtTo.getText().trim().equals("")){
+            SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+            try {
+                if(!txtFrom.getText().trim().equals(""))
+                    dateFrom = format.parse(txtFrom.getText());
+                dateTo = format.parse(txtTo.getText());
+                if(dateFrom != null && dateTo != null){
+                    if(dateTo.compareTo(dateFrom) < 0){
+                        Notification panel = new Notification(Employee_Form.fr, Notification.Type.WARNING, Notification.Location.TOP_CENTER, "DateTo invalid! ");
+                        panel.showNotification();
+                    }
+                    else{
+                        if(dateTo.compareTo(dateFrom) > 0){
+                            SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+                            date1 = format1.format(dateFrom);
+                            date2 = format1.format(dateTo);
+                            TableImport.cbo.setSelectedIndex(0);
+                            TableImport.cbo.setSelectedIndex(1);
+                            TableOut.cbo.setSelectedIndex(0);
+                            TableOut.cbo.setSelectedIndex(1);
+                        }
+                        else {
+                            SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+                            date1 = format1.format(dateFrom);
+                            date2 = format1.format(dateTo);
+                            TableImport.cbo.setSelectedIndex(0);
+                            TableImport.cbo.setSelectedIndex(2);
+                            TableOut.cbo.setSelectedIndex(0);
+                            TableOut.cbo.setSelectedIndex(2);
+                        }
+                    }
+                }
+            } catch (ParseException ex) {
+                Logger.getLogger(ManageInvoice.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else dateTo = null;
+    }//GEN-LAST:event_txtToCaretUpdate
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

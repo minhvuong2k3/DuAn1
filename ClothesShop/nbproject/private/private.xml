@@ -9,17 +9,11 @@
         </group>
         <group>
             <file>file:/C:/Users/Admin/Documents/Github/DuAn1/ClothesShop/src/com/raven/main/Login.java</file>
-            <file>file:/C:/Users/Admin/Documents/Github/DuAn1/ClothesShop/src/com/raven/form/InvoiceImport_Form.java</file>
             <file>file:/C:/Users/Admin/Documents/Github/DuAn1/ClothesShop/src/com/raven/form/AddInvoice_Form.java</file>
-            <file>file:/C:/Users/Admin/Documents/Github/DuAn1/ClothesShop/src/com/raven/model/ModelItem.java</file>
             <file>file:/C:/Users/Admin/Documents/Github/DuAn1/ClothesShop/src/com/raven/form/ImportProduct_Form.java</file>
             <file>file:/C:/Users/Admin/Documents/Github/DuAn1/ClothesShop/src/com/raven/main/Main.java</file>
-            <file>file:/C:/Users/Admin/Documents/Github/DuAn1/ClothesShop/src/com/raven/form/Pay_Form.java</file>
-            <file>file:/C:/Users/Admin/Documents/Github/DuAn1/ClothesShop/src/com/raven/form/Employee_Form.java</file>
-            <file>file:/C:/Users/Admin/Documents/Github/DuAn1/ClothesShop/src/com/raven/form/Product_Form.java</file>
-            <file>file:/C:/Users/Admin/Documents/Github/DuAn1/ClothesShop/src/com/raven/component/Item.java</file>
+            <file>file:/C:/Users/Admin/Documents/Github/DuAn1/ClothesShop/src/com/raven/form/AddImported_Form.java</file>
             <file>file:/C:/Users/Admin/Documents/Github/DuAn1/ClothesShop/src/com/raven/form/InvoiceOut_Form.java</file>
-            <file>file:/C:/Users/Admin/Documents/Github/DuAn1/ClothesShop/src/com/raven/form/Invoice_Form.java</file>
         </group>
     </open-files>
 </project-private>

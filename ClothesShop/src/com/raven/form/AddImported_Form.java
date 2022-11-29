@@ -6,6 +6,7 @@ package com.raven.form;
 
 import com.raven.DAO.SanPhamDAO;
 import com.raven.cell.CellAction;
+import static com.raven.form.ImportProduct_Form.manccString;
 import com.raven.model.ProductCard;
 import com.raven.model.SanPham;
 import com.raven.swing.scrollbar.ScrollBarCustom;
@@ -23,6 +24,8 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JScrollPane;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -32,10 +35,14 @@ import javax.swing.table.DefaultTableModel;
 public class AddImported_Form extends javax.swing.JPanel {
 
     SanPhamDAO dao = new SanPhamDAO();
+    List<SanPham> list = dao.select();
     static List<SanPham> card = new ArrayList<>(); // Luu du lieu cac sp cap nhat
+    List<SanPham> cardcardcard = new ArrayList<>();
     int index = 0; // Vi tri select trong table
     static int ok = 6;
-
+    static int indexModelTable = -1;
+    static JComboBox cbo = new JComboBox();
+    static JComboBox cbo3 = new JComboBox();
     static void isNew() {
 //        fillcboSanPham("");
     }
@@ -96,14 +103,14 @@ public class AddImported_Form extends javax.swing.JPanel {
             .addGroup(roundPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblImage, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(7, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         roundPanel3Layout.setVerticalGroup(
             roundPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(roundPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblImage, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addComponent(lblImage, javax.swing.GroupLayout.DEFAULT_SIZE, 164, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         lblNameProduct.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -138,7 +145,7 @@ public class AddImported_Form extends javax.swing.JPanel {
 
             },
             new String [] {
-                "ID", "Name", "Amout", "Action"
+                "ID", "Name", "Amount", "Action"
             }
         ));
         tblCardPro.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -201,7 +208,7 @@ public class AddImported_Form extends javax.swing.JPanel {
                         .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(roundPanel1Layout.createSequentialGroup()
                                 .addComponent(btnAmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 33, Short.MAX_VALUE))
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(roundPanel1Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -240,9 +247,8 @@ public class AddImported_Form extends javax.swing.JPanel {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
-        if (cboSearch.getSelectedIndex() > 0) {
-            addToCard();
-            load();
+        if (cboSearch.getSelectedIndex() > 0 && (int)btnAmount.getValue()>0) {
+            loadToTable();
             clear();
         } else {
             Notification panel = new Notification(Employee_Form.fr, Notification.Type.WARNING, Notification.Location.TOP_CENTER, "Information not enough !");
@@ -303,39 +309,107 @@ public class AddImported_Form extends javax.swing.JPanel {
     private void init() {
         tblCardPro.setDefaultEditor(Object.class, null); // Khong cho edit tren table
         fillcboSanPham(""); // Load tat ca sp len form
+        DefaultComboBoxModel model = (DefaultComboBoxModel)cbo.getModel();
+        model.addElement("0");
+        model.addElement("1");
+        cbo.addItemListener(new ItemListener(){
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                fillcboSanPham(ImportProduct_Form.manccString);
+            }
+        });
+        DefaultComboBoxModel model3 = (DefaultComboBoxModel)cbo3.getModel();
+        model3.addElement("0");
+        model3.addElement("1");
+        cbo3.addItemListener(new ItemListener(){
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                removeALLCard();
+            }
+        });
+        DefaultTableModel modelTable = (DefaultTableModel) tblCardPro.getModel();
+        modelTable.addTableModelListener(new TableModelListener() {
+            @Override
+            public void tableChanged(TableModelEvent e) {
+                if (modelTable.getRowCount() < card.size()) {
+                    if (modelTable.getRowCount() >= 0) {
+                        cardcardcard.removeAll(cardcardcard);
+                        for (int i = 0; i < modelTable.getRowCount(); i++) {
+                            SanPham sp = new SanPham();
+                            for(int a=0;a<list.size();a++){
+                                if(list.get(a).getMaSP().equals(modelTable.getValueAt(i, 0))){
+                                    sp=list.get(a);
+                                    break;
+                                }
+                            }
+                            cardcardcard.add(sp);
+                        }
+                        for(int i=0;i<card.size();i++){
+                            if(i > (cardcardcard.size()-1)){
+                                indexModelTable--;
+                                card.remove(i);
+                                break;
+                            }
+                            if(!card.get(i).getMaSP().equals(cardcardcard.get(i).getMaSP())){
+                                indexModelTable--;
+                                card.remove(i);
+                                break;
+                            }
+                        }
+                                
+                    }
+                }
+            }
+        });
+    }
+    
+    public void removeALLCard(){
+        card.removeAll(card);
+        DefaultTableModel model = (DefaultTableModel)tblCardPro.getModel();
+        model.setRowCount(0);
     }
 
     /**
      * Load du lieu tu sp tbl len tble
      */
-    private void load() {
-        DefaultTableModel model = (DefaultTableModel) tblCardPro.getModel();
-        model.setRowCount(0);
-
-        try {
-            for (SanPham sp : card) {
-                tblCardPro.addRow(new ProductCard(sp.getMaSP(), sp.getTenSP(), sp.getSoLuong()), false);
-            }
-        } catch (Exception e) {
-            XDialog.alert(this, "Load table fail");
-        }
-    }
-
-    private void addToCard() {
-        SanPham sp = (SanPham) cboSearch.getSelectedItem(); // Lay sp trong kho
-        boolean updateAmount = false;
-
-        for (SanPham x : card) {
-            if (sp.getMaSP().equals(x.getMaSP())) {
-                x.setSoLuong((int) btnAmount.getValue() + sp.getSoLuong());
-                updateAmount = true;
-
+//    private void load() {
+//        DefaultTableModel model = (DefaultTableModel) tblCardPro.getModel();
+//        model.setRowCount(0);
+//
+//        try {
+//            for (SanPham sp : card) {
+//                tblCardPro.addRow(new ProductCard(sp.getMaSP(), sp.getTenSP(), sp.getSoLuong()), false);
+//            }
+//        } catch (Exception e) {
+//            XDialog.alert(this, "Load table fail");
+//        }
+//    }
+    
+    private void loadToTable() {
+        boolean checkUpdate = true;
+        for (int i = 0; i < card.size(); i++) {
+            if (list.get(cboSearch.getSelectedIndex() - 1).getMaSP().equals(card.get(i).getMaSP())) {
+                card.get(i).setSoLuong(card.get(i).getSoLuong()+(int) btnAmount.getValue());
+                tblCardPro.setValueAt(card.get(i).getSoLuong(), i, 2);
+                checkUpdate = false;
                 break;
             }
         }
-        if (!updateAmount) {
-            sp.setSoLuong((int) btnAmount.getValue() + sp.getSoLuong());
+        if (card.size()>0) {
+            if (checkUpdate) {
+                SanPham sp = list.get(cboSearch.getSelectedIndex() - 1);
+                sp.setSoLuong(list.get(cboSearch.getSelectedIndex() - 1).getSoLuong()+(int)btnAmount.getValue());
+                card.add(sp);
+                indexModelTable++;
+                tblCardPro.addRow(new ProductCard(card.get(indexModelTable).getMaSP(), card.get(indexModelTable).getTenSP(), Integer.parseInt(card.get(indexModelTable).getSoLuong()+"")), false);
+            }
+        }
+        if(card.size()<=0){
+            SanPham sp = list.get(cboSearch.getSelectedIndex() - 1);
+            sp.setSoLuong(list.get(cboSearch.getSelectedIndex() - 1).getSoLuong()+(int)btnAmount.getValue());
             card.add(sp);
+            indexModelTable++;
+            tblCardPro.addRow(new ProductCard(card.get(indexModelTable).getMaSP(), card.get(indexModelTable).getTenSP(), Integer.parseInt(card.get(indexModelTable).getSoLuong()+"")), false);
         }
     }
 
@@ -354,7 +428,7 @@ public class AddImported_Form extends javax.swing.JPanel {
         lblNameProduct.setText(model.getTenSP());
         lblPrice.setText("Price: " + model.getGiaBan());
         lblImage.setIcon(new ImageIcon(new ImageIcon(getClass().getResource(("/com/raven/image/" + model.getAnh()))).getImage().getScaledInstance(135, 164, Image.SCALE_DEFAULT)));
-        lblAmount.setText("Amount in Kho: " + model.getSoLuong());
+        lblAmount.setText("Amount in warehouse: " + model.getSoLuong());
     }
 
     /**

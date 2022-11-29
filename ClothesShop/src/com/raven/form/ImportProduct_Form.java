@@ -7,12 +7,14 @@ package com.raven.form;
 import com.raven.DAO.NhaCungCapDAO;
 import com.raven.DAO.SanPhamDAO;
 import com.raven.component.MainBody;
+import static com.raven.form.Employee_Form.fr;
 import com.raven.main.Main;
 import com.raven.model.NhaCungCap;
 import com.raven.model.SanPham;
 import com.raven.utils.XDialog;
 import java.util.ArrayList;
 import java.util.List;
+import javaswingdev.Notification;
 import javax.swing.DefaultComboBoxModel;
 
 /**
@@ -24,7 +26,7 @@ public class ImportProduct_Form extends javax.swing.JPanel {
     SanPhamDAO dao = new SanPhamDAO();
     NhaCungCapDAO nccdao = new NhaCungCapDAO();
     private Product_Form productForm;
-
+    static String manccString;
 
     /**
      * Creates new form NhapHang
@@ -133,9 +135,9 @@ public class ImportProduct_Form extends javax.swing.JPanel {
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setText("SUPPLIER");
 
-        cboNCC.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cboNCCActionPerformed(evt);
+        cboNCC.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cboNCCItemStateChanged(evt);
             }
         });
 
@@ -162,7 +164,7 @@ public class ImportProduct_Form extends javax.swing.JPanel {
                 .addGroup(roundPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(cboNCC, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundPanel3Layout.createSequentialGroup()
-                        .addGap(0, 2, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundPanel3Layout.createSequentialGroup()
                         .addComponent(btnClose, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -199,7 +201,7 @@ public class ImportProduct_Form extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(roundPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
+                    .addComponent(roundPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 238, Short.MAX_VALUE)
                     .addComponent(newSup, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -224,7 +226,7 @@ public class ImportProduct_Form extends javax.swing.JPanel {
                         .addComponent(roundPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
                         .addGap(2, 2, 2)
                         .addComponent(newSup, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(11, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -257,11 +259,13 @@ public class ImportProduct_Form extends javax.swing.JPanel {
         add();
     }//GEN-LAST:event_btnAddActionPerformed
 
-    private void cboNCCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboNCCActionPerformed
+    private void cboNCCItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboNCCItemStateChanged
         // TODO add your handling code here:
-        NhaCungCap ncc =(NhaCungCap) cboNCC.getSelectedItem();
-        new AddImported_Form().fillcboSanPham(ncc.getMaNCC());
-    }//GEN-LAST:event_cboNCCActionPerformed
+        NhaCungCap nc = (NhaCungCap) cboNCC.getSelectedItem();
+        manccString = nc.getMaNCC();
+        AddImported_Form.cbo.setSelectedIndex(0);
+        AddImported_Form.cbo.setSelectedIndex(1);
+    }//GEN-LAST:event_cboNCCItemStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -290,19 +294,40 @@ public class ImportProduct_Form extends javax.swing.JPanel {
     
     private boolean isValidate() {
         if (txtID.getText().equals("")) {
-            XDialog.alert(this, "ID can't be empty");
+            txtID.requestFocus();
+            Notification panel = new Notification(Employee_Form.fr, Notification.Type.WARNING, Notification.Location.TOP_CENTER, "ID can't be empty !");
+            panel.showNotification();
             return false;
         }
         if (txtName.getText().equals("")) {
-            XDialog.alert(this, "Name can't be empty");
+            txtName.requestFocus();
+            Notification panel = new Notification(Employee_Form.fr, Notification.Type.WARNING, Notification.Location.TOP_CENTER, "Name can't be empty !");
+            panel.showNotification();
             return false;
         }
         if (txtEmail.getText().equals("")) {
-            XDialog.alert(this, "Email can't be empty");
+            txtEmail.requestFocus();
+            Notification panel = new Notification(Employee_Form.fr, Notification.Type.WARNING, Notification.Location.TOP_CENTER, "Email can't be empty !");
+            panel.showNotification();
+            return false;
+        }
+        String mauEmail = "\\w+@\\w+(\\.\\w+){1,2}";
+        if (!(txtEmail.getText().trim().matches(mauEmail))) {
+            txtEmail.requestFocus();
+            Notification panel = new Notification(Employee_Form.fr, Notification.Type.WARNING, Notification.Location.TOP_CENTER, "Email invalid !");
+            panel.showNotification();
             return false;
         }
         if (txtPNum.getText().equals("")) {
-            XDialog.alert(this, "Phone number can't empty");
+            txtPNum.requestFocus();
+            Notification panel = new Notification(Employee_Form.fr, Notification.Type.WARNING, Notification.Location.TOP_CENTER, "Phone number can't empty !");
+            panel.showNotification();
+            return false;
+        }
+        if (!txtPNum.getText().matches("\\d{9,10}")) {
+            txtPNum.requestFocus();
+            Notification panel = new Notification(Employee_Form.fr, Notification.Type.WARNING, Notification.Location.TOP_CENTER, "Phone invalid !");
+            panel.showNotification();
             return false;
         }
         return true;
@@ -314,8 +339,8 @@ public class ImportProduct_Form extends javax.swing.JPanel {
         try {
             nccdao.insert(ncc);
             clear();
-            XDialog.alert(this, "Add successful");
-            XDialog.alert(this, "Vui long qua san pham de tao sp cho NCC moi");
+            Notification panel = new Notification(Employee_Form.fr, Notification.Type.SUCCESS, Notification.Location.TOP_CENTER, "Add success! Go to the product page to create products for new supplier ! ");
+            panel.showNotification();
         } catch (Exception e) {
             XDialog.alert(this, "Add fail");
         }
@@ -359,9 +384,13 @@ public class ImportProduct_Form extends javax.swing.JPanel {
     
     private void save() {
         List<SanPham> list = AddImported_Form.card;
-        for(SanPham x: list) {
+        for(int i=0;i<list.size();i++) {
             try {
-                dao.update(x);
+                dao.update(list.get(i));
+                Notification panel = new Notification(Employee_Form.fr, Notification.Type.SUCCESS, Notification.Location.TOP_CENTER, "Import success!");
+                panel.showNotification();
+                AddImported_Form.cbo3.setSelectedIndex(0);
+                AddImported_Form.cbo3.setSelectedIndex(1);
             } catch (Exception e) {
                 System.out.println("Error");
             }

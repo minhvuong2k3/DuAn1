@@ -49,6 +49,16 @@ public class HDXuatDAO extends ClothingStoreDAO<HDXuat, String>{
         String sql = "SELECT SoPhieu, MaNV, MaKH, ThanhTien, NgayXuat FROM HDXuat";
         return select(sql);
     }
+    
+    public List<HDXuat> select2date(String dateFrom, String dateTo) {
+        String sql = "SELECT SoPhieu, MaNV, MaKH, ThanhTien, NgayXuat FROM HDXuat where NgayXuat >= ? and NgayXuat <= ?";
+        return select(sql, dateFrom, dateTo);
+    }
+    
+    public List<HDXuat> select1date(String date) {
+        String sql = "SELECT SoPhieu, MaNV, MaKH, ThanhTien, NgayXuat FROM HDXuat where NgayXuat = ?";
+        return select(sql, date);
+    }
 
     public List<HDXuat> selectByKeyword(String keyword) {
         String sql = "select SoPhieu, MaNV, MaKH, ThanhTien, NgayXuat FROM HDXuat WHERE SoPhieu like ?";

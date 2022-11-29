@@ -10,7 +10,12 @@ import com.raven.model.CTHDNhap;
 import com.raven.model.HDNhap;
 import com.raven.swing.scrollbar.ScrollBarCustom;
 import com.raven.utils.XDialog;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.List;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
+import javax.swing.plaf.basic.BasicComboBoxUI;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -23,7 +28,7 @@ public class TableImport extends javax.swing.JPanel {
     CTHDNhapDAO ctdao = new CTHDNhapDAO();
     int indexHD;
     int indexCT;
-
+    static JComboBox cbo = new JComboBox();
     public TableImport() {
         initComponents();
         setLayout();
@@ -277,11 +282,64 @@ public class TableImport extends javax.swing.JPanel {
         tblHDNhap.setDefaultEditor(Object.class, null);
         tblCTHDNhap.setDefaultEditor(Object.class, null);
         loadHD();
+        DefaultComboBoxModel model = (DefaultComboBoxModel)cbo.getModel();
+        model.addElement("0");
+        model.addElement("1");
+        model.addElement("2");
+        cbo.addItemListener(new ItemListener(){
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                if(cbo.getSelectedIndex()==1)
+                    LoadHD2date(ManageInvoice.date1, ManageInvoice.date2);
+                else if(cbo.getSelectedIndex()==2)
+                    LoadHD1date(ManageInvoice.date1);
+            }
+        });
     }
 
     /**
      * Ham load tat ca hoa don len tbl
      */
+    public void LoadHD2date(String dateFrom, String dateTo){
+        DefaultTableModel model = (DefaultTableModel) tblHDNhap.getModel();
+        model.setRowCount(0);
+        try {
+            List<HDNhap> list = dao.select2Date(dateFrom, dateTo);
+            for (HDNhap hd : list) {
+                Object[] row = {
+                    hd.getSoPhieu(),
+                    hd.getNgayNhap(),
+                    hd.getMaNCC(),
+                    hd.getMaNV()
+                };
+                model.addRow(row);
+            }
+        } catch (Exception e) {
+            XDialog.alert(this, "Error data query!");
+            e.printStackTrace();
+        }
+    }
+    
+    public void LoadHD1date(String date){
+        DefaultTableModel model = (DefaultTableModel) tblHDNhap.getModel();
+        model.setRowCount(0);
+        try {
+            List<HDNhap> list = dao.select1Date(date);
+            for (HDNhap hd : list) {
+                Object[] row = {
+                    hd.getSoPhieu(),
+                    hd.getNgayNhap(),
+                    hd.getMaNCC(),
+                    hd.getMaNV()
+                };
+                model.addRow(row);
+            }
+        } catch (Exception e) {
+            XDialog.alert(this, "Error data query!");
+            e.printStackTrace();
+        }
+    }
+    
     private void loadHD() {
         DefaultTableModel model = (DefaultTableModel) tblHDNhap.getModel();
         model.setRowCount(0);
