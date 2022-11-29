@@ -45,15 +45,21 @@ public class CTHDNhapDAO {
         return select(sql);
     }
 
-    public List<CTHDNhap> selectByKeyword(int keyword) {
-        String sql = "SELECT SoPhieu, MaSP, SoLuong, GiaNhap FROM CTHDNhap WHERE SoPhieu = ?";
-        return select(sql, keyword);
+    public List<CTHDNhap> selectByKeyword(String keyword) {
+        String sql = "SELECT SoPhieu, MaSP, SoLuong, GiaNhap FROM CTHDNhap WHERE SoPhieu LIKE ? ";
+        return select(sql, "%"+keyword+"%");
+    }
+    
+    public CTHDNhap selectById(String SoPhieu, String MaSP) {
+        String sql = "SELECT SoPhieu, MaSP, SoLuong, GiaNhap FROM CTHDNhap WHERE SoPhieu = ? AND MaSP = ?";
+        List<CTHDNhap> list = select(sql, SoPhieu, MaSP);
+        return list.size() > 0 ? list.get(0) : null;
     }
 
-    public CTHDNhap selectById(String SoPhieu) {
-        String sql = "SELECT MaSP, SoLuong, GiaNhap FROM CTHDNhap WHERE SoPhieu = ?";
+    public List<CTHDNhap> selectListById(String SoPhieu) {
+        String sql = "SELECT SoPhieu, MaSP, SoLuong, GiaNhap FROM CTHDNhap WHERE SoPhieu = ?";
         List<CTHDNhap> list = select(sql, SoPhieu);
-        return list.size() > 0 ? list.get(0) : null;
+        return select(sql, SoPhieu);
     }
 
     protected List<CTHDNhap> select(String sql, Object... args) {

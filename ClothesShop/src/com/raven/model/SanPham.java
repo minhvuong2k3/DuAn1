@@ -29,12 +29,12 @@ public class SanPham {
         this.giaBan = giaBan;
         this.maLH = maLH;
         this.giamgia = giamgia;
-        this.maNCC = maNCC;
+        this.maNCC = maNCC; 
     }
     
     @Override
     public String toString() {
-        return maSP+", "+tenSP+", "+soLuong+", "+giaBan;
+        return maSP;
     }
     
     public String getMaSP() {

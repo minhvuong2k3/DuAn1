@@ -4,13 +4,26 @@
  */
 package com.raven.form;
 
+import com.raven.DAO.SanPhamDAO;
 import com.raven.cell.CellAction;
-import com.raven.model.ModelStaff;
+import com.raven.model.ProductCard;
+import com.raven.model.SanPham;
 import com.raven.swing.scrollbar.ScrollBarCustom;
+import com.raven.utils.XDialog;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.RenderingHints;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.util.ArrayList;
+import java.util.List;
+import javaswingdev.Notification;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
 import javax.swing.JScrollPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -18,39 +31,21 @@ import javax.swing.JScrollPane;
  */
 public class AddImported_Form extends javax.swing.JPanel {
 
+    SanPhamDAO dao = new SanPhamDAO();
+    static List<SanPham> card = new ArrayList<>(); // Luu du lieu cac sp cap nhat
+    int index = 0; // Vi tri select trong table
+    static int ok = 6;
+    static void isNew() {
+        
+    }
+
     /**
      * Creates new form AddProducts
      */
     public AddImported_Form() {
         initComponents();
-        setOpaque(false);
-        table1.addTableStyle(scroll);
-        scroll.setBorder(null);
-        scroll.setViewportBorder(null);
-        scroll.getViewport().setOpaque(false);
-        scroll.setVerticalScrollBar(new ScrollBarCustom());
-        table1.addTableCell(new CellAction(), 5);
-
-        scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        table1.addRow(new ModelStaff("123", "123", "123", 12, "123", "123", "123", "123"), false);  //  ture is animate row
-        table1.addRow(new ModelStaff("123", "123", "123", 12, "123", "123", "123", "123"), false);  //  ture is animate row
-        table1.addRow(new ModelStaff("123", "123", "123", 12, "123", "123", "123", "123"), false);  //  ture is animate row
-        table1.addRow(new ModelStaff("123", "123", "123", 12, "123", "123", "123", "123"), false);  //  ture is animate row
-        table1.addRow(new ModelStaff("123", "123", "123", 12, "123", "123", "123", "123"), false);  //  ture is animate row
-        table1.addRow(new ModelStaff("123", "123", "123", 12, "123", "123", "123", "123"), false);  //  ture is animate row
-        table1.addRow(new ModelStaff("123", "123", "123", 12, "123", "123", "123", "123"), false);  //  ture is animate row
-    }
-
-    @Override
-    public void paint(Graphics grphcs) {
-        Graphics2D g2 = (Graphics2D) grphcs.create();
-        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        int width = getWidth();
-        int height = getHeight();
-        g2.setColor(getBackground());
-        g2.fillRoundRect(0, 0, width, height, 15, 15);
-        g2.dispose();
-        super.paint(grphcs);
+        setLayout();
+        init();
     }
 
     /**
@@ -63,28 +58,33 @@ public class AddImported_Form extends javax.swing.JPanel {
     private void initComponents() {
 
         roundPanel1 = new com.raven.swing.RoundPanel();
-        comboBoxSuggestion1 = new combo_suggestion.ComboBoxSuggestion();
+        cboSearch = new combo_suggestion.ComboBoxSuggestion();
         jSeparator1 = new javax.swing.JSeparator();
         roundPanel3 = new com.raven.swing.RoundPanel();
-        jLabel2 = new javax.swing.JLabel();
+        lblImage = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        spinner1 = new spinner.Spinner();
-        button1 = new button.Button();
+        lblNameProduct = new javax.swing.JLabel();
+        lblAmount = new javax.swing.JLabel();
+        lblPrice = new javax.swing.JLabel();
+        btnAmount = new spinner.Spinner();
+        btnAdd = new button.Button();
         jLabel15 = new javax.swing.JLabel();
-        scroll = new javax.swing.JScrollPane();
-        table1 = new com.raven.swing.Table();
+        cardcard = new javax.swing.JScrollPane();
+        tblCardPro = new com.raven.swing.Table();
 
         roundPanel1.setBackground(new java.awt.Color(255, 255, 255));
         roundPanel1.setPreferredSize(new java.awt.Dimension(544, 610));
 
-        comboBoxSuggestion1.setBorder(null);
+        cboSearch.setBorder(null);
+        cboSearch.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cboSearchItemStateChanged(evt);
+            }
+        });
 
-        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("IMG");
+        lblImage.setBackground(new java.awt.Color(255, 255, 255));
+        lblImage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblImage.setText("IMG");
 
         javax.swing.GroupLayout roundPanel3Layout = new javax.swing.GroupLayout(roundPanel3);
         roundPanel3.setLayout(roundPanel3Layout);
@@ -92,43 +92,58 @@ public class AddImported_Form extends javax.swing.JPanel {
             roundPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(roundPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblImage, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(7, Short.MAX_VALUE))
         );
         roundPanel3Layout.setVerticalGroup(
             roundPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(roundPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblImage, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(32, Short.MAX_VALUE))
         );
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel3.setText("NAME PRODUCT");
+        lblNameProduct.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblNameProduct.setText("NAME PRODUCT");
 
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel4.setText("Total : 999999");
+        lblAmount.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblAmount.setText("Amout now:");
 
-        jLabel5.setText("Price");
+        lblPrice.setText("Price");
 
-        spinner1.setBorder(null);
-        spinner1.setLabelText("Amount");
+        btnAmount.setBorder(null);
+        btnAmount.setLabelText("Amount");
+        btnAmount.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                btnAmountStateChanged(evt);
+            }
+        });
 
-        button1.setText("Add to cart");
+        btnAdd.setText("Add to cart");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
 
         jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/search.png"))); // NOI18N
 
-        scroll.setBackground(new java.awt.Color(255, 255, 255));
+        cardcard.setBackground(new java.awt.Color(255, 255, 255));
 
-        table1.setModel(new javax.swing.table.DefaultTableModel(
+        tblCardPro.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Name", "Gender", "Age", "Email", "Tel", "Action"
+                "ID", "Name", "Amout", "Action"
             }
         ));
-        scroll.setViewportView(table1);
+        tblCardPro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblCardProMouseClicked(evt);
+            }
+        });
+        cardcard.setViewportView(tblCardPro);
 
         javax.swing.GroupLayout roundPanel1Layout = new javax.swing.GroupLayout(roundPanel1);
         roundPanel1.setLayout(roundPanel1Layout);
@@ -137,28 +152,28 @@ public class AddImported_Form extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(scroll)
+                    .addComponent(cardcard)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, roundPanel1Layout.createSequentialGroup()
                         .addComponent(roundPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(roundPanel1Layout.createSequentialGroup()
                                 .addGap(12, 12, 12)
                                 .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addComponent(lblPrice, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(lblNameProduct, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(roundPanel1Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(spinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 230, Short.MAX_VALUE)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(6, 6, 6))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, roundPanel1Layout.createSequentialGroup()
                         .addGap(8, 8, 8)
                         .addComponent(jLabel15)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(comboBoxSuggestion1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(cboSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jSeparator2))
                 .addContainerGap())
@@ -167,31 +182,31 @@ public class AddImported_Form extends javax.swing.JPanel {
             roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(roundPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, 0)
-                .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(comboBoxSuggestion1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cboSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(roundPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(roundPanel1Layout.createSequentialGroup()
                         .addGap(6, 6, 6)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblNameProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(roundPanel1Layout.createSequentialGroup()
-                                .addComponent(spinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnAmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 33, Short.MAX_VALUE))
                             .addGroup(roundPanel1Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel4))))))
+                                    .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblAmount))))))
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(scroll, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE)
+                .addComponent(cardcard, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -207,21 +222,190 @@ public class AddImported_Form extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void cboSearchItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboSearchItemStateChanged
+        // TODO add your handling code here:
+        if (cboSearch.getSelectedIndex() > 0) {
+            SanPham model = (SanPham) cboSearch.getSelectedItem();
+            setModel(model);
+        }
+    }//GEN-LAST:event_cboSearchItemStateChanged
+
+    private void btnAmountStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_btnAmountStateChanged
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btnAmountStateChanged
+
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        // TODO add your handling code here:
+        if (cboSearch.getSelectedIndex() > 0) {
+            addToCard();
+            load();
+            clear();
+        }
+        else {
+            Notification panel = new Notification(Employee_Form.fr, Notification.Type.WARNING, Notification.Location.TOP_CENTER, "Information not enough !");
+            panel.showNotification();
+        }
+    }//GEN-LAST:event_btnAddActionPerformed
+
+    private void tblCardProMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCardProMouseClicked
+        // TODO add your handling code here:
+         if (evt.getClickCount() == 2) {
+            this.index = tblCardPro.rowAtPoint(evt.getPoint());
+            if (this.index >= 0) {
+                this.edit();
+            }
+        }
+    }//GEN-LAST:event_tblCardProMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private button.Button button1;
-    private combo_suggestion.ComboBoxSuggestion comboBoxSuggestion1;
+    private button.Button btnAdd;
+    private spinner.Spinner btnAmount;
+    private javax.swing.JScrollPane cardcard;
+    private combo_suggestion.ComboBoxSuggestion cboSearch;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JLabel lblAmount;
+    private javax.swing.JLabel lblImage;
+    private javax.swing.JLabel lblNameProduct;
+    private javax.swing.JLabel lblPrice;
     private com.raven.swing.RoundPanel roundPanel1;
     private com.raven.swing.RoundPanel roundPanel3;
-    private javax.swing.JScrollPane scroll;
-    private spinner.Spinner spinner1;
-    private com.raven.swing.Table table1;
+    private com.raven.swing.Table tblCardPro;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void paint(Graphics grphcs) {
+        Graphics2D g2 = (Graphics2D) grphcs.create();
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        int width = getWidth();
+        int height = getHeight();
+        g2.setColor(getBackground());
+        g2.fillRoundRect(0, 0, width, height, 15, 15);
+        g2.dispose();
+        super.paint(grphcs);
+    }
+
+    private void setLayout() {
+        setOpaque(false);
+        tblCardPro.addTableStyle(cardcard);
+        cardcard.setBorder(null);
+        cardcard.setViewportBorder(null);
+        cardcard.getViewport().setOpaque(false);
+        cardcard.setVerticalScrollBar(new ScrollBarCustom());
+        tblCardPro.addTableCell(new CellAction(), 3);
+    }
+
+    private void init() {
+        tblCardPro.setDefaultEditor(Object.class, null); // Khong cho edit tren table
+        fillcboSanPham(""); // Load tat ca sp len form
+    }
+    
+    /**
+     * Load du lieu tu sp tbl len tble
+     */
+    private void load() {
+        DefaultTableModel model = (DefaultTableModel) tblCardPro.getModel();
+        model.setRowCount(0);
+        
+        try {
+            for (SanPham sp : card) {
+                tblCardPro.addRow(new ProductCard(sp.getMaSP(),sp.getTenSP(),sp.getSoLuong()),false);
+            }
+        } catch (Exception e) {
+            XDialog.alert(this, "Load table fail");
+        }
+    }
+    
+    private void addToCard() {
+        SanPham sp = (SanPham) cboSearch.getSelectedItem(); // Lay sp trong kho
+        boolean updateAmount = false;
+        
+        for (SanPham x : card) {
+            if (sp.getMaSP().equals(x.getMaSP())) {
+                x.setSoLuong((int) btnAmount.getValue()+sp.getSoLuong());
+                updateAmount = true;
+                
+                break;
+            }
+        }
+        if(!updateAmount) {
+            sp.setSoLuong((int) btnAmount.getValue()+sp.getSoLuong());
+            card.add(sp);
+            }
+        }
+    
+    private void delete() {
+        if(!card.isEmpty())
+            card.removeAll(card);
+    }
+
+    /**
+     * Show thong tin sp len form
+     * @param model la san pham can show
+     */
+    private void setModel(SanPham model) {
+        lblNameProduct.setText(model.getTenSP());
+        lblPrice.setText("Price: " + model.getGiaBan());
+        lblImage.setIcon(new ImageIcon(new ImageIcon(getClass().getResource(("/com/raven/image/" + model.getAnh()))).getImage().getScaledInstance(135, 164, Image.SCALE_DEFAULT)));
+        lblAmount.setText("Amount in Kho: "+ model.getSoLuong());
+    }
+
+    /**
+     * Hien thong tin sp trong table
+     */
+    private void edit() {
+        try {
+            String masp = (String) tblCardPro.getValueAt(this.index, 0);
+            System.out.println(masp);
+            SanPham model = dao.selectById(masp);
+            if (model != null) {
+                this.setModel(model);
+                btnAmount.setValue(card.get(index).getSoLuong());
+                cboSearch.setSelectedItem(card.get(index));
+            }
+        } catch (Exception e) {
+            XDialog.alert(this, "Error data query!");
+            e.printStackTrace();
+        }
+    }
+
+    private void clear() {
+        lblNameProduct.setText("NAME PRODUCT");
+        lblPrice.setText("Price ");
+        lblImage.setIcon(null);
+        lblImage.setText("IMG");
+        lblAmount.setText("Total: 0");
+        btnAmount.setValue(0);
+        cboSearch.setSelectedIndex(0);
+    }
+
+    /**
+     * Ham tinh tong tien- > show len lblSum
+     *
+     * @param x la so luong san pham
+     */
+
+    /**
+     * Ham load du lieu len cbo san pham
+     * @param maNCC
+     */
+    public void fillcboSanPham(String maNCC) {
+        DefaultComboBoxModel model = (DefaultComboBoxModel) cboSearch.getModel();
+        model.removeAllElements();
+
+        // Add empty to 
+        model.addElement("");
+        try {
+            List<SanPham> list = dao.selectByIdNCC(maNCC);
+            for (SanPham sp : list) {
+                model.addElement(sp);
+                System.out.println(sp);
+            }
+        } catch (Exception e) {
+            XDialog.alert(this, "Error data query!");
+        }
+    }
 }
