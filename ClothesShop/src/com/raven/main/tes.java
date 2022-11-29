@@ -27,11 +27,11 @@ public class tes {
     public static void main(String[] args) {
         int index = 1;
         list = dao.select();
-        selectByKeyword("1");
+        selectByKeyword(1);
     }
 
-    public static List<CTHDNhap> selectByKeyword(String keyword) {
-        String sql = "SELECT SoPhieu, MaSP, SoLuong, GiaNhap FROM CTHDNhap WHERE SoPhieu = ";
+    public static List<CTHDNhap> selectByKeyword(int keyword) {
+        String sql = "SELECT SoPhieu, MaSP, SoLuong, GiaNhap FROM CTHDNhap WHERE SoPhieu = ?";
         return select(sql, keyword);
     }
 

@@ -15,8 +15,8 @@ import java.util.List;
  *
  * @author duong
  */
-public class HDNhapDAO extends ClothingStoreDAO<HDNhap, String>{
-    
+public class HDNhapDAO extends ClothingStoreDAO<HDNhap, String> {
+
     @Override
     public void insert(HDNhap model) {
         String sql = "INSERT INTO HDNhap (NgayNhap, MaNCC, MaNV) VALUES (?, ?, ?)";
@@ -48,9 +48,9 @@ public class HDNhapDAO extends ClothingStoreDAO<HDNhap, String>{
         return select(sql);
     }
 
-    public List<HDNhap> selectByKeyword(String keyword) {
-        String sql = "SELECT SoPhieu, NgayNhap, MaNCC, MaNV FROM HDNhap WHERE SoPhieu like ?";
-        return select(sql, "%" + keyword + "%");
+    public List<HDNhap> selectByKeyword(int keyword) {
+        String sql = "SELECT SoPhieu, NgayNhap, MaNCC, MaNV FROM HDNhap WHERE SoPhieu = ?";
+        return select(sql, keyword);
     }
 
     @Override
@@ -58,6 +58,12 @@ public class HDNhapDAO extends ClothingStoreDAO<HDNhap, String>{
         String sql = "SELECT SoPhieu, NgayNhap, MaNCC, MaNV FROM HDNhap WHERE SoPhieu = ?";
         List<HDNhap> list = select(sql, SoPhieu);
         return list.size() > 0 ? list.get(0) : null;
+    }
+    
+    public List<HDNhap> selectByDate(String from, String to) {
+        String sql = "SELECT SoPhieu, NgayNhap, MaNCC, MaNV FROM HDNhap WHERE NgayNhap BETWEEN ? AND ?";
+        List<HDNhap> list = select(sql, from, to);
+        return list;
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.raven.component;
 
+import button.Button;
 import com.raven.swing.ButtonOutLine;
 import java.awt.Color;
 import java.awt.Font;
@@ -22,7 +23,7 @@ public class PanelCover extends javax.swing.JPanel {
     private JLabel title;
     private JLabel description;
     private JLabel description1;
-    private ButtonOutLine button;
+    private Button button;
     private boolean isLogin;
 
     public PanelCover() {
@@ -37,17 +38,17 @@ public class PanelCover extends javax.swing.JPanel {
     private void init() {
         title = new JLabel("Welcome Back!");
         title.setFont(new Font("sansserif", 1, 30));
-        title.setForeground(new Color(245, 245, 245));
+        title.setForeground(new Color(125, 110, 131));
         add(title);
         description = new JLabel("To keep connected with us please");
-        description.setForeground(new Color(245, 245, 245));
+        description.setForeground(new Color(125, 110, 131));
         add(description);
         description1 = new JLabel("login with your personal info");
-        description1.setForeground(new Color(245, 245, 245));
+        description1.setForeground(new Color(125, 110, 131));
         add(description1);
-        button = new ButtonOutLine();
-        button.setBackground(new Color(255, 255, 255));
-        button.setForeground(new Color(255, 255, 255));
+        button = new Button();
+        button.setBackground(new Color(125, 110, 131));
+        button.setForeground(new Color(254,252,243));
         button.setText("SIGN IN");
         button.addActionListener(new ActionListener() {
             @Override
@@ -77,11 +78,12 @@ public class PanelCover extends javax.swing.JPanel {
     @Override
     protected void paintComponent(Graphics grphcs) {
         Graphics2D g2 = (Graphics2D) grphcs;
-        GradientPaint gra = new GradientPaint(0, 0, new Color(250,125,125), 0, getHeight(), new Color(250,100,100));
+        GradientPaint gra = new GradientPaint(0, 0, new Color(254, 252, 243), 0, getHeight(), new Color(254, 252, 243));
         g2.setPaint(gra);
         g2.fillRect(0, 0, getWidth(), getHeight());
         super.paintComponent(grphcs);
     }
+    
 
     public void addEvent(ActionListener event) {
         this.event = event;

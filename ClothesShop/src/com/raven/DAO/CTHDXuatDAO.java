@@ -46,14 +46,19 @@ public class CTHDXuatDAO{
     }
 
     public List<CTHDXuat> selectByKeyword(String keyword) {
-        String sql = "SELECT SoPhieu, MASP, SoLuong, GiamGia FROM CTHDXuat WHERE SoPhieu like ?";
-        return select(sql, "%" + keyword + "%");
+        String sql = "SELECT SoPhieu, MASP, SoLuong, GiamGia FROM CTHDXuat WHERE SoPhieu like ? OR MASP LIKE ?";
+        return select(sql, "%" + keyword + "%", "%" + keyword + "%");
     }
     
-    public CTHDXuat selectById(String SoPhieu) {
-        String sql = "SELECT * FROM CTHDXuat WHERE SoPhieu = ?";
-        List<CTHDXuat> list = select(sql, SoPhieu);
+    public CTHDXuat selectById(String SoPhieu, String MASP) {
+        String sql = "SELECT SoPhieu, MASP, SoLuong, GiamGia FROM CTHDXuat WHERE SoPhieu = ? AND MASP = ?";
+        List<CTHDXuat> list = select(sql, SoPhieu, MASP);
         return list.size() > 0 ? list.get(0) : null;
+    }
+    
+    public List<CTHDXuat> selectListById(String SoPhieu) {
+        String sql = "SELECT SoPhieu, MASP, SoLuong, GiamGia FROM CTHDXuat WHERE SoPhieu = ?";
+        return select(sql, SoPhieu);
     }
 
     protected List<CTHDXuat> select(String sql, Object... args) {

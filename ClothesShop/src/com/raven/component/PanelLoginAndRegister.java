@@ -5,7 +5,7 @@ import com.raven.main.Login;
 import com.raven.main.Main;
 import com.raven.main.testUser;
 import com.raven.model.NhanVien;
-import com.raven.swing.Button;
+import button.Button;
 import com.raven.swing.MyPasswordField;
 import com.raven.swing.MyTextField;
 import com.raven.utils.Auth;
@@ -46,7 +46,7 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
     MimeMultipart mimeMultipart = new MimeMultipart();
     MimeBodyPart mimeBodyPart = new MimeBodyPart();
     Message ms = new Message();
-    static int i=0;
+    static int i = 0;
 
     public PanelLoginAndRegister(Frame frame) {
         initComponents();
@@ -56,13 +56,15 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
         register.setVisible(true);
         fillDataToList();
     }
+//rgb[219, 163, 154]
 
     private void initRegister(Frame frame) {
         register.setLayout(new MigLayout("wrap", "push[center]push", "push[]25[]10[]10[]25[]push"));
-        JLabel label = new JLabel("Forgot Passwword");
+        JLabel label = new JLabel("Forgot Password");
         label.setFont(new Font("sansserif", 1, 30));
-        label.setForeground(new Color(250, 100, 100));
+        label.setForeground(new Color(125, 110, 131));
         register.add(label);
+       
         MyTextField txtEmail = new MyTextField();
         txtEmail.setPrefixIcon(new ImageIcon(getClass().getResource("/com/raven/icon/mail.png")));
         txtEmail.setHint("Email");
@@ -81,19 +83,20 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
         txtCheckPass.setHint("Check Password");
 
         Button cmd = new Button();
-        cmd.setBackground(new Color(250, 100, 100));
-        cmd.setForeground(new Color(250, 250, 250));
+        cmd.setBackground(new Color(125, 110, 131));
+        cmd.setForeground(new Color(254, 252, 243));
+        button.Button btn = new button.Button();
         cmd.setText("Send verifycode to Email");
         register.add(cmd, "w 40%, h 40");
 
         Button cmdCheckOTP = new Button();
-        cmdCheckOTP.setBackground(new Color(250, 100, 100));
-        cmdCheckOTP.setForeground(new Color(250, 250, 250));
+        cmdCheckOTP.setBackground(new Color(125, 110, 131));
+        cmdCheckOTP.setForeground(new Color(254, 252, 243));
         cmdCheckOTP.setText("Check OTP ");
 
         Button cmdCheckPass = new Button();
-        cmdCheckPass.setBackground(new Color(250, 100, 100));
-        cmdCheckPass.setForeground(new Color(250, 250, 250));
+        cmdCheckPass.setBackground(new Color(125, 110, 131));
+        cmdCheckPass.setForeground(new Color(254, 252, 243));
         cmdCheckPass.setText("Submit");
 
         cmd.addActionListener((ActionEvent e) -> {
@@ -153,9 +156,10 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
         login.setLayout(new MigLayout("wrap", "push[center]push", "push[]25[]10[]10[]25[]push"));
         JLabel label = new JLabel("Sign In");
         label.setFont(new Font("sansserif", 1, 30));
-        label.setForeground(new Color(250, 100, 100));
+        label.setForeground(new Color(125, 110, 131));
+        label.setBackground(new Color(254, 252, 243));
         login.add(label);
-
+//rgb(125, 110, 131)
         MyTextField txtEmail = new MyTextField();
         txtEmail.setPrefixIcon(new ImageIcon(getClass().getResource("/com/raven/icon/mail.png")));
         txtEmail.setHint("Email");
@@ -173,29 +177,32 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
 //        cmdForget.setCursor(new Cursor(Cursor.HAND_CURSOR));
 //        login.add(cmdForget);
         Button cmd = new Button();
-        cmd.setBackground(new Color(250, 100, 100));
-        cmd.setForeground(new Color(250, 250, 250));
+        cmd.setBackground(new Color(125, 110, 131));
+        cmd.setForeground(new Color(254, 252, 243));
         cmd.setText("SIGN IN");
         login.add(cmd, "w 40%, h 40");
-        txtEmail.addKeyListener(new KeyAdapter(){
+        txtEmail.addKeyListener(new KeyAdapter() {
             @Override
-            public void keyPressed(KeyEvent e){
-                if(e.getKeyCode()==KeyEvent.VK_ENTER)
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
                     login(txtPass.getText(), txtEmail.getText(), frame);
+                }
             }
         });
-        txtPass.addKeyListener(new KeyAdapter(){
+        txtPass.addKeyListener(new KeyAdapter() {
             @Override
-            public void keyPressed(KeyEvent e){
-                if(e.getKeyCode()==KeyEvent.VK_ENTER)
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
                     login(txtPass.getText(), txtEmail.getText(), frame);
+                }
             }
         });
-        cmd.addKeyListener(new KeyAdapter(){
+        cmd.addKeyListener(new KeyAdapter() {
             @Override
-            public void keyPressed(KeyEvent e){
-                if(e.getKeyCode()==KeyEvent.VK_ENTER)
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
                     login(txtPass.getText(), txtEmail.getText(), frame);
+                }
             }
         });
         cmd.addActionListener(new ActionListener() {
@@ -223,16 +230,16 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
             panel.showNotification();
             Auth.user = model;
             frame.setVisible(false);
-            new Thread(){
-                    @Override
-                    public void run(){
-                        if(i==0){
-                            new Loading().setVisible(true);
-                            new Main().setVisible(true);
-                        }
-                        i++;
+            new Thread() {
+                @Override
+                public void run() {
+                    if (i == 0) {
+                        new Loading().setVisible(true);
+                        new Main().setVisible(true);
                     }
-                }.start();
+                    i++;
+                }
+            }.start();
         } else {
             Notification panel = new Notification(frame, Notification.Type.WARNING, Notification.Location.TOP_CENTER, "Password not succesfull");
             panel.showNotification();
