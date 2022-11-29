@@ -35,8 +35,9 @@ public class AddImported_Form extends javax.swing.JPanel {
     static List<SanPham> card = new ArrayList<>(); // Luu du lieu cac sp cap nhat
     int index = 0; // Vi tri select trong table
     static int ok = 6;
+
     static void isNew() {
-        
+//        fillcboSanPham("");
     }
 
     /**
@@ -71,6 +72,8 @@ public class AddImported_Form extends javax.swing.JPanel {
         jLabel15 = new javax.swing.JLabel();
         cardcard = new javax.swing.JScrollPane();
         tblCardPro = new com.raven.swing.Table();
+
+        setBackground(new java.awt.Color(255, 255, 255));
 
         roundPanel1.setBackground(new java.awt.Color(255, 255, 255));
         roundPanel1.setPreferredSize(new java.awt.Dimension(544, 610));
@@ -232,7 +235,7 @@ public class AddImported_Form extends javax.swing.JPanel {
 
     private void btnAmountStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_btnAmountStateChanged
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_btnAmountStateChanged
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
@@ -241,8 +244,7 @@ public class AddImported_Form extends javax.swing.JPanel {
             addToCard();
             load();
             clear();
-        }
-        else {
+        } else {
             Notification panel = new Notification(Employee_Form.fr, Notification.Type.WARNING, Notification.Location.TOP_CENTER, "Information not enough !");
             panel.showNotification();
         }
@@ -250,7 +252,7 @@ public class AddImported_Form extends javax.swing.JPanel {
 
     private void tblCardProMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCardProMouseClicked
         // TODO add your handling code here:
-         if (evt.getClickCount() == 2) {
+        if (evt.getClickCount() == 2) {
             this.index = tblCardPro.rowAtPoint(evt.getPoint());
             if (this.index >= 0) {
                 this.edit();
@@ -302,55 +304,57 @@ public class AddImported_Form extends javax.swing.JPanel {
         tblCardPro.setDefaultEditor(Object.class, null); // Khong cho edit tren table
         fillcboSanPham(""); // Load tat ca sp len form
     }
-    
+
     /**
      * Load du lieu tu sp tbl len tble
      */
     private void load() {
         DefaultTableModel model = (DefaultTableModel) tblCardPro.getModel();
         model.setRowCount(0);
-        
+
         try {
             for (SanPham sp : card) {
-                tblCardPro.addRow(new ProductCard(sp.getMaSP(),sp.getTenSP(),sp.getSoLuong()),false);
+                tblCardPro.addRow(new ProductCard(sp.getMaSP(), sp.getTenSP(), sp.getSoLuong()), false);
             }
         } catch (Exception e) {
             XDialog.alert(this, "Load table fail");
         }
     }
-    
+
     private void addToCard() {
         SanPham sp = (SanPham) cboSearch.getSelectedItem(); // Lay sp trong kho
         boolean updateAmount = false;
-        
+
         for (SanPham x : card) {
             if (sp.getMaSP().equals(x.getMaSP())) {
-                x.setSoLuong((int) btnAmount.getValue()+sp.getSoLuong());
+                x.setSoLuong((int) btnAmount.getValue() + sp.getSoLuong());
                 updateAmount = true;
-                
+
                 break;
             }
         }
-        if(!updateAmount) {
-            sp.setSoLuong((int) btnAmount.getValue()+sp.getSoLuong());
+        if (!updateAmount) {
+            sp.setSoLuong((int) btnAmount.getValue() + sp.getSoLuong());
             card.add(sp);
-            }
         }
-    
+    }
+
     private void delete() {
-        if(!card.isEmpty())
+        if (!card.isEmpty()) {
             card.removeAll(card);
+        }
     }
 
     /**
      * Show thong tin sp len form
+     *
      * @param model la san pham can show
      */
     private void setModel(SanPham model) {
         lblNameProduct.setText(model.getTenSP());
         lblPrice.setText("Price: " + model.getGiaBan());
         lblImage.setIcon(new ImageIcon(new ImageIcon(getClass().getResource(("/com/raven/image/" + model.getAnh()))).getImage().getScaledInstance(135, 164, Image.SCALE_DEFAULT)));
-        lblAmount.setText("Amount in Kho: "+ model.getSoLuong());
+        lblAmount.setText("Amount in Kho: " + model.getSoLuong());
     }
 
     /**
@@ -387,9 +391,9 @@ public class AddImported_Form extends javax.swing.JPanel {
      *
      * @param x la so luong san pham
      */
-
     /**
      * Ham load du lieu len cbo san pham
+     *
      * @param maNCC
      */
     public void fillcboSanPham(String maNCC) {

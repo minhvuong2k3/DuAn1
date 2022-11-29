@@ -373,7 +373,7 @@ public class InvoiceOut_Form extends javax.swing.JPanel {
                 CardLayout card = (CardLayout) roundPanel1.getLayout();
                 card.show(roundPanel1, "card3");
                 new Invoice_Form().text.setSelectedIndex(1);
-                Pay_Form.pay.setSelectedIndex(1);
+                new Pay_Form().pay.setSelectedIndex(1);
                 step++;
                 changeColorStep();
                 btnPrev.setEnabled(true);

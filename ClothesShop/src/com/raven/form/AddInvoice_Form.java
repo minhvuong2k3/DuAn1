@@ -22,6 +22,8 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JScrollPane;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -34,10 +36,13 @@ public class AddInvoice_Form extends javax.swing.JPanel {
      * Creates new form AddInvoice_Form
      */
     static JComboBox invoice = new JComboBox();
+    static JComboBox removeCard = new JComboBox();
+    static int indexModelTable = -1;
     SanPhamDAO dao = new SanPhamDAO();
     List<SanPham> list = dao.select();
     int indexCbo = 0;
     static List<Object[]> card = new ArrayList<>();
+    List<Object[]> cardcardcard = new ArrayList<>();
     public AddInvoice_Form() {
         initComponents();
         init();
@@ -46,7 +51,7 @@ public class AddInvoice_Form extends javax.swing.JPanel {
         cardcard.setViewportBorder(null);
         cardcard.getViewport().setOpaque(false);
         cardcard.setVerticalScrollBar(new ScrollBarCustom());
-        
+
         tblCardPro.addTableCell(new CellAction(), 3);
 
 //        cardcard.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
@@ -248,9 +253,9 @@ public class AddInvoice_Form extends javax.swing.JPanel {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
-        if(cboSearch.getSelectedIndex()>0 && Integer.parseInt(lblSumPrice.getText().substring(7)) > 0)
+        if (cboSearch.getSelectedIndex() > 0 && Integer.parseInt(lblSumPrice.getText().substring(7)) > 0) {
             loadToTable();
-        else {
+        } else {
             Notification panel = new Notification(Employee_Form.fr, Notification.Type.WARNING, Notification.Location.TOP_CENTER, "Information not enough !");
             panel.showNotification();
         }
@@ -259,6 +264,7 @@ public class AddInvoice_Form extends javax.swing.JPanel {
     private void tblCardProMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCardProMouseClicked
         // TODO add your handling code here:
         loadSPFromTable(tblCardPro.getSelectedRow());
+
     }//GEN-LAST:event_tblCardProMouseClicked
 
 
@@ -281,15 +287,47 @@ public class AddInvoice_Form extends javax.swing.JPanel {
 
     private void init() {
         loadToCbo();
-        DefaultComboBoxModel model = (DefaultComboBoxModel)invoice.getModel();
+        DefaultComboBoxModel model = (DefaultComboBoxModel) invoice.getModel();
         model.removeAllElements();
         model.addElement("0");
         model.addElement("1");
         model.addElement("2");
-        invoice.addItemListener(new ItemListener(){
+        invoice.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
                 removeAllall();
+            }
+        });
+        DefaultTableModel modelTable = (DefaultTableModel) tblCardPro.getModel();
+        modelTable.addTableModelListener(new TableModelListener() {
+            @Override
+            public void tableChanged(TableModelEvent e) {
+                if (modelTable.getRowCount() < card.size()) {
+                    if (modelTable.getRowCount() >= 0) {
+                        cardcardcard.removeAll(cardcardcard);
+                        for (int i = 0; i < modelTable.getRowCount(); i++) {
+                            Object[] ob = new Object[]{
+                                modelTable.getValueAt(i, 0),
+                                modelTable.getValueAt(i, 1),
+                                modelTable.getValueAt(i, 2)
+                            };
+                            cardcardcard.add(ob);
+                        }
+                        for(int i=0;i<card.size();i++){
+                            if(i > (cardcardcard.size()-1)){
+                                indexModelTable--;
+                                card.remove(i);
+                                break;
+                            }
+                            if(!card.get(i)[0].equals(cardcardcard.get(i)[0])){
+                                indexModelTable--;
+                                card.remove(i);
+                                break;
+                            }
+                        }
+                                
+                    }
+                }
             }
         });
     }
@@ -303,17 +341,17 @@ public class AddInvoice_Form extends javax.swing.JPanel {
         }
         cboSearch.setModel(model);
     }
-    
+
     private void loadSP(int index) {
         lblNameProduct.setText(list.get(index - 1).getTenSP());
         lblPrice.setText("Price: " + list.get(index - 1).getGiaBan());
         lblImage.setIcon(new ImageIcon(new ImageIcon(getClass().getResource(("/com/raven/image/" + list.get(index - 1).getAnh()))).getImage().getScaledInstance(135, 164, Image.SCALE_DEFAULT)));
     }
-    
-    private void loadSPFromTable(int index){
-        loadSP(index+1);
+
+    private void loadSPFromTable(int index) {
+        loadSP(index + 1);
         btnAmount.setValue(card.get(index)[2]);
-        lblSumPrice.setText(String.valueOf(Integer.parseInt(lblPrice.getText().substring(7))*(int)card.get(index)[2]));
+        lblSumPrice.setText(String.valueOf(Integer.parseInt(lblPrice.getText().substring(7)) * (int) card.get(index)[2]));
         cboSearch.setSelectedItem(card.get(index)[0]);
     }
 
@@ -324,16 +362,18 @@ public class AddInvoice_Form extends javax.swing.JPanel {
         lblImage.setText("IMG");
         lblSumPrice.setText("Total: 0");
     }
-    
-    public void removeCard(int x){
-        if(card.size() >= 0)
+
+    public void removeCard2(int x) {
+        if (card.size() > 0) {
             card.remove(x);
+        }
     }
-    
-    public void removeAllall(){
-        if(card.size() >= 0)
+
+    public void removeAllall() {
+        if (card.size() >= 0) {
             card.removeAll(card);
-        DefaultTableModel model = (DefaultTableModel)tblCardPro.getModel();
+        }
+        DefaultTableModel model = (DefaultTableModel) tblCardPro.getModel();
         model.setRowCount(0);
         cboSearch.setSelectedIndex(0);
         clearSP();
@@ -353,34 +393,39 @@ public class AddInvoice_Form extends javax.swing.JPanel {
         for (int i = 0; i < card.size(); i++) {
             if (list.get(cboSearch.getSelectedIndex() - 1).getMaSP().equals(card.get(i)[0])) {
                 card.get(i)[2] = btnAmount.getValue();
+                tblCardPro.setValueAt(btnAmount.getValue(), i, 2);
+                Pay_Form.pay.setSelectedIndex(1);
                 checkUpdate = false;
                 break;
             }
         }
-        if(check){
+        if (check) {
             SanPham sp = dao.selectById(list.get(cboSearch.getSelectedIndex() - 1).getMaSP());
-            if(sp!=null){
-                if(sp.getSoLuong()-(int)btnAmount.getValue()>=0)
+            if (sp != null) {
+                if (sp.getSoLuong() - (int) btnAmount.getValue() >= 0) {
                     check = true;
-                else {
+                } else {
                     Notification panel = new Notification(Employee_Form.fr, Notification.Type.WARNING, Notification.Location.TOP_CENTER, "Amount isn't enough !");
                     panel.showNotification();
                     check = false;
                 }
+            } else {
+                check = false;
             }
-            else check = false;
         }
-        if (check) {
-            if(checkUpdate){
+        if (card.size()>0 && check) {
+            if (checkUpdate) {
                 Object[] row = {list.get(cboSearch.getSelectedIndex() - 1).getMaSP(), list.get(cboSearch.getSelectedIndex() - 1).getTenSP(), btnAmount.getValue()};
                 card.add(row);
-            }
-            DefaultTableModel model = (DefaultTableModel)tblCardPro.getModel();
-            model.setRowCount(0);
-            for (int i = 0; i < card.size(); i++) {
-                tblCardPro.addRow(new ProductCard(card.get(i)[0].toString(), card.get(i)[1].toString(), Integer.parseInt(card.get(i)[2].toString())), false);
+                indexModelTable++;
+                tblCardPro.addRow(new ProductCard(card.get(indexModelTable)[0].toString(), card.get(indexModelTable)[1].toString(), Integer.parseInt(card.get(indexModelTable)[2].toString())), false);
             }
         }
-
+        if(card.size()<=0 && check){
+            Object[] row = {list.get(cboSearch.getSelectedIndex() - 1).getMaSP(), list.get(cboSearch.getSelectedIndex() - 1).getTenSP(), btnAmount.getValue()};
+            card.add(row);
+            indexModelTable++;
+            tblCardPro.addRow(new ProductCard(card.get(indexModelTable)[0].toString(), card.get(indexModelTable)[1].toString(), Integer.parseInt(card.get(indexModelTable)[2].toString())), false);
+        }
     }
 }

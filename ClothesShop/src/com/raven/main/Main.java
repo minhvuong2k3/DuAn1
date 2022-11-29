@@ -73,13 +73,13 @@ public class Main extends javax.swing.JFrame {
                         mainBody.displayForm(dashForm, "Statistical");
                         break;
                     case 6:
-                        mainBody.displayForm(settingForm, "Setting");
+                        mainBody.displayForm(Cus_Form, "Customer");
                         break;
                     case 7:
                         mainBody.displayForm(importProduct, "Import Product");
                         break;
                     case 8:
-                        mainBody.displayForm(Cus_Form, "Setting");
+                        mainBody.displayForm(settingForm, "Setting");
                         break;
                     case 9:
                         me.showMessage("", "Do you want to logout?");
@@ -213,7 +213,7 @@ public class Main extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
