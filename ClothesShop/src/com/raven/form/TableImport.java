@@ -10,7 +10,6 @@ import com.raven.model.CTHDNhap;
 import com.raven.model.HDNhap;
 import com.raven.swing.scrollbar.ScrollBarCustom;
 import com.raven.utils.XDialog;
-import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
@@ -242,12 +241,12 @@ public class TableImport extends javax.swing.JPanel {
 
     private void tblCTHDNhapMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCTHDNhapMouseClicked
         // TODO add your handling code here:
-        if (evt.getClickCount() == 2) {
-            this.indexCT = tblCTHDNhap.rowAtPoint(evt.getPoint());
-            if (this.indexCT >= 0) {
-                this.editCT();
-            }
-        }
+//        if (evt.getClickCount() == 2) {
+//            this.indexCT = tblCTHDNhap.rowAtPoint(evt.getPoint());
+//            if (this.indexCT >= 0) {
+//                this.editCT();
+//            }
+//        }
     }//GEN-LAST:event_tblCTHDNhapMouseClicked
 
 
@@ -315,7 +314,7 @@ public class TableImport extends javax.swing.JPanel {
                     ct.getSoPhieu(),
                     ct.getSoLuong(),
                     ct.getGiaNhap(),
-                    ct.getSoLuong() * ct.getGiaNhap()
+                    ct.getTotal()
                 };
                 model.addRow(row);
             }
@@ -329,16 +328,16 @@ public class TableImport extends javax.swing.JPanel {
      * @return tong tien trong hd
      */
     public int getTotal(HDNhap model) {
-        List<CTHDNhap> list = ctdao.selectListById(model.getSoPhieu()+"");
+        List<CTHDNhap> list = ctdao.selectListById(String.valueOf(model.getSoPhieu()));
         int sum = 0;
         for (CTHDNhap ct : list) {
-            sum += ct.getSoLuong() * ct.getGiaNhap();
+            sum += ct.getTotal();
         }
         return sum;
     }
 
     /**
-     * Xu ly khi chon hd trong tbl
+     * Xu ly khi chon hd trong bang hoa don
      */
     private void editHD() {
         try {
@@ -356,28 +355,35 @@ public class TableImport extends javax.swing.JPanel {
     }
 
     /**
-     * Xy ly khi chon san pham trong hd
+     * Xy ly khi chon san pham trong bang ct hoa don
      */
-    private void editCT() {
-        try {
-            String soPhieu = (String) tblHDNhap.getValueAt(this.indexHD, 0);
-            String maSP = (String) tblCTHDNhap.getValueAt(this.indexCT, 0);
-            CTHDNhap model = ctdao.selectById(soPhieu, maSP);
-            if(model != null) {
-                loadCT(soPhieu);
-            }
-        } catch (Exception e) {
-        }
-    }
+//    private void editCT() {
+//        try {
+//            String soPhieu = (String) tblHDNhap.getValueAt(this.indexHD, 0);
+//            String maSP = (String) tblCTHDNhap.getValueAt(this.indexCT, 0);
+//            CTHDNhap model = ctdao.selectById(soPhieu, maSP);
+//            if(model != null) {
+//                // Code
+//            }
+//        } catch (Exception e) {
+//        }
+//    }
     
+    /**
+     * Hien thong tin hoa don len form
+     * @param model la hoa don can show
+     */
     private void setModel(HDNhap model) {
         lblTenNCC.setText(model.getMaNCC());
         lblSoPhieu.setText(model.getSoPhieu()+"");
         lblNgayNhap.setText(model.getNgayNhap());
         lblMaNV.setText(model.getMaNV());
-        lblTotal.setText(getTotal(model));
+        lblTotal.setText(getTotal(model)+"");
     }
     
+    /**
+     * Set scrtoll
+     */
     private void setLayout() {
         scroll.setBorder(null);
         scroll.setViewportBorder(null);

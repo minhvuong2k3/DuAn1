@@ -250,8 +250,7 @@ public class AddImported_Form extends javax.swing.JPanel {
 
     private void tblCardProMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCardProMouseClicked
         // TODO add your handling code here:
-        // Xong
-        if (evt.getClickCount() == 2) {
+         if (evt.getClickCount() == 2) {
             this.index = tblCardPro.rowAtPoint(evt.getPoint());
             if (this.index >= 0) {
                 this.edit();
@@ -390,7 +389,7 @@ public class AddImported_Form extends javax.swing.JPanel {
      */
 
     /**
-     * Ham load du lieu len cbp san pham
+     * Ham load du lieu len cbo san pham
      * @param maNCC
      */
     public void fillcboSanPham(String maNCC) {
@@ -403,6 +402,7 @@ public class AddImported_Form extends javax.swing.JPanel {
             List<SanPham> list = dao.selectByIdNCC(maNCC);
             for (SanPham sp : list) {
                 model.addElement(sp);
+                System.out.println(sp);
             }
         } catch (Exception e) {
             XDialog.alert(this, "Error data query!");

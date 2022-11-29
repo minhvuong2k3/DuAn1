@@ -259,7 +259,8 @@ public class ImportProduct_Form extends javax.swing.JPanel {
 
     private void cboNCCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboNCCActionPerformed
         // TODO add your handling code here:
-//        ncc =(NhaCungCap) cboNCC.getSelectedItem();
+        NhaCungCap ncc =(NhaCungCap) cboNCC.getSelectedItem();
+        new AddImported_Form().fillcboSanPham(ncc.getMaNCC());
     }//GEN-LAST:event_cboNCCActionPerformed
 
 
