@@ -71,6 +71,12 @@ public class SanPhamDAO extends ClothingStoreDAO<SanPham, String>{
         List<SanPham> list = select(sql, MaSP);
         return list.size() > 0 ? list.get(0) : null;
     }
+    
+    public List<SanPham> selectByIdNCC(String MaNCC) {
+        String sql = "SELECT MaSP, TenSP, Anh, SoLuong, GiaBan, MaLH, GiamGia, MaNCC FROM SanPham WHERE MaNCC LIKE ?";
+        List<SanPham> list = select(sql, "%"+ MaNCC + "%");
+        return list.size() > 0 ? list : null;
+    }
 
     @Override
     protected List<SanPham> select(String sql, Object... args) {

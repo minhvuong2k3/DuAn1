@@ -9,10 +9,11 @@
         </group>
         <group>
             <file>file:/C:/FPT%20Polytechnic/DuAn1/DuAn1/ClothesShop/src/com/raven/main/Login.java</file>
+            <file>file:/C:/FPT%20Polytechnic/DuAn1/DuAn1/ClothesShop/src/com/raven/DAO/SanPhamDAO.java</file>
             <file>file:/C:/FPT%20Polytechnic/DuAn1/DuAn1/ClothesShop/src/com/raven/form/ImportProduct_Form.java</file>
             <file>file:/C:/FPT%20Polytechnic/DuAn1/DuAn1/ClothesShop/src/com/raven/form/AddImported_Form.java</file>
+            <file>file:/C:/FPT%20Polytechnic/DuAn1/DuAn1/ClothesShop/src/com/raven/form/Product_Form.java</file>
             <file>file:/C:/FPT%20Polytechnic/DuAn1/DuAn1/ClothesShop/src/com/raven/form/AddInvoice_Form.java</file>
-            <file>file:/C:/FPT%20Polytechnic/DuAn1/DuAn1/ClothesShop/src/com/raven/form/InvoiceOut_Form.java</file>
         </group>
     </open-files>
 </project-private>

@@ -9,6 +9,7 @@ import com.raven.cell.CellAction;
 import com.raven.model.ProductCard;
 import com.raven.model.SanPham;
 import com.raven.swing.scrollbar.ScrollBarCustom;
+import com.raven.utils.XDialog;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -29,13 +30,11 @@ import javax.swing.table.DefaultTableModel;
  * @author AD MIN
  */
 public class AddImported_Form extends javax.swing.JPanel {
-    static JComboBox invoice = new JComboBox();
-    static List<Object[]> card = new ArrayList<>();
-    
+
     SanPhamDAO dao = new SanPhamDAO();
-    List<SanPham> list = dao.select();
-    int indexCbo = 0;
-    
+    static List<SanPham> card = new ArrayList<>(); // Luu du lieu cac sp cap nhat
+    int index = 0; // Vi tri select trong table
+
     /**
      * Creates new form AddProducts
      */
@@ -104,7 +103,7 @@ public class AddImported_Form extends javax.swing.JPanel {
         lblNameProduct.setText("NAME PRODUCT");
 
         lblSumPrice.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblSumPrice.setText("Total : 999999");
+        lblSumPrice.setText("Total : 0");
 
         lblPrice.setText("Price");
 
@@ -132,7 +131,7 @@ public class AddImported_Form extends javax.swing.JPanel {
 
             },
             new String [] {
-                "ID", "Name", "Age", "Email", "Tel", "Action"
+                "ID", "Name", "Amout", "Action"
             }
         ));
         tblCardPro.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -221,20 +220,19 @@ public class AddImported_Form extends javax.swing.JPanel {
 
     private void cboSearchItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboSearchItemStateChanged
         // TODO add your handling code here:
-        if (indexCbo != 0) {
-            if (cboSearch.getSelectedIndex() > 0) {
-                setModel(cboSearch.getSelectedIndex());
-                sumPrice((int) btnAmount.getValue());
-            } else {
-                clear();
-            }
+        if (cboSearch.getSelectedIndex() > 0) {
+            SanPham model = (SanPham) cboSearch.getSelectedItem();
+            setModel(model);
+            sumPrice((int) btnAmount.getValue());
+        } else {
+            clear();
         }
-        indexCbo++;
     }//GEN-LAST:event_cboSearchItemStateChanged
 
     private void btnAmountStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_btnAmountStateChanged
         // TODO add your handling code here:
         // Finish
+        // Xong
         if (cboSearch.getSelectedIndex() > 0) {
             sumPrice((int) btnAmount.getValue());
         }
@@ -242,8 +240,11 @@ public class AddImported_Form extends javax.swing.JPanel {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
-        if(cboSearch.getSelectedIndex()>0 && Integer.parseInt(lblSumPrice.getText().substring(7)) > 0)
-            loadToTable();
+        if (cboSearch.getSelectedIndex() > 0 && Integer.parseInt(lblSumPrice.getText().substring(7)) > 0) {
+            addToCard();
+            load();
+            clear();
+        }
         else {
             Notification panel = new Notification(Employee_Form.fr, Notification.Type.WARNING, Notification.Location.TOP_CENTER, "Information not enough !");
             panel.showNotification();
@@ -252,7 +253,13 @@ public class AddImported_Form extends javax.swing.JPanel {
 
     private void tblCardProMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCardProMouseClicked
         // TODO add your handling code here:
-        loadSPFromTable(tblCardPro.getSelectedRow());
+        // Xong
+        if (evt.getClickCount() == 2) {
+            this.index = tblCardPro.rowAtPoint(evt.getPoint());
+            if (this.index >= 0) {
+                this.edit();
+            }
+        }
     }//GEN-LAST:event_tblCardProMouseClicked
 
 
@@ -284,7 +291,7 @@ public class AddImported_Form extends javax.swing.JPanel {
         g2.dispose();
         super.paint(grphcs);
     }
-    
+
     private void setLayout() {
         setOpaque(false);
         tblCardPro.addTableStyle(cardcard);
@@ -293,90 +300,102 @@ public class AddImported_Form extends javax.swing.JPanel {
         cardcard.getViewport().setOpaque(false);
         cardcard.setVerticalScrollBar(new ScrollBarCustom());
         tblCardPro.addTableCell(new CellAction(), 3);
-        
-        //        cardcard.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-//        tblCardPro.addRow(new ModelStaff("123", "123", "123", 12, "123", "123", "123", "123"), false);  //  ture is animate row
-//        tblCardPro.addRow(new ModelStaff("123", "123", "123", 12, "123", "123", "123", "123"), false);  //  ture is animate row
-//        tblCardPro.addRow(new ModelStaff("123", "123", "123", 12, "123", "123", "123", "123"), false);  //  ture is animate row
-//        tblCardPro.addRow(new ModelStaff("123", "123", "123", 12, "123", "123", "123", "123"), false);  //  ture is animate row
-//        tblCardPro.addRow(new ModelStaff("123", "123", "123", 12, "123", "123", "123", "123"), false);  //  ture is animate row
-//        tblCardPro.addRow(new ModelStaff("123", "123", "123", 12, "123", "123", "123", "123"), false);  //  ture is animate row
-//        tblCardPro.addRow(new ModelStaff("123", "123", "123", 12, "123", "123", "123", "123"), false);  //  ture is animate row
     }
-    
+
     private void init() {
-        fillcboSanPham();
-        DefaultComboBoxModel model = (DefaultComboBoxModel) invoice.getModel();
-        model.removeAllElements();
-        model.addElement("0");
-        model.addElement("1");
-        model.addElement("2");
-        invoice.addItemListener(new ItemListener(){
-            @Override
-            public void itemStateChanged(ItemEvent e) {
-                removeAllall();
-            }
-        });
-        for(SanPham sp: list) {
-            System.out.println(sp);
-        }
+        tblCardPro.setDefaultEditor(Object.class, null); // Khong cho edit tren table
+        fillcboSanPham(""); // Load tat ca sp len form
     }
-
+    
     /**
-     * Ham load du lieu len cbp san pham
+     * Load du lieu tu sp tbl len tble
      */
-    private void fillcboSanPham() {
-        DefaultComboBoxModel model = (DefaultComboBoxModel) cboSearch.getModel();
-        model.removeAllElements();
+    private void load() {
+        DefaultTableModel model = (DefaultTableModel) tblCardPro.getModel();
+        model.setRowCount(0);
         
-        // Add empty to 
-        model.addElement("");
-        for (int i = 0; i < list.size(); i++) {
-            model.addElement(list.get(i));
+        try {
+            for (SanPham sp : card) {
+                tblCardPro.addRow(new ProductCard(sp.getMaSP(),sp.getTenSP(),sp.getSoLuong()),false);
+            }
+        } catch (Exception e) {
+            XDialog.alert(this, "Load table fail");
         }
-        cboSearch.setModel(model);
     }
     
-    private void setModel(int index) {
-        lblNameProduct.setText(list.get(index - 1).getTenSP());
-        lblPrice.setText("Price: " + list.get(index - 1).getGiaBan());
-        lblImage.setIcon(new ImageIcon(new ImageIcon(getClass().getResource(("/com/raven/image/" + list.get(index - 1).getAnh()))).getImage().getScaledInstance(135, 164, Image.SCALE_DEFAULT)));
+    private void addToCard() {
+        boolean check = true;
+        boolean checkUpdate = true;
+        SanPham sp = (SanPham) cboSearch.getSelectedItem();
+
+        for (SanPham x : card) {
+            if (sp.getMaSP().equals(x.getMaSP())) {
+                x.setSoLuong((int) btnAmount.getValue());
+                checkUpdate = false;
+                break;
+            }
+        }
+        if (check) {
+            if (sp != null) {
+                    check = true;
+            } else {
+                check = false;
+            }
+        }
+        if (check) {
+            if (checkUpdate) {
+                sp.setSoLuong((int) btnAmount.getValue());
+                card.add(sp);
+            }
+        }
     }
     
-    private void loadSPFromTable(int index){
-        setModel(index+1);
-        btnAmount.setValue(card.get(index)[2]);
-        lblSumPrice.setText(String.valueOf(Integer.parseInt(lblPrice.getText().substring(7))*(int)card.get(index)[2]));
-        cboSearch.setSelectedItem(card.get(index)[0]);
+    private void delete() {
+        if(!card.isEmpty())
+            card.removeAll(card);
     }
 
     /**
-     * 
+     * Show thong tin sp len form
+     * @param model la san pham can show
      */
-    public void clear() {
+    private void setModel(SanPham model) {
+        lblNameProduct.setText(model.getTenSP());
+        lblPrice.setText("Price: " + model.getGiaBan());
+        lblImage.setIcon(new ImageIcon(new ImageIcon(getClass().getResource(("/com/raven/image/" + model.getAnh()))).getImage().getScaledInstance(135, 164, Image.SCALE_DEFAULT)));
+    }
+
+    /**
+     * Hien thong tin sp trong table
+     */
+    private void edit() {
+        try {
+            String masp = (String) tblCardPro.getValueAt(this.index, 0);
+            System.out.println(masp);
+            SanPham model = dao.selectById(masp);
+            if (model != null) {
+                this.setModel(model);
+                btnAmount.setValue(card.get(index).getSoLuong());
+                lblSumPrice.setText(String.valueOf(Integer.parseInt(lblPrice.getText().substring(7)) * card.get(index).getSoLuong()));
+                cboSearch.setSelectedItem(card.get(index));
+            }
+        } catch (Exception e) {
+            XDialog.alert(this, "Error data query!");
+            e.printStackTrace();
+        }
+    }
+
+    private void clear() {
         lblNameProduct.setText("NAME PRODUCT");
         lblPrice.setText("Price ");
         lblImage.setIcon(null);
         lblImage.setText("IMG");
         lblSumPrice.setText("Total: 0");
     }
-    
-    public void removeCard(int x){
-        if(card.size() >= 0)
-            card.remove(x);
-    }
-    
-    public void removeAllall(){
-        if(card.size() >= 0)
-            card.removeAll(card);
-        DefaultTableModel model = (DefaultTableModel)tblCardPro.getModel();
-        model.setRowCount(0);
-        cboSearch.setSelectedIndex(0);
-        clear();
-    }
 
     /**
      * Ham tinh tong tien- > show len lblSum
+     *
      * @param x la so luong san pham
      */
     private void sumPrice(int x) {
@@ -387,40 +406,23 @@ public class AddImported_Form extends javax.swing.JPanel {
         }
     }
 
-    private void loadToTable() {
-        boolean check = true;
-        boolean checkUpdate = true;
-        for (int i = 0; i < card.size(); i++) {
-            if (list.get(cboSearch.getSelectedIndex() - 1).getMaSP().equals(card.get(i)[0])) {
-                card.get(i)[2] = btnAmount.getValue();
-                checkUpdate = false;
-                break;
-            }
-        }
-        if(check){
-            SanPham sp = dao.selectById(list.get(cboSearch.getSelectedIndex() - 1).getMaSP());
-            if(sp!=null){
-                if(sp.getSoLuong()-(int)btnAmount.getValue()>=0)
-                    check = true;
-                else {
-                    Notification panel = new Notification(Employee_Form.fr, Notification.Type.WARNING, Notification.Location.TOP_CENTER, "Amount isn't enough !");
-                    panel.showNotification();
-                    check = false;
-                }
-            }
-            else check = false;
-        }
-        if (check) {
-            if(checkUpdate){
-                Object[] row = {list.get(cboSearch.getSelectedIndex() - 1).getMaSP(), list.get(cboSearch.getSelectedIndex() - 1).getTenSP(), btnAmount.getValue()};
-                card.add(row);
-            }
-            DefaultTableModel model = (DefaultTableModel)tblCardPro.getModel();
-            model.setRowCount(0);
-            for (int i = 0; i < card.size(); i++) {
-                tblCardPro.addRow(new ProductCard(card.get(i)[0].toString(), card.get(i)[1].toString(), Integer.parseInt(card.get(i)[2].toString())), false);
-            }
-        }
+    /**
+     * Ham load du lieu len cbp san pham
+     */
+    public void fillcboSanPham(String maNCC) {
+        DefaultComboBoxModel model = (DefaultComboBoxModel) cboSearch.getModel();
+        model.removeAllElements();
 
+        // Add empty to 
+        model.addElement("");
+        try {
+            List<SanPham> list = dao.selectByIdNCC(maNCC);
+            for (SanPham sp : list) {
+                model.addElement(sp);
+            }
+        } catch (Exception e) {
+            XDialog.alert(this, "Error data query!");
+        }
+        cboSearch.setModel(model);
     }
 }

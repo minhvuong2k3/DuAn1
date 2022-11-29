@@ -5,7 +5,9 @@
 package com.raven.DAO;
 
 import com.raven.model.CTHDXuat;
+import com.raven.model.NhaCungCap;
 import com.raven.model.NhanVien;
+import com.raven.model.SanPham;
 import java.util.List;
 
 /**
@@ -14,10 +16,10 @@ import java.util.List;
  */
 public class TestDAO {
     public static void main(String[] args) {
-        NhanVienDAO dao = new NhanVienDAO();
-        List<NhanVien> list = dao.select();
-        for(NhanVien x: list) {
-            System.out.println(x.toString());
+        SanPhamDAO dao = new SanPhamDAO();
+        List<SanPham> list = dao.selectByIdNCC("");
+        for(SanPham x: list) {
+            System.out.println(x);
         }
     }
 }

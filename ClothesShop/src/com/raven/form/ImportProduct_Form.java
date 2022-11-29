@@ -4,18 +4,31 @@
  */
 package com.raven.form;
 
+import com.raven.DAO.NhaCungCapDAO;
+import com.raven.DAO.SanPhamDAO;
+import com.raven.model.NhaCungCap;
+import com.raven.model.SanPham;
+import com.raven.utils.XDialog;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
+
 /**
  *
  * @author AD MIN
  */
 public class ImportProduct_Form extends javax.swing.JPanel {
 
+    SanPhamDAO dao = new SanPhamDAO();
+    NhaCungCapDAO nccdao = new NhaCungCapDAO();
+    boolean isNew = false;
+    static NhaCungCap ncc = new NhaCungCap();
+
     /**
      * Creates new form NhapHang
      */
     public ImportProduct_Form() {
         initComponents();
-        newSup.setVisible(false);
+        init();
     }
 
     /**
@@ -29,12 +42,13 @@ public class ImportProduct_Form extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         newSup = new com.raven.swing.RoundPanel();
-        textField1 = new textfield.TextField();
+        txtID = new textfield.TextField();
         jLabel10 = new javax.swing.JLabel();
-        txtTenNCC = new textfield.TextField();
-        textField3 = new textfield.TextField();
+        txtName = new textfield.TextField();
+        txtPNum = new textfield.TextField();
         txtEmail = new textfield.TextField();
-        textField5 = new textfield.TextField();
+        txtAddress = new textfield.TextField();
+        btnAdd = new button.Button();
         roundPanel3 = new com.raven.swing.RoundPanel();
         jLabel9 = new javax.swing.JLabel();
         cboNCC = new combo_suggestion.ComboBoxSuggestion();
@@ -49,54 +63,63 @@ public class ImportProduct_Form extends javax.swing.JPanel {
 
         newSup.setBackground(new java.awt.Color(255, 255, 255));
 
-        textField1.setLabelText("ID");
+        txtID.setLabelText("ID");
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel10.setText("ADD SUPPLIER");
 
-        txtTenNCC.setLabelText("Name");
+        txtName.setLabelText("Name");
 
-        textField3.setLabelText("Phone number");
+        txtPNum.setLabelText("Phone number");
 
         txtEmail.setLabelText("Email");
 
-        textField5.setLabelText("Address");
+        txtAddress.setLabelText("Address");
+
+        btnAdd.setText("Add");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout newSupLayout = new javax.swing.GroupLayout(newSup);
         newSup.setLayout(newSupLayout);
         newSupLayout.setHorizontalGroup(
             newSupLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(txtName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(txtPNum, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(txtAddress, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(newSupLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(newSupLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtTenNCC, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(textField3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(textField5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(newSupLayout.createSequentialGroup()
-                        .addComponent(textField1, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 2, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, newSupLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 2, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, newSupLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, newSupLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         newSupLayout.setVerticalGroup(
             newSupLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(newSupLayout.createSequentialGroup()
-                .addGap(32, 32, 32)
+                .addContainerGap()
                 .addComponent(jLabel10)
                 .addGap(18, 18, 18)
-                .addComponent(textField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(txtTenNCC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(textField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtPNum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(textField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -106,6 +129,12 @@ public class ImportProduct_Form extends javax.swing.JPanel {
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setText("SUPPLIER");
+
+        cboNCC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboNCCActionPerformed(evt);
+            }
+        });
 
         btnNew.setText("New");
         btnNew.addActionListener(new java.awt.event.ActionListener() {
@@ -130,12 +159,13 @@ public class ImportProduct_Form extends javax.swing.JPanel {
                 .addGroup(roundPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(cboNCC, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundPanel3Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 2, Short.MAX_VALUE)
                         .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundPanel3Layout.createSequentialGroup()
                         .addComponent(btnClose, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnNew, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnNew, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(13, 13, 13)))
                 .addContainerGap())
         );
         roundPanel3Layout.setVerticalGroup(
@@ -167,7 +197,7 @@ public class ImportProduct_Form extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(roundPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
-                    .addComponent(newSup, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(newSup, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -185,14 +215,13 @@ public class ImportProduct_Form extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(addProductsInput1, javax.swing.GroupLayout.PREFERRED_SIZE, 531, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 4, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(roundPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(roundPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
+                        .addGap(2, 2, 2)
                         .addComponent(newSup, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                .addContainerGap(11, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -208,22 +237,32 @@ public class ImportProduct_Form extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
-        newSup.setVisible(true);
-        cboNCC.setEnabled(false);
+        setStatus(true);
     }//GEN-LAST:event_btnNewActionPerformed
 
     private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
-        newSup.setVisible(false);
-        cboNCC.setEnabled(true);
+        setStatus(false);
     }//GEN-LAST:event_btnCloseActionPerformed
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
+        save();
     }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        // TODO add your handling code here:
+        add();
+    }//GEN-LAST:event_btnAddActionPerformed
+
+    private void cboNCCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboNCCActionPerformed
+        // TODO add your handling code here:
+        ncc =(NhaCungCap) cboNCC.getSelectedItem();
+    }//GEN-LAST:event_cboNCCActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.raven.form.AddImported_Form addProductsInput1;
+    private button.Button btnAdd;
     private button.Button btnClose;
     private button.Button btnNew;
     private button.Button btnSave;
@@ -233,10 +272,126 @@ public class ImportProduct_Form extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private com.raven.swing.RoundPanel newSup;
     private com.raven.swing.RoundPanel roundPanel3;
-    private textfield.TextField textField1;
-    private textfield.TextField textField3;
-    private textfield.TextField textField5;
+    private textfield.TextField txtAddress;
     private textfield.TextField txtEmail;
-    private textfield.TextField txtTenNCC;
+    private textfield.TextField txtID;
+    private textfield.TextField txtName;
+    private textfield.TextField txtPNum;
     // End of variables declaration//GEN-END:variables
+
+    private void init() {
+        fillcboNCC();
+        newSup.setVisible(false);
+    }
+    
+    private boolean isValidate() {
+        if (txtID.getText().equals("")) {
+            XDialog.alert(this, "ID can't be empty");
+            return false;
+        }
+        if (txtName.getText().equals("")) {
+            XDialog.alert(this, "Name can't be empty");
+            return false;
+        }
+        if (txtEmail.getText().equals("")) {
+            XDialog.alert(this, "Email can't be empty");
+            return false;
+        }
+        if (txtPNum.getText().equals("")) {
+            XDialog.alert(this, "Phone number can't empty");
+            return false;
+        }
+        return true;
+    }
+    
+    private void add() {
+        if(!isValidate()) return;
+        NhaCungCap ncc = getModel();
+        try {
+            nccdao.insert(ncc);
+            clear();
+            XDialog.alert(this, "Add successful");
+        } catch (Exception e) {
+            XDialog.alert(this, "Add fail");
+        }
+    }
+    
+    private void clear() {
+        NhaCungCap model = new NhaCungCap();
+        setModel(model);
+    }
+    
+    private void setModel(NhaCungCap model) {
+        txtID.setText(model.getMaNCC());
+        txtName.setText(model.getTenNCC());
+        txtEmail.setText(model.getEmail());
+        txtAddress.setText(model.getDiachi());
+        txtPNum.setText(model.getSdt());
+    }
+    
+    private NhaCungCap getModel() {
+        NhaCungCap model = new NhaCungCap();
+        model.setMaNCC(txtID.getText());
+        model.setTenNCC(txtName.getText());
+        model.setSdt(txtPNum.getText());
+        model.setEmail(txtEmail.getText());
+        model.setDiachi(txtAddress.getText());
+        return model;
+    }
+    
+    private void fillcboNCC() {
+        DefaultComboBoxModel model = (DefaultComboBoxModel) cboNCC.getModel();
+        model.removeAllElements();
+        try {
+            List<NhaCungCap> list = nccdao.select();
+            for (NhaCungCap ncc : list) {
+                model.addElement(ncc);
+            }
+        } catch (Exception e) {
+            XDialog.alert(this, "Error data query!");
+        }
+    }
+    
+    private void save() {
+        if (isNew) {
+            if (!isValidate()) {
+                return;
+            }
+            NhaCungCap ncc = getModel();
+            try {
+                nccdao.insert(ncc);
+                for (SanPham x : AddImported_Form.card) {
+                    SanPham model = dao.selectById(x.getMaSP());
+                    int sl = model.getSoLuong();
+                    System.out.println(sl);
+                    model.setSoLuong(sl + model.getSoLuong());
+                    model.setMaNCC(txtID.getText());
+                    System.out.println(model.getMaSP() + ", " + model.getSoLuong());
+                    dao.update(model);
+                }
+            } catch (Exception e) {
+                XDialog.alert(this, "Add sl successful");
+            }
+        } else {
+            try {
+                for (SanPham x : AddImported_Form.card) {
+                    SanPham model = dao.selectById(x.getMaSP());
+                    int sl = model.getSoLuong();
+                    System.out.println(sl);
+                    model.setSoLuong(sl + x.getSoLuong());
+                    System.out.println(model.getMaSP() + ", " + model.getSoLuong());
+                    dao.update(model);
+                }
+            } catch (Exception e) {
+                XDialog.alert(this, "Add sl successful");
+            }
+        }
+    }
+    
+    private void setStatus(boolean insertable) {
+        newSup.setVisible(insertable);
+        cboNCC.setEnabled(!insertable);
+        isNew = insertable;
+    }
+    
 }
