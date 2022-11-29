@@ -66,6 +66,4 @@ public class CTHDXuat {
     public void setGiamGia(int giamGia) {
         this.giamGia = giamGia;
     }
-    
-    
 }

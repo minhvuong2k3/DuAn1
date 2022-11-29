@@ -59,6 +59,12 @@ public class HDNhapDAO extends ClothingStoreDAO<HDNhap, String>{
         List<HDNhap> list = select(sql, SoPhieu);
         return list.size() > 0 ? list.get(0) : null;
     }
+    
+    public List<HDNhap> selectByDate(String from, String to) {
+        String sql = "SELECT SoPhieu, NgayNhap, MaNCC, MaNV FROM HDNhap WHERE NgayNhap BETWEEN ? AND ?";
+        List<HDNhap> list = select(sql, from, to);
+        return list;
+    }
 
     @Override
     protected List<HDNhap> select(String sql, Object... args) {

@@ -91,8 +91,8 @@ public class HDXuatDAO extends ClothingStoreDAO<HDXuat, String>{
     private HDXuat readFromResultSet(ResultSet rs) throws SQLException {
         HDXuat model = new HDXuat();
         model.setSoPhieu(rs.getInt("SoPhieu"));
-        model.setMaNV(rs.getString("MaKH"));
-        model.setMaKH(rs.getString("MaNV"));
+        model.setMaNV(rs.getString("MaNV"));
+        model.setMaKH(rs.getString("MaKH"));
         model.setThanhTien(rs.getInt("ThanhTien"));
         model.setNgayXuat(rs.getString("NgayXuat"));
         return model;

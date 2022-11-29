@@ -5,26 +5,34 @@
 package com.raven.form;
 
 import com.raven.DAO.CTHDNhapDAO;
+import com.raven.DAO.CTHDXuatDAO;
 import com.raven.DAO.HDNhapDAO;
+import com.raven.DAO.HDXuatDAO;
+import com.raven.DAO.SanPhamDAO;
 import com.raven.model.CTHDNhap;
+import com.raven.model.CTHDXuat;
 import com.raven.model.HDNhap;
+import com.raven.model.HDXuat;
+import com.raven.model.SanPham;
 import com.raven.swing.scrollbar.ScrollBarCustom;
 import com.raven.utils.XDialog;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
+import org.bridj.cpp.com.SAFEARRAY;
 
 /**
  *
  * @author AD MIN
  */
-public class TableImport extends javax.swing.JPanel {
+public class TableOut extends javax.swing.JPanel {
 
-    HDNhapDAO dao = new HDNhapDAO();
-    CTHDNhapDAO ctdao = new CTHDNhapDAO();
+    HDXuatDAO dao = new HDXuatDAO();
+    CTHDXuatDAO ctdao = new CTHDXuatDAO();
+    SanPhamDAO spdao = new SanPhamDAO();
     int indexHD;
     int indexCT;
 
-    public TableImport() {
+    public TableOut() {
         initComponents();
         setLayout();
         init();
@@ -40,7 +48,7 @@ public class TableImport extends javax.swing.JPanel {
     private void initComponents() {
 
         scroll = new javax.swing.JScrollPane();
-        tblHDNhap = new com.raven.swing.table.Table();
+        tblHDXuat = new com.raven.swing.table.Table();
         roundPanel1 = new com.raven.swing.RoundPanel();
         scroll1 = new javax.swing.JScrollPane();
         roundPanel2 = new com.raven.swing.RoundPanel();
@@ -57,25 +65,25 @@ public class TableImport extends javax.swing.JPanel {
         jLabel31 = new javax.swing.JLabel();
         lblTotal = new javax.swing.JLabel();
         scroll2 = new javax.swing.JScrollPane();
-        tblCTHDNhap = new com.raven.swing.table.Table();
+        tblCTHDXuat = new com.raven.swing.table.Table();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
-        tblHDNhap.setBackground(new java.awt.Color(255, 255, 255));
-        tblHDNhap.setModel(new javax.swing.table.DefaultTableModel(
+        tblHDXuat.setBackground(new java.awt.Color(255, 255, 255));
+        tblHDXuat.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "SoPhieu", "NgayNhap", "NCC", "MaNV"
+                "SoPhieu", "NgayXuat", "KhachHang", "NhanVien"
             }
         ));
-        tblHDNhap.addMouseListener(new java.awt.event.MouseAdapter() {
+        tblHDXuat.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblHDNhapMouseClicked(evt);
+                tblHDXuatMouseClicked(evt);
             }
         });
-        scroll.setViewportView(tblHDNhap);
+        scroll.setViewportView(tblHDXuat);
 
         roundPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -86,7 +94,7 @@ public class TableImport extends javax.swing.JPanel {
 
         lblTenNCC.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblTenNCC.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTenNCC.setText("NAME NCC");
+        lblTenNCC.setText("Khach Hang");
 
         jLabel2.setText("Invoice No :");
 
@@ -110,20 +118,20 @@ public class TableImport extends javax.swing.JPanel {
         lblTotal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblTotal.setText("$999.99");
 
-        tblCTHDNhap.setModel(new javax.swing.table.DefaultTableModel(
+        tblCTHDXuat.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID", "Qty", "Price"
+                "ID", "Qty", "Price", "Sale", "Total"
             }
         ));
-        tblCTHDNhap.addMouseListener(new java.awt.event.MouseAdapter() {
+        tblCTHDXuat.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblCTHDNhapMouseClicked(evt);
+                tblCTHDXuatMouseClicked(evt);
             }
         });
-        scroll2.setViewportView(tblCTHDNhap);
+        scroll2.setViewportView(tblCTHDXuat);
 
         javax.swing.GroupLayout roundPanel2Layout = new javax.swing.GroupLayout(roundPanel2);
         roundPanel2.setLayout(roundPanel2Layout);
@@ -231,16 +239,16 @@ public class TableImport extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tblHDNhapMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHDNhapMouseClicked
+    private void tblHDXuatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHDXuatMouseClicked
         if (evt.getClickCount() == 2) {
-            this.indexHD = tblHDNhap.rowAtPoint(evt.getPoint());
+            this.indexHD = tblHDXuat.rowAtPoint(evt.getPoint());
             if (this.indexHD >= 0) {
                 this.editHD();
             }
         }
-    }//GEN-LAST:event_tblHDNhapMouseClicked
+    }//GEN-LAST:event_tblHDXuatMouseClicked
 
-    private void tblCTHDNhapMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCTHDNhapMouseClicked
+    private void tblCTHDXuatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCTHDXuatMouseClicked
         // TODO add your handling code here:
 //        if (evt.getClickCount() == 2) {
 //            this.indexCT = tblCTHDNhap.rowAtPoint(evt.getPoint());
@@ -248,7 +256,7 @@ public class TableImport extends javax.swing.JPanel {
 //                this.editCT();
 //            }
 //        }
-    }//GEN-LAST:event_tblCTHDNhapMouseClicked
+    }//GEN-LAST:event_tblCTHDXuatMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -269,13 +277,13 @@ public class TableImport extends javax.swing.JPanel {
     private javax.swing.JScrollPane scroll;
     private javax.swing.JScrollPane scroll1;
     private javax.swing.JScrollPane scroll2;
-    private com.raven.swing.table.Table tblCTHDNhap;
-    private com.raven.swing.table.Table tblHDNhap;
+    private com.raven.swing.table.Table tblCTHDXuat;
+    private com.raven.swing.table.Table tblHDXuat;
     // End of variables declaration//GEN-END:variables
 
     public void init() {
-        tblHDNhap.setDefaultEditor(Object.class, null);
-        tblCTHDNhap.setDefaultEditor(Object.class, null);
+        tblHDXuat.setDefaultEditor(Object.class, null);
+        tblCTHDXuat.setDefaultEditor(Object.class, null);
         loadHD();
     }
 
@@ -283,15 +291,15 @@ public class TableImport extends javax.swing.JPanel {
      * Ham load tat ca hoa don len tbl
      */
     private void loadHD() {
-        DefaultTableModel model = (DefaultTableModel) tblHDNhap.getModel();
+        DefaultTableModel model = (DefaultTableModel) tblHDXuat.getModel();
         model.setRowCount(0);
         try {
-            List<HDNhap> list = dao.select();
-            for (HDNhap hd : list) {
+            List<HDXuat> list = dao.select();
+            for (HDXuat hd : list) {
                 Object[] row = {
                     hd.getSoPhieu(),
-                    hd.getNgayNhap(),
-                    hd.getMaNCC(),
+                    hd.getNgayXuat(),
+                    hd.getMaKH(),
                     hd.getMaNV()
                 };
                 model.addRow(row);
@@ -307,15 +315,18 @@ public class TableImport extends javax.swing.JPanel {
      * @param soPhieu la soPhieu trong hoa don
      */
     private void loadCT(String soPhieu) {
-        DefaultTableModel model = (DefaultTableModel) tblCTHDNhap.getModel();
+        DefaultTableModel model = (DefaultTableModel) tblCTHDXuat.getModel();
         model.setRowCount(0);
         try {
-            List<CTHDNhap> list = ctdao.selectListById(soPhieu);
-            for (CTHDNhap ct : list) {
+            List<CTHDXuat> list = ctdao.selectListById(String.valueOf(soPhieu));
+            for (CTHDXuat ct : list) {
+                SanPham sp = spdao.selectById(ct.getMaSP());
                 Object[] row = {
                     ct.getSoPhieu(),
                     ct.getSoLuong(),
-                    ct.getGiaNhap()
+                    sp.getGiaBan(),
+                    ct.getGiamGia(),
+                    ct.getSoLuong() * sp.getGiaBan()
                 };
                 model.addRow(row);
             }
@@ -329,22 +340,22 @@ public class TableImport extends javax.swing.JPanel {
      * @param model la hoa don can tinh
      * @return tong tien trong hd
      */
-    public int getTotal(HDNhap model) {
-        List<CTHDNhap> list = ctdao.selectListById(String.valueOf(model.getSoPhieu()));
-        int sum = 0;
-        for (CTHDNhap ct : list) {
-            sum += ct.getGiaNhap();
-        }
-        return sum;
-    }
+//    public int getTotal(HDNhap model) {
+//        List<CTHDXuat> list = ctdao.selectListById(String.valueOf(model.getSoPhieu()));
+//        int sum = 0;
+//        for (CTHDXuat ct : list) {
+//            sum += ct.getGiaNhap();
+//        }
+//        return sum;
+//    }
 
     /**
      * Xu ly khi chon hd trong bang hoa don
      */
     private void editHD() {
         try {
-            Integer soPhieu = (Integer) tblHDNhap.getValueAt(this.indexHD, 0);
-            HDNhap model = dao.selectById(String.valueOf(soPhieu));
+            Integer soPhieu = (Integer) tblHDXuat.getValueAt(this.indexHD, 0);
+            HDXuat model = dao.selectById(String.valueOf(soPhieu));
             if (model != null) {
                 // Load tbl CT
                 setModel(model); // Hien thong tin hao don
@@ -375,12 +386,12 @@ public class TableImport extends javax.swing.JPanel {
      * Hien thong tin hoa don len form
      * @param model la hoa don can show
      */
-    private void setModel(HDNhap model) {
-        lblTenNCC.setText(model.getMaNCC());
+    private void setModel(HDXuat model) {
+        lblTenNCC.setText(model.getMaKH());
         lblSoPhieu.setText(model.getSoPhieu()+"");
-        lblNgayNhap.setText(model.getNgayNhap());
+        lblNgayNhap.setText(model.getNgayXuat());
         lblMaNV.setText(model.getMaNV());
-        lblTotal.setText(getTotal(model)+"");
+        lblTotal.setText(model.getThanhTien()+"");
     }
     
     /**

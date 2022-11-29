@@ -402,7 +402,6 @@ public class AddImported_Form extends javax.swing.JPanel {
             List<SanPham> list = dao.selectByIdNCC(maNCC);
             for (SanPham sp : list) {
                 model.addElement(sp);
-                System.out.println(sp);
             }
         } catch (Exception e) {
             XDialog.alert(this, "Error data query!");

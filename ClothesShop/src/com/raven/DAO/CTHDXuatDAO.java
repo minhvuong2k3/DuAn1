@@ -55,6 +55,11 @@ public class CTHDXuatDAO{
         List<CTHDXuat> list = select(sql, SoPhieu, MASP);
         return list.size() > 0 ? list.get(0) : null;
     }
+    
+    public List<CTHDXuat> selectListById(String SoPhieu) {
+        String sql = "SELECT SoPhieu, MASP, SoLuong, GiamGia FROM CTHDXuat WHERE SoPhieu = ?";
+        return select(sql, SoPhieu);
+    }
 
     protected List<CTHDXuat> select(String sql, Object... args) {
         List<CTHDXuat> list = new ArrayList<>();

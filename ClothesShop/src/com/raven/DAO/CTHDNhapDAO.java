@@ -61,7 +61,7 @@ public class CTHDNhapDAO {
         List<CTHDNhap> list = select(sql, SoPhieu);
         return select(sql, SoPhieu);
     }
-
+    
     protected List<CTHDNhap> select(String sql, Object... args) {
         List<CTHDNhap> list = new ArrayList<>();
         try {
