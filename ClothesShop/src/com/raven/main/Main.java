@@ -150,7 +150,7 @@ public class Main extends javax.swing.JFrame {
         importProduct = new ImportProduct_Form();
         manageInvoice = new ManageInvoice();
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

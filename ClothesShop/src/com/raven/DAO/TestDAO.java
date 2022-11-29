@@ -4,6 +4,7 @@
  */
 package com.raven.DAO;
 
+import com.raven.model.CTHDNhap;
 import com.raven.model.CTHDXuat;
 import com.raven.model.NhaCungCap;
 import com.raven.model.NhanVien;
@@ -16,10 +17,14 @@ import java.util.List;
  */
 public class TestDAO {
     public static void main(String[] args) {
-        SanPhamDAO dao = new SanPhamDAO();
-        List<SanPham> list = dao.selectByIdNCC("");
-        for(SanPham x: list) {
-            System.out.println(x);
+        CTHDNhapDAO dao = new CTHDNhapDAO();
+        List<CTHDNhap> list = dao.select();
+        for(CTHDNhap x: list) {
+            System.out.println(x.getSoPhieu()+", "+x.getMaSP());
         }
+        System.out.println("=============");
+        System.out.println(dao.selectListById("1"));
+        System.out.println("=============");
+        System.out.println(dao.selectById("1", "SP001"));
     }
 }

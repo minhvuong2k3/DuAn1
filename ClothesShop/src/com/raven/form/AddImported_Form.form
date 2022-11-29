@@ -57,7 +57,7 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="btnAmount" min="-2" pref="85" max="-2" attributes="0"/>
                                   <EmptySpace pref="230" max="32767" attributes="0"/>
-                                  <Component id="lblSumPrice" min="-2" pref="151" max="-2" attributes="0"/>
+                                  <Component id="lblAmount" min="-2" pref="151" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="btnAdd" min="-2" max="-2" attributes="0"/>
                               </Group>
@@ -104,7 +104,7 @@
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="btnAdd" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="lblSumPrice" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="lblAmount" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -175,10 +175,10 @@
             <Property name="text" type="java.lang.String" value="NAME PRODUCT"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblSumPrice">
+        <Component class="javax.swing.JLabel" name="lblAmount">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="4"/>
-            <Property name="text" type="java.lang.String" value="Total : 0"/>
+            <Property name="text" type="java.lang.String" value="Amout now:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblPrice">

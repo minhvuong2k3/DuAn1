@@ -34,6 +34,10 @@ public class AddImported_Form extends javax.swing.JPanel {
     SanPhamDAO dao = new SanPhamDAO();
     static List<SanPham> card = new ArrayList<>(); // Luu du lieu cac sp cap nhat
     int index = 0; // Vi tri select trong table
+    static int ok = 6;
+    static void isNew() {
+        
+    }
 
     /**
      * Creates new form AddProducts
@@ -60,7 +64,7 @@ public class AddImported_Form extends javax.swing.JPanel {
         lblImage = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         lblNameProduct = new javax.swing.JLabel();
-        lblSumPrice = new javax.swing.JLabel();
+        lblAmount = new javax.swing.JLabel();
         lblPrice = new javax.swing.JLabel();
         btnAmount = new spinner.Spinner();
         btnAdd = new button.Button();
@@ -102,8 +106,8 @@ public class AddImported_Form extends javax.swing.JPanel {
         lblNameProduct.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lblNameProduct.setText("NAME PRODUCT");
 
-        lblSumPrice.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblSumPrice.setText("Total : 0");
+        lblAmount.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblAmount.setText("Amout now:");
 
         lblPrice.setText("Price");
 
@@ -161,7 +165,7 @@ public class AddImported_Form extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 230, Short.MAX_VALUE)
-                                .addComponent(lblSumPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblAmount, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(6, 6, 6))
@@ -199,7 +203,7 @@ public class AddImported_Form extends javax.swing.JPanel {
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblSumPrice))))))
+                                    .addComponent(lblAmount))))))
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(cardcard, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE)
@@ -223,24 +227,17 @@ public class AddImported_Form extends javax.swing.JPanel {
         if (cboSearch.getSelectedIndex() > 0) {
             SanPham model = (SanPham) cboSearch.getSelectedItem();
             setModel(model);
-            sumPrice((int) btnAmount.getValue());
-        } else {
-            clear();
         }
     }//GEN-LAST:event_cboSearchItemStateChanged
 
     private void btnAmountStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_btnAmountStateChanged
         // TODO add your handling code here:
-        // Finish
-        // Xong
-        if (cboSearch.getSelectedIndex() > 0) {
-            sumPrice((int) btnAmount.getValue());
-        }
+        
     }//GEN-LAST:event_btnAmountStateChanged
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
-        if (cboSearch.getSelectedIndex() > 0 && Integer.parseInt(lblSumPrice.getText().substring(7)) > 0) {
+        if (cboSearch.getSelectedIndex() > 0) {
             addToCard();
             load();
             clear();
@@ -271,10 +268,10 @@ public class AddImported_Form extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JLabel lblAmount;
     private javax.swing.JLabel lblImage;
     private javax.swing.JLabel lblNameProduct;
     private javax.swing.JLabel lblPrice;
-    private javax.swing.JLabel lblSumPrice;
     private com.raven.swing.RoundPanel roundPanel1;
     private com.raven.swing.RoundPanel roundPanel3;
     private com.raven.swing.Table tblCardPro;
@@ -324,31 +321,22 @@ public class AddImported_Form extends javax.swing.JPanel {
     }
     
     private void addToCard() {
-        boolean check = true;
-        boolean checkUpdate = true;
-        SanPham sp = (SanPham) cboSearch.getSelectedItem();
-
+        SanPham sp = (SanPham) cboSearch.getSelectedItem(); // Lay sp trong kho
+        boolean updateAmount = false;
+        
         for (SanPham x : card) {
             if (sp.getMaSP().equals(x.getMaSP())) {
-                x.setSoLuong((int) btnAmount.getValue());
-                checkUpdate = false;
+                x.setSoLuong((int) btnAmount.getValue()+sp.getSoLuong());
+                updateAmount = true;
+                
                 break;
             }
         }
-        if (check) {
-            if (sp != null) {
-                    check = true;
-            } else {
-                check = false;
+        if(!updateAmount) {
+            sp.setSoLuong((int) btnAmount.getValue()+sp.getSoLuong());
+            card.add(sp);
             }
         }
-        if (check) {
-            if (checkUpdate) {
-                sp.setSoLuong((int) btnAmount.getValue());
-                card.add(sp);
-            }
-        }
-    }
     
     private void delete() {
         if(!card.isEmpty())
@@ -363,6 +351,7 @@ public class AddImported_Form extends javax.swing.JPanel {
         lblNameProduct.setText(model.getTenSP());
         lblPrice.setText("Price: " + model.getGiaBan());
         lblImage.setIcon(new ImageIcon(new ImageIcon(getClass().getResource(("/com/raven/image/" + model.getAnh()))).getImage().getScaledInstance(135, 164, Image.SCALE_DEFAULT)));
+        lblAmount.setText("Amount in Kho: "+ model.getSoLuong());
     }
 
     /**
@@ -376,7 +365,6 @@ public class AddImported_Form extends javax.swing.JPanel {
             if (model != null) {
                 this.setModel(model);
                 btnAmount.setValue(card.get(index).getSoLuong());
-                lblSumPrice.setText(String.valueOf(Integer.parseInt(lblPrice.getText().substring(7)) * card.get(index).getSoLuong()));
                 cboSearch.setSelectedItem(card.get(index));
             }
         } catch (Exception e) {
@@ -390,7 +378,9 @@ public class AddImported_Form extends javax.swing.JPanel {
         lblPrice.setText("Price ");
         lblImage.setIcon(null);
         lblImage.setText("IMG");
-        lblSumPrice.setText("Total: 0");
+        lblAmount.setText("Total: 0");
+        btnAmount.setValue(0);
+        cboSearch.setSelectedIndex(0);
     }
 
     /**
@@ -398,16 +388,10 @@ public class AddImported_Form extends javax.swing.JPanel {
      *
      * @param x la so luong san pham
      */
-    private void sumPrice(int x) {
-        if (x <= 0) {
-            lblSumPrice.setText("Total: 0");
-        } else {
-            lblSumPrice.setText("Total: " + (Integer.parseInt(lblPrice.getText().substring(7)) * x));
-        }
-    }
 
     /**
      * Ham load du lieu len cbp san pham
+     * @param maNCC
      */
     public void fillcboSanPham(String maNCC) {
         DefaultComboBoxModel model = (DefaultComboBoxModel) cboSearch.getModel();
@@ -423,6 +407,5 @@ public class AddImported_Form extends javax.swing.JPanel {
         } catch (Exception e) {
             XDialog.alert(this, "Error data query!");
         }
-        cboSearch.setModel(model);
     }
 }

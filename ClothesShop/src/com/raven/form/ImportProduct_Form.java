@@ -6,9 +6,12 @@ package com.raven.form;
 
 import com.raven.DAO.NhaCungCapDAO;
 import com.raven.DAO.SanPhamDAO;
+import com.raven.component.MainBody;
+import com.raven.main.Main;
 import com.raven.model.NhaCungCap;
 import com.raven.model.SanPham;
 import com.raven.utils.XDialog;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 
@@ -20,8 +23,8 @@ public class ImportProduct_Form extends javax.swing.JPanel {
 
     SanPhamDAO dao = new SanPhamDAO();
     NhaCungCapDAO nccdao = new NhaCungCapDAO();
-    boolean isNew = false;
-    static NhaCungCap ncc = new NhaCungCap();
+    private Product_Form productForm;
+
 
     /**
      * Creates new form NhapHang
@@ -256,7 +259,7 @@ public class ImportProduct_Form extends javax.swing.JPanel {
 
     private void cboNCCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboNCCActionPerformed
         // TODO add your handling code here:
-        ncc =(NhaCungCap) cboNCC.getSelectedItem();
+//        ncc =(NhaCungCap) cboNCC.getSelectedItem();
     }//GEN-LAST:event_cboNCCActionPerformed
 
 
@@ -311,6 +314,7 @@ public class ImportProduct_Form extends javax.swing.JPanel {
             nccdao.insert(ncc);
             clear();
             XDialog.alert(this, "Add successful");
+            XDialog.alert(this, "Vui long qua san pham de tao sp cho NCC moi");
         } catch (Exception e) {
             XDialog.alert(this, "Add fail");
         }
@@ -353,37 +357,12 @@ public class ImportProduct_Form extends javax.swing.JPanel {
     }
     
     private void save() {
-        if (isNew) {
-            if (!isValidate()) {
-                return;
-            }
-            NhaCungCap ncc = getModel();
+        List<SanPham> list = AddImported_Form.card;
+        for(SanPham x: list) {
             try {
-                nccdao.insert(ncc);
-                for (SanPham x : AddImported_Form.card) {
-                    SanPham model = dao.selectById(x.getMaSP());
-                    int sl = model.getSoLuong();
-                    System.out.println(sl);
-                    model.setSoLuong(sl + model.getSoLuong());
-                    model.setMaNCC(txtID.getText());
-                    System.out.println(model.getMaSP() + ", " + model.getSoLuong());
-                    dao.update(model);
-                }
+                dao.update(x);
             } catch (Exception e) {
-                XDialog.alert(this, "Add sl successful");
-            }
-        } else {
-            try {
-                for (SanPham x : AddImported_Form.card) {
-                    SanPham model = dao.selectById(x.getMaSP());
-                    int sl = model.getSoLuong();
-                    System.out.println(sl);
-                    model.setSoLuong(sl + x.getSoLuong());
-                    System.out.println(model.getMaSP() + ", " + model.getSoLuong());
-                    dao.update(model);
-                }
-            } catch (Exception e) {
-                XDialog.alert(this, "Add sl successful");
+                System.out.println("Error");
             }
         }
     }
@@ -391,7 +370,6 @@ public class ImportProduct_Form extends javax.swing.JPanel {
     private void setStatus(boolean insertable) {
         newSup.setVisible(insertable);
         cboNCC.setEnabled(!insertable);
-        isNew = insertable;
     }
     
 }
