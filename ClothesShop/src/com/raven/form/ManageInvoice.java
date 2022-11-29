@@ -6,6 +6,9 @@ package com.raven.form;
 
 import com.raven.DAO.HDNhapDAO;
 import com.raven.DAO.HDXuatDAO;
+import com.raven.datechooser.EventDateChooser;
+import com.raven.datechooser.SelectedAction;
+import com.raven.datechooser.SelectedDate;
 import com.raven.model.HDNhap;
 import com.raven.model.HDXuat;
 import java.util.ArrayList;
@@ -18,12 +21,8 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ManageInvoice extends javax.swing.JPanel {
 
-    private TableImport tblImport;
-    private TableOut tblOut;
-
     public ManageInvoice() {
         initComponents();
-//        tblOut.setVisible(true);
     }
 
     /**
@@ -187,27 +186,30 @@ public class ManageInvoice extends javax.swing.JPanel {
 
     private void btnDayToActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDayToActionPerformed
         // TODO add your handling code here:
+        dateChooser2.setTextRefernce(txtTo);
+        dateChooser2.showPopup();
     }//GEN-LAST:event_btnDayToActionPerformed
 
     private void btnDayFromActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDayFromActionPerformed
         // TODO add your handling code here:
-
+        dateChooser1.setTextRefernce(txtFrom);
+        dateChooser1.showPopup();
     }//GEN-LAST:event_btnDayFromActionPerformed
 
     private void btnInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInputActionPerformed
         // TODO add your handling code here:
 //        setStatus(true);
-        tblImport.setVisible(true);
-        tblOut.setVisible(false);
-        btnInput.setEnabled(true);
+        tableImport1.setVisible(true);
+        tableOut1.setVisible(false);
+//        btnInput.setEnabled(true);
     }//GEN-LAST:event_btnInputActionPerformed
 
     private void btnOutputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOutputActionPerformed
         // TODO add your handling code here:
 //        setStatus(false);
-        tblImport.setVisible(false);
-        tblOut.setVisible(true);
-        btnInput.setEnabled(false);
+        tableImport1.setVisible(false);
+        tableOut1.setVisible(true);
+//        btnInput.setEnabled(false);
     }//GEN-LAST:event_btnOutputActionPerformed
 
 
@@ -232,12 +234,18 @@ public class ManageInvoice extends javax.swing.JPanel {
 
     private void init() {
         setStatus(true);
+        dateChooser1.addEventDateChooser(new EventDateChooser() {
+            @Override
+            public void dateSelected(SelectedAction action, SelectedDate date) {
+                if(action.getAction() == SelectedAction.DAY_SELECTED) {
+                    dateChooser1.hidePopup();
+                }
+            }
+        });
     }
-
+    
     private void setStatus(boolean insertable) {
         btnInput.setEnabled(!insertable);
         btnOutput.setEnabled(insertable);
-        tblImport.setVisible(!insertable);
-        tblOut.setVisible(insertable);
     }
 }
