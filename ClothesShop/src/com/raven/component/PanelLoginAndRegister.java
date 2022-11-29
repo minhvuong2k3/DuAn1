@@ -56,12 +56,12 @@ public class PanelLoginAndRegister extends javax.swing.JLayeredPane {
         register.setVisible(true);
         fillDataToList();
     }
-
+//rgb[219, 163, 154]
     private void initRegister(Frame frame) {
         register.setLayout(new MigLayout("wrap", "push[center]push", "push[]25[]10[]10[]25[]push"));
-        JLabel label = new JLabel("Forgot Passwword");
+        JLabel label = new JLabel("Forgot Password");
         label.setFont(new Font("sansserif", 1, 30));
-        label.setForeground(new Color(250, 100, 100));
+        label.setForeground(new Color(219, 163, 154));
         register.add(label);
         MyTextField txtEmail = new MyTextField();
         txtEmail.setPrefixIcon(new ImageIcon(getClass().getResource("/com/raven/icon/mail.png")));
