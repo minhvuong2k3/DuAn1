@@ -28,9 +28,11 @@ import javax.swing.table.DefaultTableModel;
  * @author AD MIN
  */
 public class ManageInvoice extends javax.swing.JPanel {
-    
+
     Date dateFrom = null, dateTo = null;
-    static String date1="", date2="";
+    static String date1 = "", date2 = "";
+    boolean isImport = true;
+
     public ManageInvoice() {
         initComponents();
     }
@@ -57,6 +59,7 @@ public class ManageInvoice extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
+        button1 = new button.Button();
         jPanel1 = new javax.swing.JPanel();
         tableImport1 = new com.raven.form.TableImport();
         tableOut1 = new com.raven.form.TableOut();
@@ -115,6 +118,13 @@ public class ManageInvoice extends javax.swing.JPanel {
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
+        button1.setText("Clear");
+        button1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout roundPanel1Layout = new javax.swing.GroupLayout(roundPanel1);
         roundPanel1.setLayout(roundPanel1Layout);
         roundPanel1Layout.setHorizontalGroup(
@@ -131,11 +141,13 @@ public class ManageInvoice extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtTo, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnDayTo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnDayTo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(150, 150, 150)
+                .addGap(138, 138, 138)
                 .addGroup(roundPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundPanel1Layout.createSequentialGroup()
                         .addComponent(btnInput, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -165,7 +177,8 @@ public class ManageInvoice extends javax.swing.JPanel {
                     .addComponent(btnDayFrom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtTo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnDayTo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                    .addComponent(jLabel1)
+                    .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(536, 536, 536))
             .addGroup(roundPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -217,6 +230,7 @@ public class ManageInvoice extends javax.swing.JPanel {
 //        setStatus(true);
         tableImport1.setVisible(true);
         tableOut1.setVisible(false);
+        isImport = true;
 //        btnInput.setEnabled(true);
     }//GEN-LAST:event_btnInputActionPerformed
 
@@ -225,24 +239,25 @@ public class ManageInvoice extends javax.swing.JPanel {
 //        setStatus(false);
         tableImport1.setVisible(false);
         tableOut1.setVisible(true);
+        isImport = false;
 //        btnInput.setEnabled(false);
     }//GEN-LAST:event_btnOutputActionPerformed
 
     private void txtFromCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtFromCaretUpdate
         // TODO add your handling code here:
-        if(!txtFrom.getText().trim().equals("")){
+        if (!txtFrom.getText().trim().equals("")) {
             SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
             try {
-                if(!txtTo.getText().trim().equals(""))
+                if (!txtTo.getText().trim().equals("")) {
                     dateTo = format.parse(txtTo.getText());
+                }
                 dateFrom = format.parse(txtFrom.getText());
-                if(dateTo != null && dateFrom != null){
-                    if(dateTo.compareTo(dateFrom) < 0){
+                if (dateTo != null && dateFrom != null) {
+                    if (dateTo.compareTo(dateFrom) < 0) {
                         Notification panel = new Notification(Employee_Form.fr, Notification.Type.WARNING, Notification.Location.TOP_CENTER, "DateTo invalid! ");
                         panel.showNotification();
-                    }
-                    else{
-                        if(dateTo.compareTo(dateFrom) > 0){
+                    } else {
+                        if (dateTo.compareTo(dateFrom) > 0) {
                             SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
                             date1 = format1.format(dateFrom);
                             date2 = format1.format(dateTo);
@@ -250,8 +265,7 @@ public class ManageInvoice extends javax.swing.JPanel {
                             TableImport.cbo.setSelectedIndex(1);
                             TableOut.cbo.setSelectedIndex(0);
                             TableOut.cbo.setSelectedIndex(1);
-                        }
-                        else {
+                        } else {
                             SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
                             date1 = format1.format(dateFrom);
                             date2 = format1.format(dateTo);
@@ -265,25 +279,25 @@ public class ManageInvoice extends javax.swing.JPanel {
             } catch (ParseException ex) {
                 Logger.getLogger(ManageInvoice.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
-        else dateFrom = null;
+        } else
+            dateFrom = null;
     }//GEN-LAST:event_txtFromCaretUpdate
 
     private void txtToCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtToCaretUpdate
         // TODO add your handling code here:
-        if(!txtTo.getText().trim().equals("")){
+        if (!txtTo.getText().trim().equals("")) {
             SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
             try {
-                if(!txtFrom.getText().trim().equals(""))
+                if (!txtFrom.getText().trim().equals("")) {
                     dateFrom = format.parse(txtFrom.getText());
+                }
                 dateTo = format.parse(txtTo.getText());
-                if(dateFrom != null && dateTo != null){
-                    if(dateTo.compareTo(dateFrom) < 0){
+                if (dateFrom != null && dateTo != null) {
+                    if (dateTo.compareTo(dateFrom) < 0) {
                         Notification panel = new Notification(Employee_Form.fr, Notification.Type.WARNING, Notification.Location.TOP_CENTER, "DateTo invalid! ");
                         panel.showNotification();
-                    }
-                    else{
-                        if(dateTo.compareTo(dateFrom) > 0){
+                    } else {
+                        if (dateTo.compareTo(dateFrom) > 0) {
                             SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
                             date1 = format1.format(dateFrom);
                             date2 = format1.format(dateTo);
@@ -291,8 +305,7 @@ public class ManageInvoice extends javax.swing.JPanel {
                             TableImport.cbo.setSelectedIndex(1);
                             TableOut.cbo.setSelectedIndex(0);
                             TableOut.cbo.setSelectedIndex(1);
-                        }
-                        else {
+                        } else {
                             SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
                             date1 = format1.format(dateFrom);
                             date2 = format1.format(dateTo);
@@ -306,9 +319,16 @@ public class ManageInvoice extends javax.swing.JPanel {
             } catch (ParseException ex) {
                 Logger.getLogger(ManageInvoice.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
-        else dateTo = null;
+        } else
+            dateTo = null;
     }//GEN-LAST:event_txtToCaretUpdate
+
+    private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
+        if (isImport)
+            tableImport1.clear();
+        else
+            tableOut1.clear();
+    }//GEN-LAST:event_button1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -316,6 +336,7 @@ public class ManageInvoice extends javax.swing.JPanel {
     private button.Button btnDayTo;
     private button.Button btnInput;
     private button.Button btnOutput;
+    private button.Button button1;
     private com.raven.datechooser.DateChooser dateChooser1;
     private com.raven.datechooser.DateChooser dateChooser2;
     private javax.swing.JLabel jLabel1;
@@ -335,15 +356,16 @@ public class ManageInvoice extends javax.swing.JPanel {
         dateChooser1.addEventDateChooser(new EventDateChooser() {
             @Override
             public void dateSelected(SelectedAction action, SelectedDate date) {
-                if(action.getAction() == SelectedAction.DAY_SELECTED) {
+                if (action.getAction() == SelectedAction.DAY_SELECTED) {
                     dateChooser1.hidePopup();
                 }
             }
         });
     }
-    
+
     private void setStatus(boolean insertable) {
         btnInput.setEnabled(!insertable);
         btnOutput.setEnabled(insertable);
+
     }
 }

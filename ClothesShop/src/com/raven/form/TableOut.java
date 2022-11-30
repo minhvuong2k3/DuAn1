@@ -466,4 +466,11 @@ public class TableOut extends javax.swing.JPanel {
         scroll1.getViewport().setOpaque(false);
         scroll1.setVerticalScrollBar(new ScrollBarCustom());
     }
+    
+    public void clear() {
+        DefaultTableModel model = (DefaultTableModel) tblCTHDXuat.getModel();
+        model.setRowCount(0);
+        DefaultTableModel model2 = (DefaultTableModel) tblHDXuat.getModel();
+        model.setRowCount(0);
+    }
 }
