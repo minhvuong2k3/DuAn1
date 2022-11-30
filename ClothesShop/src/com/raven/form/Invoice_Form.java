@@ -39,6 +39,7 @@ public class Invoice_Form extends javax.swing.JPanel {
      * Creates new form Invoice
      */
     static JComboBox text = new JComboBox();
+    static String maKH = "";
 
     SanPhamDAO dao = new SanPhamDAO();
     public Invoice_Form() {
@@ -72,8 +73,10 @@ public class Invoice_Form extends javax.swing.JPanel {
         if(InvoiceOut_Form.CusPhone != null){
             KhachHangDAO khdao = new KhachHangDAO();
             KhachHang kh = khdao.selectBySdt(InvoiceOut_Form.CusPhone);
-            if(kh!=null)
+            if(kh!=null){
                 lblIDCus.setText(kh.getMaKH());
+                maKH = kh.getMaKH();
+            }
             else{
                 if(InvoiceOut_Form.CusName != null && InvoiceOut_Form.CusEmail != null){
                     kh = khdao.selectTop1();
@@ -84,14 +87,19 @@ public class Invoice_Form extends javax.swing.JPanel {
                     khnew.setMaKH("KH"+String.valueOf(Integer.parseInt(kh.getMaKH().substring(2))+1));
                     khdao.insert(khnew);
                     lblIDCus.setText(khnew.getMaKH());
+                    maKH = khnew.getMaKH();
                 }
-                else 
+                else {
+                    maKH = "";
                     lblIDCus.setText("");
+                } 
             } 
                 
         }
-        else 
+        else {
             lblIDCus.setText("");
+            maKH = "";
+        }
         lblSum.setText("$"+sum);
         HDXuatDAO hddao = new HDXuatDAO();
         HDXuat hd = hddao.selectTop1();
