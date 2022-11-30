@@ -60,8 +60,4 @@ public class CTHDNhap {
     public void setGiaNhap(int giaNhap) {
         this.giaNhap = giaNhap;
     }
-    
-    public long getTotal() {
-        return soLuong * giaNhap;
-    }
 }

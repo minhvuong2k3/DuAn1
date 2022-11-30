@@ -47,6 +47,16 @@ public class HDNhapDAO extends ClothingStoreDAO<HDNhap, String> {
         String sql = "SELECT SoPhieu, NgayNhap, MaNCC, MaNV FROM HDNhap";
         return select(sql);
     }
+    
+    public List<HDNhap> select2Date(String dateFrom, String dateTo) {
+        String sql = "SELECT SoPhieu, NgayNhap, MaNCC, MaNV FROM HDNhap where NgayNhap >= ? and NgayNhap <= ?";
+        return select(sql, dateFrom, dateTo);
+    }
+    
+    public List<HDNhap> select1Date(String date) {
+        String sql = "SELECT SoPhieu, NgayNhap, MaNCC, MaNV FROM HDNhap where NgayNhap = ?";
+        return select(sql, date);
+    }
 
     public List<HDNhap> selectByKeyword(int keyword) {
         String sql = "SELECT SoPhieu, NgayNhap, MaNCC, MaNV FROM HDNhap WHERE SoPhieu = ?";
@@ -58,6 +68,12 @@ public class HDNhapDAO extends ClothingStoreDAO<HDNhap, String> {
         String sql = "SELECT SoPhieu, NgayNhap, MaNCC, MaNV FROM HDNhap WHERE SoPhieu = ?";
         List<HDNhap> list = select(sql, SoPhieu);
         return list.size() > 0 ? list.get(0) : null;
+    }
+    
+    public List<HDNhap> selectByDate(String from, String to) {
+        String sql = "SELECT SoPhieu, NgayNhap, MaNCC, MaNV FROM HDNhap WHERE NgayNhap BETWEEN ? AND ?";
+        List<HDNhap> list = select(sql, from, to);
+        return list;
     }
 
     @Override

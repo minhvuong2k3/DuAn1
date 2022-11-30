@@ -78,7 +78,7 @@
                           <Component id="newSup" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="11" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -198,7 +198,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="cboNCC" max="32767" attributes="0"/>
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="0" pref="2" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               <Component id="jLabel9" min="-2" pref="224" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
@@ -241,7 +241,7 @@
             </Component>
             <Component class="combo_suggestion.ComboBoxSuggestion" name="cboNCC">
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cboNCCActionPerformed"/>
+                <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cboNCCItemStateChanged"/>
               </Events>
             </Component>
             <Component class="button.Button" name="btnNew">

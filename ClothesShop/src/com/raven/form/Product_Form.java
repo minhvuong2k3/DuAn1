@@ -21,12 +21,14 @@ import java.awt.event.MouseEvent;
 import java.io.File;
 import java.text.DecimalFormat;
 import java.util.List;
+import javaswingdev.Notification;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.SwingUtilities;
 
 public class Product_Form extends javax.swing.JPanel {
+
     private EventItem event;
     SanPhamDAO dao = new SanPhamDAO();
     LoaiHangDAO lhdao = new LoaiHangDAO();
@@ -232,9 +234,9 @@ public class Product_Form extends javax.swing.JPanel {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-        if(btnSave.getText().equals("Add")) {
+        if (btnSave.getText().equals("Add")) {
             insert();
-        }else if (btnSave.getText().equals("Save")) {
+        } else if (btnSave.getText().equals("Save")) {
             update();
         }
     }//GEN-LAST:event_btnSaveActionPerformed
@@ -284,7 +286,7 @@ public class Product_Form extends javax.swing.JPanel {
         testData();
         scroll.setVerticalScrollBar(new ScrollBar());
     }
-    
+
     private void testData() {
         setEvent(new EventItem() {
             @Override
@@ -292,12 +294,12 @@ public class Product_Form extends javax.swing.JPanel {
                 edit(item.getItemID());
             }
         });
-        
+
     }
-    
+
     private void load() {
         panelItem.removeAll();
-        
+
         List<SanPham> list = dao.select();
         for (int i = 0; i < 11; i++) {
             addItem(new ModelItem(list.get(i).getMaSP(), list.get(i).getTenSP(), list.get(i).getMaNCC(), list.get(i).getGiaBan(), list.get(i).getMaLH(), new ImageIcon(getClass().getResource(("/com/raven/image/" + list.get(i).getAnh())))));
@@ -318,7 +320,7 @@ public class Product_Form extends javax.swing.JPanel {
     public void setEvent(EventItem event) {
         this.event = event;
     }
-    
+
     public void addItem(ModelItem data) {
         Item item = new Item();
         item.setData(data);
@@ -357,89 +359,104 @@ public class Product_Form extends javax.swing.JPanel {
         Point p = scroll.getLocation();
         return new Point(p.x, p.y - scroll.getViewport().getViewPosition().y);
     }
-    
+
     private boolean isValidate() {
-        if(txtMaSP.getText().equals("")) {
-            XDialog.alert(this, "Your ID isn't null");
+        if (txtMaSP.getText().equals("")) {
+            Notification panel = new Notification(Employee_Form.fr, Notification.Type.WARNING, Notification.Location.TOP_CENTER, "Your ID isn't > 5");
+            panel.showNotification();
             return false;
         }
-        if(txtMaSP.getText().length()>5) {
-            XDialog.alert(this, "Your ID isn't > 5");
+        if (txtMaSP.getText().length() > 5) {
+            Notification panel = new Notification(Employee_Form.fr, Notification.Type.WARNING, Notification.Location.TOP_CENTER, "Your ID isn't > 5");
+            panel.showNotification();
             return false;
         }
-        if(txtTenSP.getText().equals("")) {
-            XDialog.alert(this, "Your name isn't null");
+        if (txtTenSP.getText().equals("")) {
+            Notification panel = new Notification(Employee_Form.fr, Notification.Type.WARNING, Notification.Location.TOP_CENTER, "Your name isn't null");
+            panel.showNotification();
             return false;
         }
-        
+
         try {
             Integer gia = Integer.parseInt(txtGia.getText());
-            if(gia < 0) {
-                XDialog.alert(this, "Price can't be < 0");
+            if (gia < 0) {
+                Notification panel = new Notification(Employee_Form.fr, Notification.Type.WARNING, Notification.Location.TOP_CENTER, "Price can't be < 0");
+                panel.showNotification();
                 return false;
             }
         } catch (Exception e) {
-            XDialog.alert(this, "Price is number");
+            Notification panel = new Notification(Employee_Form.fr, Notification.Type.WARNING, Notification.Location.TOP_CENTER, "Price is number");
+            panel.showNotification();
             return false;
         }
-        
+
         try {
             Integer giamGia = Integer.parseInt(txtGiamGia.getText());
-            if(giamGia < 0) {
-                XDialog.alert(this, "Salse can't be < 0");
+            if (giamGia < 0) {
+                Notification panel = new Notification(Employee_Form.fr, Notification.Type.WARNING, Notification.Location.TOP_CENTER, "Salse can't be < 0");
+                panel.showNotification();
                 return false;
             }
         } catch (Exception e) {
-            XDialog.alert(this, "Sale is number");
+            Notification panel = new Notification(Employee_Form.fr, Notification.Type.WARNING, Notification.Location.TOP_CENTER, "Sale is number");
+            panel.showNotification();
             return false;
         }
         return true;
     }
-    
+
     private void insert() {
         SanPham model = getModel();
-        if(!isValidate())
+        if (!isValidate()) {
             return;
+        }
         try {
             dao.insert(model);
             load();
             clear();
-            XDialog.alert(this, "Add successful");
+            Notification panel = new Notification(Employee_Form.fr, Notification.Type.WARNING, Notification.Location.TOP_CENTER, "Add successful");
+            panel.showNotification();
         } catch (Exception e) {
-            XDialog.alert(this, "Add fail");
+            Notification panel = new Notification(Employee_Form.fr, Notification.Type.WARNING, Notification.Location.TOP_CENTER, "Add fail");
+            panel.showNotification();
         }
     }
-    
+
     private void update() {
         SanPham model = getModel();
         try {
             dao.update(model);
             load();
             clear();
-            XDialog.alert(this, "Update successful");
+            Notification panel = new Notification(Employee_Form.fr, Notification.Type.WARNING, Notification.Location.TOP_CENTER, "Update successful");
+            panel.showNotification();
         } catch (Exception e) {
-            XDialog.alert(this, "Update fail");
+            Notification panel = new Notification(Employee_Form.fr, Notification.Type.WARNING, Notification.Location.TOP_CENTER, "Update fail");
+            panel.showNotification();
         }
     }
-    
+
     private void delete() {
-        if(!Auth.isManager())
-            XDialog.alert(this, "You do not have permission to delete");
-        else {
-            if(XDialog.confirm(this, "Are you sure to delete")) {
+        if (!Auth.isManager()) {
+            Notification panel = new Notification(Employee_Form.fr, Notification.Type.WARNING, Notification.Location.TOP_CENTER, "Update successful");
+            panel.showNotification();
+        } else {
+            if (XDialog.confirm(this, "Are you sure to delete")) {
                 String maSP = txtMaSP.getText();
                 try {
                     dao.delete(maSP);
                     load();
                     clear();
-                    XDialog.alert(this, "Delete successful");
+                    Notification panel = new Notification(Employee_Form.fr, Notification.Type.WARNING, Notification.Location.TOP_CENTER, "Delete successful");
+                    panel.showNotification();
                 } catch (Exception e) {
-                    XDialog.alert(this, "Delete fail");
+                    Notification panel = new Notification(Employee_Form.fr, Notification.Type.WARNING, Notification.Location.TOP_CENTER, "Delete fail");
+                    panel.showNotification();
                 }
             }
         }
     }
-    
+
     private void clear() {
         cboLoaiHang.setSelectedIndex(0);
         cboNCC.setSelectedIndex(0);
@@ -450,7 +467,7 @@ public class Product_Form extends javax.swing.JPanel {
         txtAnh.setText("");
         setStatus(true);
     }
-    
+
     private void edit(String maSP) {
         try {
             SanPham model = dao.selectById(maSP);
@@ -459,11 +476,12 @@ public class Product_Form extends javax.swing.JPanel {
                 this.setStatus(false);
             }
         } catch (Exception e) {
-            XDialog.alert(this, "Error data query!");
+            Notification panel = new Notification(Employee_Form.fr, Notification.Type.WARNING, Notification.Location.TOP_CENTER, "Error data query!");
+            panel.showNotification();
             System.out.println(e);
         }
     }
-    
+
     private void setModel(SanPham model) {
         cboLoaiHang.setSelectedItem(lhdao.selectById(model.getMaLH()));
         cboNCC.setSelectedItem(nccdao.selectById(model.getMaNCC()));
@@ -473,7 +491,7 @@ public class Product_Form extends javax.swing.JPanel {
         txtGiamGia.setText(String.valueOf(model.getGiamgia()));
         txtAnh.setText(model.getAnh());
     }
-    
+
     private SanPham getModel() {
         SanPham model = new SanPham();
         LoaiHang loaihang = (LoaiHang) cboLoaiHang.getSelectedItem();
@@ -487,17 +505,18 @@ public class Product_Form extends javax.swing.JPanel {
         model.setAnh(txtAnh.getText());
         return model;
     }
-    
+
     private void setStatus(boolean insertable) {
-        if(insertable)
+        if (insertable) {
             btnSave.setText("Add");
-        else
+        } else {
             btnSave.setText("Save");
-        
+        }
+
         btnDelete.setEnabled(!insertable);
         txtMaSP.setEditable(insertable);
     }
-    
+
     private void fillcboLoaiHang() {
         DefaultComboBoxModel model = (DefaultComboBoxModel) cboLoaiHang.getModel();
         model.removeAllElements();
@@ -507,10 +526,11 @@ public class Product_Form extends javax.swing.JPanel {
                 model.addElement(cd);
             }
         } catch (Exception e) {
-            XDialog.alert(this, "Error data query!");
+            Notification panel = new Notification(Employee_Form.fr, Notification.Type.WARNING, Notification.Location.TOP_CENTER, "Error data query!");
+            panel.showNotification();
         }
     }
-    
+
     private void fillcboNhaCungCap() {
         DefaultComboBoxModel model = (DefaultComboBoxModel) cboNCC.getModel();
         model.removeAllElements();
@@ -520,15 +540,16 @@ public class Product_Form extends javax.swing.JPanel {
                 model.addElement(ncc);
             }
         } catch (Exception e) {
-            XDialog.alert(this, "Error data query!");
+            Notification panel = new Notification(Employee_Form.fr, Notification.Type.WARNING, Notification.Location.TOP_CENTER, "Error data query!");
+            panel.showNotification();
         }
     }
-    
+
     private void selectImage() {
         try {
             JFileChooser f = new JFileChooser("src\\com\\raven\\image");
             f.showOpenDialog(this);
-            
+
             File file = f.getSelectedFile();
             if (XShare.saveLogo(file)) {
                 // Hiển thị hình lên form
