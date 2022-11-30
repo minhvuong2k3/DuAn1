@@ -4,19 +4,27 @@
  */
 package com.raven.form;
 
+import com.raven.DAO.CTHDXuatDAO;
+import com.raven.DAO.HDXuatDAO;
 import com.raven.DAO.SanPhamDAO;
 import com.raven.cell.CellAction;
 import static com.raven.form.Pay_Form.pay;
 import com.raven.main.Main;
+import com.raven.model.CTHDXuat;
+import com.raven.model.HDXuat;
 import com.raven.model.ModelStaff;
 import com.raven.model.SanPham;
 import com.raven.model.ProductCard;
 import com.raven.swing.scrollbar.ScrollBarCustom;
+import com.raven.utils.Auth;
 import java.awt.Image;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import javaswingdev.FontAwesome;
 import javaswingdev.Notification;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
@@ -360,6 +368,7 @@ public class AddInvoice_Form extends javax.swing.JPanel {
         lblPrice.setText("Price ");
         lblImage.setIcon(null);
         lblImage.setText("IMG");
+        btnAmount.setValue(0);
         lblSumPrice.setText("Total: 0");
     }
 
@@ -371,6 +380,40 @@ public class AddInvoice_Form extends javax.swing.JPanel {
 
     public void removeAllall() {
         if (card.size() >= 0) {
+            start:for(int i=0;i<card.size();i++){
+                for(int j=0;j<list.size();j++){
+                    if(list.get(j).getMaSP().equals(card.get(i)[0])){
+                        SanPham sp = list.get(j);
+                        sp.setSoLuong(sp.getSoLuong()-(int)card.get(i)[2]);
+                        SanPhamDAO spdao = new SanPhamDAO();
+                        spdao.update(sp);
+                        continue start;
+                    }
+                }
+            }
+            HDXuatDAO hdxuat = new HDXuatDAO();
+            HDXuat hdx = new HDXuat();
+            hdx.setMaNV(Auth.user.getMaNV());
+            if(!Invoice_Form.maKH.equals(""))
+                hdx.setMaKH(Invoice_Form.maKH);
+            else 
+                hdx.setMaKH(null);
+            hdx.setThanhTien(Pay_Form.sum);
+            Date date = new Date();
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            String day = format.format(date);
+            hdx.setNgayXuat(day);
+            hdxuat.insert(hdx);
+            List<HDXuat> li = hdxuat.select();
+            CTHDXuatDAO cthdxuat = new CTHDXuatDAO();
+            for(int i=0;i<card.size();i++){
+                CTHDXuat a = new CTHDXuat();
+                a.setSoPhieu(li.get(li.size()-1).getSoPhieu());
+                a.setMaSP(card.get(i)[0].toString());
+                a.setGiamGia(0);
+                a.setSoLuong((int)card.get(i)[2]);
+                cthdxuat.insert(a);
+            }
             card.removeAll(card);
         }
         DefaultTableModel model = (DefaultTableModel) tblCardPro.getModel();
