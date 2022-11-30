@@ -383,7 +383,7 @@ public class InvoiceOut_Form extends javax.swing.JPanel {
             }
         }
         else if(step==2){
-            if(Pay_Form.cash<=0){
+            if(Pay_Form.cash<0){
                 Notification panel = new Notification(Employee_Form.fr, Notification.Type.WARNING, Notification.Location.TOP_CENTER, "Cash not enough !");
                 panel.showNotification();
             }
