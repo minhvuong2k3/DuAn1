@@ -9,10 +9,10 @@ import com.raven.DAO.HDNhapDAO;
 import com.raven.model.CTHDNhap;
 import com.raven.model.HDNhap;
 import com.raven.swing.scrollbar.ScrollBarCustom;
-import com.raven.utils.XDialog;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.List;
+import javaswingdev.Notification;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.plaf.basic.BasicComboBoxUI;
@@ -315,7 +315,8 @@ public class TableImport extends javax.swing.JPanel {
                 model.addRow(row);
             }
         } catch (Exception e) {
-            XDialog.alert(this, "Error data query!");
+            Notification panel = new Notification(Employee_Form.fr, Notification.Type.WARNING, Notification.Location.TOP_CENTER, "Error data query!");
+            panel.showNotification();
             e.printStackTrace();
         }
     }
@@ -335,7 +336,8 @@ public class TableImport extends javax.swing.JPanel {
                 model.addRow(row);
             }
         } catch (Exception e) {
-            XDialog.alert(this, "Error data query!");
+            Notification panel = new Notification(Employee_Form.fr, Notification.Type.WARNING, Notification.Location.TOP_CENTER, "Error data query!");
+            panel.showNotification();
             e.printStackTrace();
         }
     }
@@ -355,7 +357,8 @@ public class TableImport extends javax.swing.JPanel {
                 model.addRow(row);
             }
         } catch (Exception e) {
-            XDialog.alert(this, "Error data query!");
+            Notification panel = new Notification(Employee_Form.fr, Notification.Type.WARNING, Notification.Location.TOP_CENTER, "Error data query!");
+            panel.showNotification();
             e.printStackTrace();
         }
     }
@@ -378,6 +381,8 @@ public class TableImport extends javax.swing.JPanel {
                 model.addRow(row);
             }
         } catch (Exception e) {
+            Notification panel = new Notification(Employee_Form.fr, Notification.Type.WARNING, Notification.Location.TOP_CENTER, "Error data query!");
+            panel.showNotification();
             e.printStackTrace();
         }
     }
@@ -409,7 +414,8 @@ public class TableImport extends javax.swing.JPanel {
                 loadCT(String.valueOf(soPhieu)); // Load cac sp trong hoa don 
             }
         } catch (Exception e) {
-            XDialog.alert(this, "Error data query!");
+            Notification panel = new Notification(Employee_Form.fr, Notification.Type.WARNING, Notification.Location.TOP_CENTER, "Error data query!");
+            panel.showNotification();
             e.printStackTrace();
         }
     }

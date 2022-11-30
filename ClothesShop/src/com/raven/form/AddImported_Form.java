@@ -10,7 +10,6 @@ import static com.raven.form.ImportProduct_Form.manccString;
 import com.raven.model.ProductCard;
 import com.raven.model.SanPham;
 import com.raven.swing.scrollbar.ScrollBarCustom;
-import com.raven.utils.XDialog;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -445,7 +444,8 @@ public class AddImported_Form extends javax.swing.JPanel {
                 cboSearch.setSelectedItem(card.get(index));
             }
         } catch (Exception e) {
-            XDialog.alert(this, "Error data query!");
+            Notification panel = new Notification(Employee_Form.fr, Notification.Type.WARNING, Notification.Location.TOP_CENTER, "Error data query!");
+            panel.showNotification();
             e.printStackTrace();
         }
     }
@@ -482,7 +482,8 @@ public class AddImported_Form extends javax.swing.JPanel {
                 model.addElement(sp);
             }
         } catch (Exception e) {
-            XDialog.alert(this, "Error data query!");
+            Notification panel = new Notification(Employee_Form.fr, Notification.Type.WARNING, Notification.Location.TOP_CENTER, "Error data query!");
+            panel.showNotification();
         }
     }
 }
