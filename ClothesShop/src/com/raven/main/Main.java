@@ -21,9 +21,16 @@ import com.raven.theme.ThemeColor;
 import com.raven.theme.ThemeColorChange;
 import com.raven.utils.Auth;
 import java.awt.Color;
+import java.awt.Container;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 //import java.awt.event.ActionEvent;
 //import java.awt.event.ActionListener;
 import javaswingdev.message.MessageDialog;
+import javax.imageio.ImageIO;
 //import javax.swing.Timer;
 
 public class Main extends javax.swing.JFrame {
@@ -150,7 +157,7 @@ public class Main extends javax.swing.JFrame {
         importProduct = new ImportProduct_Form();
         manageInvoice = new ManageInvoice();
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
