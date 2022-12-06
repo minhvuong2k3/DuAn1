@@ -383,7 +383,7 @@ public class InvoiceOut_Form extends javax.swing.JPanel {
             }
         }
         else if(step==2){
-            if(Pay_Form.cash<0){
+            if(Pay_Form.cash<=0){
                 Notification panel = new Notification(Employee_Form.fr, Notification.Type.WARNING, Notification.Location.TOP_CENTER, "Cash not enough !");
                 panel.showNotification();
             }
@@ -402,6 +402,7 @@ public class InvoiceOut_Form extends javax.swing.JPanel {
             changeColorStep();
             AddInvoice_Form.invoice.setSelectedIndex(1);
             btnNext.setText("Next");
+            AddInvoice_Form.indexModelTable = -1;
             btnPrev.setEnabled(false);
             Notification panel = new Notification(Employee_Form.fr, Notification.Type.SUCCESS, Notification.Location.TOP_CENTER, "Payment success !");
             panel.showNotification();

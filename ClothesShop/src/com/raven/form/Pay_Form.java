@@ -48,6 +48,8 @@ public class Pay_Form extends javax.swing.JPanel {
         pay.addItemListener(new ItemListener(){
             @Override
             public void itemStateChanged(ItemEvent e) {
+                txtCash.setText("");
+                txtExtraMoney.setText("");
                 load();
             }
         });
@@ -269,10 +271,9 @@ public class Pay_Form extends javax.swing.JPanel {
                     cash = x-Integer.parseInt(txtTotal.getText().trim());
                     sum = Integer.parseInt(txtTotal.getText());
                     txtExtraMoney.setText("");
-                    Notification panel = new Notification(Employee_Form.fr, Notification.Type.WARNING, Notification.Location.TOP_CENTER, "Cash not enough !");
-                    panel.showNotification();
                 }
             } catch (Exception e) {
+                cash = 0;
                 Notification panel = new Notification(Employee_Form.fr, Notification.Type.WARNING, Notification.Location.TOP_CENTER, "Cash invalid !");
                 panel.showNotification();
             }
