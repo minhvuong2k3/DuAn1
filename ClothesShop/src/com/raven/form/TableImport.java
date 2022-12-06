@@ -15,7 +15,6 @@ import java.util.List;
 import javaswingdev.Notification;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
-import javax.swing.plaf.basic.BasicComboBoxUI;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -374,7 +373,7 @@ public class TableImport extends javax.swing.JPanel {
             List<CTHDNhap> list = ctdao.selectListById(soPhieu);
             for (CTHDNhap ct : list) {
                 Object[] row = {
-                    ct.getSoPhieu(),
+                    ct.getMaSP(),
                     ct.getSoLuong(),
                     ct.getGiaNhap()
                 };

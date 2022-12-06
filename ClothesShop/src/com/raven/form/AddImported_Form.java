@@ -440,7 +440,7 @@ public class AddImported_Form extends javax.swing.JPanel {
             SanPham model = dao.selectById(masp);
             if (model != null) {
                 this.setModel(model);
-                btnAmount.setValue(card.get(index).getSoLuong());
+                lblAmount.setText(card.get(index).getSoLuong()+"");
                 cboSearch.setSelectedItem(card.get(index));
             }
         } catch (Exception e) {

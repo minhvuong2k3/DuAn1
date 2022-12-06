@@ -6,13 +6,9 @@ package com.raven.form;
 
 import com.raven.DAO.NhaCungCapDAO;
 import com.raven.DAO.SanPhamDAO;
-import com.raven.component.MainBody;
-import static com.raven.form.Employee_Form.fr;
-import com.raven.main.Main;
 import com.raven.model.NhaCungCap;
 import com.raven.model.SanPham;
 import com.raven.utils.XDialog;
-import java.util.ArrayList;
 import java.util.List;
 import javaswingdev.Notification;
 import javax.swing.DefaultComboBoxModel;

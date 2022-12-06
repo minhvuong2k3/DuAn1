@@ -4,14 +4,10 @@
  */
 package com.raven.form;
 
-import com.raven.DAO.CTHDNhapDAO;
 import com.raven.DAO.CTHDXuatDAO;
-import com.raven.DAO.HDNhapDAO;
 import com.raven.DAO.HDXuatDAO;
 import com.raven.DAO.SanPhamDAO;
-import com.raven.model.CTHDNhap;
 import com.raven.model.CTHDXuat;
-import com.raven.model.HDNhap;
 import com.raven.model.HDXuat;
 import com.raven.model.SanPham;
 import com.raven.swing.scrollbar.ScrollBarCustom;
@@ -22,7 +18,6 @@ import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.table.DefaultTableModel;
-import org.bridj.cpp.com.SAFEARRAY;
 
 /**
  *
@@ -380,7 +375,7 @@ public class TableOut extends javax.swing.JPanel {
             for (CTHDXuat ct : list) {
                 SanPham sp = spdao.selectById(ct.getMaSP());
                 Object[] row = {
-                    ct.getSoPhieu(),
+                    ct.getMaSP(),
                     ct.getSoLuong(),
                     sp.getGiaBan(),
                     ct.getGiamGia(),
