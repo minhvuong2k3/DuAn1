@@ -460,4 +460,11 @@ public class TableImport extends javax.swing.JPanel {
         scroll1.getViewport().setOpaque(false);
         scroll1.setVerticalScrollBar(new ScrollBarCustom());
     }
+    
+    public void clear() {
+        DefaultTableModel model = (DefaultTableModel) tblCTHDNhap.getModel();
+        model.setRowCount(0);
+        DefaultTableModel model2 = (DefaultTableModel) tblHDNhap.getModel();
+        model.setRowCount(0);
+    }
 }

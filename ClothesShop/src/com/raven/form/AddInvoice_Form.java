@@ -89,6 +89,8 @@ public class AddInvoice_Form extends javax.swing.JPanel {
         cardcard = new javax.swing.JScrollPane();
         tblCardPro = new com.raven.swing.Table();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+
         roundPanel1.setBackground(new java.awt.Color(255, 255, 255));
         roundPanel1.setPreferredSize(new java.awt.Dimension(544, 610));
 
